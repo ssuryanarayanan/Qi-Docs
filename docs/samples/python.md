@@ -1,11 +1,24 @@
 # QiPy
 Quick start:
 ```
-import qipy as qi
+from qipy import *
+import datetime
 
-qi.info()
-channel = qi.channel("qi.osisoft.com:3380", "my api key")
-channel.getTypes()
+client = QiClient("localhost:12345", "my api key")
+types = client.getTypes()
+
+stream = QiStream()
+stream.Id = "tangent"
+stream.Name = "Tangent"
+stream.Description = "More interesting than sinusoid!"
+stream.TypeId = "Double"
+createdStream = client.createStream(stream)
+
+value = {
+    "TimeId" : datetime.datetime.now().isoformat(),
+    "Value": 100.001
+    }
+client.insertValue(createdStream, value)
 ```
 
 ### What's missing from QiPy
