@@ -20,8 +20,8 @@ value = {
     }
 client.insertValue(createdStream, value)
 ```
-Complete source code for QiPy and test app can be found here:
-https://github.com/osisoft/Qi-Samples/tree/master/Python/QiPy
+Complete source code for QiPy and test app can be found here: [OSIsoft GitHub]
+(https://github.com/osisoft/Qi-Samples/tree/master/Python/QiPy)
 
 ### What's missing from QiPy
 The following APIs are not yet implemented in QiPy:
