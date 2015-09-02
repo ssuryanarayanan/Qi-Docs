@@ -13,6 +13,6 @@ pages:
 - Data behavior: 'Qi-Data-Behavior.md'
 - Markdown cheatsheet: 'markdown-cheatsheet.md'
 - Samples: 
-  - 'Overview': 'samples/index.md'
+  - 'Overview': 'samples/IntroSamples.md'
   - '.Net client': 'samples/dotNetClient.md'
   - 'Python client': 'samples/python.md'
