@@ -9,8 +9,6 @@ theme: readthedocs
 
 pages:
 - Introduction: 'index.md'
-- Why Qi?: 'Why-Qi.md'
-- Data behavior: 'Qi-Data-Behavior.md'
 - Markdown cheatsheet: 'markdown-cheatsheet.md'
 - Samples: 
   - 'Overview': 'samples/IntroSamples.md'
