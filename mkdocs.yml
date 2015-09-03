@@ -12,5 +12,6 @@ pages:
 - Markdown cheatsheet: 'markdown-cheatsheet.md'
 - Samples: 
   - 'Overview': 'samples/IntroSamples.md'
+  - '.NET client using the Qi Libraries': 'samples/dotNetQiLibsClient.md'
   - '.Net client': 'samples/dotNetClient.md'
   - 'Python client': 'samples/python.md'
