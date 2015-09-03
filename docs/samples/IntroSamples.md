@@ -12,8 +12,8 @@ All the samples are console applications that follow the same sequence of events
 4. Create a Qi stream to store event data in
 5. Create and insert events into the stream
 6. Retrieve events for a specified range
-7. Retrieve and update an event
-8. Delete an event
+7. Update events
+8. Delete events
 
 These steps illustrate the fundamental programming steps of Qi.  Over time, we will extend the sample to demonstrate more advanced tasks.  Feel free to modify the samples and propose changes.
 
