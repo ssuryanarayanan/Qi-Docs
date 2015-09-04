@@ -9,10 +9,4 @@ theme: readthedocs
 
 pages:
 - Introduction: 'index.md'
-- Why Qi?: 'Why-Qi.md'
-- Data behavior: 'Qi-Data-Behavior.md'
-- Markdown cheatsheet: 'markdown-cheatsheet.md'
-- Samples: 
-  - 'Overview': 'samples/index.md'
-  - '.Net client': 'samples/dotNetClient.md'
-  - 'Python client': 'samples/python.md'
+- Samples:  'samples.md'
