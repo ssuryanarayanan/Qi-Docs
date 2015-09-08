@@ -5,7 +5,7 @@ site_favicon: '/img/qi-docs-favicon.ico'
 copyright: Copyright &copy; 2015, OSIsoft, LLC
 docs_dir: docs
 repo_url: https://github.com/osisoft/Qi-docs
-theme: sphinx_rtd_theme
+# theme: sphinx_rtd_theme
 
 pages:
 - Introduction: 'index.md'
