@@ -45,7 +45,7 @@ There are cases where ‘null’ cannot be used. For example with a GetValue cal
 
 The chart below describes how the Types act when the Behavior is set to Continuous
 | Type	| When Behavior = Continuous and index between events is addressed |
-| ----- | ---------------------------------------------------------------- |
+| ------ | ---------------------------------------------------------------- |
 | Numeric Floating Point Types Single, Double, Decimal | Interpolation |
 | Numeric Integer Types Int16, int32, int64, uint16, uint32, uint64, byte, Sbyte, Char | Interpolation (rounding) |
 | Time related Types DateTime, DateTimeOffset, TimeSpan	| Interpolation |
