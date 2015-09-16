@@ -19,7 +19,7 @@ Qi is capable of storing any data type you care to define.  A Qi Type consists o
 ## Type Methods
 
 *GetStreamType*
-```c#
+```
 QiType GetStreamType(string streamId);
 Task<QiType> GetStreamTypeAsync(string streamId);
 ```
