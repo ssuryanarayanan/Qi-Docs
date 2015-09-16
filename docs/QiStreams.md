@@ -122,11 +122,3 @@ HTTP DELETE
 
 Delete stream using its stream id.
 
-# Stream Behavior 
-
-The Stream Behavior is applied to a stream and effects how certain data read operations will be performed. The Stream Behavior must first be defined and then can be applied to the stream when it is created (GetOrCreateStream method) or updated (UpdateStream method). Stream Behavior is always referenced with its Id.
-
-The Stream Behavior can be changed between reads to change how the read acts. The Stream could also be set to use a different Stream Behavior.
-
-The default behavior for a stream (when a defined Stream Behavior is not applied to the stream) is Mode = ‘Continuous’ and Extrapolation = ‘All’. 
-
