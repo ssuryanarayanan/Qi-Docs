@@ -11,4 +11,8 @@ pages:
 - Introduction: 'index.md'
 - API reference: #'Qi Service API Reference.md'
   - Overview: 'Overview.md'
+  - Qi Types: 'QiTypes.md'
+  - Qi Streams: 'QiStreams.md'
+  - Stream behavior: 'StreamBehaviors.md'
+  - Data: 'Data.md' # or is it Datb.md?
 - Samples:  'samples.md'
