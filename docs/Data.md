@@ -1,6 +1,4 @@
-# Data Methods
-
-*FindDistinctValue*
+#FindDistinctValue
 ```
 T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
 Task<T> FindDistinctValueAsync<T>(string streamId, string index, QiSearchMode mode);
@@ -30,7 +28,7 @@ This method is used in situations where the client software needs to query a str
 
 Returns null values for calls that do not find a value (e.g. Search of ‘Next’ from an index after all existing data.)
 
-*GetDistinctValue* 
+#GetDistinctValue
 ```
 T GetDistinctValue<T>(string streamId, string index);
 Task<T> GetDistinctValueAsync<T>(string streamId, string index);
@@ -53,7 +51,7 @@ HTTP GET
 This method is used by a client when data is specifically expected to reside at the index used. 
 Returns event from the specified stream at the specified index. Throws exception if no event exists at index, or if the stream has no data.
 
-*GetFirstValue* 
+#GetFirstValue
 ```
 T GetFirstValue<T>(string streamId);
 Task<T> GetFirstValueAsync<T>(string streamId);
@@ -72,7 +70,7 @@ HTTP GET
 
 Gets the first data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
 
-*GetLastValue* 
+#GetLastValue
 ```
 T GetLastValue<T>(string streamId);
 Task<T> GetLastValueAsync<T>(string streamId);
@@ -91,7 +89,7 @@ HTTP GET
 
 Gets the last data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
 
-*GetIntervals*
+#GetIntervals
 ```
 IEnumerable<QiInterval<T>> GetIntervals<T>(string streamId, string startIndex, string endIndex, int count);
 Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T>(string streamId, string startIndex, string endIndex, int count);
@@ -138,7 +136,7 @@ Facets show the following 13 calculations for the field for the Interval.
 12.	WeightedPopulationStandardDeviation
 13.	Integral
 
-*GetRangeValues*
+#GetRangeValues
 ```
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count);
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, bool reversed);
@@ -231,7 +229,7 @@ If no data in stream – returns NULL (regardless of stream behavior setting)
 GetValues can generally be thought of as multiple GetValue calls.
 If no data in stream – returns array of NULLs (one for each member in requested list).
 
-*GetWindowValues*
+#GetWindowValues
 ```
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex);
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
@@ -292,7 +290,7 @@ Filter uses OData queries. Please see the section on Filter Text at the end of t
 
 The select expression is an ODATA syntax expression designating which properties of the event type to return. The index property is always included. Separate multiple fields with a comma. If the select expression is blank, then all fields are included in response. By only selecting fields of interest the call can be made more efficiently. Selection is applied before filtering, so any fields excluded by select expression cannot be used in the filter expression.
 
-*InsertValue*
+#InsertValue
 ```
 void InsertValue<T>(string streamId, T item);
 Task InsertValueAsync<T>(string streamId, T item);
@@ -312,7 +310,7 @@ Body is serialized event of type T
 `item` -- event to insert, where T is the type of the event and the stream
 Inserts an item into the specified stream. Will throw an exception if the index of item already has an event. 
 
-*InsertValues*
+#InsertValues
 ```
 void InsertValues<T>(string streamId, IList<T> items);
 Task InsertValuesAsync<T>(string streamId, IList<T> items);
@@ -333,7 +331,7 @@ Body is serialized list of events of type T
 
 Inserts items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire list of events is rolled back and no inserts at all are done. The index that caused the issue can be determined in the error response.
 
-*PatchValue*
+#PatchValue
 ```
 void PatchValue(string streamId, string selectExpression, T item);
 Task PatchValueAsync(string streamId, string selectExpression, T item);
@@ -360,7 +358,7 @@ var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
 PatchValue(“someStreamId”, “Value”, obj);
 ```
 
-*PatchValues* 
+#PatchValues
 ```
 void PatchValues(string streamId, string selectExpression, IList<T> items);
 Task PatchValuesAsync(string streamId, string selectExpression, IList<T> items);
@@ -384,7 +382,7 @@ This call is used to modify properties of specific events in a stream.  Only the
                 PatchValues is basically a series of PatchValue calls. If there are any problems completing the entire list of ‘patches’ the entire operation is rolled back. 
 
 
-*RemoveValue*
+#RemoveValue
 ```
 void RemoveValue(string streamId, string index);
 Task RemoveValueAsync(string streamId, string index);
@@ -404,7 +402,7 @@ HTTP DELETE
 
 Removes the value at index from the specified stream. Precision can matter when finding a value. If index is a DateTime, use the round-trip format given by `.ToString(“o”)`.
 
-*RemoveValues*
+#RemoveValues
 ```
 void RemoveValues(string streamId, IEnumerable<string> index);
 Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
@@ -424,7 +422,7 @@ HTTP DELETE
 
 Removes the value at each index from the specified stream. If any individual index has a problem, the enter list of attempted RemoveValues is rolled back and no removes are done.  The index that caused the issue can be determined in the error response.
 
-*RemoveWindowValues*
+#RemoveWindowValues
 ```
 void RemoveWindowValues(string streamId, string startIndex, string endIndex);
 Task RemoveWindowValuesAsync(string streamId, string startIndex, string endIndex);
@@ -445,7 +443,7 @@ HTTP DELETE
 
 Removes a range of values at and between the indices given.
 
-*ReplaceValue* 
+#ReplaceValue
 ```
 void ReplaceValue<T>(string streamId, T item);
 Task ReplaceValueAsync<T>(string streamId, T item);
@@ -466,7 +464,7 @@ Body is serialzied replacement object
 
 Writes an item over an existing value in the specified stream. Throws an exception if the stream does not have an event at the index to be replaced.
 
-*ReplaceValues*
+#ReplaceValues
 ```
 void ReplaceValues<T>(string streamId, IList<T> items);
 Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
@@ -489,7 +487,7 @@ Writes items over existing values in the specified stream. Throws an exception i
 
 If any individual index has a problem doing replace, the enter list of attempted replacements is rolled back and no replaces at all are done. The index that caused the issue can be determined in the error response.
 
-*UpdateValue* 
+#UpdateValue
 ```
 void UpdateValue<T>(string streamId, T item);
 Task UpdateValueAsync<T>(string streamId, T item);
@@ -510,7 +508,7 @@ Body is serialized updated value
 
 Writes item to specified stream.  Will insert at any index that does not have a value and will replace if the index already has a value. 
 
-*UpdateValues*
+#UpdateValues
 ```
 void UpdateValues<T>(string streamId, IList<T> items);
 Task UpdateValuesAsync<T>(string streamId, IList<T> items);
