@@ -25,7 +25,7 @@ Task<QiType> GetStreamTypeAsync(string streamId);
 ```
 
 *REST*
-```C#
+```
 Qi/Streams/{streamId}/Type
 ```
 HTTP GET
@@ -38,12 +38,12 @@ Returns the type definition associated with a stream
 
 
 *GetType*
-```c#
+```
 QiType GetType(string typeId);
 Task<QiType> GetTypeAsync(string typeId);
 ```
 *REST*
-```c#
+```
 Qi/Types/{typeId}
 ```
 
@@ -56,13 +56,13 @@ HTTP GET
 Returns type searched for by typeId
 
 *GetTypes*
-```c#
+```
 IEnumerable<QiType> GetTypes();
 Task<IEnumerable<QiType>> GetTypesAsync();
 ```
 
 *REST*
-```c#
+```
 Qi/Types
 ```
 
@@ -72,13 +72,13 @@ Returns IEnumerable of all types for the tenant.
 
 
 *GetOrCreateType*
-```c#
+```
 QiType GetOrCreateType(QiType entity);
 Task<QiType> GetOrCreateTypeAsync(QiType entity);
 ```
 
 *REST*
-```c#
+```
 Qi/Types
 ```
 
@@ -92,20 +92,20 @@ Body is serialized QiType entity
 Returns a Qi Type object. If entity already exists on the server by Id, that existing type is returned to the caller unchanged.  Otherwise, a new type definition is added to the Qi Service for use by that tenant.
 
 *UpdateType*
-```c#
+```
 void UpdateType(string typeId, QiType entity);
 Task UpdateTypeAsync(string typeId, QiType entity);
 ```
 This call is not allowed at this time.
 
 *DeleteType*
-```c#
+```
 void DeleteType(string typeId);
 Task DeleteTypeAsync(string typeId);
 ```
 
 *REST*
-```c#
+```
 Qi/Types/{typeId}
 ```
 
@@ -124,7 +124,7 @@ Streams are the fundamental unit of storage in the Qi Service.  Each stream repr
 
 ## Qi Stream Object
 
-```c#  
+```
   string Id
   string Name
   string Description
@@ -142,13 +142,13 @@ A Qi Stream object must include:
 
 ## Stream Methods
 *GetStream*
-```c#
+```
 QiStream GetStream(string streamId);
 Task<QiStream> GetStreamAsync (string streamId);
 ```
 
 *REST*
-```C#
+```
 Qi/Streams/{streamId}
 ```
 
@@ -161,13 +161,13 @@ HTTP GET
 Returns a QiStream object.
 
 *GetStreams*
-```c#
+```
 IEnumerable<QiStream> GetStreams ();
 Task<IEnumerable<QiStream>> GetStreamsAsync ();
 ```
 
 *REST*
-```c#
+```
 Qi/Streams
 ```
 
@@ -176,13 +176,13 @@ HTTP GET
 Returns IEnumerable of all streams for the tenant. 
 
 *GetOrCreateStream*
-```c#
+```
 QiStream GetOrCreateStream (QiStream entity);
 Task<QiStream> GetOrCreateStreamAsync (QiStream entity);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams
 ```
 
@@ -196,13 +196,13 @@ Body is serialized QiStream entity
 If BehaviorId is not specified, the stream will have the default behavior of Mode=‘Continuous’ and Extrapolation=‘All’. If entity already exists on the server by Id, that existing stream is returned to the caller unchanged.
 
 *UpdateStream*
-```c#
+```
 void UpdateStream(string streamId, QiStream entity);
 Task UpdateStreamAsync(string streamId, QiStream entity);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}
 ```
 
@@ -224,13 +224,13 @@ Throws exception on unpermitted change attempt (and stream is left unchanged).
 UpdateStream method will apply the entire entity. Optional fields left out of the entity will remove the field from the Stream if they had been set previously in the stream. 
 
 *DeleteStream*
-```c#
+```
 void DeleteStream(string streamId);
 Task DeleteStreamAsync(string streamId);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}
 ```
 
@@ -252,7 +252,7 @@ The default behavior for a stream (when a defined Stream Behavior is not applied
 
 ## Stream Behavior Object
 
-```c#
+```
 QiStreamExtrapolation ExtrapolationMode
 string Id
 QiStreamMode Mode { get; set; }
@@ -343,13 +343,13 @@ The ExtrapolationMode (stream behavior parameter) comes in to play for a stream 
 ## Stream Behavior Methods
 
 *DeleteBehavior*
-```c#
+```
 void DeleteBehavior(string behaviorId);
 Task DeleteBehaviorAsync(string behaviorId);
 ```
 
 *REST*
-```c#
+```
 Qi/Behaviors/{behaviorId}
 ```
 
@@ -362,12 +362,12 @@ HTTP DELETE
 Deletes behavior from server.
 
 *GetBehavior*
-```c#
+```
 QiStreamBehavior GetBehavior(string behaviorId);
 Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
 ```
 *REST*
-```c#
+```
 Qi/Behaviors/{behaviorId}
 ```
 
@@ -380,7 +380,7 @@ HTTP GET
 Gets a behavior object from server.
 
 *GetBehaviors*
-```c#
+```
 IEnumerable<QiStreamBehavior> GetBehaviors();
 Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
 ```
@@ -388,13 +388,13 @@ Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
 Returns IEnumerable of all behaviors for the tenant.
 
 *GetOrCreateBehavior*
-```c#
+```
 QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
 Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior entity);
 ```
 
 *REST*
-```c#
+```
 Qi/Behaviors
 ```
 
@@ -409,12 +409,12 @@ Creates a StreamBehavior (or returns it if it already exists).
 If `entity` already exists on the server by `Id`, that existing behavior is returned to the caller unchanged.
 
 *UpdateBehavior*
-```c#
+```
 void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
 Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior entity);
 ```
 *REST*
-```c#
+```
 Qi/Behaviors/{behaviorId}
 ```
 
@@ -453,12 +453,12 @@ This indicates whether indexes that are read before or after all data should att
 # Data Methods
 
 *FindDistinctValue*
-```c#
+```
 T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
 Task<T> FindDistinctValueAsync<T>(string streamId, string index, QiSearchMode mode);
 ```
  *REST*
- ```c#
+ ```
  Qi/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}
  ```
  
@@ -483,13 +483,13 @@ This method is used in situations where the client software needs to query a str
 Returns null values for calls that do not find a value (e.g. Search of ‘Next’ from an index after all existing data.)
 
 *GetDistinctValue* 
-```c#
+```
 T GetDistinctValue<T>(string streamId, string index);
 Task<T> GetDistinctValueAsync<T>(string streamId, string index);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetDistinctValue?index={index}
 ```
 
@@ -506,13 +506,13 @@ This method is used by a client when data is specifically expected to reside at 
 Returns event from the specified stream at the specified index. Throws exception if no event exists at index, or if the stream has no data.
 
 *GetFirstValue* 
-```c#
+```
 T GetFirstValue<T>(string streamId);
 Task<T> GetFirstValueAsync<T>(string streamId);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetFirstValue
 ```
 
@@ -525,13 +525,13 @@ HTTP GET
 Gets the first data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
 
 *GetLastValue* 
-```c#
+```
 T GetLastValue<T>(string streamId);
 Task<T> GetLastValueAsync<T>(string streamId);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetLastValue
 ```
 
@@ -544,13 +544,13 @@ HTTP GET
 Gets the last data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
 
 *GetIntervals*
-```c#
+```
 IEnumerable<QiInterval<T>> GetIntervals<T>(string streamId, string startIndex, string endIndex, int count);
 Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T>(string streamId, string startIndex, string endIndex, int count);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetIntervals?startIndex={startIndex}&endIndex={endIndex}&count={count}
 ```
 
@@ -591,7 +591,7 @@ Facets show the following 13 calculations for the field for the Interval.
 13.	Integral
 
 *GetRangeValues*
-```c#
+```
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count);
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, bool reversed);
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, QiBoundaryType boundaryType);
@@ -605,7 +605,7 @@ Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
 Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
 Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
@@ -648,7 +648,7 @@ Once the ‘start’ event is determined, then any filter is applied to determin
 Filter uses OData query language. Most of the query language is supported.
 	
 *GetValue* and *GetValues*
-```c#
+```
 T GetValue<T>(string streamId, string index);
 Task<T> GetValueAsync<T>(string streamId, string index);
 IEnumerable<T> GetValues<T>(string streamId, IEnumerable<string> index);
@@ -657,7 +657,7 @@ Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, IEnumerable<string> inde
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetValue?index={index}
 Qi/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
 ```
@@ -684,7 +684,7 @@ GetValues can generally be thought of as multiple GetValue calls.
 If no data in stream – returns array of NULLs (one for each member in requested list).
 
 *GetWindowValues*
-```c#
+```
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex);
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
@@ -702,7 +702,7 @@ Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
 Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
 Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
@@ -745,13 +745,13 @@ Filter uses OData queries. Please see the section on Filter Text at the end of t
 The select expression is an ODATA syntax expression designating which properties of the event type to return. The index property is always included. Separate multiple fields with a comma. If the select expression is blank, then all fields are included in response. By only selecting fields of interest the call can be made more efficiently. Selection is applied before filtering, so any fields excluded by select expression cannot be used in the filter expression.
 
 *InsertValue*
-```c#
+```
 void InsertValue<T>(string streamId, T item);
 Task InsertValueAsync<T>(string streamId, T item);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/InsertValue
 ```
 
@@ -765,13 +765,13 @@ Body is serialized event of type T
 Inserts an item into the specified stream. Will throw an exception if the index of item already has an event. 
 
 *InsertValues*
-```c#
+```
 void InsertValues<T>(string streamId, IList<T> items);
 Task InsertValuesAsync<T>(string streamId, IList<T> items);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/InsertValues
 ```
 
@@ -786,13 +786,13 @@ Body is serialized list of events of type T
 Inserts items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire list of events is rolled back and no inserts at all are done. The index that caused the issue can be determined in the error response.
 
 *PatchValue*
-```c#
+```
 void PatchValue(string streamId, string selectExpression, T item);
 Task PatchValueAsync(string streamId, string selectExpression, T item);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
 ```
 
@@ -807,19 +807,19 @@ Body is serialized patch property
 `item` -- object of the same type, T, as the property to patch
 
 Patches a value at the index noted by T item using the value denoted by selectExpression and T item from the specified stream, e.g. 
-```c#
+```
 var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
 PatchValue(“someStreamId”, “Value”, obj);
 ```
 
 *PatchValues* 
-```c#
+```
 void PatchValues(string streamId, string selectExpression, IList<T> items);
 Task PatchValuesAsync(string streamId, string selectExpression, IList<T> items);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
 ```
 
@@ -837,13 +837,13 @@ This call is used to modify properties of specific events in a stream.  Only the
 
 
 *RemoveValue*
-```c#
+```
 void RemoveValue(string streamId, string index);
 Task RemoveValueAsync(string streamId, string index);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/RemoveValue?index={index}
 ```
 
@@ -857,13 +857,13 @@ HTTP DELETE
 Removes the value at index from the specified stream. Precision can matter when finding a value. If index is a DateTime, use the round-trip format given by `.ToString(“o”)`.
 
 *RemoveValues*
-```c#
+```
 void RemoveValues(string streamId, IEnumerable<string> index);
 Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/RemoveValues?index={index}
 ```
 
@@ -877,13 +877,13 @@ HTTP DELETE
 Removes the value at each index from the specified stream. If any individual index has a problem, the enter list of attempted RemoveValues is rolled back and no removes are done.  The index that caused the issue can be determined in the error response.
 
 *RemoveWindowValues*
-```c#
+```
 void RemoveWindowValues(string streamId, string startIndex, string endIndex);
 Task RemoveWindowValuesAsync(string streamId, string startIndex, string endIndex);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
 ```
 
@@ -898,13 +898,13 @@ HTTP DELETE
 Removes a range of values at and between the indices given.
 
 *ReplaceValue* 
-```c#
+```
 void ReplaceValue<T>(string streamId, T item);
 Task ReplaceValueAsync<T>(string streamId, T item);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/ReplaceValue
 ```
 
@@ -919,13 +919,13 @@ Body is serialzied replacement object
 Writes an item over an existing value in the specified stream. Throws an exception if the stream does not have an event at the index to be replaced.
 
 *ReplaceValues*
-```c#
+```
 void ReplaceValues<T>(string streamId, IList<T> items);
 Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/ReplaceValues
 ```
 
@@ -942,13 +942,13 @@ Writes items over existing values in the specified stream. Throws an exception i
 If any individual index has a problem doing replace, the enter list of attempted replacements is rolled back and no replaces at all are done. The index that caused the issue can be determined in the error response.
 
 *UpdateValue* 
-```c#
+```
 void UpdateValue<T>(string streamId, T item);
 Task UpdateValueAsync<T>(string streamId, T item);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/UpdateValue
 ```
 
@@ -963,13 +963,13 @@ Body is serialized updated value
 Writes item to specified stream.  Will insert at any index that does not have a value and will replace if the index already has a value. 
 
 *UpdateValues*
-```c#
+```
 void UpdateValues<T>(string streamId, IList<T> items);
 Task UpdateValuesAsync<T>(string streamId, IList<T> items);
 ```
 
 *REST*
-```c#
+```
 Qi/Streams/{streamId}/Data/UpdateValues
 ```
 
