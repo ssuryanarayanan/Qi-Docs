@@ -1,5 +1,3 @@
-# Stream
-
 Streams are the fundamental unit of storage in the Qi Service.  Each stream represents an ordered series of events or observations for a particular item of interest, e.g., the temperature of a given room.  Each stream must have a Qi Type associated with it, and each event sent to the stream must conform to this type or it will be rejected.  Streams may optionally have a Stream Behavior to control how data is returned.
 
 ## Qi Stream Object
