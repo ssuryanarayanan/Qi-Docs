@@ -6,30 +6,40 @@ The default behavior for a stream (when a defined Stream Behavior is not applied
 
 ## Stream Behavior Object
 
-```
+```c#
 QiStreamExtrapolation ExtrapolationMode
 string Id
 QiStreamMode Mode { get; set; }
 string Name
 IList<QiStreamBehaviorOverride> Overrides 
 ```
--Id -- unique identifier used to reference this behavior
-
--Name -- Optional descriptor.
-
--Mode -- behavior setting to be applied to all ‘value’ parameters in the Type of Stream to which this is applied
+-`Id` -- unique identifier used to reference this behavior
+-`Name` -- Optional descriptor.
+- `Mode` -- behavior setting to be applied to all ‘value’ parameters in the Type of Stream to which this is applied
+- `ExtrapolationMode` -- 
 
 `QiStreamMode` is an enumeration whose permissible values are:
 
-1.	Continuous			
-2.	StepwiseContinuousLeading
-3.	StepwiseContinuousTrailing
-4.	Discrete
+- Continuous (=0)
+- StepwiseContinuousLeading (=1)
+- StepwiseContinuousTrailing (=2)
+- Discrete (=3)
 
-`QiStreamBehaviorOverride` object
+`ExtrapolationMode` is an enumeration:
+- All (=0)
+- None (=1)
+- Forward (=2)
+- Backward (=3)
 
-QiStreamMode Mode
+
+The `QiStreamBehaviorOverride` object has the following structure:
+```c#
 string QiTypePropertyId
+QiStreamMode Mode
+```
+
+It is used to apply a behavior override to a specific property of an event, rather than all properties of the event.
+
 
 ## Stream Behavior Modes
 When running a query method, if an index lands between 2 values in the stream, then the stream behavior is used to determine what is returned. The Stream Behavior can be set to one of these values: 
