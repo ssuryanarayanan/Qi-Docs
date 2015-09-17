@@ -1,5 +1,3 @@
-# ODATA Filter Expressions
-
 Filter text can be included in overloads for the GetRangeValues or GetWindowValues Qi Library methods. This filter is applied to the events that are found by the call, such that the user can effect which events are returned (i.e. conditionally filter out certain events).   
 
 ## Supported QiTypeCodes
