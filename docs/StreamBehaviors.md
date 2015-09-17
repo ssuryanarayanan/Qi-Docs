@@ -34,12 +34,12 @@ string QiTypePropertyId
 ## Stream Behavior Modes
 When running a query method, if an index lands between 2 values in the stream, then the stream behavior is used to determine what is returned. The Stream Behavior can be set to one of these values: 
 
-*Continuous:  value is interpolated using previous and next events (see Chart below for exceptions)
-*ContinuousLeading: value is obtained from previous event. 
-*ContinuousTrailing value is obtained from next event. 
-*Discrete:  NULL value is returned
+- Continuous:  value is interpolated using previous and next events (see Chart below for exceptions)
+- StepwiseContinuousLeading: value is obtained from previous event. 
+- StepwiseContinuousTrailing value is obtained from next event. 
+- Discrete:  NULL value is returned
 
-There are cases where ‘null’ cannot be used. For example with a GetValue calls is done on a stream that has a behavior using a Continuous Mode and a element with a Discrete override – then it will attempt to set this Discrete element to ‘null’ But in cases where this cannot be done (i.e. a non-nullable type) then the default value will be used. 
+There are cases where ‘null’ cannot be used. For example when a GetValue call is done on a stream that has a behavior using a Continuous Mode and a element with a Discrete override it will attempt to set this Discrete element to ‘null’.  But in cases where this cannot be done (i.e. a non-nullable type) then the default value will be used. 
 
 The chart below describes how the Types act when the Behavior is set to Continuous:
 
