@@ -44,8 +44,8 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- id of the stream to search
-`index` -- index value on which to search
+- `streamId` -- id of the stream to search
+- `index` -- index value on which to search
 
 
 This method is used by a client when data is specifically expected to reside at the index used. 
@@ -104,10 +104,10 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- identifier of the stream to search
-`startIndex` -- string representation of the index starting value
-`endIndex` -- string representation of the index ending value
-`count` -- number of intervals
+- `streamId` -- identifier of the stream to search
+- `startIndex` -- string representation of the index starting value
+- `endIndex` -- string representation of the index ending value
+- `count` -- number of intervals
 
 The call accepts a start and end value and the count of intervals. Intervals are created by dividing the time range into equal parts. The start and end index values will use an ‘ExactOrCalculated’ search so every intervals will typically have 2 (or more) values with which to work.
 
@@ -166,8 +166,7 @@ Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&co
 HTTP GET
 
 *Parameters*
-
--`streamId` -- identifier of the stream to search
+- `streamId` -- identifier of the stream to search
 - `startIndex` -- string representation of the start value of the stream's index property
 - `count` -- number of events to return
 - `reversed` -- true to return events in reverse order
@@ -212,11 +211,11 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- id denoting the stream to search
-`index` -- value of an index into the stream type's index property.
-`startIndex` -- start index value
-`endIndex` -- end index value
-`count` -- number of events to return
+- `streamId` -- id denoting the stream to search
+- `index` -- value of an index into the stream type's index property.
+- `startIndex` -- start index value
+- `endIndex` -- end index value
+- `count` -- number of events to return
 
 If the specified index is before any events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default (‘Continuous’ Mode and ‘Both’ Extrapolation), the first event value is returned with the index of the call.
 
@@ -261,16 +260,16 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- id of stream to search
-`startIndex` -- string representation of the start index value of the range
-`endIndex` -- string representation of the end index value of the range
-`boundaryType` -- enumeration describing how to handle events near boundaries
-`filterExpression` -- ODATA filter expression
-`count` -- number of events to return
-`continuationToken` -- continuation token for handling multiple return data sets
-`startBoundaryType` -- how to handle events near the start of the range
-`endBoundaryType` -- how to handle events near the end of the range
-`selectExpression` -- expression designating which proeprties of the event  should be included in the response. 
+- `streamId` -- id of stream to search
+- `startIndex` -- string representation of the start index value of the range
+- `endIndex` -- string representation of the end index value of the range
+- `boundaryType` -- enumeration describing how to handle events near boundaries
+- `filterExpression` -- ODATA filter expression
+- `count` -- number of events to return
+- `continuationToken` -- continuation token for handling multiple return data sets
+- `startBoundaryType` -- how to handle events near the start of the range
+- `endBoundaryType` -- how to handle events near the end of the range
+- `selectExpression` -- expression designating which proeprties of the event  should be included in the response. 
 
 These methods are used to obtain data between 2 indices.
 
@@ -306,8 +305,8 @@ Body is serialized event of type T
 
 *Parameters*
 
-`streamId` -- identifier of the stream into which to insert a value
-`item` -- event to insert, where T is the type of the event and the stream
+- `streamId` -- identifier of the stream into which to insert a value
+- `item` -- event to insert, where T is the type of the event and the stream
 Inserts an item into the specified stream. Will throw an exception if the index of item already has an event. 
 
 #InsertValues
@@ -326,8 +325,8 @@ Body is serialized list of events of type T
 
 *Parameters*
 
-`streamId` -- identifier of the stream into which to insert values
-`items` -- list of items of type T
+- `streamId` -- identifier of the stream into which to insert values
+- `items` -- list of items of type T
 
 Inserts items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire list of events is rolled back and no inserts at all are done. The index that caused the issue can be determined in the error response.
 
@@ -348,9 +347,9 @@ Body is serialized patch property
 
 *Parameters*
 
-`streamId` -- identifier of the stream to update
-`selectExpression` -- expression selecting events for patching
-`item` -- object of the same type, T, as the property to patch
+- `streamId` -- identifier of the stream to update
+- `selectExpression` -- expression selecting events for patching
+- `item` -- object of the same type, T, as the property to patch
 
 Patches a value at the index noted by T item using the value denoted by selectExpression and T item from the specified stream, e.g. 
 ```
@@ -374,12 +373,13 @@ Body is serialized list of patch property values
 
 *Parameters*
 
-`streamId` -- identifier of the stream on which to operate
-`selectExpression` -- ODATA expression for selecting values to patch
-`items` -- list of properties to patch
+- `streamId` -- identifier of the stream on which to operate
+- `selectExpression` -- ODATA expression for selecting values to patch
+- `items` -- list of properties to patch
 
 This call is used to modify properties of specific events in a stream.  Only the properties indicated in `selectExpression` are modified. Property names in `selectExpression` are separated by a comma. The events to be modified are indicated by the index value in each member of the `items` collection. The individual events in `items` also holds the new values.  
-                PatchValues is basically a series of PatchValue calls. If there are any problems completing the entire list of ‘patches’ the entire operation is rolled back. 
+                
+PatchValues is basically a series of PatchValue calls. If there are any problems completing the entire list of ‘patches’ the entire operation is rolled back. 
 
 
 #RemoveValue
@@ -397,8 +397,8 @@ HTTP DELETE
 
 *Parameters*
 
-`streamId` -- identifier of the stream on which to operate
-`index` -- index of the value to remove
+- `streamId` -- identifier of the stream on which to operate
+- `index` -- index of the value to remove
 
 Removes the value at index from the specified stream. Precision can matter when finding a value. If index is a DateTime, use the round-trip format given by `.ToString(“o”)`.
 
@@ -417,8 +417,8 @@ HTTP DELETE
 
 *Parameters*
 
-`streamId` -- identifier of the stream from which to remove values
-`index` -- list of indices at which to remove values
+- `streamId` -- identifier of the stream from which to remove values
+- `index` -- list of indices at which to remove values
 
 Removes the value at each index from the specified stream. If any individual index has a problem, the enter list of attempted RemoveValues is rolled back and no removes are done.  The index that caused the issue can be determined in the error response.
 
@@ -437,9 +437,9 @@ HTTP DELETE
 
 *Parameters*
 
-`streamId` -- identifier of the stream from which to remove values
-`startIndex` -- string representation of the starting index of the range
-`endIndex` -- string representation of the ending index of the range
+- `streamId` -- identifier of the stream from which to remove values
+- `startIndex` -- string representation of the starting index of the range
+- `endIndex` -- string representation of the ending index of the range
 
 Removes a range of values at and between the indices given.
 
@@ -459,8 +459,8 @@ Body is serialzied replacement object
 
 *Parameters*
 
-`streamId` -- identifier of the stream in which to replace value
-`item` -- item to replace existing value
+- `streamId` -- identifier of the stream in which to replace value
+- `item` -- item to replace existing value
 
 Writes an item over an existing value in the specified stream. Throws an exception if the stream does not have an event at the index to be replaced.
 
@@ -480,8 +480,8 @@ Body is serialized list of replacement values.
 
 *Parameters*
 
-`streamId` -- identifier of the stream in which to replace values
-`items` -- list of new items to replace existing items in the stream
+- `streamId` -- identifier of the stream in which to replace values
+- `items` -- list of new items to replace existing items in the stream
 
 Writes items over existing values in the specified stream. Throws an exception if any index does not have a value to be replaced.
 
@@ -503,8 +503,8 @@ Body is serialized updated value
 
 *Parameters*
 
-`streamId` -- identifier of the stream in which to update a value
-`item` -- new value to replace an existing value
+- `streamId` -- identifier of the stream in which to update a value
+- `item` -- new value to replace an existing value
 
 Writes item to specified stream.  Will insert at any index that does not have a value and will replace if the index already has a value. 
 
@@ -524,7 +524,7 @@ Body is serialized list of updated values.
 
 *Parameters*
 
-`streamId` -- identifier of the stream in which to perform updates
-`items` -- list of new items to replace existing items
+- `streamId` -- identifier of the stream in which to perform updates
+- `items` -- list of new items to replace existing items
 
 Writes items to specified stream.   Will insert or replace. If any individual index has a problem, the enter set of attempted UpdateValues is rolled back (no updates at all are done). The index that caused the issue can also be determined in the error response.
