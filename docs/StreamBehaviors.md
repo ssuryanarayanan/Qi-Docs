@@ -13,10 +13,13 @@ QiStreamMode Mode { get; set; }
 string Name
 IList<QiStreamBehaviorOverride> Overrides 
 ```
--`Id` -- unique identifier used to reference this behavior
--`Name` -- Optional descriptor.
+
+- `Id` -- unique identifier used to reference this behavior
+- `Name` -- Optional descriptor
 - `Mode` -- behavior setting to be applied to all ‘value’ parameters in the Type of Stream to which this is applied
 - `ExtrapolationMode` -- 
+- `Overrides` -- A list of overrides to specific properties
+ 
 
 `QiStreamMode` is an enumeration whose permissible values are:
 
