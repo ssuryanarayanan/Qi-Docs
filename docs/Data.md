@@ -178,16 +178,16 @@ This call is used to obtain events from a stream where a start point is provided
 
 *QiBoundaryType Behavior*
 For FORWARD (default) calls:
-*Exact will find the first event at or after the index  
-8ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the next event in the stream. 
-*Inside will find the first event after the index  
-*Outside will find the first event before the index  
+- Exact will find the first event at or after the index  
+- ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the next event in the stream. 
+- Inside will find the first event after the index  
+- Outside will find the first event before the index  
 
 For REVERSE calls.
-*Exact will find the first event at or before the index  
-*ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the previous event in the stream. 
-*Inside will find the first event before the index  
-*Outside will find the first event after the index  
+- Exact will find the first event at or before the index  
+- ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the previous event in the stream. 
+- Inside will find the first event before the index  
+- Outside will find the first event after the index  
 
 Once the ‘start’ event is determined, then any filter is applied to determine possible values (in the direction requested) that could be returned. Next the Skip is applied and finally the number of events (up to count) is returned.
 Filter uses OData query language. Most of the query language is supported.
