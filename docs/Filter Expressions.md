@@ -162,5 +162,3 @@ TimeSpan.
 •	"minutes(TimeSpanValue) eq 1"
 •	"seconds(TimeSpanValue) eq 2"
 
-## OData functions not supported.
-contains, fractionalseconds, has, contains, date, time, totaloffsetminutes, now, maxdatetime, mindatetime, totalseconds, $it,  $root, $expand, $select, $orderby, $skip, $top, $count, $search, $format, any, all, isof, cast, geo.distance, geo.intersects, geo.length
