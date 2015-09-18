@@ -177,20 +177,21 @@ HTTP GET
 This call is used to obtain events from a stream where a start point is provided and the number of events desired. The many overloads allow the client to indicate where to start, which direction to search, whether to skip any values and also allows a special filter to be applied to the events found.
 
 *QiBoundaryType Behavior*
-For FORWARD (default) calls:
-- Exact will find the first event at or after the index  
-- ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the next event in the stream. 
-- Inside will find the first event after the index  
-- Outside will find the first event before the index  
+For `FORWARD` (default) calls:
+- `Exact` will find the first event at or after the index  
+- `ExactOrCalculated` if the index is on an event, that event is used. Otherwise the behavior and `ExtrapolationMode` value determine whether a value is calculated for the index used. The result will either be no event or an event with the index used in the call and the value of the next event in the stream. 
+- `Inside` will find the first event after the index  
+- `Outside` will find the first event before the index  
 
-For REVERSE calls.
-- Exact will find the first event at or before the index  
-- ExactOrCalculated if the index is on an event, that event is used. Otherwise the Behavior and Extrapolation mode determine whether a value is ‘calculated’ for the index used. The result will either be no event or an event with the index used in the call and the value of the previous event in the stream. 
-- Inside will find the first event before the index  
-- Outside will find the first event after the index  
+For `REVERSE` calls.
+- `Exact` will find the first event at or before the index  
+- `ExactOrCalculated` if the index is on an event, that event is used. Otherwise the behavior and `ExtrapolationMode` value determine whether a value is calculated for the index used. The result will either be no event or an event with the index used in the call and the value of the previous event in the stream. 
+- `Inside` will find the first event before the index  
+- `Outside` will find the first event after the index  
 
-Once the ‘start’ event is determined, then any filter is applied to determine possible values (in the direction requested) that could be returned. Next the Skip is applied and finally the number of events (up to count) is returned.
-Filter uses OData query language. Most of the query language is supported.
+After the starting event is determined, any filter provided is applied to determine possible values (in the direction requested) that could be returned. Next the Skip parameter is applied, and finally the number of events (up to count) is returned.
+
+Filter uses the OData query language. Most of the query language is supported.
 	
 *GetValue* and *GetValues*
 ```
@@ -217,7 +218,7 @@ HTTP GET
 - `endIndex` -- end index value
 - `count` -- number of events to return
 
-If the specified index is before any events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default (‘Continuous’ Mode and ‘Both’ Extrapolation), the first event value is returned with the index of the call.
+If the specified index is before any events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default , the first event value is returned with the index of the call.
 
 If the specified index is after all events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default (Continous Mode and Both Extrapolation), the last event value is returned with the index of the call. 
 
@@ -225,8 +226,8 @@ If the specified index is between events, the value returned is determined by st
 
 If no data in stream – returns NULL (regardless of stream behavior setting)
 
-GetValues can generally be thought of as multiple GetValue calls.
-If no data in stream – returns array of NULLs (one for each member in requested list).
+`GetValues` can generally be thought of as multiple `GetValue` calls.
+If there is no data in a stream an array of NULLs (one for each member in requested list) is returned.
 
 #GetWindowValues
 ```
@@ -273,15 +274,14 @@ HTTP GET
 
 These methods are used to obtain data between 2 indices.
 
-Start index must be less than end index.
-BoundaryCondition is ‘Exact’ unless otherwise set 
+The starting index value must be less than the ending index value. `BoundaryCondition` is `Exact` unless otherwise set 
 
 BoundaryConditions:
 
--Exact: return values exactly on the start or end index value
--Inside: any value inside the range but not including the boundaries
--Outside: includes 1 value outside the boundary on both sides and any values at or inside the range
--ExactOrCalculated: Will create values for the endpoints given if value at Exact index not found. Behavior for given value is used in calculation (Continuous is default)
+- `Exact`: return values exactly on the start or end index value
+- `Inside`: any value inside the range but not including the boundaries
+- `Outside`: includes 1 value outside the boundary on both sides and any values at or inside the range
+- `ExactOrCalculated`: Will create values for the endpoints given if value at Exact index not found. Behavior for given value is used in calculation (Continuous is default)
 
 Calls against an empty stream will always return a single null regardless of boundary type used. 
 
