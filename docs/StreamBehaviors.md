@@ -1,12 +1,12 @@
-The Stream Behavior is applied to a stream and effects how certain data read operations will be performed. The Stream Behavior must first be defined and then can be applied to the stream when it is created (GetOrCreateStream method) or updated (UpdateStream method). Stream Behavior is always referenced with its Id.
+Stream behaviors are applied to streams to effects how certain data read operations will be performed. A stream behavior must first be defined and then can be applied to a stream when it is created (`GetOrCreateStream` method) or updated (`UpdateStream` method). A stream behavior is always referenced with its `Id` property.
 
-The Stream Behavior can be changed between reads to change how the read acts. The Stream could also be set to use a different Stream Behavior.
+A stream behavior can be changed between reads to change how the read acts. A stream can also change the stream behavior it references at any time.
 
-The default behavior for a stream (when a defined Stream Behavior is not applied to the stream) is Mode = ‘Continuous’ and Extrapolation = ‘All’. 
+The default behavior for a stream (when a defined stream behavior is not applied to the stream) is `Mode = ‘Continuous’` and `ExtrapolationMode = ‘All’`. 
 
 ## Stream Behavior Object
 
-```c#
+```
 QiStreamExtrapolation ExtrapolationMode
 string Id
 QiStreamMode Mode { get; set; }
@@ -16,8 +16,8 @@ IList<QiStreamBehaviorOverride> Overrides
 
 - `Id` -- unique identifier used to reference this behavior
 - `Name` -- Optional descriptor
-- `Mode` -- behavior setting to be applied to all ‘value’ parameters in the Type of Stream to which this is applied
-- `ExtrapolationMode` -- 
+- `Mode` -- behavior setting to be applied to all ‘value’ properties of events in the stream to which this is applied
+- `ExtrapolationMode` -- controls extrapolation behavior on the ends of a range
 - `Overrides` -- A list of overrides to specific properties
  
 
@@ -36,12 +36,12 @@ IList<QiStreamBehaviorOverride> Overrides
 
 
 The `QiStreamBehaviorOverride` object has the following structure:
-```c#
+```
 string QiTypePropertyId
 QiStreamMode Mode
 ```
 
-It is used to apply a behavior override to a specific property of an event, rather than all properties of the event.
+It is used to apply a behavior override to a specific property or properties of an event, rather than all properties of the event.
 
 
 ## Stream Behavior Modes
@@ -52,7 +52,7 @@ When running a query method, if an index lands between 2 values in the stream, t
 - StepwiseContinuousTrailing value is obtained from next event. 
 - Discrete:  NULL value is returned
 
-There are cases where ‘null’ cannot be used. For example when a GetValue call is done on a stream that has a behavior using a Continuous Mode and a element with a Discrete override it will attempt to set this Discrete element to ‘null’.  But in cases where this cannot be done (i.e. a non-nullable type) then the default value will be used. 
+There are cases where a null value cannot be used. For example when a `GetValue` call is made on a stream that has a behavior using a `Continuous` value for `Mode` and a property of the event type has a Discrete override, the call will attempt to set this Discrete property to ‘null’.  But in cases where this cannot be done (i.e. a non-nullable type) the default value will be used. 
 
 The chart below describes how the Types act when the Behavior is set to Continuous:
 
@@ -71,19 +71,19 @@ The chart below describes how the Types act when the Behavior is set to Continuo
 | Version | Returns null (= Discrete Behavior) |
 | IDictionary, IEnumerable | Null |
 
-All values in the stream type will be ‘set’ to the Stream Behavior Mode. Continuous is the default if not set. Individual Type Values can be overridden to act as another behavior. In this way the user can have different values within the same event to have a different behavior.  Note that when doing this, the Main Behavior Mode is still used to determine whether an event is returned for an index between data. If the main Behavior Mode is set to ‘Discrete’ then no event is returned for the call, regardless of any overrides.
+The behavior of all values in the stream event type will be controlled by the stream behavior `Mode` property. `Continuous` is the default if a defined stream behavior is not set. Individual event properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different extrapolation behavior for different properties within the same event.  Note that when doing this, the main Behavior Mode is still used to determine whether an event is returned for an index between data. If the main behavior `Mode` property is set to ‘Discrete’, no event is returned for the call requiring a calculated value, regardless of any overrides.
 
-ExtrapolationMode
-All:  extrapolation done at both start and end of data in stream. <DEFAULT>
-Forward: extrapolation done at the end of the stream (not at the front). 
-Backward: extrapolation done at the front of the stream (not at the end). 
-None: no extrapolation done  
+##ExtrapolationMode Values
+- `All`:  extrapolation done at both start and end of data in stream. <DEFAULT>
+- `Forward`: extrapolation done at the end of the stream (not at the front). 
+- `Backward`: extrapolation done at the front of the stream (not at the end). 
+- `None`: no extrapolation done  
 
-The ExtrapolationMode (stream behavior parameter) comes in to play for a stream in the following conditions:
--GetValue (and GetValues) when an index is used that is before or after all of the data in the stream
--GetWindowValues when the start index is before all event in the stream or when the end index  is after all events in the stream
--GetRangeValues when the ‘start index’ is before all the data (or after all the data)
--GetIntervals …on indexes on each side of an interval
+The `ExtrapolationMode` property applies to a stream in the following conditions:
+- `GetValue` and `GetValues` calls when an index is used that is before or after all of the data in the stream
+- `GetWindowValues` when the start index is before all event in the stream or when the end index  is after all events in the stream
+- `GetRangeValues` when the start index is before all the data or after all the data
+- `GetIntervals` when indices are on each side of an interval
 
 | Behavior | Extrapolation | Before Start of Stream | After End of Stream | Empty Stream |
 | -------- | ------------- | ---------------------- | ------------------- | ------------ |
@@ -167,7 +167,7 @@ Qi/Behaviors
 ```
 
 HTTP POST
-Body is serialized QiStreamBehavior entity
+Body is serialized `QiStreamBehavior` entity
 
 *Parameters*
 
@@ -187,7 +187,7 @@ Qi/Behaviors/{behaviorId}
 ```
 
 HTTP PUT
-Body is serialized QiStreamBehavior (updated)
+Body is a serialization of the updated `QiStreamBehavior`
 
 *Parameters*
 
@@ -196,17 +196,15 @@ Body is serialized QiStreamBehavior (updated)
 
 Permitted changes: 
 
-•	Override list
-•	BehaviorMode
-•	ExtrapolationMode
-•	Name
+- Override list
+- BehaviorMode
+- ExtrapolationMode
+- Name
 
-An override list can be added to add, remove or change the override Mode on parameters within the type. 
-UpdateBehavior replaces the stream’s existing behavior with entity.  If certain aspects of the existing behavior are meant to remain, they must be included in entity.
+An override list can be added to add, remove or change the `Mode` on properties within the type. 
+UpdateBehavior replaces the stream’s existing behavior with `entity`.  If certain aspects of the existing behavior are meant to remain, they must be included in entity.
 
-This is a list of parameters from the `Type` (`QiTypePropertyId`) that are to be given different behaviors (`Mode`).  Each parameter.
-
-The overrides list is used in cases where the user desires the stream to have different behaviors for different values in the stream events. 
+This is a list of properties from the event type (`QiTypePropertyId`) that are to be given different behaviors (`Mode`). The overrides list is used in cases where the user desires the stream to have different behaviors for different values in a stream's events. 
 
 `Extrapolation`
 QiStreamExtrapolation can have one of 4 values.
