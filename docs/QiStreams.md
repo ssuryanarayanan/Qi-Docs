@@ -11,8 +11,8 @@ Streams are the fundamental unit of storage in the Qi Service.  Each stream repr
 ```
 
 A Qi Stream object must include:
-•	an ‘Id’ field (unique)
-•	a ‘TypeId’ field with the Id of an existing Type.
+- an ‘Id’ field (unique)
+- a ‘TypeId’ field with the Id of an existing Type.
 
 ## Naming Rules for Stream Identifiers
 1.	Case sensitive
@@ -71,7 +71,7 @@ Body is serialized QiStream entity
 
 `entity` -- Qi Stream object
   
-If BehaviorId is not specified, the stream will have the default behavior of Mode=‘Continuous’ and Extrapolation=‘All’. If entity already exists on the server by Id, that existing stream is returned to the caller unchanged.
+If `BehaviorId` is not specified, the stream will have the default behavior of `Mode=‘Continuous’` and `ExtrapolationMode=‘All’`. If entity already exists on the server by `Id`, that existing stream is returned to the caller unchanged.
 
 *UpdateStream*
 ```
@@ -85,7 +85,7 @@ Qi/Streams/{streamId}
 ```
 
 HTTP PUT
-Body isserialized QiStream entity
+Body is serialized QiStream entity
 
 *Parameters*
 
@@ -99,7 +99,7 @@ Permitted changes:
 •	Description
 
 Throws exception on unpermitted change attempt (and stream is left unchanged).
-UpdateStream method will apply the entire entity. Optional fields left out of the entity will remove the field from the Stream if they had been set previously in the stream. 
+The `UpdateStream` method applies the entire entity. Optional fields left out of the entity will remove the field from the Stream if they had been set previously in the stream. 
 
 *DeleteStream*
 ```
