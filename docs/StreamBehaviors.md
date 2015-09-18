@@ -9,7 +9,7 @@ The default behavior for a stream (when a defined stream behavior is not applied
 ```
 QiStreamExtrapolation ExtrapolationMode
 string Id
-QiStreamMode Mode { get; set; }
+QiStreamMode Mode
 string Name
 IList<QiStreamBehaviorOverride> Overrides 
 ```
