@@ -12,12 +12,11 @@ Task<T> FindDistinctValueAsync<T>(string streamId, string index, QiSearchMode mo
  
 *Parameters*
 
-- `streamId` -- stream against which to perform retrieval
-- `index` -- value of the index at which to retrieve a value (e.g., a DateTime if the stream's Type is indexed by a DateTime property)
-- `mode` -- search mode enumeration indicating how to find the event
+- `streamId` -- stream identifier for the request
+- `index` -- string representation of the index value at which to search
+- `mode` -- search mode (see below)
 
-Search modes
-
+Search modes:
 1.	Exact 
 2.	ExactOrNext 
 3.	ExactOrPrevious 
@@ -26,7 +25,7 @@ Search modes
 
 This method is used in situations where the client software needs to query a stream without getting any exceptions when the indexes queried do not have data.
 
-Returns null values for calls that do not find a value (e.g. Search of ‘Next’ from an index after all existing data.)
+Returns null values for calls that do not find a value (e.g., searching in Next mode from an index after all existing data.)
 
 #GetDistinctValue
 ```
@@ -44,12 +43,12 @@ HTTP GET
 
 *Parameters*
 
-- `streamId` -- id of the stream to search
-- `index` -- index value on which to search
+- `streamId` -- -- stream identifier for the request
+- `index` -- string representation of the index value at which to search
 
 
-This method is used by a client when data is specifically expected to reside at the index used. 
-Returns event from the specified stream at the specified index. Throws exception if no event exists at index, or if the stream has no data.
+This method is used by a client when data is expected to reside at the exact index value specified. 
+Returns an event from the specified stream at the specified index. Throws an exception if no event exists at index or if the stream has no data.
 
 #GetFirstValue
 ```
@@ -66,9 +65,9 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- identifier of the stream to search
+`streamId` -- -- stream identifier for the request
 
-Gets the first data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
+Gets the first data event in the stream. Returns null if the stream has no data (no exception thrown).
 
 #GetLastValue
 ```
@@ -85,9 +84,9 @@ HTTP GET
 
 *Parameters*
 
-`streamId` -- stream identifier
+`streamId` -- stream identifier for the request
 
-Gets the last data event in the stream. If the stream has no data – a ‘null’ is returned (no exception thrown)
+Gets the last data event in the stream. Returns null if the stream has no data (no exception thrown).
 
 #GetIntervals
 ```
@@ -104,26 +103,23 @@ HTTP GET
 
 *Parameters*
 
-- `streamId` -- identifier of the stream to search
-- `startIndex` -- string representation of the index starting value
-- `endIndex` -- string representation of the index ending value
+- `streamId` -- stream identifier for the request
+- `startIndex` -- string representation of the starting index value
+- `endIndex` -- string representation of the ending index value
 - `count` -- number of intervals
 
-The call accepts a start and end value and the count of intervals. Intervals are created by dividing the time range into equal parts. The start and end index values will use an ‘ExactOrCalculated’ search so every intervals will typically have 2 (or more) values with which to work.
+The call accepts start and end indexes and a reqeusted interval count. Intervals are created by dividing the index range into equal parts. The start and end index values will use an ‘ExactOrCalculated’ search mode, so each interval will typically have two or more values with which to work.
 
-A QiInterval is made up of a start and end event and a List of Summaries.
+A QiInterval is made up of a start, an end event, and a Summaries dictionary.
 IDictionary<string, IDictionary<QiSummaryType, object>> Summaries
 T End
 T Start
 
-A Summaries object corresponds to the fields within the the type for which calculations were made. For example, if a Type was created with a DateTime TimeId property as an index, and two double values and a string value, then a GetIntervals call would include 2 Summaries (one for each of the double elements).
+Each entry in Summaries corresponds to a field within the the type for which summary calculations were performed.  The name of the type field serves as the key while the value holds a dictionary of calculation results for that field. For example, if a type was created with a DateTime (the index), two double values, and a string value, the GetIntervals Summaries result would include two entries - one for each of the doubles.
 
-Summaries are made up of the following list of calculations:
-
-Facets show the following 13 calculations for the field for the Interval.
-
-1.	Minimum		(also shows Index where the first instance if this occurred)	
-2.	Maximum		(also shows Index where this first instance if this occurred)
+Summary calculations include the following:
+1.	Minimum	+ index of the first occurence of the minimum value
+2.	Maximum	+ index of the first occurence of the maximum value
 3.	Range
 4.	Total
 5.	Mean
@@ -166,32 +162,31 @@ Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&co
 HTTP GET
 
 *Parameters*
-- `streamId` -- identifier of the stream to search
-- `startIndex` -- string representation of the start value of the stream's index property
+- `streamId` -- stream identifier for the request
+- `startIndex` -- string representation of the starting index value
 - `count` -- number of events to return
-- `reversed` -- true to return events in reverse order
-- `skip` --  number of values to skip before starting the count to be returned. The filter expression is applied first.
-- `boundaryType` -- enumeration indicating how to handle events on the boundaries
-- `filterExpression` -- string containing an ODATA filter expression (see below)
+- `reversed` -- order of event retrieval; true to retrieve events in reverse order
+- `skip` --  number of events to skip; skipped events are not returned or counted. Applied after filterExpression.
+- `boundaryType` -- enumeration indicating how to handle boundary events
+- `filterExpression` -- string containing an OData filter expression (see below)
 
-This call is used to obtain events from a stream where a start point is provided and the number of events desired. The many overloads allow the client to indicate where to start, which direction to search, whether to skip any values and also allows a special filter to be applied to the events found.
+This call is used to obtain events from a stream based on a starting index and requested number of events. The overloads allow the client to optionally specify search direction, number of events to skip, special boundary handling, and an event filter.
 
-*QiBoundaryType Behavior*
-For `FORWARD` (default) calls:
-- `Exact` will find the first event at or after the index  
-- `ExactOrCalculated` if the index is on an event, that event is used. Otherwise the behavior and `ExtrapolationMode` value determine whether a value is calculated for the index used. The result will either be no event or an event with the index used in the call and the value of the next event in the stream. 
-- `Inside` will find the first event after the index  
-- `Outside` will find the first event before the index  
+Boundary type meaning for forward (default, reversed = false) calls:
+- `Exact` will use the first event at or after startIndex  
+- `ExactOrCalculated` if an event exists at startIndex, that event is used. Otherwise the stream's Behavior determines whether a value is calculated at startIndex. The result will either be no event or an event at startIndex with the value of the next event in the stream. 
+- `Inside` will find the first event after startIndex  
+- `Outside` will find the first event before startIndex
 
-For `REVERSE` calls.
-- `Exact` will find the first event at or before the index  
-- `ExactOrCalculated` if the index is on an event, that event is used. Otherwise the behavior and `ExtrapolationMode` value determine whether a value is calculated for the index used. The result will either be no event or an event with the index used in the call and the value of the previous event in the stream. 
-- `Inside` will find the first event before the index  
-- `Outside` will find the first event after the index  
+Boundary type meaning for reverse (reversed = true) calls:
+- `Exact` will find the first event at or before startIndex 
+- `ExactOrCalculated` if an event exists at startIndex, that event is used. Otherwise the stream's Behavior determines whether a value is calculated at startIndex. The result will either be no event or an event at startIndex with the value of the previous event in the stream. 
+- `Inside` will find the first event before startIndex
+- `Outside` will find the first event after startIndex 
 
-After the starting event is determined, any filter provided is applied to determine possible values (in the direction requested) that could be returned. Next the Skip parameter is applied, and finally the number of events (up to count) is returned.
+Once the starting event is determined, `filterExpression` is applied in the direction requested to determine potential return values. Next, `skip` is applied to pass over the specified number of events. Finally, events up to the number specified by count are returned.
 
-Filter uses the OData query language. Most of the query language is supported.
+The filter expression uses OData query language. Most of the query language is supported.
 	
 *GetValue* and *GetValues*
 ```
@@ -212,22 +207,23 @@ HTTP GET
 
 *Parameters*
 
-- `streamId` -- id denoting the stream to search
-- `index` -- value of an index into the stream type's index property.
-- `startIndex` -- start index value
-- `endIndex` -- end index value
-- `count` -- number of events to return
+- `streamId` -- stream identifier for the request
+- `index` -- string representation of the index value for GetValue or IEnumerable of index values requested for GetValues
+- `startIndex` -- string representation of the starting index value for GetValues
+- `endIndex` -- string representation of the ending index value for GetValues
+- `count` -- number of events to return for GetValues
 
-If the specified index is before any events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default , the first event value is returned with the index of the call.
+If the specified index is before all events, the event returned is determined by stream's behavior. By default, the first event is returned with the index of the call.
 
-If the specified index is after all events, the value returned is determined by stream Behavior Mode and Extrapolation setting. By default (Continous Mode and Both Extrapolation), the last event value is returned with the index of the call. 
+If the specified index is after all events, the event returned is determined by stream's behavior. By default, the last event is returned with the index of the call. 
 
-If the specified index is between events, the value returned is determined by stream Behavior Mode (and any overrides).
+If the specified index is between events, the event returned is determined by stream's behavior and any behavior overrides.
 
-If no data in stream – returns NULL (regardless of stream behavior setting)
+If the stream contains no data, null is returned regardless of the stream's behavior.
 
-`GetValues` can generally be thought of as multiple `GetValue` calls.
-If there is no data in a stream an array of NULLs (one for each member in requested list) is returned.
+GetValues can generally be thought of as multiple GetValue calls.  GetValues can be requested with a list of requested indexes or by specifying a start index, end index, and count.  
+
+If the stream contains no data, an array of nulls (one for each member in the requested list) is returned.
 
 #GetWindowValues
 ```
@@ -261,33 +257,30 @@ HTTP GET
 
 *Parameters*
 
-- `streamId` -- id of stream to search
-- `startIndex` -- string representation of the start index value of the range
-- `endIndex` -- string representation of the end index value of the range
-- `boundaryType` -- enumeration describing how to handle events near boundaries
-- `filterExpression` -- ODATA filter expression
+- `streamId` -- stream identifier for the request
+- `startIndex` -- string representation of the starting index value, must be less than endIndex
+- `endIndex` string representation of the ending index value
+- `boundaryType` -- enumeration describing how to handle boundary events.
+- `filterExpression` -- OData filter expression
 - `count` -- number of events to return
 - `continuationToken` -- continuation token for handling multiple return data sets
-- `startBoundaryType` -- how to handle events near the start of the range
-- `endBoundaryType` -- how to handle events near the end of the range
-- `selectExpression` -- expression designating which proeprties of the event  should be included in the response. 
+- `startBoundaryType` -- how to handle startIndex boundary events
+- `endBoundaryType` -- how to handle endIndex boundary events
+- `selectExpression` -- expression designating which fields of the stream's type should make up the return events 
 
 These methods are used to obtain data between 2 indices.
 
-The starting index value must be less than the ending index value. `BoundaryCondition` is `Exact` unless otherwise set 
-
-BoundaryConditions:
-
-- `Exact`: return values exactly on the start or end index value
-- `Inside`: any value inside the range but not including the boundaries
-- `Outside`: includes 1 value outside the boundary on both sides and any values at or inside the range
-- `ExactOrCalculated`: Will create values for the endpoints given if value at Exact index not found. Behavior for given value is used in calculation (Continuous is default)
+Boundary types:
+-`Exact` (default): return values exactly on the start or end index value
+-`Inside`: any value inside the range but not including the boundaries
+-`Outside`: includes 1 value outside the boundary on both sides and any values at or inside the range
+-`ExactOrCalculated`: Will create values for the endpoints given if value an event exactly at the index is not found. The calculation is performed based on the stream's behavior.
 
 Calls against an empty stream will always return a single null regardless of boundary type used. 
 
-Filter uses OData queries. Please see the section on Filter Text at the end of this document.
+The filter expression uses OData syntax. See Filter expressions help for more info.
 
-The select expression is an ODATA syntax expression designating which properties of the event type to return. The index property is always included. Separate multiple fields with a comma. If the select expression is blank, then all fields are included in response. By only selecting fields of interest the call can be made more efficiently. Selection is applied before filtering, so any fields excluded by select expression cannot be used in the filter expression.
+The select expression is an OData expression that can improve efficiency by specifying the return of only required fields from the event type. The index is always included. If no select expression is specified, all fields are included in response. Selection is applied before filtering, so any fields used in the filter expression must be included by the select statement.
 
 #InsertValue
 ```
@@ -305,9 +298,10 @@ Body is serialized event of type T
 
 *Parameters*
 
-- `streamId` -- identifier of the stream into which to insert a value
+- `streamId` -- stream identifier for the request
 - `item` -- event to insert, where T is the type of the event and the stream
-Inserts an item into the specified stream. Will throw an exception if the index of item already has an event. 
+- 
+Inserts an item into the specified stream. Will throw an exception if an event already exists at the index of the item. 
 
 #InsertValues
 ```
@@ -325,10 +319,10 @@ Body is serialized list of events of type T
 
 *Parameters*
 
-- `streamId` -- identifier of the stream into which to insert values
-- `items` -- list of items of type T
+- `streamId` -- stream identifier for the request
+- `items` -- list of events to insert, where T is the type of the stream and events
 
-Inserts items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire list of events is rolled back and no inserts at all are done. The index that caused the issue can be determined in the error response.
+Inserts the items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire operation is rolled back and no insertions are made. The index that caused the issue is included in the error response.
 
 #PatchValue
 ```
@@ -347,11 +341,12 @@ Body is serialized patch property
 
 *Parameters*
 
-- `streamId` -- identifier of the stream to update
-- `selectExpression` -- expression selecting events for patching
+- `streamId` -- stream identifier for the request
+- `selectExpression` -- OData expression selecting type fields to patch
 - `item` -- object of the same type, T, as the property to patch
 
-Patches a value at the index noted by T item using the value denoted by selectExpression and T item from the specified stream, e.g. 
+This call is used to patch the values of select fields of an event in the stream. The fields to be patched are specified by `selectExpression`.  Values of the selected fields at the index of `item` are replaced with the values of those fields from `item`. 
+
 ```
 var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
 PatchValue(“someStreamId”, “Value”, obj);
@@ -373,13 +368,13 @@ Body is serialized list of patch property values
 
 *Parameters*
 
-- `streamId` -- identifier of the stream on which to operate
-- `selectExpression` -- ODATA expression for selecting values to patch
+- `streamId` -- stream identifier for the request
+- `selectExpression` -- OData expression for selecting type fields to patch
 - `items` -- list of properties to patch
 
-This call is used to modify properties of specific events in a stream.  Only the properties indicated in `selectExpression` are modified. Property names in `selectExpression` are separated by a comma. The events to be modified are indicated by the index value in each member of the `items` collection. The individual events in `items` also holds the new values.  
+This call is used to patch the values of the selected fields for multiple events in the stream.  Only the fields indicated in `selectExpression` are modified. The events to be modified are indicated by the index value of each member of the `items` collection. The individual events in `items` also hold the new values.  
                 
-PatchValues is basically a series of PatchValue calls. If there are any problems completing the entire list of ‘patches’ the entire operation is rolled back. 
+PatchValues may be thought of as a series of PatchValue calls. If there is a problem patching any individual event, the entire operation is rolled back. 
 
 
 #RemoveValue
@@ -397,10 +392,10 @@ HTTP DELETE
 
 *Parameters*
 
-- `streamId` -- identifier of the stream on which to operate
-- `index` -- index of the value to remove
+- `streamId` -- stream identifier for the request
+- `index` -- string representation of the index value
 
-Removes the value at index from the specified stream. Precision can matter when finding a value. If index is a DateTime, use the round-trip format given by `.ToString(“o”)`.
+Removes the event at `index` from the specified stream. Precision can matter when finding a value. If the index is a DateTime, use the round-trip format specifier: `DateTime.ToString(“o”)`.
 
 #RemoveValues
 ```
@@ -417,10 +412,10 @@ HTTP DELETE
 
 *Parameters*
 
-- `streamId` -- identifier of the stream from which to remove values
-- `index` -- list of indices at which to remove values
+- `streamId` -- stream identifier for the request
+- `index` -- list of indices at which to remove events
 
-Removes the value at each index from the specified stream. If any individual index has a problem, the enter list of attempted RemoveValues is rolled back and no removes are done.  The index that caused the issue can be determined in the error response.
+Removes the event at each index from the specified stream. If any individual event fails to be removed, the entire RemoveValues operation is rolled back and no removes are done.  The index that caused the issue is included in the error response.
 
 #RemoveWindowValues
 ```
@@ -437,11 +432,11 @@ HTTP DELETE
 
 *Parameters*
 
-- `streamId` -- identifier of the stream from which to remove values
-- `startIndex` -- string representation of the starting index of the range
-- `endIndex` -- string representation of the ending index of the range
+- `streamId` -- stream identifier for the request
+- `startIndex` -- string representation of the starting index value
+- `endIndex` -- string representation of the ending index value
 
-Removes a range of values at and between the indices given.
+Removes a range of values at and between the indices given.  If any individual event fails to be removed, the entire operation is rolled back and no removes are done.
 
 #ReplaceValue
 ```
@@ -480,12 +475,12 @@ Body is serialized list of replacement values.
 
 *Parameters*
 
-- `streamId` -- identifier of the stream in which to replace values
+- `streamId` -- stream identifier for the request
 - `items` -- list of new items to replace existing items in the stream
 
-Writes items over existing values in the specified stream. Throws an exception if any index does not have a value to be replaced.
+Writes `items` over existing events in the specified stream. Throws an exception if any index does not have a value to be replaced.
 
-If any individual index has a problem doing replace, the enter list of attempted replacements is rolled back and no replaces at all are done. The index that caused the issue can be determined in the error response.
+If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index that caused the issue is included in the error response.
 
 #UpdateValue
 ```
@@ -503,10 +498,10 @@ Body is serialized updated value
 
 *Parameters*
 
-- `streamId` -- identifier of the stream in which to update a value
-- `item` -- new value to replace an existing value
+- `streamId` -- stream identifier for the request
+- `item` -- event to write to the stream
 
-Writes item to specified stream.  Will insert at any index that does not have a value and will replace if the index already has a value. 
+Writes `item` to specified stream.  Performs an insert or a replace, depending on whether an event already exists at the index of `item`.
 
 #UpdateValues
 ```
@@ -524,7 +519,7 @@ Body is serialized list of updated values.
 
 *Parameters*
 
-- `streamId` -- identifier of the stream in which to perform updates
-- `items` -- list of new items to replace existing items
+- `streamId` -- stream identifier for the request
+- `items` -- events to write to the stream
 
-Writes items to specified stream.   Will insert or replace. If any individual index has a problem, the enter set of attempted UpdateValues is rolled back (no updates at all are done). The index that caused the issue can also be determined in the error response.
+Writes `items` to specified stream.   Performs an insert or a replace, depending on whether an event already exists at the index of individual itesm.  If any item fails to write, entire operation is rolled back and no events are written to the stream. The index that caused the issue is included in the error response.
