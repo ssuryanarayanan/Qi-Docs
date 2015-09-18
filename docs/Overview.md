@@ -4,4 +4,4 @@ Each participant was allocated a tenant to represent their organization prior to
 
 * Type -- user defined structure denoting a single measured event or object for storage
 * Stream -- basic unit of storage consisting of an ordered series of objects conforming to a type definition
-* Stream Beahvior -- defines whether interpolation occurs during event retrieval, and if so, how
+* Stream Behavior -- defines whether interpolation occurs during event retrieval, and if so, how
