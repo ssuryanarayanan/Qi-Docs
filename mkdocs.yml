@@ -13,7 +13,7 @@ pages:
   - Overview: 'Overview.md'
   - Qi Types: 'QiTypes.md'
   - Qi Streams: 'QiStreams.md'
-  - Stream behavior: 'StreamBehaviors.md'
+  - Stream behavior: 'QiStreamBehaviors.md'
   - Data: 'Data.md' # or is it Datb.md?
   - Filter expressions: 'Filter Expressions.md'
 - Samples:  'samples.md'
