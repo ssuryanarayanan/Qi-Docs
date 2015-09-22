@@ -109,7 +109,7 @@ The `ExtrapolationMode` property applies to a stream in the following conditions
    
 ## Qi Stream Behavior Methods
 
-*DeleteBehavior*
+### DeleteBehavior
 ```
 void DeleteBehavior(string behaviorId);
 Task DeleteBehaviorAsync(string behaviorId);
@@ -128,7 +128,7 @@ HTTP DELETE
 
 Deletes behavior from server.
 
-*GetBehavior*
+### GetBehavior
 ```
 QiStreamBehavior GetBehavior(string behaviorId);
 Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
@@ -146,7 +146,7 @@ HTTP GET
 
 Gets a QiStreamBehavior object from server.
 
-*GetBehaviors*
+### GetBehaviors
 ```
 IEnumerable<QiStreamBehavior> GetBehaviors();
 Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
@@ -154,7 +154,7 @@ Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
 
 Returns IEnumerable of all behaviors for the tenant.
 
-*GetOrCreateBehavior*
+### GetOrCreateBehavior
 ```
 QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
 Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior entity);
@@ -175,7 +175,7 @@ Creates a QiStreamBehavior (or returns it if it already exists).
 
 If `entity` already exists on the server by `Id`, that existing behavior is returned to the caller unchanged.
 
-*UpdateBehavior*
+### UpdateBehavior
 ```
 void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
 Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior entity);
@@ -209,7 +209,7 @@ This is a list of properties from the event type (`QiTypePropertyId`) that are t
 QiStreamExtrapolation can have one of 4 values.
 
 1.	All
-2.	Nonei
+2.	None
 3.	Forward
 4.	Backward
 
