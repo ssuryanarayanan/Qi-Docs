@@ -19,7 +19,7 @@ A Qi Stream object must include:
 2.	Allows spaces.
 
 ## Stream Methods
-*GetStream*
+### GetStream
 ```
 QiStream GetStream(string streamId);
 Task<QiStream> GetStreamAsync (string streamId);
@@ -38,7 +38,7 @@ HTTP GET
 
 Returns a QiStream object.
 
-*GetStreams*
+### GetStreams
 ```
 IEnumerable<QiStream> GetStreams ();
 Task<IEnumerable<QiStream>> GetStreamsAsync ();
@@ -53,7 +53,7 @@ HTTP GET
 
 Returns IEnumerable of all streams for the tenant. 
 
-*GetOrCreateStream*
+### GetOrCreateStream
 ```
 QiStream GetOrCreateStream (QiStream entity);
 Task<QiStream> GetOrCreateStreamAsync (QiStream entity);
@@ -73,7 +73,7 @@ Body is serialized QiStream entity
   
 If `BehaviorId` is not specified, the stream will have the default behavior of `Mode=‘Continuous’` and `ExtrapolationMode=‘All’`. If entity already exists on the server by `Id`, that existing stream is returned to the caller unchanged.
 
-*UpdateStream*
+### UpdateStream
 ```
 void UpdateStream(string streamId, QiStream entity);
 Task UpdateStreamAsync(string streamId, QiStream entity);
@@ -101,7 +101,7 @@ Permitted changes:
 Throws exception on unpermitted change attempt (and stream is left unchanged).
 The `UpdateStream` method applies the entire entity. Optional fields left out of the entity will remove the field from the Stream if they had been set previously in the stream. 
 
-*DeleteStream*
+### DeleteStream
 ```
 void DeleteStream(string streamId);
 Task DeleteStreamAsync(string streamId);
