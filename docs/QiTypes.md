@@ -6,7 +6,7 @@ Qi is capable of storing any data type you care to define.  A Qi Type consists o
 
 ## Type Methods
 
-*GetStreamType*
+### GetStreamType
 ```
 QiType GetStreamType(string streamId);
 Task<QiType> GetStreamTypeAsync(string streamId);
@@ -25,7 +25,7 @@ HTTP GET
 Returns the type definition associated with a stream
 
 
-*GetType*
+### GetType
 ```
 QiType GetType(string typeId);
 Task<QiType> GetTypeAsync(string typeId);
@@ -43,7 +43,7 @@ HTTP GET
 
 Returns type searched for by typeId
 
-*GetTypes*
+### GetTypes
 ```
 IEnumerable<QiType> GetTypes();
 Task<IEnumerable<QiType>> GetTypesAsync();
@@ -59,7 +59,7 @@ HTTP GET
 Returns IEnumerable of all types for the tenant. 
 
 
-*GetOrCreateType*
+### GetOrCreateType
 ```
 QiType GetOrCreateType(QiType entity);
 Task<QiType> GetOrCreateTypeAsync(QiType entity);
@@ -79,14 +79,14 @@ Body is serialized QiType entity
 
 Returns a Qi Type object. If entity already exists on the server by Id, that existing type is returned to the caller unchanged.  Otherwise, a new type definition is added to the Qi Service for use by that tenant.
 
-*UpdateType*
+### UpdateType
 ```
 void UpdateType(string typeId, QiType entity);
 Task UpdateTypeAsync(string typeId, QiType entity);
 ```
 This call is not allowed at this time.
 
-*DeleteType*
+### DeleteType
 ```
 void DeleteType(string typeId);
 Task DeleteTypeAsync(string typeId);
