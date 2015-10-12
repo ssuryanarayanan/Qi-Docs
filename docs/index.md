@@ -4,11 +4,9 @@ Keep in mind that during the Qi Preview process, the samples and documentation w
 ### Getting started
 In order to use the Qi API in your applications, make sure you meet the following requirements:
 
-A computer
-
-A set of tools that you feel comfortable using to consume and use RESTful Web Services
-
-A Qi Preview Tenant and corresponding set of Oauth2 authentication keys
+- A computer
+- A set of tools that you feel comfortable using to consume and use RESTful Web Services
+- A Qi Preview Tenant and corresponding set of Oauth2 authentication keys
 
 If you are consuming the .NET Qi Preview libraries, you must be using capable of using the .NET 4.5.2 Runtimes in your enviroment.
 ### Using the samples
