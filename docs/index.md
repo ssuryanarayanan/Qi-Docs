@@ -13,4 +13,4 @@ In order to use the Qi API in your applications, make sure you have the followin
 Once you've met the prerequisites, feel free to get the various Qi Preview samples.
 You can find an overview of the various examples on the ["Samples Page"](http://qi.osisoft.com/Main/#/API)
 ### Getting help
-During the Qi Preview the Qi team will be available via email to help with any problems you may be experiencing. To get help or provide feedback please contact QiSupport@osisoft.com and visit the ["Support Page"](http://qi-docs.osisoft.com/en/latest/support/) for more details.
+During the Qi Preview the Qi team will be available via email to help with any problems you may be experiencing. To get help or provide feedback please contact ["QiSupport@osisoft.com"](Mailto:QiSupport@osisoft.com) and visit the ["Support Page"](http://qi-docs.osisoft.com/en/latest/support/) for more details.
