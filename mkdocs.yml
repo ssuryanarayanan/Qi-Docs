@@ -17,3 +17,4 @@ pages:
   - Data: 'Data.md' # or is it Datb.md?
   - Filter expressions: 'Filter Expressions.md'
 - Samples:  'samples.md'
+- Support:  'support.md'
