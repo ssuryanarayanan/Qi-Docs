@@ -1,6 +1,6 @@
 #Qi docs overview
-Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in ["Qi Docs"](https://qi-docs.readthedocs.org/en/latest/Overview/) and code samples that will help get you going quicky are accessible via the ["Qi-Samples Repository"](target="https://github.com/osisoft/Qi-Samples") on GitHub.
-Keep in mind that during the ["Qi Preview'](https://qi-docs.readthedocs.org/en/latest/preview/) process the samples and documentation will change, so be sure to check back here periodically.
+Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in ["Qi Docs"](https://qi-docs.readthedocs.org/en/latest/Overview/) and code samples that will help get you going quicky are accessible via the <a href="__https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+Keep in mind that during the ["Qi Preview"](https://qi-docs.readthedocs.org/en/latest/preview/) process the samples and documentation will change, so be sure to check back here periodically.
 ### Getting started
 In order to use the Qi API in your applications, make sure you have the following requirements:
 
