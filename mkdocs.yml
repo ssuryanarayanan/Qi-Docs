@@ -9,6 +9,7 @@ repo_url: https://github.com/osisoft/Qi-docs
 
 pages:
 - Introduction: 'index.md'
+- Preview: 'preview.md'
 - API reference: #'Qi Service API Reference.md'
   - Overview: 'Overview.md'
   - Qi Types: 'QiTypes.md'
