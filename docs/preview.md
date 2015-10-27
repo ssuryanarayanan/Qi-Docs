@@ -1,0 +1,1 @@
+Qi Preview Details
