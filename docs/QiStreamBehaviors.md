@@ -1,216 +1,251 @@
-Qi stream behaviors are applied to streams to effects how certain data read operations will be performed. A stream behavior must first be defined and then can be applied to a stream when it is created (`GetOrCreateStream` method) or updated (`UpdateStream` method). A stream behavior is always referenced with its `Id` property.
+Qi Stream Behaviors are applied to streams to affect how certain data read operations will be performed. The Stream Behavior object effects if interpolation and\or extrapolation will be done when the index of a read operation falls between, before or after stream data. 
 
-A stream behavior can be changed between reads to change how the read acts. A stream can also change the stream behavior it references at any time.
+A Stream Behavior object must first be defined and then can be applied to a stream when it is created (`GetOrCreateStream` method) or updated (`UpdateStream` method). 
 
-The default behavior for a stream (when a defined stream behavior is not applied to the stream) is `Mode = ‘Continuous’` and `ExtrapolationMode = ‘All’`. 
+Stream Behavior objects are always referenced by the `Id` property.
+
+A Stream can be changed to use a different Stream Behavior or the Stream Behavior itself can be changed.
+
+The default behavior for a stream (when a defined stream behavior is not applied to the stream) is `Mode = ‘Continuous’` and `ExtrapolationMode = ‘All’`.
+
+The following Read Methods are effected by the Stream Behavior:
+*GetValue( )*
+*GetValues( )*
+*GetWindowValues* (when Boundary is set to ExactOrCalculated)
+*GetRangeValues* (when Boundary is set to ExactOrCalculated)
 
 ## Qi Stream Behavior Object
 
 ```
-QiStreamExtrapolation ExtrapolationMode
 string Id
-QiStreamMode Mode
 string Name
-IList<QiStreamBehaviorOverride> Overrides 
-```
-
-- `Id` -- unique identifier used to reference this behavior
-- `Name` -- Optional descriptor
-- `Mode` -- behavior setting to be applied to all ‘value’ properties of events in the stream to which this is applied
-- `ExtrapolationMode` -- controls extrapolation behavior on the ends of a range
-- `Overrides` -- A list of overrides to specific properties
- 
-
-`QiStreamMode` is an enumeration whose permissible values are:
-- Continuous (=0)
-- StepwiseContinuousLeading (=1)
-- StepwiseContinuousTrailing (=2)
-- Discrete (=3)
-
-`ExtrapolationMode` is an enumeration:
-- All (=0)
-- None (=1)
-- Forward (=2)
-- Backward (=3)
-
-
-The `QiStreamBehaviorOverride` object has the following structure:
-```
-string QiTypePropertyId
 QiStreamMode Mode
+IList<QiStreamBehaviorOverride> Overrides
+QiStreamExtrapolation ExtrapolationMode
 ```
 
-It is used to apply a behavior override to a specific property or properties of an event, rather than all properties of the event.
-
+`Id` -- Unique identifier used to reference this behavior
+`Name` -- Optional descriptor
+`Mode` -- Interpolation behavior setting to all ‘value’ properties (unless overridden by Override list)
+`Overrides` -- A list of `QiStreamBehaviorOverride items`, which is used to set a different Interpolation behavior than the Mode to a Type property
+`ExtrapolationMode` -- Controls extrapolation behavior for the stream
 
 ## Stream Behavior Mode
-When running a query method, if an index lands between 2 values in the stream, then the stream behavior is used to determine what is returned. The mode for a stream behavior or override can be set to one of these values: 
+When certain Qi Read methods (such as *GetValue( )* and *GetValues( )* are given an index that lands between two values in a stream, it is the Stream Behavior Mode that will determine what values will be retrieved. 
 
-- Continuous (default): value is interpolated using previous and next events (see chart below for exceptions)
-- StepwiseContinuousLeading: value is obtained from previous event
-- StepwiseContinuousTrailing: value is obtained from next event
-- Discrete: NULL value is returned
+The chart here indicates the allowed QiStreamMode values and how they operate:
 
-There are cases where a null value cannot be used. For example when a `GetValue` call is made on a stream that has a behavior using a `Continuous` value for `Mode` and a property of the event type has a Discrete override, the call will attempt to set this Discrete property to ‘null’.  But in cases where this cannot be done (i.e. a non-nullable type) the default value will be used. 
+|`QiStreamMode`|Operation|
+|---|---|
+|0=Default|= Continuous|
+|0=Continuous|Interpolates the data using previous and next index values\*|
+|1=StepwiseContinuousLeading|Returns the data from the previous index|
+|2=StepwiseContinuousTrailing|Returns the data from the next index|
+|3=Discrete|Returns ‘null’|
+         *Certain value types cannot be interpolated. See Stream Behavior for these special cases.
 
-The chart below describes how the types act when the mode is set to Continuous:
+When the Mode is set to Continuous (or left at Default) calls to read the value of this Stream Behavior property will indicate ‘0=Default”. 
 
-| Type	| When mode is Continuous and an index between events is addressed |
-| ------ | ---------------------------------------------------------------- |
-| Numeric Floating Point Types Single, Double, Decimal | Interpolation |
-| Numeric Integer Types Int16, int32, int64, uint16, uint32, uint64, byte, Sbyte, Char | Interpolation (rounding) |
-| Time related Types DateTime, DateTimeOffset, TimeSpan	| Interpolation |
-| Nullable Types NullableBoolean, NullableChar, NullableSByte, NullableByte, NullableInt16, NullableUInt16, NullableInt32, NullableUInt32, NullableInt64, NullableUInt64, NullableSingle, NullableDouble, NullableDecimal, NullableDateTime, NullableGuid, NullableDateTimeOffset, NullableTimeSpan | Returns null (as if the mode were Discrete) |
-| Array and List Types BooleanArray, CharArray, SByteArray,ByteArray, Int16Array, UInt16Array, Int32Array, UInt32Array, Int64Array, UInt64Array, SingleArray,DoubleArray, DecimalArray, DateTimeArray, StringArray, GuidArray, DateTimeOffsetArray, TimeSpanArray, VersionArray, IList | Returns null (as if the mode were Discrete) |
-| String | Returns null (as if the mode were Discrete) |
-| Boolean | Returns the value of nearest event |
-| Enumeration Types SByteEnum, ByteEnum, Int16Enum, UInt16Enum, Int32Enum, UInt32Enum, Int64Enum,UInt64Enum | Returns ‘0’ which may be the value of a defined enumeration element. |
-| Guid | Returns Guid.Empty   |
-| QiType, QiTypeProperty | Returns null (as if the mode were Discrete) |
-| Version | Returns null (as if the mode were Discrete) |
-| IDictionary, IEnumerable | Returns null (as if the mode were Discrete) |
+##Stream behavior overrides
+As described above, the interpolation behavior for all values in the stream event type is determined by the stream behavior `Mode` property. Individual data properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different interpolation behavior for different event properties within the stream. 
 
-The behavior of all values in the stream event type will be controlled by the stream behavior `Mode` property. `Continuous` is the default if a defined stream behavior is not set. Individual event properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different extrapolation behavior for different properties within the same event.  Note that when doing this, the main Behavior Mode is still used to determine whether an event is returned for an index between data. If the main behavior `Mode` property is set to ‘Discrete’, no event is returned for the call requiring a calculated value, regardless of any overrides.
+The Override field of the Stream Behavior is made up of a list of `QiStreamBehaviorOverride` object. The `QiStreamBehaviorOverride` object has the following structure:
+	 `string QiTypePropertyId`
+	 `QiStreamMode Mode`
 
-##Stream Behavior ExtrapolationMode
-- `All` (default):  extrapolation done at both start and end of data in stream. 
-- `Forward`: extrapolation done at the end of the stream (not at the beginning). 
-- `Backward`: extrapolation done at the beginning of the stream (not at the end). 
-- `None`: no extrapolation done  
+Note that when using the override list, be aware that a Mode setting of ‘Discrete’ cannot be overridden. If the Mode is set to ‘Discrete’ a null value is returned for the entire event. If a ‘Discrete’ setting is desired for one of the type properties and a different setting (e.g. StepwiseContinuousLeading) is desired for other properties within the type, make sure to set the Mode to the StepwiseContinuousLeading and use the override list to set the other property to Discrete. 
 
-The `ExtrapolationMode` property applies to a stream in the following conditions:
-- `GetValue` and `GetValues` when an index is used that is before or after all events in the stream
-- `GetWindowValues` when the start index is before all events in the stream or when the end index is after all events in the stream
-- `GetRangeValues` when the start index is before or after all events in the stream
-- `GetIntervals` when indices are on each side of an interval
+Without the overrides, properties will get the interpolation behavior defined by the Mode field of the Stream Behavior.
 
-| Behavior | Extrapolation | Before Start of Stream | After End of Stream | Empty Stream |
-| -------- | ------------- | ---------------------- | ------------------- | ------------ |
-| Continuous | All | First Event Fields | Last Event Fields | Null |
-| Continuous | None | Null | Null | Null |
-| Continuous | Backward | First Event Fields | Null | Null |
-| Continuous | Forward | Null | Last Event Fields | Null |
-| Discrete | All | Null | Null | Null |
-| Discrete | None | Null | Null | Null |
-| Discrete | Backward | Null | Null | Null |
-| Discrete | Forward | Null | Null | Null |
-| StepwiseContinuousLeading | All | Null | Last Event Fields | Null |
-| StepwiseContinuousLeading | None | Null | Null | Null |
-| StepwiseContinuousLeading | Backward | Null | Null | Null |
-| StepwiseContinuousLeading | Forward | Null | Last Event Fields | Null |
-| StepwiseContinuousTrailing | All | First Event Fields | Null | Null |
-| StepwiseContinuousTrailing | None | Null | Null | Null |
-| StepwiseContinuousTrailing | Backward | First Event Fields | Null | Null |
-| StepwiseContinuousTrailing | Forward | Null | Null | Null |
+##Stream behavior `QiStreamExtrapolation`
+When the index of a *GetValue( )* (or *GetValues( )*) read falls before or after all of the data in a stream, the QIStreamExtrapolation setting acts as a master switch which determines whether or not extrapolation will be done. If extrapolation is done, the setting of the Stream Behavior Mode determines the value included. 
+
+The following charts show how the `QiStreamExtrapolation` settings effect returned values:
+
+__Stream behavior `QiStreamExtrapolation` values__
+
+|`QiStreamExtrapolation`|Index before data|Index after data|
+|---|---|---|
+|0=All|Returns data of the first event|Returns data of the last event|
+|1=None|No extrapolation (returns null)|No extrapolation (returns null)|
+|2=Forward|No extrapolation (returns null)|Returns data of the last event|
+|3=Backward|Returns data of the first event|No extrapolation (returns null)|
+
+__`QiStreamExtrapolation` values (with Mode=Continuous)__
+
+|`QiStreamExtrapolation`|Index before data|Index after data|
+|---|---|---|
+|*All*|Returns first data value|Returns last data value|
+|*None*|Return null|Return null|
+|*Forward*|Returns first data value|Return null|
+|*Backward*|Return null|Returns last data value|
+
+__`QiStreamExtrapolation` values (with Mode=Discrete)__
+
+|`QiStreamExtrapolation`|Index before data|Index after data|
+|---|---|---|
+|*All*|Return null|Return null|
+|*None*|Return null|Return null|
+|*Forward*|Return null|Return null|
+|*Backward*|Return null|Return null|
+
+__`QiStreamExtrapolation` values (with Mode=StepwiseContinuousLeading)__
+
+|`QiStreamExtrapolation`|Index before data|Index after data|
+|---|---|---|
+|*All*|Returns first data value|Returns last data value|
+|*None*|Return null|Return null|
+|*Forward*|Returns first data value|Return null|
+|*Backward*|Return null|Returns last data value|
+
+__`QiStreamExtrapolation` values (with Mode=StepwiseContinuousTrailing)__
+
+|`QiStreamExtrapolation`|Index before data|Index after data|
+|---|---|---|
+|*All*|Returns first data value|Returns last data value|
+|*None*|Return null|Return null|
+|*Forward*|Returns first data value|Return null|
+|*Backward*|Return null|Returns last data value|
 
 ## Naming Rules for Behavior Identifiers
 1.	Case sensitive
-2.	Allows spaces.
-   
+2.	Allows spaces
+3.	Cannot start with two underscores ("__")
+
+## Additional stream behavior topics
+
+### Interpolation
+When the Stream Behavior is set to ‘Continuous’ (or left at the default value which is also ‘Continuous’) read methods (Such as `GetValue( )`) attempt return an interpolated value for indexes that land between to existing data events in a stream. This cannot always be done (e.g. when the type is not ‘numeric’)
+
+This chart describes how the Default Continuous Mode setting effects indexes between data in a stream:
+
+__Stream Behavior Mode = Default (Continuous)__
+
+|`Type`|Result for an index between data in a stream|Comment|
+|---|---|---|
+|Numeric Types|Interpolated\*|Rounding is done as needed for integer types|
+|Time related Types|Interpolated|DateTime, DateTimeOffset, TimeSpan|
+|Nullable Types|Returns ‘null’|Cannot reliably interpolate due to possibility of a null value
+|Array and List Types|Returns ‘null’||
+|String Type|Returns ‘null’||
+|Boolean Type|Returns value of nearest index||
+|Enumeration Types|Returns Enum value at 0|This may have a value for the enumeration|
+|GUID|||
+|Version|Returns ‘null’||
+|IDictionary or Ienumerable|Returns ‘null’||
+
+*When extreme values are involved in an interpolation (e.g. Decimal.MaxValue) the call may result in a ‘BadRequest’ exception if the interpolation cannot be completed successfully.
+
 ## Qi Stream Behavior Methods
 
 ### DeleteBehavior
+*_Qi Client Library_*
 ```
 void DeleteBehavior(string behaviorId);
 Task DeleteBehaviorAsync(string behaviorId);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Behaviors/{behaviorId}
+DELETE Qi/Behaviors/{behaviorId}
 ```
 
-HTTP DELETE
-
-*Parameters*
-
+**Parameters**
 `behaviorId` -- id of the behavior to delete; the behavior must not be associated with any streams
 
-Deletes behavior from server.
+**Security**
+Allowed by Administrator account
+
+**Operation**
+Deletes the specified behavior
+Stream Behaviors objects that are still associated with a stream cannot be deleted
 
 ### GetBehavior
+*_Qi Client Library_*
 ```
 QiStreamBehavior GetBehavior(string behaviorId);
 Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
 ```
-*REST*
+*_Http_*
 ```
-Qi/Behaviors/{behaviorId}
+GET Qi/Behaviors/{behaviorId}
 ```
 
-HTTP GET
-
-*Parameters*
-
+**Parameters**
 `behaviorId` -- id of the behavior definition to retrieve
 
-Gets a QiStreamBehavior object from server.
+**Security**
+Allowed by Administrator and User accounts
+
+**Operation**
+Gets a QiStreamBehavior object from service
 
 ### GetBehaviors
+*_Qi Client Library_*
 ```
 IEnumerable<QiStreamBehavior> GetBehaviors();
 Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
 ```
 
-Returns IEnumerable of all behaviors for the tenant.
+*_Http_*
+```
+GET Qi/Behaviors
+```
+
+**Parameters**
+None
+
+**Security**
+Allowed by Administrator and User accounts
+
+**Operation**
+Returns IEnumerable of all behavior objects
 
 ### GetOrCreateBehavior
+*_Qi Client Library_*
 ```
 QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
 Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior entity);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Behaviors
+POSTQi/Behaviors
 ```
+Content is serialized `QiStreamBehavior` entity
 
-HTTP POST
-Body is serialized `QiStreamBehavior` entity
+**Parameters**
+`entity` -- a QiStreamBehavior object to add to the Qi Service
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-`entity` -- a QiStreamBehavior object to add to the Qi Service for the current tenant.  
-Creates a QiStreamBehavior (or returns it if it already exists). 
-
-If `entity` already exists on the server by `Id`, that existing behavior is returned to the caller unchanged.
+**Operation**
+Creates a QiStreamBehavior (or returns it if it already exists)
+If `entity` already exists on the server by `Id`, that existing behavior is returned to the caller unchanged
 
 ### UpdateBehavior
+*_Qi Client Library_*
 ```
 void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
 Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior entity);
 ```
-*REST*
+*_Http_*
 ```
-Qi/Behaviors/{behaviorId}
+PUT Qi/Behaviors/{behaviorId}
 ```
+Content is a serialization of the behavior to update
 
-HTTP PUT
-Body is a serialization of the updated `QiStreamBehavior`
-
-*Parameters*
-
+**Parameters**
 `behaviorId` -- identifier of the stream behavior to update
 `entity` -- updated stream behavior 
 
-Permitted changes: 
+**Security**
+Allowed by Administrator account
 
-- Override list
-- BehaviorMode
-- ExtrapolationMode
-- Name
+**Operation**
+This method replaces the stream’s existing behavior with those defined in the ‘entity’. If certain aspects of the existing behavior are meant to remain, they must be included in entity.
 
-An override list can be added to add, remove or change the `Mode` on properties within the type. 
-UpdateBehavior replaces the stream’s existing behavior with `entity`.  If certain aspects of the existing behavior are meant to remain, they must be included in entity.
+An override list can be included in the ‘entity’ of this call to cause the addition, removal or change to this list. 
 
-This is a list of properties from the event type (`QiTypePropertyId`) that are to be given different behaviors (`Mode`). The overrides list is used in cases where the user desires the stream to have different behaviors for different values in a stream's events. 
-
-`Extrapolation`
-QiStreamExtrapolation can have one of 4 values.
-
-1.	All
-2.	None
-3.	Forward
-4.	Backward
-
-This indicates whether indices that are read before or after all data should attempt to return an event or not.
+The Stream Behavior Id cannot be changed.
