@@ -1,106 +1,141 @@
-Qi is capable of storing any data type you care to define.  A Qi Type consists of one or more properties.  Properties are either simple atomic types (e.g., integer) or previously-defined Qi Types.  The latter permits the construction of complex, nested types. The only requirement is that your data type have one or more properties that constitute an ordered key.  While a timestamp is a very common type of key, any ordered value is permitted. 
+Qi is capable of storing any data type you care to define. A Qi Type consists of one or more properties. Properties are either simple atomic types (e.g., integer) or previously-defined Qi Types. The latter permits the construction of complex, nested types. The only requirement is that your data type have one or more properties that constitute an ordered key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered value is permitted. 
+
+Types cannot be changed and can only be deleted if there are no streams associated with it.
 
 ## Naming Rules for typeId
 1.	Case sensitive
 2.	Allows spaces
+3.	Cannot start with two underscores ("__")
+
+A type is always referenced with its Id property.
 
 ## Type Methods
 
 ### GetStreamType
+*_Qi Client Library_*
 ```
 QiType GetStreamType(string streamId);
 Task<QiType> GetStreamTypeAsync(string streamId);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Type
+GET Qi/Streams/{streamId}/Type
 ```
-HTTP GET
 
-*Parameters*
+**Parameters**
+`streamId` -- id of the stream for which type request will be made
 
-`streamId` -- id of the stream associated with a type
+**Security**
+Allowed by Administrator and User accounts
 
+**Operation**
 Returns the type definition associated with a stream
 
-
 ### GetType
+*_Qi Client Library_*
 ```
 QiType GetType(string typeId);
 Task<QiType> GetTypeAsync(string typeId);
 ```
-*REST*
+*_Http_*
 ```
-Qi/Types/{typeId}
+GET Qi/Types/{typeId}
 ```
 
-HTTP GET
+**Parameters**
+`typeId` -- id of the type to retrieve
 
-*Parameters*
+**Security**
+Allowed by Administrator and User accounts
 
-```typeId``` -- id of the type to retrieve
-
-Returns type searched for by typeId
+**Operation**
+Returns type searched for by *typeId*
 
 ### GetTypes
+*_Qi Client Library_*
 ```
 IEnumerable<QiType> GetTypes();
 Task<IEnumerable<QiType>> GetTypesAsync();
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Types
+GET Qi/Types
 ```
 
-HTTP GET
+**Parameters**
+None
 
-Returns IEnumerable of all types for the tenant. 
+**Security**
+Allowed by Administrator and User accounts
 
+**Operation**
+Returns IEnumerable of all types
 
 ### GetOrCreateType
+*_Qi Client Library_*
 ```
 QiType GetOrCreateType(QiType entity);
 Task<QiType> GetOrCreateTypeAsync(QiType entity);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Types
+POST Qi/Types
 ```
+Content is serialized QiType entity
 
-HTTP POST
-Body is serialized QiType entity
-
-*Parameters*
-
+**Parameters**
 `entity` -- Qi Type object
 
-Returns a Qi Type object. If entity already exists on the server by Id, that existing type is returned to the caller unchanged.  Otherwise, a new type definition is added to the Qi Service for use by that tenant.
+**Security**
+Allowed by Administrator account
 
-### UpdateType
-```
-void UpdateType(string typeId, QiType entity);
-Task UpdateTypeAsync(string typeId, QiType entity);
-```
-This call is not allowed at this time.
+**Operation**
+Returns a Qi Type object.
+If entity already exists on the service by Id, the existing type is returned to the caller unchanged. Otherwise, a new type definition is added to the Qi Service
 
 ### DeleteType
+*_Qi Client Library_*
 ```
 void DeleteType(string typeId);
 Task DeleteTypeAsync(string typeId);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Types/{typeId}
+DELETE Qi/Types/{typeId}
 ```
 
-HTTP DELETE
-
-*Parameters*
-
+**Parameters**
 `typeId` -- string type id of the type to delete
 
-Deletes type from server.
+**Security**
+Allowed by Administrator account
+
+**Operation**
+Deletes type from service
+A type cannot be deleted from the service if there are existing streams associated with it
+
+### UpdateType
+*_Qi Client Library_*
+```
+void UpdateType(string typeId, QiType entity);
+Task UpdateTypeAsync(string typeId, QiType entity);
+```
+
+*_Http_*
+```
+PUT Qi/Types/{typeId}
+```
+
+**Parameters**
+`typeId` -- string type id of the type to update
+
+**Security**
+Allowed by Administrator account
+
+**Operation**
+Updates a type’s definition.
+A type cannot be updated if there are existing streams associated with it.
