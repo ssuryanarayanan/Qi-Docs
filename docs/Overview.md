@@ -183,23 +183,3 @@ The table below summarizes the read methods that are available:
 |GetWindowValues( )\*|Reads a set of events from a stream using a specified start and an end index|
 								*methods effected by Stream Behaviors
 
-
-The GetRangesValues( ) method (like many others in the library) have an assortment of overloads that allow you to tailor your calls for maximum effectiveness. For Example the GetRangeValues( ) method  has overloads that allow data to be filtered according to a specified expression or returned the events in in reverse order.
-
-To read all of the events between a start and ending index, the GetWindowValues( ) method and its overloads can be used. 
-
-
-The table below summarizes the read methods that are available.  
-
-SUMMARY OF READ METHODS
-Read Method	Description
-FindDistinctValue( )	Returns the event found at a specified index or a ‘null’ if no data exists at the index.
-GetDistinctValue( )	Returns the event found at a specified index or throws an exception if no data exists at the index. 
-GetValues( )*	Returns a value from a specified index. Options allow for interpolation and extrapolation for indexes between, before or after the data in the stream.
-GetValues( )*	Returns a set of values using a specified set of indexes.
-GetFirstValue( ) 	Returns the first (oldest) event from a stream
-GetLastValue( )	Returns the last (most recent) event from a stream
-GetRangeValues( ) *	Returns a set of events from a stream starting from a predefined start index
-GetWindowValues( )*	Reads a set of events from a stream using a specified start and an end index
-	*methods effected by Stream Behaviors
-
