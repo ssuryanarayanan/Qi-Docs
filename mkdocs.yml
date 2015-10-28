@@ -11,7 +11,7 @@ pages:
 - Introduction: 'index.md'
 - Preview: 'preview.md'
 - API reference: #'Qi Service API Reference.md'
-  - Overview: 'Overview.md'
+  - Getting started with Qi API: 'Overview.md'
   - Qi Types: 'QiTypes.md'
   - Qi Streams: 'QiStreams.md'
   - Stream Behavior: 'QiStreamBehaviors.md'
