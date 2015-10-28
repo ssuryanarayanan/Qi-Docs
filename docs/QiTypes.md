@@ -137,5 +137,5 @@ PUT Qi/Types/{typeId}
 Allowed by Administrator account
 
 **Operation**
-Updates a type’s definition.
-A type cannot be updated if there are existing streams associated with it.
+Updates a type’s definition
+A type cannot be updated if there are existing streams associated with it
