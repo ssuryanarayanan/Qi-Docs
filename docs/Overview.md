@@ -133,6 +133,6 @@ The following table shows the methods that are available for writing and changin
 |PatchValue( )	        |Replaces specified properties in a single event in a stream      |
 |PatchValues( ) 	      |Replaces specified properties from multiple events in a stream   |
 
-	                                \*include overloads that can act upon multiple streams
+	                                \* include overloads that can act upon multiple streams
 
 
