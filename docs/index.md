@@ -11,7 +11,7 @@ In order to use the Qi API in your applications, make sure you have the followin
 - If consuming the .NET Qi Preview libraries, you must be using capable of using the .NET 4.5.2 Runtimes in your enviroment.
 - A Qi Preview Tenant and corresponding set of OAuth2 authentication keys
 
-We then recommend continuing on to the Getting started with the Qi API section in orer to get going.
+We then recommend continuing on to the ["Getting started with Qi"](https://qi-docs.readthedocs.org/en/latest/Overview/) API section in orer to get going.
 
 ### Using the samples
 Once you've met the prerequisites, feel free to get the various Qi Preview samples.
