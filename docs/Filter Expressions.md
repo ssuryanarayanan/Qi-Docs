@@ -1,6 +1,6 @@
-Filter text can be included in overloads for the GetRangeValues or GetWindowValues Qi Library methods. This filter is applied to the events that are found by the call, such that the user can affect which events are returned (i.e. conditionally filter out certain events).   
+Filter expressions can be included in overloads for the GetRangeValues( ) or GetWindowValues() methods. The filter is applied to the events that are found by the call, such that the user can affect which events are returned (i.e. conditionally filter out certain events).  
 
-## Supported QiTypeCodes
+## QiTypeCodes supported in filter expressions
 
 Fields of the following types can be used within Filter Text.
 
@@ -22,7 +22,8 @@ Fields of the following types can be used within Filter Text.
 - ULong	(Uint64)
 - UShort	(Uint16)
 
-## Non-supported QiTypeCodes
+## QiTypeCodes not supported in filter expressions
+
 - Array
 - IEnumerable
 - IDictionary
@@ -35,18 +36,7 @@ Fields of the following types can be used within Filter Text.
 - NullableDateTime
 - TimeSpan
 
-## Supported logical operators
-
-- eq
-- ne
-- ge
-- le
-- lt
-- gt
-- not
-- or
-- and
-- negation (i.e. ‘-‘), 
+## Logical operators supported in filter expressions
 
 | operator | Comment |
 | -------- | ------- |
@@ -75,25 +65,17 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "not (Value eq 1.0)"
 
 ## Math functions
-- add
-- sub
-- mul
-- div
-- mod
-- round
-- floor
-- ceiling
 
 | function | Comment |
 | -------- | ------- |
-| add | addition |
-| sub | subtract |
-| mul | Multiply |
-| div | Division |
-| mod | Modulo |
-| round | Rounds to nearest numeric component without a decimal with midpoint rounded away from 0.  (e.g. 0.5 rounds to 1, -0.5 rounds to -1) |
-| floor | Rounds down to nearest numeric component without a decimal. |
-| ceiling | Rounds up to nearest numeric component without a decimal. |
+| add |Addition|
+| sub |Subtraction|
+| mul |Multiplication|
+| div |Division|
+| mod |Modulo|
+| round |Rounds to nearest numeric component without a decimal with midpoint rounded away from 0.  (e.g. 0.5 rounds to 1, -0.5 rounds to -1)|
+| floor |Rounds down to nearest numeric component without a decimal|
+| ceiling |Rounds up to nearest numeric component without a decimal|
 
 ### Math Function Examples
 
@@ -108,22 +90,12 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "floor(Value) eq 15"
 - "ceiling(Value) eq 16"
 
-## String functions:
-- endswith
-- startswith
-- length
-- indexof
-- substring
-- substringof
-- tolower
-- toupper
-- trim
-- concat
-- replace
+## String functions supported in filter expressions
 
-String operations are case sensitive.  Character index in a string is 0-based.
+String operations are case sensitive. Character index in a string is 0-based.
 
 | function | Comment |
+|---|---|
 | endswith | Compare character at end of input string  |
 | startwith | Compare character at start of input string |
 | length | Looks at string length |
@@ -140,27 +112,23 @@ String operations are case sensitive.  Character index in a string is 0-based.
 
 These examples assume that the event Qi Type includes a field named ‘sValue’ of type string.
 
-- "endswith(sValue, 'XYZ’)" 	 –true if Value ends with the characters ‘XYZ’
-- "startswith(sValue, 'Val')" –true if Value starts with the characters ‘Val’
-- "length(sValue) eq 11"	 -true of length of string value
-- "indexof(sValue, 'ab') eq 4"  -true if the 5th and 6th characters are ‘ab’
-- "substring(sValue, 10) eq 'a b'" –true ‘a b’ is found in sValue at index 10
-- "substringof('val', Value)"	     -true if characters ‘val’ are anywhere in sValue
-- "tolower(sValue) eq 'val5'" – Change sValue to lower case and compares to ‘val5’
-- "toupper(sValue) eq 'ABC'"	– Change sValue to upper case and compares to ‘ABC’
-- "trim(sValue) eq ‘vall22’" – Trim whitespace from front and end of sValue and compare to ‘val22’
-- "concat(sValue,'xyz') eq 'dataValue_7xyz' add characters to sValues and compare to ‘dataValue_7xyz’
-- “replace(sValue,'L','D') eq 'Dog1'"; - replace any ‘L’ in sValue with ‘D’ and compare to ‘Dog1’
+|Example|Result|
+|---|---|
+|endswith(sValue, 'XYZ’)|true if Value ends with the characters ‘XYZ’|
+|startswith(sValue, 'Val')|true if Value starts with the characters ‘Val’|
+|length(sValue) eq 11|true of length of string value|
+|indexof(sValue, 'ab') eq 4|true if the 5th and 6th characters are ‘ab’|
+|substring(sValue, 10) eq 'a b'|true ‘a b’ is found in sValue at index 10|
+|substringof('val', Value)|true if characters ‘val’ are anywhere in sValue|
+|tolower(sValue) eq 'val5'|change sValue to lower case and compares to ‘val5’|
+|toupper(sValue) eq 'ABC'|change sValue to upper case and compares to ‘ABC’|
+|trim(sValue) eq ‘vall22’|trim whitespace from front and end of sValue and compare to ‘val22’|
+|concat(sValue,'xyz') eq 'dataValue_7xyz'|add characters to sValues and compare to ‘dataValue_7xyz’|
+|replace(sValue,'L','D') eq 'Dog1'|replace any ‘L’ in sValue with ‘D’ and compare to ‘Dog1’|
 
-## DateTime Functions
-- year
-- month
-- day
-- hour
-- minute
-- second 
+## DateTime functions supported in filter expressions
 
-| function | Comment |
+| Function | Comment |
 | -------- | ------- |
 | year | Get year value from DateTime |
 | month | Get month value from DateTime |
@@ -180,12 +148,7 @@ These examples assume that the event Qi Type includes a field named ‘TimeId’
 - "minute(TimeId) eq 5"
 - "second(TimeId) eq 3"
 
-##TimeSpan Functions
-- years
-- days
-- hours
-- minutes
-- seconds
+##TimeSpan functions supported in filter expressions
 
 | function | Comment |
 | -------- | ------- |
