@@ -50,6 +50,7 @@ Fields of the following types can be used within Filter Text.
 | or | Or logical operator |
 | and | And logical operator |
 | not | Not logical operator |
+|-|Negation|
 
 ### Logical Operator Examples
 
