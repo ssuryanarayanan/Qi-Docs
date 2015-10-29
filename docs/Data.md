@@ -1,138 +1,161 @@
-#FindDistinctValue
+## FindDistinctValue
+*_Qi Client Library_*
 ```
 T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
+T FindDistinctValue<T, T1>(string streamId, T1 index, QiSearchMode mode);
+T FindDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index, QiSearchMode) 
 Task<T> FindDistinctValueAsync<T>(string streamId, string index, QiSearchMode mode);
+Task<T> FindDistinctValueAsync<T, T1>(string streamId, T1 index, QiSearchMode mode);
+Task<T> FindDistinctValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, QiSearchMode mode);
 ```
- *REST*
+ *_Http_*
  ```
- Qi/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}
+ GET Qi/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}
  ```
- 
- HTTP GET
- 
-*Parameters*
 
-- `streamId` -- stream identifier for the request
-- `index` -- string representation of the index value at which to search
-- `mode` -- search mode (see below)
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- string representation of the index value at which to search
+`mode` -- search mode (see *Operation* below)
 
-Search modes:
-1.	Exact 
-2.	ExactOrNext 
-3.	ExactOrPrevious 
-4.	Next 
-5.	Previous
+**Security**
+Allowed by Administrator and User accounts
 
-This method is used in situations where the client software needs to query a stream without getting any exceptions when the indexes queried do not have data.
+**Operation**
+This method searches for data in a stream using the search mode defined. If a data is not found a null is returned.  
 
-Returns null values for calls that do not find a value (e.g., searching in Next mode from an index after all existing data.)
+The (search) mode determines how the search for data is executed:
 
-#GetDistinctValue
+|Search Mode|Action|
+|---|---|
+|1=Exact|Returns a data if found at the index, else null is returned|
+|2=ExactOrNext|Returns a data if found at the index or searches forward for the next index with data|
+|3=ExactOrPrevious|Returns a data if found at the index or searches for the first previous index with data|
+|4=Next|Searches forward (immediately after the index given) for the next index with data|
+|5=Previous|Searches for the first previous index with data starting immediately behind the index given|
+
+**Examples**
+
+Assume a Type named *TestType* has been created (with a DateTime index field named TimeId field and a Double data field called ‘Value’). Assume that the stream identified by streamId was created with that type.
+
+This call will obtain the most recent event in the stream by starting at the index ‘Now’ and search backwards until it finds a value. Note if the stream is empty a null will be returned in readEvent:
+
+```
+searchMode = QiSearchMode.ExactOrPrevious;
+string index = DateTime.Now.ToString(“o”);
+var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
+```
+
+This call does the same thing, but illustrates the use of the generic overload allowing DateTime to be used directly as the index (instead of a string):
+
+```
+searchMode = QiSearchMode.ExactOrPrevious;
+DateTime indexDT = DateTime.Now;
+var  readEvent = _service.FindDistinctValue<TestType, DateTime>(streamId, indexDT, searchMode);
+```
+
+If the type of the stream has a compound index (such as a DateTime and an Integer), then this call can be used using Tuples to indicate the index.
+
+```
+searchMode = QiSearchMode.ExactOrPrevious;
+var tupleId = new Tuple<DateTime, int>(DateTime.Now, 0);
+var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(streamId, tupleId, searchMode);
+```
+
+##GetDistinctValue
+*_Qi Client Library_*
 ```
 T GetDistinctValue<T>(string streamId, string index);
+T GetDistinctValue<T, T1>(string streamId, T1 index);
+T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);
 Task<T> GetDistinctValueAsync<T>(string streamId, string index);
+Task<T> GetDistinctValueAsync<T, T1>(string streamId, T1 index);
+Task<T> GetDistinctValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetDistinctValue?index={index}
+GET Qi/Streams/{streamId}/Data/GetDistinctValue?index={index}
 ```
 
-HTTP GET
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- string representation of the index value at which to search
+
+**Security**
+Allowed by Administrator and User accounts
+
+**Operation**
+This method returns an event from the specified stream at the specified index. An exception is thrown if no event exists at index.
+
+**Examples**
+This call will obtain the event in the stream at the index defined by ‘Now’. If there is no event at that index an exception will be thrown:
+
+```
+string index = DateTime.Now.ToString(“o”);
+try
+{
+	var  readEvent = _service.GetDistinctValue<TestType>(streamId, index);
+}
+Catch (exception e)
+{
+	//handle exception
+}
+```
+
+This overload:	**T GetDistinctValue<T, T1>(string streamId, T1 index);**
+Can be used to supply the index of the call as a different type. 
+See the *FindDistinctValue* examples for an illustration of this.
+
+This overload:	**T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);**
+Can be used to supply the index of the call as a tuple (for compound indexes). 
+See the *FindDistinctValue* examples for an illustration of this.
 
 
-*Parameters*
-
-- `streamId` -- -- stream identifier for the request
-- `index` -- string representation of the index value at which to search
-
-
-This method is used by a client when data is expected to reside at the exact index value specified. 
-Returns an event from the specified stream at the specified index. Throws an exception if no event exists at index or if the stream has no data.
-
-#GetFirstValue
+## GetFirstValue
+*_Qi Client Library_*
 ```
 T GetFirstValue<T>(string streamId);
 Task<T> GetFirstValueAsync<T>(string streamId);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetFirstValue
+GET Qi/Streams/{streamId}/Data/GetFirstValue
 ```
 
-HTTP GET
+**Parameters**
+`streamId` -- stream identifier for the request
 
-*Parameters*
+**Security**
+Allowed by Administrator and User accounts
 
-`streamId` -- -- stream identifier for the request
+**Operation**
+Returns the first data event in the stream. Returns null if the stream has no data (no exception thrown).
 
-Gets the first data event in the stream. Returns null if the stream has no data (no exception thrown).
-
-#GetLastValue
+##GetLastValue
+*_Qi Client Library_*
 ```
 T GetLastValue<T>(string streamId);
 Task<T> GetLastValueAsync<T>(string streamId);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetLastValue
+GET Qi/Streams/{streamId}/Data/GetLastValue
 ```
 
-HTTP GET
-
-*Parameters*
-
+**Parameters**
 `streamId` -- stream identifier for the request
 
-Gets the last data event in the stream. Returns null if the stream has no data (no exception thrown).
+**Security**
+Allowed by Administrator and User accounts
 
-#GetIntervals
-```
-IEnumerable<QiInterval<T>> GetIntervals<T>(string streamId, string startIndex, string endIndex, int count);
-Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T>(string streamId, string startIndex, string endIndex, int count);
-```
+**Operation**
+Returns the last data event in the stream. Returns null if the stream has no data (no exception thrown).
 
-*REST*
-```
-Qi/Streams/{streamId}/Data/GetIntervals?startIndex={startIndex}&endIndex={endIndex}&count={count}
-```
-
-HTTP GET
-
-*Parameters*
-
-- `streamId` -- stream identifier for the request
-- `startIndex` -- string representation of the starting index value
-- `endIndex` -- string representation of the ending index value
-- `count` -- number of intervals
-
-The call accepts start and end indexes and a reqeusted interval count. Intervals are created by dividing the index range into equal parts. The start and end index values will use an ‘ExactOrCalculated’ search mode, so each interval will typically have two or more values with which to work.
-
-A QiInterval is made up of a start, an end event, and a Summaries dictionary.
-IDictionary<string, IDictionary<QiSummaryType, object>> Summaries
-T End
-T Start
-
-Each entry in Summaries corresponds to a field within the the type for which summary calculations were performed.  The name of the type field serves as the key while the value holds a dictionary of calculation results for that field. For example, if a type was created with a DateTime (the index), two double values, and a string value, the GetIntervals Summaries result would include two entries - one for each of the doubles.
-
-Summary calculations include the following:
-1.	Minimum	+ index of the first occurence of the minimum value
-2.	Maximum	+ index of the first occurence of the maximum value
-3.	Range
-4.	Total
-5.	Mean
-6.	StandardDeviation
-7.	PopulationStandardDeviation
-8.	Skewness
-9.	Kurtosis
-10.	WeightedMean
-11.	WeightedStandardDeviation
-12.	WeightedPopulationStandardDeviation
-13.	Integral
-
-#GetRangeValues
+##GetRangeValues
+*_Qi Client Library_*
 ```
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count);
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, bool reversed);
@@ -146,86 +169,204 @@ Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
 Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
-Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}&filterExpression={filterExpression}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
 ```
-HTTP GET
 
-*Parameters*
-- `streamId` -- stream identifier for the request
-- `startIndex` -- string representation of the starting index value
-- `count` -- number of events to return
-- `reversed` -- order of event retrieval; true to retrieve events in reverse order
-- `skip` --  number of events to skip; skipped events are not returned or counted. Applied after filterExpression.
-- `boundaryType` -- enumeration indicating how to handle boundary events
-- `filterExpression` -- string containing an OData filter expression (see below)
+**Parameters**
+`streamId` -- stream identifier for the request
+`startIndex` -- string representation of the starting index value 
+`count` -- number of events to return
+`reversed` -- order of event retrieval; true to retrieve events in reverse order 
+`skip` -- number of events to skip; skipped events are not returned or counted. (Applied after filterExpression. )
+`boundaryType` -- enumeration indicating how to handle boundary events 
+`filterExpression` -- string containing an OData filter expression (see *Operation* section below)
 
-This call is used to obtain events from a stream based on a starting index and requested number of events. The overloads allow the client to optionally specify search direction, number of events to skip, special boundary handling, and an event filter.
+**Security**
+Allowed by Administrator and User accounts
 
-Boundary type meaning for forward (default, reversed = false) calls:
-- `Exact` will use the first event at or after startIndex  
-- `ExactOrCalculated` if an event exists at startIndex, that event is used. Otherwise the stream's Behavior determines whether a value is calculated at startIndex. The result will either be no event or an event at startIndex with the value of the next event in the stream. 
-- `Inside` will find the first event after startIndex  
-- `Outside` will find the first event before startIndex
+**Operation**
+This call is used to obtain events from a stream based on a starting index and a requested number of events. The overloads allow the client to optionally specify search direction, number of events to skip over while getting collecting response, special boundary handling (for events near the startIndex) and an event filter.
 
-Boundary type meaning for reverse (reversed = true) calls:
-- `Exact` will find the first event at or before startIndex 
-- `ExactOrCalculated` if an event exists at startIndex, that event is used. Otherwise the stream's Behavior determines whether a value is calculated at startIndex. The result will either be no event or an event at startIndex with the value of the previous event in the stream. 
-- `Inside` will find the first event before startIndex
-- `Outside` will find the first event after startIndex 
+The `GetRangeValue` call will search FORWARD if the ‘reverse’ parameter is false and it is REVERSE if the ‘reverse’ parameter is true. For overloads that do not include the ‘reverse’ parameter, the default is FORWARD.
 
-Once the starting event is determined, `filterExpression` is applied in the direction requested to determine potential return values. Next, `skip` is applied to pass over the specified number of events. Finally, events up to the number specified by count are returned.
+The *skip* parameter indicates the number of events that the call will skip over before it collects events for the response.
+
+BoundaryType has the following possible values:
+•	Exact
+•	ExactOrCalculated
+•	Inside
+•	Outside
+
+The BoundaryType determines how to determine the first value in from the stream starting at the start index. This is also effected by the direction of the `GetRangeValues()` call. 
+
+This chart indicates how the first value is determined in a `GetRangeValue( )` call for a FORWARD search and the BoundaryType shown:
+
+|Boundary Type|First value obtained|
+|---|---|
+|Exact|The first value at or after the startIndex|
+|ExactOrCalculated|If a value exists at the startIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting|
+|Inside|The first value after the startIndex|
+|Outside|The first value before the startIndex|
+
+This chart indicates how the first value is determined in a `GetRangeValue( )` call for a REVERSE search and the BoundaryType shown:
+
+|Boundary Type|First value obtained|
+|---|---|
+|Exact|The first value at or before the startIndex 
+|ExactOrCalculated|If a value exists at the startIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting. See the *Calculated startIndex* topic below.|
+|Inside|The first value before the startIndex|
+|Outside|The first value after the startIndex|
+
+The order of execution is to first determine the direction of the call and the starting event (using BoundaryType). Once the starting event is determined, the filterExpression is applied in the direction requested to determine potential return values. Next, `skip` is applied to pass over the specified number of events (including any calculated events). Finally, events up to the number specified by count are returned.
 
 The filter expression uses OData query language. Most of the query language is supported.
-	
-*GetValue* and *GetValues*
+More information on OData Filter Expressions can be found in Advanced Topics.
+
+### Calculated startIndex
+When the startIndex of a GetRangeValue call lands before, after or in-between data in the stream, and the ExactOrCalculated Boundary Type is used, the Stream Behavior determines whether an additional ‘calculated’ event is created and returned in the response. 
+
+This chart indicates when an event will be calculated and included in the GetRangeValues response for a startIndex befroe or after all data in the stream. (This is for ‘Forward’ search modes – when the ‘reverse’ parameter is ‘False’):
+
+|Stream Behavior Mode|Stream Behavior QiStreamExtrapolation|When start index is **before** all data|When start index is **after** all data|
+|---|---|---|---|
+|Continuous|All|Event is calculated\*|Event is calculated\*|
+||None|No event calculated|No event calculated|
+||Backward|Event is calculated\*|No event calculated|
+||Forward|No event calculated|Event is calculated\*|
+|Discrete|All|No event calculated|No event calculated|
+||None|No event calculated|No event calculated|
+||Backward|No event calculated|No event calculated|
+||Forward|No event calculated|No event calculated|
+||ContinuousLeading|All|No event calculated|Event is calculated\*|
+||None|No event calculated|No event calculated|
+||Backward|No event calculated|No event calculated|
+||Forward|No event calculated|Event is calculated\*|
+||ContinuousTrailing|All|Event is calculated\*|No event calculated|
+||None|No event calculated|No event calculated|
+||Backward|Event is calculated\*|No event calculated|
+||Forward|No event calculated|No event calculated|
+
+			*Events is calculated using startIndex and the value of the first event
+
+When the startIndex falls between data:
+
+|Stream Behavior Mode|Calculated Event|
+|---|---|
+|Continuous|Event is calculated using the index and a value interpolated form the surrounding index values|
+|Discrete|No event calculated|
+|ContinuousLeading|Event is calculated using the index and previous event values|
+|ContinuousTrailing|Event is calculated using the index and next event values|
+
+## GetValue
+*_Qi Client Library_*
 ```
 T GetValue<T>(string streamId, string index);
+T GetValue<T, T1>(string streamId, T1 index);
+T GetValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);
 Task<T> GetValueAsync<T>(string streamId, string index);
-IEnumerable<T> GetValues<T>(string streamId, IEnumerable<string> index);
-IEnumerable<T> GetValues<T>(string streamId, string startIndex, string endIndex, int count);
-Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, IEnumerable<string> index);
+Task<T> GetValueAsync<T, T1>(string streamId, T1 index);
+Task<T> GetValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetValue?index={index}
-Qi/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
+GET Qi/Streams/{streamId}/Data/GetValue?index={index}
 ```
 
-HTTP GET
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- string representation of the index value for GetValue or IEnumerable of index values requested for GetValues
 
-*Parameters*
+**Security**
+Allowed by Administrator and User accounts
 
-- `streamId` -- stream identifier for the request
-- `index` -- string representation of the index value for GetValue or IEnumerable of index values requested for GetValues
-- `startIndex` -- string representation of the starting index value for GetValues
-- `endIndex` -- string representation of the ending index value for GetValues
-- `count` -- number of events to return for GetValues
+**Operation**
+If there is a value at the index, the call will return that event.
 
-If the specified index is before all events, the event returned is determined by stream's behavior. By default, the first event is returned with the index of the call.
-
-If the specified index is after all events, the event returned is determined by stream's behavior. By default, the last event is returned with the index of the call. 
+If the specified index is before or after all events, the value returned with that index is determined by stream's behavior (specifically its extrapolation setting).
 
 If the specified index is between events, the event returned is determined by stream's behavior and any behavior overrides.
 
 If the stream contains no data, null is returned regardless of the stream's behavior.
 
-GetValues can generally be thought of as multiple GetValue calls.  GetValues can be requested with a list of requested indexes or by specifying a start index, end index, and count.  
+**Examples**
+This call will obtain the event in the stream at the index defined by ‘Now’. If there is no event at that index the result will be determined by the Stream Behavior for that stream.
 
-If the stream contains no data, an array of nulls (one for each member in the requested list) is returned.
+```
+string index = DateTime.Now.ToString(“o”);
+try
+{
+	var  readEvent = _service.GetValue<TestType>(streamId, index);
+}
+Catch (exception e)
+{
+	//handle exception
+}
+```
 
-#GetWindowValues
+This overload:	**T GetValue<T, T1>(string streamId, T1 index);**
+Can be used to supply the index of the call as a different type. 
+See the FindDistinctValue examples for an illustration of this.
+
+This overload:	**T GetValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);**
+Can be used to supply the index of the call as a tuple (for compound indexes).
+See the FindDistinctValue examples for an illustration of this.
+
+##GetValues
+*_Qi Client Library_*
+```
+IEnumerable<T> GetValues<T>(string streamId, IEnumerable<string> index);
+IEnumerable<T> GetValues<T, T1>(string streamId, IEnumerable<T1> index);
+IEnumerable<T> GetValues<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+IEnumerable<T> GetValues<T>(string streamId, string filterExpression);
+IEnumerable<T> GetValues<T>(string streamId, string startIndex, string endIndex, int count);
+IEnumerable<T> GetValues<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
+IEnumerable<T> GetValues<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, IEnumerable<string> index);
+Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, IEnumerable<T1> index);
+Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string filterExpression);
+Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string startIndex, string endIndex, int count);
+Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
+Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+```
+
+*_Http_*
+```
+GET Qi/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
+```
+
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- string representation of the index value for GetValue or IEnumerable of index values requested for GetValues
+`startIndex` -- string representation of the starting index value for GetValues
+`endIndex` -- string representation of the ending index value for GetValues
+`count` -- number of events to return for GetValues
+
+**Security **
+Allowed by Administrator and User accounts
+
+**Operation**
+For the `GetValues( )` overloads that include a streamId and IEnumberable index list, the call acts like multiple GetValue calls. Each index indicated in the IEnumberable list obtains a return event according to the rules described in the `GetValue( )` call.
+
+For the `GetValues( )` overloads that include a startIndex, endIndex and count, these parameters are used to create a list of indexes for which to obtain values. Each index in this created list a return event is determined according to the rules described in the `GetValue( )` call.
+
+For the `GetValues( )` overloads that include the filterExpression parameters are used to create a list of indexes that match the OData filter text used.
+More information on OData Filter Expressions can be found in Advanced Topics.
+
+##GetWindowValues
+*_Qi Client Library_*
 ```
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex);
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
@@ -243,46 +384,105 @@ Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex,
 Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
-Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
+GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 ```
 
-HTTP GET
+**Parameters**
+`streamId` -- stream identifier for the request
+`startIndex` -- string representation of the starting index value, must be less than endIndex
+`endIndex` -- string representation of the ending index value
+`boundaryType` -- enumeration describing how to handle boundary events
+`filterExpression` -- OData filter expression
+`count` -- number of events to return
+`continuationToken` -- continuation token for handling multiple return data sets
+`startBoundaryType` -- how to handle startIndex boundary events
+`endBoundaryType` -- how to handle endIndex boundary events
+`selectExpression` -- expression designating which fields of the stream's type should make up the return events 
 
-*Parameters*
+**Security**
+Allowed by Administrator and User accounts
 
-- `streamId` -- stream identifier for the request
-- `startIndex` -- string representation of the starting index value, must be less than endIndex
-- `endIndex` string representation of the ending index value
-- `boundaryType` -- enumeration describing how to handle boundary events.
-- `filterExpression` -- OData filter expression
-- `count` -- number of events to return
-- `continuationToken` -- continuation token for handling multiple return data sets
-- `startBoundaryType` -- how to handle startIndex boundary events
-- `endBoundaryType` -- how to handle endIndex boundary events
-- `selectExpression` -- expression designating which fields of the stream's type should make up the return events 
+**Operation**
+The GetWindowValues method is used to obtain stream data between 2 indices.
 
-These methods are used to obtain data between 2 indices.
+BoundaryType has the following possible values:
+•	Exact
+•	ExactOrCalculated
+•	Inside
+•	Outside
 
-Boundary types:
--`Exact` (default): return values exactly on the start or end index value
--`Inside`: any value inside the range but not including the boundaries
--`Outside`: includes 1 value outside the boundary on both sides and any values at or inside the range
--`ExactOrCalculated`: Will create values for the endpoints given if value an event exactly at the index is not found. The calculation is performed based on the stream's behavior.
+The BoundaryType determines how to obtain the values at the border of the range defined by the startIndex and endIndex.  
+
+This chart indicates how the first value is determined in a `GetWindowValues ( )` call for the startBoundaryType shown:
+
+|`startBoundary Type`|First value obtained|
+|---|---|
+|Exact|The first value at or after the startIndex|
+|ExactOrCalculated|If a value exists at the startIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting|
+|Inside|The first value after the startIndex|
+|Outside|The first value before the startIndex|
+
+This chart indicates how the last value is determined in a `GetWindowValues( )` call for the endBoundaryType shown:
+
+|`startBoundary Type`|First value obtained|
+|---|---|
+|Exact|The first value at or before the endIndex|
+|ExactOrCalculated|If a value exists at the endIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting|
+|Inside|The first value before the endIndex|
+|Outside|The first value after the endtIndex|
 
 Calls against an empty stream will always return a single null regardless of boundary type used. 
 
 The filter expression uses OData syntax. See Filter expressions help for more info.
 
-The select expression is an OData expression that can improve efficiency by specifying the return of only required fields from the event type. The index is always included. If no select expression is specified, all fields are included in response. Selection is applied before filtering, so any fields used in the filter expression must be included by the select statement.
+The select expression is a CSV list of strings that indicate which field of the stream Type are being requested. By default all type fields are included in the response. The ‘Select’ feature may improve the performance of the call by avoiding management of the unneeded fields. Note that the index is always included in the returned results.
 
-#InsertValue
+Selection is applied before filtering, so any fields used in the filter expression must be included by the select statement. See The Advanced topics for more information on Filter Expressions.
+
+###Calculated startIndex and endindex
+When the startIndex or endIndex of a GetWindowValues call does not fall on an event in the stream, and the BoundaryMode of ‘ExactOrCalculated’ is used, an event may be created and returned in the GetWindowValues call response.
+
+The following chart indicates the when a calculated event is created for indexes before or after stream data:
+
+|Stream Behavior Mode|Stream Behavior QiStreamExtrapolation|When start index is **before** all data|When start index is **after** all data|
+|---|---|---|---|
+|Continuous|All|event is calculated\*|Event is calculated*|
+||None|No event calculated|No event calculated|
+||Backward|Event is calculated\*|No event calculated|
+||Forward|No event calculated|Event is calculated\*|
+|Discrete|All|No event calculated|No event calculated|
+||None|No event calculated|No event calculated|
+||Backward|No event calculated|No event calculated|
+||Forward|No event calculated|No event calculated|
+||ContinuousLeading|All|No event calculated|Event is calculated\*|
+||None|No event calculated|No event calculated|
+||Backward|No event calculated|No event calculated|
+||Forward|No event calculated|Event is calculated\*|
+||ContinuousTrailing|All|Event is calculated\*|No event calculated|
+||None|No event calculated|No event calculated|
+||Backward|Event is calculated\*|No event calculated
+||Forward|No event calculated|No event calculated|
+
+*When a startIndex event is calculated, the created event has the startIndex and the value of the first data event in the stream. When an endIndex is calculated, the created event uses the endIndex along with the value from the stream’s last data event. Any calculated events are returned along with the result of the `GetWindowValues( )` call.
+
+If an index (startIndex or endIndex) in a GetWindowValues call lands between data in the stream, and the BoundaryT Type is set to ‘ExactOrCalculated’, and event will be created according to the following chart:
+
+|Stream Behavior Mode|Calculated Event|
+|---|---|
+|Continuous|Event is calculated using the index and interpolated values|
+|Discrete|No event calculated|
+|ContinuousLeading|Event is calculated using the index and previous event values|
+|ContinuousTrailing|Event is calculated using the index and next event values|
+
+##InsertValue
+*_Qi Client Library_*
 ```
 void InsertValue<T>(string streamId, T item);
 Task InsertValueAsync<T>(string streamId, T item);
@@ -290,236 +490,287 @@ Task InsertValueAsync<T>(string streamId, T item);
 
 *REST*
 ```
-Qi/Streams/{streamId}/Data/InsertValue
+POST Qi/Streams/{streamId}/Data/InsertValue
 ```
+Content is serialized event of type T
 
-HTTP POST
-Body is serialized event of type T
+**Parameters**
+`streamId` -- stream identifier for the request
+`item` -- event to insert, where T is the type of the event and the stream
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `item` -- event to insert, where T is the type of the event and the stream
-- 
-Inserts an item into the specified stream. Will throw an exception if an event already exists at the index of the item. 
+**Operation**
+Inserts data into the specified stream. Will throw an exception if an event already exists at the index of the item
 
-#InsertValues
+##InsertValues
+*_Qi Client Library_*
 ```
+void InsertValues(IDictionary<string, IQiValues> items);
 void InsertValues<T>(string streamId, IList<T> items);
+Task InsertValuesAsync(IDictionary<string, IQiValues > items);
 Task InsertValuesAsync<T>(string streamId, IList<T> items);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/InsertValues
+POST Qi/Streams/{streamId}/Data/InsertValues
 ```
+Content is serialized list of events of type T
 
-HTTP POST
-Body is serialized list of events of type T
+**Parameters**
+`streamId` -- stream identifier for the request
+`items` -- list of events to insert, where T is the type of the stream and events
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `items` -- list of events to insert, where T is the type of the stream and events
+**Operation**
+Inserts the items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire operation is rolled back and no insertions are made. The streamId and index that caused the issue is included in the error response.
 
-Inserts the items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire operation is rolled back and no insertions are made. The index that caused the issue is included in the error response.
+There are also overloads of the InsertValues method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
 
-#PatchValue
+##PatchValue
+*_Qi Client Library_*
 ```
 void PatchValue(string streamId, string selectExpression, T item);
 Task PatchValueAsync(string streamId, string selectExpression, T item);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
+PATCH Qi/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
 ```
+Content is serialized patch property
 
-HTTP PATCH
-Body is serialized patch property
+**Parameters**
+`streamId` -- stream identifier for the request
+`selectExpression` – CSV list strings that indicates the event fields will be changed in stream events.
+`item` – object with index and new values to patch in the stream
 
+**Security **
+Allowed by Administrator account
 
-*Parameters*
+**Operation**
+This call is used to modify the stream events. The values for each SelectExpression field are taken from the item and replaced (patched) in the stream using the item index.
 
-- `streamId` -- stream identifier for the request
-- `selectExpression` -- OData expression selecting type fields to patch
-- `item` -- object of the same type, T, as the property to patch
-
-This call is used to patch the values of select fields of an event in the stream. The fields to be patched are specified by `selectExpression`.  Values of the selected fields at the index of `item` are replaced with the values of those fields from `item`. 
-
+**Example**
 ```
 var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
 PatchValue(“someStreamId”, “Value”, obj);
 ```
 
-#PatchValues
+##PatchValues
+*_Qi Client Library_*
 ```
 void PatchValues(string streamId, string selectExpression, IList<T> items);
 Task PatchValuesAsync(string streamId, string selectExpression, IList<T> items);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
+PATCH Qi/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
 ```
+Content is serialized list of patch property values
 
-HTTP PATCH
-Body is serialized list of patch property values
+**Parameters**
+`streamId` -- stream identifier for the request
+`selectExpression` -- CSV list strings that indicates the event fields will be changed in stream events
+`items` -- list which contain indexes and new values to patch in the stream
 
-*Parameters*
+**Security** 
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `selectExpression` -- OData expression for selecting type fields to patch
-- `items` -- list of properties to patch
+**Operation**
+This call is used to patch the values of the selected fields for multiple events in the stream. Only the fields indicated in selectExpression are modified. The events to be modified are indicated by the index value of each member of the items collection. The individual events in items also hold the new values. 
 
-This call is used to patch the values of the selected fields for multiple events in the stream.  Only the fields indicated in `selectExpression` are modified. The events to be modified are indicated by the index value of each member of the `items` collection. The individual events in `items` also hold the new values.  
-                
-PatchValues may be thought of as a series of PatchValue calls. If there is a problem patching any individual event, the entire operation is rolled back. 
+PatchValues may be thought of as a series of PatchValue calls. If there is a problem patching any individual event, the entire operation is rolled back and the error will indicate the streamID and index of the problem. 
 
-
-#RemoveValue
+##RemoveValue
+*_Qi Client Library_*
 ```
 void RemoveValue(string streamId, string index);
+void RemoveValue<T1>(string streamId, T1 index);
+void RemoveValue<T1, T2>(string streamId, Tuple<T1, T2> index);
 Task RemoveValueAsync(string streamId, string index);
+Task RemoveValueAsync<T1>(string streamId, T1 index);
+Task RemoveValueAsync<T1, T2>(string streamId, Tuple<T1, T2> index);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/RemoveValue?index={index}
+DELETE Qi/Streams/{streamId}/Data/RemoveValue?index={index}
 ```
 
-HTTP DELETE
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- string representation of the index in the stream to be deleted
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `index` -- string representation of the index value
+**Operation**
+Removes the event at index from the specified stream. Precision can matter when finding a value. If the index is a DateTime, use the round-trip format specifier: DateTime.ToString(“o”).
 
-Removes the event at `index` from the specified stream. Precision can matter when finding a value. If the index is a DateTime, use the round-trip format specifier: `DateTime.ToString(“o”)`.
 
-#RemoveValues
+##RemoveValues
+*_Qi Client Library_*
 ```
 void RemoveValues(string streamId, IEnumerable<string> index);
+void RemoveValues<T1>(string streamId, IEnumerable<T1> index);
+void RemoveValues<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
 Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
+Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
+Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/RemoveValues?index={index}
-```
-
-HTTP DELETE
-
-*Parameters*
-
-- `streamId` -- stream identifier for the request
-- `index` -- list of indices at which to remove events
-
-Removes the event at each index from the specified stream. If any individual event fails to be removed, the entire RemoveValues operation is rolled back and no removes are done.  The index that caused the issue is included in the error response.
-
-#RemoveWindowValues
-```
-void RemoveWindowValues(string streamId, string startIndex, string endIndex);
-Task RemoveWindowValuesAsync(string streamId, string startIndex, string endIndex);
+DELETE Qi/Streams/{streamId}/Data/RemoveValues?index={index}
 ```
 
-*REST*
+**Parameters**
+`streamId` -- stream identifier for the request
+`index` -- list of indices at which to remove events in the stream
+
+**Security**
+Allowed by Administrator account
+
+**Operation**
+Removes the event at each index from the specified stream 
+
+If any individual event fails to be removed, the entire RemoveValues operation is rolled back and no removes are done. The streamId and index that caused the issue is included in the error response.
+
+
+##RemoveWindowValues
+*_Qi Client Library_*
 ```
-Qi/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
+void RemoveValues(string streamId, IEnumerable<string> index);
+void RemoveValues<T1>(string streamId, IEnumerable<T1> index);
+void RemoveValues<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
+Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
+Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
 ```
 
-HTTP DELETE
+*_Http_*
+```
+DELETE Qi/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
+```
 
-*Parameters*
+**Parameters**
+`streamId` -- stream identifier for the request
+`startIndex` -- string representation of the starting index value
+`endIndex` -- string representation of the ending index value
 
-- `streamId` -- stream identifier for the request
-- `startIndex` -- string representation of the starting index value
-- `endIndex` -- string representation of the ending index value
+**Security**
+Allowed by Administrator account.
 
-Removes a range of values at and between the indices given.  If any individual event fails to be removed, the entire operation is rolled back and no removes are done.
+**Operation**
+Removes a range of values at and between the indices given. 
 
-#ReplaceValue
+If any individual event fails to be removed, the entire operation is rolled back and no removes are done. 
+
+##ReplaceValue
+*_Qi Client Library_*
 ```
 void ReplaceValue<T>(string streamId, T item);
 Task ReplaceValueAsync<T>(string streamId, T item);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/ReplaceValue
+PUT Qi/Streams/{streamId}/Data/ReplaceValue
 ```
-
-HTTP PUT
-Body is serialzied replacement object
+Content is serialzied replacement object
 
 *Parameters*
+`streamId` -- identifier of the stream in which to replace value
+`item` -- item to replace existing stream event
 
-- `streamId` -- identifier of the stream in which to replace value
-- `item` -- item to replace existing value
+**Security** 
+Allowed by Administrator account
 
-Writes an item over an existing value in the specified stream. Throws an exception if the stream does not have an event at the index to be replaced.
+**Operation**
+Writes an item over an existing event in the specified stream.
+Throws an exception if the stream does not have an event at the index to be replaced
 
-#ReplaceValues
+##ReplaceValues
+*_Qi Client Library_*
 ```
+void ReplaceValues(IDictionary<string, IQiValues> items);
 void ReplaceValues<T>(string streamId, IList<T> items);
+Task ReplaceValuesAsync(IDictionary<string, IQiValues > items);
 Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/ReplaceValues
+PUT Qi/Streams/{streamId}/Data/ReplaceValues
 ```
+Content is serialized list of replacement values
 
-HTTP PUT
-Body is serialized list of replacement values.
+**Parameters*
+`streamId` -- stream identifier for the request
+`items` -- list of new items to replace existing items in the stream
 
-*Parameters*
+**Security**
+Allowed by Administrator account.
 
-- `streamId` -- stream identifier for the request
-- `items` -- list of new items to replace existing items in the stream
-
+**Operation**
 Writes `items` over existing events in the specified stream. Throws an exception if any index does not have a value to be replaced.
+If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index that caused the issue and the streamId are included in the error response.
 
-If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index that caused the issue is included in the error response.
+There are also overloads of the *ReplaceValues( )* method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
 
-#UpdateValue
+##UpdateValue
+*_Qi Client Library_*
 ```
 void UpdateValue<T>(string streamId, T item);
 Task UpdateValueAsync<T>(string streamId, T item);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/UpdateValue
+PUT Qi/Streams/{streamId}/Data/UpdateValue
 ```
+Content is serialized updated value
 
-HTTP PUT
-Body is serialized updated value
+**Parameters**
+`streamId` -- stream identifier for the request
+`item` -- event to write to the stream
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `item` -- event to write to the stream
+**Operation**
+Writes item to specified stream. Performs an insert or a replace, depending on whether an event already exists at the index in the stream.
 
-Writes `item` to specified stream.  Performs an insert or a replace, depending on whether an event already exists at the index of `item`.
-
-#UpdateValues
+##UpdateValues
+*_Qi Client Library_*
 ```
+void UpdateValues(IDictionary<string, IQiValues > items);
 void UpdateValues<T>(string streamId, IList<T> items);
+Task UpdateValuesAsync(IDictionary<string, IQiValues > items);
 Task UpdateValuesAsync<T>(string streamId, IList<T> items);
 ```
 
-*REST*
+*_Http_*
 ```
-Qi/Streams/{streamId}/Data/UpdateValues
+PUT Qi/Streams/{streamId}/Data/UpdateValues
 ```
+Content is serialized list of updated values
 
-HTTP PUT
-Body is serialized list of updated values.
+**Parameters**
+`streamId` -- stream identifier for the request
+`items` -- events to write to the stream
 
-*Parameters*
+**Security**
+Allowed by Administrator account
 
-- `streamId` -- stream identifier for the request
-- `items` -- events to write to the stream
+**Operation**
+Writes items to the specified stream. Performs an insert or a replace, depending on whether an events already exists at the items indexes. 
+If any item fails to write, entire operation is rolled back and no events are written to the stream. The index that caused the issue is included in the error response.
 
-Writes `items` to specified stream.   Performs an insert or a replace, depending on whether an event already exists at the index of individual itesm.  If any item fails to write, entire operation is rolled back and no events are written to the stream. The index that caused the issue is included in the error response.
+There are also overloads of the `UpdateValues( )` method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
