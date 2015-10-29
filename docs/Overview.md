@@ -34,6 +34,7 @@ public class SimpleTypeClass
 QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
 var mySimpleType = _service.GetOrCreateType(SimpleType);
 ```
+For a complete list of supported types refer to the ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/) section.
 
 ###Creating a stream
 A Stream is used to hold data of a predefined type.
