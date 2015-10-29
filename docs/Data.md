@@ -248,11 +248,11 @@ This chart indicates when an event will be calculated and included in the GetRan
 ||None|No event calculated|No event calculated|
 ||Backward|No event calculated|No event calculated|
 ||Forward|No event calculated|No event calculated|
-||ContinuousLeading|All|No event calculated|Event is calculated\*|
+|ContinuousLeading|All|No event calculated|Event is calculated\*|
 ||None|No event calculated|No event calculated|
 ||Backward|No event calculated|No event calculated|
 ||Forward|No event calculated|Event is calculated\*|
-||ContinuousTrailing|All|Event is calculated\*|No event calculated|
+|ContinuousTrailing|All|Event is calculated\*|No event calculated|
 ||None|No event calculated|No event calculated|
 ||Backward|Event is calculated\*|No event calculated|
 ||Forward|No event calculated|No event calculated|
@@ -461,11 +461,11 @@ The following chart indicates the when a calculated event is created for indexes
 ||None|No event calculated|No event calculated|
 ||Backward|No event calculated|No event calculated|
 ||Forward|No event calculated|No event calculated|
-||ContinuousLeading|All|No event calculated|Event is calculated\*|
+|ContinuousLeading|All|No event calculated|Event is calculated\*|
 ||None|No event calculated|No event calculated|
 ||Backward|No event calculated|No event calculated|
 ||Forward|No event calculated|Event is calculated\*|
-||ContinuousTrailing|All|Event is calculated\*|No event calculated|
+|ContinuousTrailing|All|Event is calculated\*|No event calculated|
 ||None|No event calculated|No event calculated|
 ||Backward|Event is calculated\*|No event calculated
 ||Forward|No event calculated|No event calculated|
