@@ -1,4 +1,4 @@
-Qi is capable of storing any data type you care to define. A Qi Type consists of one or more properties. Properties are either simple atomic types (e.g., integer) or previously-defined Qi Types. The latter permits the construction of complex, nested types. The only requirement is that your data type have one or more properties that constitute an ordered key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered value is permitted. 
+Qi is capable of storing any data type you care to define. A Qi Type consists of one or more properties. Properties are either simple atomic types (e.g. integer) or previously-defined Qi Types. The latter permits the construction of complex, nested types. The only requirement is that your data type have one or more properties that constitute an ordered key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered value is permitted. 
 
 Types cannot be changed and can only be deleted if there are no streams associated with it.
 
