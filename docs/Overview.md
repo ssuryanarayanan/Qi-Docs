@@ -1,6 +1,6 @@
-After obtaining Qi REST API access keys by visiting ["qi.osisoft.com"](https://qi.osisoft.com), samples of clients using the Qi service can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+After obtaining Qi REST API access keys by visiting ["qi.osisoft.com"](https://qi.osisoft.com), samples of clients using Qi can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 
-Your tenant is a self-contained entity within the Qi Service and can be utilized to define 3 different Qi objects that are used to store and manage data:
+Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects that are used to store and manage data:
 
 * __Type__: user defined structure denoting a single measured event or object for storage
 * __Stream__: basic unit of storage consisting of an ordered series of objects conforming to a type definition
@@ -8,7 +8,7 @@ Your tenant is a self-contained entity within the Qi Service and can be utilized
 
 ###Creating a type
 
-Creating one or more Types which define the structure of the data is done by defining a QiType object and sending it to Qi via the *‘GetOrCreateType( )’* call.
+Creating one or more Types which define the structure of the data is done by defining a QiType object and sending it to Qi via the `GetOrCreateType( )` call.
 
 A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index long as it allows for ordering of values. For information on compound indexes refer to ["Advanced topics"](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
 
