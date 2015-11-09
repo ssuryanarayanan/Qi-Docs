@@ -58,7 +58,7 @@ The above stream can now be used to hold data values of the structure defined in
 
 Qi has several methods that can be used to write data. For example, [*InsertValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalue) is used to write a single event of data to a stream. If the data event written includes an index at which there is already an event this method will throw an exception.  However [*UpdateValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalue) can also be used to write a single event to a stream, and will overwrite the existing event with the new event.  
 
-Each of these methods has a counterpart which acts upon a list of data elements instead of just a single element. For example, [*InsertValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) writes multiple events and similarly [*UpdateValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalues) can be used to update multiple events.
+Each of these methods has a counterpart which acts upon a list of data events instead of just a single event. For example, [*InsertValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) writes multiple events and similarly [*UpdateValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalues) can be used to update multiple events.
 
 This example will write a single data event to the ‘MyFirstStream’ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
 
@@ -73,7 +73,7 @@ SimpleTypeClass data1 = new SimpleTypeClass()
 _service.InsertValue(streamId, data1);
 ```
 
-This example will write multiple values to the stream (streamId) using an UpdateValues call:
+This example will write multiple values to the stream:
 
 ```
 List< SimpleTypeClass > writeEvents = new List< SimpleTypeClass >();
@@ -90,9 +90,9 @@ _service.UpdateValues(streamId, writeEvents);
 ```
 
 ####Write execption handling
-If a method call that acts upon multiple data elements (such as *InsertValues( )*, *ReplaceValues()* or *PatchValues( )*) has a problem carrying out its operation an exception is thrown and none of the list of elements is acted upon. So if for example an *InsertValues* call is called with a list 100 events and any one of the events uses an index at which there is already data present, an exception is thrown and all of the elements are rolled-back and no inserts at all are done. In addition, the event at which the error occurred can also be identified in the exception.
+If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
 
-Try:
+For example:
 
 ```
 {
@@ -107,11 +107,8 @@ catch (QiHttpClientException e)
 }
 ```
 
-####Operating on multiple streams with a single call
-There are overloads for several of the above ‘write’ methods (*InsertValues( )*, *UpdateValues( )* and *ReplaceValues( )*) that can be used to act upon multiple streams with a single call. These operations are described in the Advanced Topics section of this document.
-
 ####Summary of write methods
-The following table shows the methods that are available for writing and changing Qi data:
+The following table shows the methods that are available for writing and changing Qi data. For further detail refer to [QiValues](https://qi-docs.readthedocs.org/en/latest/Data/):
 
 |Write methods    |Description                                                            |
 |---              |---                                                                    |
