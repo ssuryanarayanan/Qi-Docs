@@ -1,20 +1,20 @@
-AFter obtaining Qi API access keys by visiting <qi.osisoft.com>, samples of clients using the Qi service can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+After obtaining Qi REST API access keys by visiting https://qi.osisoft.com, samples of clients using the Qi service can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 
 Your tenant is a self-contained entity within the Qi Service and can be utilized to define 3 different Qi objects that are used to store and manage data:
 
-* Type -- user defined structure denoting a single measured event or object for storage
-* Stream -- basic unit of storage consisting of an ordered series of objects conforming to a type definition
-* Stream Behavior -- defines how Qi will interpolate or extrapolate during event retrieval when requests land before, after or in-between existing data events.
+* __Type__: user defined structure denoting a single measured event or object for storage
+* __Stream__: basic unit of storage consisting of an ordered series of objects conforming to a type definition
+* __Stream Behavior__: defines how Qi will interpolate or extrapolate during event retrieval when requests land before, after or in-between existing data events
 
 ###Creating a type
 
-The first step is to create one or more Types which define the structure of the data. This is done by defining a QiType entity and sending it to QI via a *‘GetOrCreateType( )’* call.
+Creating one or more Types which define the structure of the data is done by defining a QiType object and sending it to Qi via the *‘GetOrCreateType( )’* call.
 
-A Type in Qi is made of one or more index properties and one more or more data properties. The index fields are used to put data into a sequence. A common index field is a DateTime, but any native type can be used as an index long as it allows for ordering of values. Multiple or compound indexes can also be used (see Advanced Topics).
+A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index long as it allows for ordering of values. For information on compound indexes refer to ["Advanced topics"](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
 
-For the data properties of a QiType, Qi allows a wide variety of types including the ability to use structures such as lists, arrays and enumerations. For a full list of supported data types see the Appendix.
+The data properties of a QiType allow a wide variety including the ability to use lists, arrays and enumerations. For a full list of supported data types refer to ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
 
-The example here creates a Simple Type:
+This example creates a simple type:
 ```
 public class SimpleTypeClass 
 {
@@ -34,7 +34,6 @@ public class SimpleTypeClass
 QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
 var mySimpleType = _service.GetOrCreateType(SimpleType);
 ```
-For a complete list of supported types refer to the ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/) section.
 
 ###Creating a stream
 A Stream is used to hold data of a predefined type.
