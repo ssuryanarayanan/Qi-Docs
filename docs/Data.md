@@ -773,4 +773,4 @@ Allowed by Administrator account
 Writes items to the specified stream. Performs an insert or a replace, depending on whether an events already exists at the items indexes. 
 If any item fails to write, entire operation is rolled back and no events are written to the stream. The index that caused the issue is included in the error response.
 
-There are also overloads of the `UpdateValues( )` method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
+Overloads for several of the QiValue methods can be used to act upon multiple streams with a single call. For more information on these operations refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/#methods-that-act-upon-multiple-streams).
