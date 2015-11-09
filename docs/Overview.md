@@ -1,6 +1,6 @@
 After obtaining Qi REST API access keys by visiting [qi.osisoft.com](https://qi.osisoft.com), samples of clients using Qi can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 
-Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects that are used to store and manage data:
+Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects to store and manage data:
 
 * __Type__: user defined structure denoting a single measured event or object for storage
 * __Stream__: basic unit of storage consisting of an ordered series of objects conforming to a type definition
@@ -36,8 +36,8 @@ var mySimpleType = _service.GetOrCreateType(SimpleType);
 ```
 
 ###Creating a stream
-A Stream is used to hold data of a predefined type.
-To create a QiStream the Id and TypeId of the stream must be defined. Additionally the QiStream can be given a value for the Name and Description fields.
+Streams are used to hold data of a predefined type.
+To create a QiStream the Id and TypeId of the stream must be defined. Optionally a Name, Description, and BehaviorID can be defined.
 
 This example creates a QiStream with an Id of ‘MyFistStream’ of type ‘mySimpleType’:
 
@@ -52,21 +52,15 @@ QiStream stream1 = new QiStream()
 _service.GetOrCreateStream(stream1);
 ```
 
-This stream (with stream Id ‘MyFirstStream’ can now be used to hold data values of the structure defined in mySimpleType.
-
-The streams Name and Description field can be modified, but the Id or TypeId cannot be changed once the stream has been created.  
+The above stream can now be used to hold data values of the structure defined in mySimpleType. The stream's Name, Description, and BehaviorId field can be modified, however the Id and TypeId cannot be changed once the stream has been created.  
 
 ###Writing data
 
-Qi has several methods that can be used to write data including *InsertValue* and *UpdateValue*. 
-An *InsertValue* call is used to write a single event of data to a stream. The *InsertValue* method will throw an exception if the data event written includes an index at which there is already an event.
-An *UpdateValue* call can also be used to write a single event to a stream, but if an event is found at the index the *UpdateValue* call will overwrite the event with the new event.  
+Qi has several methods that can be used to write data. For example, [*InsertValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalue) is used to write a single event of data to a stream. If the data event written includes an index at which there is already an event this method will throw an exception.  However [*UpdateValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalue) can also be used to write a single event to a stream, and will overwrite the existing event with the new event.  
 
-Data that has already been written can be modified with a *ReplaceValue* or *PatchValue* call and to delete data a *RemoveValue* call can be used. 
+Each of these methods has a counterpart which acts upon a list of data elements instead of just a single element. For example, [*InsertValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) writes multiple events and similarly [*UpdateValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalues) can be used to update multiple events.
 
-Each of these methods has a counterpart which acts upon a list of data elements instead of just a single element. For Example the *InsertValues* call inserts multiple events and similarly the *RemoveValues* method can be used to remove multiple events.
-
-The example here will write a single data event to the ‘MyFirstStream’ stream. The event has a Time Index of ‘Now’ and a double ‘Value’ of 1.1:
+This example will write a single data event to the ‘MyFirstStream’ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
 
 ```
 string streamId = "MyFirstStream";
@@ -79,7 +73,7 @@ SimpleTypeClass data1 = new SimpleTypeClass()
 _service.InsertValue(streamId, data1);
 ```
 
-This example writes multiple values to the stream (streamId) using an UpdateValues call:
+This example will write multiple values to the stream (streamId) using an UpdateValues call:
 
 ```
 List< SimpleTypeClass > writeEvents = new List< SimpleTypeClass >();
