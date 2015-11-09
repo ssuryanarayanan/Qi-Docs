@@ -1,4 +1,4 @@
-After obtaining Qi REST API access keys by visiting https://qi.osisoft.com, samples of clients using the Qi service can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+After obtaining Qi REST API access keys by visiting ["qi.osisoft.com"](https://qi.osisoft.com), samples of clients using the Qi service can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 
 Your tenant is a self-contained entity within the Qi Service and can be utilized to define 3 different Qi objects that are used to store and manage data:
 
