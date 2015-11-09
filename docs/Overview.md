@@ -8,11 +8,11 @@ Your tenant is a self-contained entity within Qi and can be utilized to define 3
 
 ###Creating a type
 
-Creating one or more Types which define the structure of the data is done by defining a QiType object and sending it to Qi via the `GetOrCreateType( )` call.
+A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to ["Advanced topics"](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
 
-A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index long as it allows for ordering of values. For information on compound indexes refer to ["Advanced topics"](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
+Creating one or more types which define the structure of data is done by defining a QiType object and sending it to Qi via the ["*GetOrCreateType( )*"](https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype) method.
 
-The data properties of a QiType allow a wide variety including the ability to use lists, arrays and enumerations. For a full list of supported data types refer to ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
+There are a wide variety of QiType data properties including lists, arrays and enumerations. For a full list of supported data types refer to ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
 
 This example creates a simple type:
 ```
