@@ -1,4 +1,4 @@
-After obtaining Qi REST API access keys by visiting ["qi.osisoft.com"](https://qi.osisoft.com), samples of clients using Qi can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+After obtaining Qi REST API access keys by visiting [qi.osisoft.com](https://qi.osisoft.com), samples of clients using Qi can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 
 Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects that are used to store and manage data:
 
@@ -8,11 +8,11 @@ Your tenant is a self-contained entity within Qi and can be utilized to define 3
 
 ###Creating a type
 
-A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to ["Advanced topics"](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
+A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
 
-Creating one or more types which define the structure of data is done by defining a QiType object and sending it to Qi via the ["*GetOrCreateType( )*"](https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype) method.
+Creating one or more types which define the structure of data is done by defining a QiType object and sending it to Qi via the [*GetOrCreateType( )*](https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype) method.
 
-There are a wide variety of QiType data properties including lists, arrays and enumerations. For a full list of supported data types refer to ["QiTypes"](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
+There are a wide variety of QiType data properties including lists, arrays and enumerations. For a full list of supported data types refer to [QiTypes](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
 
 This example creates a simple type:
 ```
