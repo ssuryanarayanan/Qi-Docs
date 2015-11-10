@@ -58,9 +58,9 @@ Additonal information on streams can be found in [QiStreams](https://qi-docs.rea
 
 ##Writing data
 
-Qi has several methods that can be used to write data. For example, [*InsertValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalue) is used to write a single event of data to a stream. If the data event written includes an index at which there is already an event this method will throw an exception.  However [*UpdateValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalue) can also be used to write a single event to a stream, and will overwrite the existing event with the new event.  
+Qi has several methods that can be used to write data. For example, [*InsertValue()*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalue) is used to write a single event of data to a stream. If the data event written includes an index at which there is already an event this method will throw an exception.  However [*UpdateValue()*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#updatevalue) can also be used to write a single event to a stream, and will overwrite the existing event with the new event.  
 
-Each of these methods has a counterpart which acts upon a list of data events instead of just a single event. For example, [*InsertValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) writes multiple events and similarly [*UpdateValues()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalues) can be used to update multiple events.
+Each of these methods has a counterpart which acts upon a list of data events instead of just a single event. For example, [*InsertValues()*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues) writes multiple events and similarly [*UpdateValues()*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#updatevalues) can be used to update multiple events.
 
 This example will write a single data event to the ‘MyFirstStream’ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
 
