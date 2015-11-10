@@ -109,7 +109,7 @@ Additional information on reading data can be found in [Reading data](https://qi
 ##Stream behaviors
 Qi Stream Behaviors are applied to streams to affect how certain data read operations will be performed. The Stream Behavior object effects if interpolation and\or extrapolation will be done when the index of a read operation falls between, before or after stream data.
 
-Additonal information on stream behaviors can be found in [QiStreamBehavior](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/).
+Additonal information on stream behaviors can be found in [QiStreamBehaviors](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/).
 
 ##Security
 
