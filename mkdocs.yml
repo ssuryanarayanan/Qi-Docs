@@ -9,7 +9,6 @@ repo_url: https://github.com/osisoft/Qi-Docs
 
 pages:
 - Introduction: 'index.md'
-- Preview: 'preview.md'
 - API reference: #'Qi Service API Reference.md'
   - Getting started with Qi REST API: 'Overview.md'
   - QiTypes: 'QiTypes.md'
@@ -19,4 +18,5 @@ pages:
   - Filter expressions: 'Filter Expressions.md'
   - Advanced topics: 'Advanced Topics.md'
 - Samples:  'samples.md'
+- Preview: 'preview.md'
 - Support:  'support.md'
