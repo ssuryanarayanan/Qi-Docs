@@ -1,9 +1,7 @@
 Qi is a cloud-based highly flexible sequential data historian that can be used to store, retrieve and analyze data. Users create and write data to streams using a simple REST API. The streams can store simple or complex data types to suit the application needs. An assortment of methods with customizable behaviors are available to read data and easily obtain needed information.
 
 ## Getting started
-Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in [Getting started with Qi REST API](https://qi-docs.readthedocs.org/en/latest/Overview/). 
-
-In order to use the Qi REST API in your applications, make sure you have the following requirements:
+Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in [Getting started with Qi REST API](https://qi-docs.readthedocs.org/en/latest/Overview/). In order to use the Qi REST API in your applications, make sure you have the following requirements:
 
 - A computer
 - A set of tools that you feel comfortable using to consume and use RESTful Web Services
