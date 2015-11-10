@@ -3,9 +3,10 @@ Qi is capable of storing any data type you care to define. A Qi Type consists of
 Types cannot be changed and can only be deleted if there are no streams associated with it.
 
 ##Naming Rules for typeId
-1.	Case sensitive
+1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
+4.	Maximum length of 260 characters
 
 A type is always referenced with its Id property.
 
