@@ -14,7 +14,8 @@ pages:
   - QiTypes: 'QiTypes.md'
   - QiStreams: 'QiStreams.md'
   - QiStreamBehavior: 'QiStreamBehaviors.md'
-  - QiValues: 'Data.md' # or is it Datb.md?
+  - Writing data: 'Writing data.md'
+  - Reading data: 'Reading data.md'
   - Filter expressions: 'Filter Expressions.md'
   - Advanced topics: 'Advanced Topics.md'
 - Samples:  'samples.md'
