@@ -1,4 +1,4 @@
-After obtaining Qi REST API access keys by visiting [qi.osisoft.com](https://qi.osisoft.com), samples of clients using Qi can be found by visiting the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+After obtaining Qi REST API access keys from [qi.osisoft.com](https://qi.osisoft.com), samples of clients using Qi can be found on the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
 
 Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects to store and manage data:
 
@@ -6,7 +6,7 @@ Your tenant is a self-contained entity within Qi and can be utilized to define 3
 * __Stream__: basic unit of storage consisting of an ordered series of objects conforming to a type definition
 * __Stream Behavior__: defines how Qi will interpolate or extrapolate during event retrieval when requests land before, after or in-between existing data events
 
-###Creating a type
+##Creating a type
 
 A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
 
@@ -35,7 +35,7 @@ QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
 var mySimpleType = _service.GetOrCreateType(SimpleType);
 ```
 
-###Creating a stream
+##Creating a stream
 Streams are used to hold data of a predefined type.
 To create a QiStream the Id and TypeId of the stream must be defined. Optionally a Name, Description, and BehaviorID can be defined.
 
@@ -54,7 +54,7 @@ _service.GetOrCreateStream(stream1);
 
 The above stream can now be used to hold data values of the structure defined in mySimpleType. The stream's Name, Description, and BehaviorId field can be modified, however the Id and TypeId cannot be changed once the stream has been created.  
 
-###Writing data
+##Writing data
 
 Qi has several methods that can be used to write data. For example, [*InsertValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalue) is used to write a single event of data to a stream. If the data event written includes an index at which there is already an event this method will throw an exception.  However [*UpdateValue()*](https://qi-docs.readthedocs.org/en/latest/Data/#updatevalue) can also be used to write a single event to a stream, and will overwrite the existing event with the new event.  
 
@@ -89,7 +89,7 @@ for (int i = 0; i < eventCountToWrite; i++)
 _service.UpdateValues(streamId, writeEvents);
 ```
 
-####Write execption handling
+###Write execption handling
 If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
 
 For example:
@@ -107,7 +107,7 @@ catch (QiHttpClientException e)
 }
 ```
 
-####Summary of write methods
+###Summary of write methods
 The following table shows the methods that are available for writing and changing Qi data. For further detail refer to [QiValues](https://qi-docs.readthedocs.org/en/latest/Data/):
 
 |Write methods    |Description                                                            |
@@ -126,7 +126,7 @@ The following table shows the methods that are available for writing and changin
 
 	                                *Include overloads that can act upon multiple streams
 
-###Reading data
+##Reading data
 Qi includes different read methods and overloads that can be used to retrieve data from streams for a large assortment of circumstances.  
 
 Several things that all of the read methods share is that each acts against a specified stream and each requires one or more indexes upon which to act. 
@@ -137,7 +137,7 @@ All of the read operations include a streamId property to indicate the stream fr
 
 Notice that Utc format is used (time indexes in Qi use UTC format) and the ‘(”o”)’ formatting is used to insure that the precision of the DateTime value is included on the string value.
 
-####Generics and tuples
+###Generics and tuples
 All of the Read Methods have additional overloads that assist you with indexing into a stream when it is inconvenient 	or difficult to convert the index into a string.
 
 Using Generics, the overloads allow the caller to indicate the type of the index (for example DateTime) and then use 	this type for the index parameter(s) in the call. This is done instead of requiring the index be converted into a string.
@@ -175,23 +175,23 @@ The table below summarizes the read methods that are available:
 								
 								*methods effected by Stream Behaviors
 
-####Interpolation and extrapolation
+###Interpolation and extrapolation
 While using methods to read data from Qi, the indexes requested may land between, after or before the events in a stream. The *FindDistinctValue( )* and *GetDistinctValue( )* methods have a predefined outcome for these cases. The *FindDistinctValue( )* will return a ‘null’ when no event exists at the defined index, while the *GetDistinctValue( )* method will throw an exception. Other read methods that will use predefined stream settings to determine how to report when indexes land between, before or after data. These predefined settings are called Stream Behaviors and they determine when and how data is interpolated and extrapolated by certain read methods. Stream Behaviors are described in a later subsection of this document. Documentation for each read method will also indicate any pertinent interpolation or extrapolation information.
 
-####Reading through data in a stream
+###Reading through data in a stream
 Several of Qi’s read methods have options which assist you reading sequentially through the data in a stream. For Example the *GetWindowValues( )* method retrieves data between two indexes, but it also includes overloads which allow you to specific the maximum number of events you would like to receive from the call. When you use this *GetWindowValues( )* overload it return a set of events of the size requested, but also gives the caller a ‘continuation token’ which can be used on a subsequent *GetWindowValues( )* call to return the next set of sequential events in the stream.
 
 The *GetRangeValues( )* method also has overloads that include a ‘skip’ parameter which allows you to retrieve make multiple calls and retrieve different sets of data after a specified time stamp.
 
-####Filtering data 
+###Filtering data 
 The *GetWindowValues( )*  and *GetRangeValues( )* include options to ‘filter’ the data retrieved during a call. These overloads allow you to specify conditions that must be met by the event or it will not be returned. It is a powerful way to quickly read through data to find specific information. See the Advanced Topics for more information on Filter Expressions.
 
-####Selecting data
+###Selecting data
 The *GetWindowValues( )* can be used to ‘select’ which properties of the data Type should be retrieved. 
 
 For example assume you have a stream that stores type data that includes a ‘double’ value and a ‘string’ value (along with an index). A *GetWindowValues( )* call can be made which requests that only the ‘double’ value be returned in the set of information retrieved by the call. This can be very helpful when specific data is needed and such calls positively impact performance since data that is not needed does not get transferred to the client program.
 
-###Stream behaviors
+##Stream behaviors
 The *GetValue( )* method is used to request data from a stream at a specific indexes. The *GetValue( )* method allows for multiple indexes to be queried in a single call similar to making multiple *GetValue( )* calls. As you would expect, when there is data at the index specified by one of these calls, it is returned to the user. However when a specified index is between two events the method must determine how to respond. 
 
 In Qi, the response depends on the stream’s Stream Behavior.
@@ -268,12 +268,12 @@ For best results, see the documentation on the read method you are using regardi
 
 Note that if you do not assign a specific Stream Behavior object to a stream, it will assume the default behavior which is Mode = ‘Continuous’ (with no Overrides) and a QiStreamExtrapolation setting of ‘All’. 
 
-####Methods effected by stream behavior
+###Methods effected by stream behavior
 The Stream Behavior setting effects the *GetValue( )* and *GetValues( )* methods as described above.
 
 The *GetWindowValues( )*  and *GetRangeValues( )* calls are also effected by the Stream Behavior when the indexes used fall before, after or between data indexes.
 
-###Security
+##Security
 
 There are two types of security accounts for Qi users: Administrator and User:
 
