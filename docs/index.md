@@ -12,4 +12,4 @@ Familiarization with Qi and its capabilities is easy. Introductory information s
 Code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
 
 ## Getting help
-During the Qi Preview the Qi team will be available via email to help with any problems you may experience. To get help or provide feedback please contact [QiSupport@osisoft.com](Mailto:QiSupport@osisoft.com) and visit [Support](https://qi-docs.readthedocs.org/en/latest/support/) for more details.
+During the Qi preview the OSIsoft team will be available via email to help with any problems you may experience. To get help or provide feedback please contact [QiSupport@osisoft.com](Mailto:QiSupport@osisoft.com) and visit [Support](https://qi-docs.readthedocs.org/en/latest/support/) for more details.
