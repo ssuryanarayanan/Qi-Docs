@@ -108,9 +108,10 @@ __`QiStreamExtrapolation` values (with Mode=StepwiseContinuousTrailing)__
 |*Backward*|Return null|Returns last data value|
 
 ## Naming Rules for Behavior Identifiers
-1.	Case sensitive
+1.	Case Insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
+4.	Maximum of 260 characters
 
 ## Additional stream behavior topics
 
