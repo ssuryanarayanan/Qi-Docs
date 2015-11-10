@@ -1,7 +1,7 @@
 #Qi docs overview
 Qi is a cloud-based highly flexible sequential data historian that can be used to store, retrieve and analyze data. Users create and write data to streams using a simple REST API. The streams can store simple or complex data types to suit the application needs. An assortment of methods with customizable behaviors are available to read data and easily obtain needed information.
 
-Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in [Qi Docs](https://qi-docs.readthedocs.org/en/latest/Overview/) and code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
+Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in [Qi docs](https://qi-docs.readthedocs.org/en/latest/Overview/) and code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples Repository</a> on GitHub.
 Keep in mind that during the [Qi Preview](https://qi-docs.readthedocs.org/en/latest/preview/) phase the samples and documentation will change, so be sure to check back here periodically.
 ### Getting started
 In order to use the Qi REST API in your applications, make sure you have the following requirements:
