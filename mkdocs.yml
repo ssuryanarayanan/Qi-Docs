@@ -10,7 +10,7 @@ repo_url: https://github.com/osisoft/Qi-Docs
 pages:
 - Introduction: 'index.md'
 - API reference: #'Qi Service API Reference.md'
-  - Getting started with Qi REST API: 'Overview.md'
+  - Overview: 'Overview.md'
   - QiTypes: 'QiTypes.md'
   - QiStreams: 'QiStreams.md'
   - QiStreamBehavior: 'QiStreamBehaviors.md'
