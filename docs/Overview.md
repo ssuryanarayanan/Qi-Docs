@@ -113,7 +113,7 @@ Additonal information on stream behaviors can be found in [QiStreamBehavior](htt
 
 ##Security
 
-There are two types of security accounts for Qi users: Administrator and User:
+There are two types of security accounts for Qi users:
 
 |Account Type|Description|
 |---|---|
