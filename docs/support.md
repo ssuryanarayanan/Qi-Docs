@@ -3,4 +3,4 @@ The following email will be available to those participating in the Qi Preview f
 
 [QiSupport@osisoft.com](mailto://QiSupport@osisoft.com)
 
-The Qi Development team will strive to respond to all support request as quickly as possible during business hours (Pacific Time)
+The OSIsoft team will strive to respond to all support request as quickly as possible during business hours (Pacific Time)
