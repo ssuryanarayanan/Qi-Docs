@@ -15,6 +15,6 @@ We then recommend continuing on to the [Getting started with Qi REST API](https:
 
 ### Using the samples
 Once you've met the prerequisites, feel free to get the various Qi Preview samples.
-You can find an overview of the various examples on the [Samples Page](https://qi-docs.readthedocs.org/en/latest/samples/)
+You can find an overview of the various examples in [Samples](https://qi-docs.readthedocs.org/en/latest/samples/)
 ### Getting help
 During the Qi Preview the Qi team will be available via email to help with any problems you may experience. To get help or provide feedback please contact [QiSupport@osisoft.com](Mailto:QiSupport@osisoft.com) and visit [Support](https://qi-docs.readthedocs.org/en/latest/support/) for more details.
