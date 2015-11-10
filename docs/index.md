@@ -8,7 +8,7 @@ In order to use the Qi REST API in your applications, make sure you have the fol
 
 - A computer
 - A set of tools that you feel comfortable using to consume and use RESTful Web Services
-- If consuming the .NET Qi Client Libraries, you must be using tools capable of using the .NET 4.5.2 Runtimes in your enviroment.
+- If consuming the .NET Qi Client Libraries, you must be using tools capable of using the .NET 4.5.2 Runtimes in your enviroment
 - A Qi Preview Tenant and corresponding set of OAuth2 authentication keys
 
 ## Using the samples
