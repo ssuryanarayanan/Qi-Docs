@@ -5,7 +5,7 @@ void InsertValue<T>(string streamId, T item);
 Task InsertValueAsync<T>(string streamId, T item);
 ```
 
-*REST*
+*Http*
 ```
 POST Qi/Streams/{streamId}/Data/InsertValue
 ```
