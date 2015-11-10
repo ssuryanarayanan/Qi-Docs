@@ -19,11 +19,13 @@ When BehaviorId is not included the stream will have default behavior which is e
 A stream is always referenced with its Id property.
 
 ## Naming Rules for Stream Identifiers
-1.	Case sensitive
+1.	Case Insensitive
 2.	Allows spaces
-3.	Cannot start with two underscores ("__")
-4.	Must be between 3 and 63 characters in length
-5.	Contains only alphanumeric characters
+3.	Cannot start or end with two underscores ("__")
+4.	Cannot start or end with period (".")
+4.	Maximum of 260 characters
+5.	Cannot use the following characters: (\ / : ? # [ ] @ ! $ & ' ( ) * + , ; =)
+6.	No more than 250 periods (".") allowed  
 
 ## Stream Methods
 ### GetStream
