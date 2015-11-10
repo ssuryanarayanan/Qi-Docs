@@ -1,5 +1,3 @@
-##Qi Preview
-
 Qi is currently in a closed preview phase. During the preview the service will be made available to a select number of customers in order to utilize the offering and provide feedback. Please keep the following in mind during this preview phase:
 
 - We want your feedback. Send it to [QiSupport@osisoft.com](mailto: QiSupport@osisoft.com) for now and we will update you with additional ways to provide feedback as they become available
