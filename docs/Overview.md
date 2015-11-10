@@ -1,6 +1,6 @@
 After obtaining Qi REST API access keys from [qi.osisoft.com](https://qi.osisoft.com), samples of clients using Qi can be found on the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
 
-Your tenant is a self-contained entity within Qi and can be utilized to define 3 different objects to store and manage data:
+A Qi tenant is a self-contained entity within Qi and can be utilized to define 3 different objects to store and manage data:
 
 * __Type__: user defined structure denoting a single measured event or object for storage
 * __Stream__: basic unit of storage consisting of an ordered series of objects conforming to a type definition
@@ -12,7 +12,7 @@ A QiType is made of one or more index properties and one more or more data prope
 
 Creating one or more types which define the structure of data is done by defining a QiType object and sending it to Qi via the [*GetOrCreateType( )*](https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype) method.
 
-There are a wide variety of QiType data properties including lists, arrays and enumerations. For a full list of supported data types refer to [QiTypes](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
+There are a wide variety of QiType data properties including lists, arrays and enumerations. For additional information including a full list of supported data types refer to [QiTypes](https://qi-docs.readthedocs.org/en/latest/QiTypes/).
 
 This example creates a simple type:
 ```
@@ -52,7 +52,9 @@ QiStream stream1 = new QiStream()
 _service.GetOrCreateStream(stream1);
 ```
 
-The above stream can now be used to hold data values of the structure defined in mySimpleType. The stream's Name, Description, and BehaviorId field can be modified, however the Id and TypeId cannot be changed once the stream has been created.  
+The above stream can now be used to hold data values of the structure defined in mySimpleType. The stream's Name, Description, and BehaviorId field can be modified, however the Id and TypeId cannot be changed once the stream has been created.
+
+Additonal information on streams can be found in [QiStreams](https://qi-docs.readthedocs.org/en/latest/QiStreams/).
 
 ##Writing data
 
@@ -89,42 +91,7 @@ for (int i = 0; i < eventCountToWrite; i++)
 _service.UpdateValues(streamId, writeEvents);
 ```
 
-###Write execption handling
-If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
-
-For example:
-
-```
-{
-  _service.InsertValues(streamId, writeEvents);
-}
-catch (QiHttpClientException e)
-{
- 	:
-  //  e.Errors.Values[0] indicates the streamId of the exception
-  //  e.Errors.Values[1] indicates the TimeId of the exception
-	:
-}
-```
-
-###Summary of write methods
-The following table shows the methods that are available for writing and changing Qi data. For further detail refer to [QiValues](https://qi-docs.readthedocs.org/en/latest/Data/):
-
-|Write methods    |Description                                                            |
-|---              |---                                                                    |
-|InsertValue( )         |Writes a single event in a stream                                |
-|InsertValues( )        |Write multiple events in a stream\*                              |
-|UpdateValue( )         |Writes (or replaces) a single event in a stream                  |
-|UpdateValues( )	      |Writes (or replaces) multiple events in a stream\*               |
-|RemoveValue( ) 	      |Deletes a single event from a stream                             |
-|RemoveValues( )	      |Deletes multiple events form a stream                            |
-|RemoveWindowValues( )	|Deletes all events from a stream in a defined range              |
-|ReplaceValue( )	      |Replaces a single events in a stream                             |
-|ReplaceValues( )	      |Replaces multiple values in a stream\*                           |
-|PatchValue( )	        |Replaces specified properties in a single event in a stream      |
-|PatchValues( ) 	      |Replaces specified properties from multiple events in a stream   |
-
-	                                *Include overloads that can act upon multiple streams
+Additonal information on writing data can be found in [QiValues](https://qi-docs.readthedocs.org/en/latest/Data/).
 
 ##Reading data
 Qi includes different read methods and overloads that can be used to retrieve data from streams for a large assortment of circumstances.  
