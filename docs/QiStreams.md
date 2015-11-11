@@ -1,25 +1,19 @@
-Streams are the fundamental unit of storage in the Qi Service. Each stream represents an ordered series of events or observations for a particular item of interest, e.g., the temperature of a given room. Each stream must have a Qi Type associated with it, and each event sent to the stream must conform to this type or it will be rejected. Streams may optionally have a Stream Behavior to control how data is returned.
+A QiStream is the fundamental unit of storage in Qi. Each stream represents an ordered series of events or observations for a particular item of interest.
 
-## Qi Stream Object
+The following table defines the required and optional QiStream objects:
 
-```
-  string Id           (required Id for referencing the type)
-  string Name         (optional name)
-  string Description  (optional description text)
-  string TypeId       (required type to be used for this stream)
-  string BehaviorId   (optional Stream Behavior for this stream)
-```
+|Object|Details|
+|---|---|
+|string Id|Required Id for referencing the stream|
+|string Name|Optional name|
+|string Description|Optional description text|
+|string TypeId|Required type to be used for this stream|
+|string BehaviorId|Optional stream behavior for this stream|
 
-A Qi Stream object must include an ‘Id’ field (unique) and a ‘TypeId’ field with the Id of an existing Type. 
-‘Name’ and ‘Description’ fields are optional text fields.
-‘BehaviorId’ is set with the Id of an existing Stream Behavior but is optional.
-
-When BehaviorId is not included the stream will have default behavior which is equivalent to Mode = ‘Continuous’ and Extrapolation = ‘All’. See Stream Behavior for more information.
-
-A stream is always referenced with its Id property.
+A stream is always referenced with its Id property. As shown above a QiStream must include a unique *Id* field and a *TypeId* field with the Id of an existing QiType. The *BehaviorId* is set with the Id of an existing stream behavior, but is optional. When BehaviorId is not included the stream will have default behavior mode set to continuous and extrapolation set to all. See [QiStreamBehaviors](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/) for more information.
 
 ## Naming Rules for Stream Identifiers
-1.	Case Insensitive
+1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start or end with two underscores ("__")
 4.	Cannot start or end with period (".")
@@ -27,8 +21,7 @@ A stream is always referenced with its Id property.
 5.	Cannot use the following characters: (\ / : ? # [ ] @ ! $ & ' ( ) * + , ; =)
 6.	No more than 250 periods (".") allowed  
 
-## Stream Methods
-### GetStream
+## GetStream
 *_Qi Client Library_*
 ```
 QiStream GetStream(string streamId);
@@ -41,15 +34,15 @@ GET Qi/Streams/{streamId}
 ```
 
 **Parameters**
-`streamId` -- string identifying the stream
+*streamId*: String identifying the stream
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
 Returns a QiStream object
 
-### GetStreams
+## GetStreams
 *_Qi Client Library_*
 ```
 IEnumerable<QiStream> GetStreams ();
@@ -65,12 +58,12 @@ GET Qi/Streams
 None
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
 Returns IEnumerable of all streams
 
-### GetOrCreateStream
+## GetOrCreateStream
 *_Qi Client Library_*
 ```
 QiStream GetOrCreateStream (QiStream entity);
@@ -84,7 +77,7 @@ POST Qi/Streams
 Content is serialized QiStream entity
 
 **Parameters**
-`entity` -- Qi Stream object
+*entity*: Qi Stream object
 
 **Security**
 Allowed by Administrator account
@@ -92,7 +85,7 @@ Allowed by Administrator account
 **Operation**
 If entity already exists on the service by `Id`, that existing stream is returned to the caller unchanged. Otherwise the new stream is created.
 
-### UpdateStream
+## UpdateStream
 *_Qi Client Library_*
 ```
 void UpdateStream(string streamId, QiStream entity);
@@ -106,8 +99,8 @@ PUT Qi/Streams/{streamId}
 Content is serialized QiStream entity
 
 **Parameters**
-`streamId` -- identifier of the stream to modify
-`entity` -- updated stream object
+*streamId*: Identifier of the stream to modify
+*entity*: Updated stream object
 
 **Security**
 Allowed by Administrator account
@@ -122,9 +115,9 @@ Permitted changes:
 
 An exception is thrown on unpermitted change attempt (and the stream is left unchanged). 
 
-The `UpdateStream` method applies the entire entity. Optional fields left out of the entity will remove the field from the stream if they had been set previously. 
+The *UpdateStream()* method applies the entire entity. Optional fields left out of the entity will remove the field from the stream if they had been set previously. 
 
-### DeleteStream
+## DeleteStream
 *_Qi Client Library_*
 ```
 void DeleteStream(string streamId);
@@ -137,7 +130,7 @@ DELETE Qi/Streams/{streamId}
 ```
 
 **Parameters**
-`streamId` -- identifier of the stream to delete
+*streamId*: Identifier of the stream to delete
 
 **Security**
 Allowed by Administrator account
