@@ -1,4 +1,4 @@
-A QiType is what Qi uses to store definable data types and consists of one or more properties. Properties are either simple atomic types (e.g. integer) or previously-defined QiTypes. A type is always referenced with its Id property. Leveraging a QiType as a property permits the construction of complex, nested data types. A QiType must have have one or more properties that constitute an ordered key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered value is permitted. 
+A QiType is what Qi uses to store definable data types. A QiType consists of one or more properties that are either simple atomic types (e.g. integer) or previously-defined QiTypes. A type is always referenced with its Id property. Leveraging a QiType as a property permits the construction of complex, nested data types. A QiType must have have one or more properties that constitute an ordered key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered value is permitted. 
 
 Once a QiType is created it cannot be changed and can only be deleted if there are no streams associated with it.
 
