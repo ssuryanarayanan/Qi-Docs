@@ -35,7 +35,7 @@ GET Qi/Streams/{streamId}
 
 **Parameters**
 
-*streamId*: String identifying the stream
+  *streamId*: String identifying the stream
 
 **Security**
 Allowed by administrator and user accounts
@@ -57,7 +57,7 @@ GET Qi/Streams
 
 **Parameters**
 
-None
+  None
 
 **Security**
 Allowed by administrator and user accounts
@@ -80,7 +80,7 @@ Content is serialized QiStream entity
 
 **Parameters**
 
-*entity*: Qi Stream object
+  *entity*: Qi Stream object
 
 **Security**
 Allowed by Administrator account
@@ -103,7 +103,7 @@ Content is serialized QiStream entity
 
 **Parameters**
 
-*streamId*: Identifier of the stream to modify
+  *streamId*: Identifier of the stream to modify
 
 *entity*: Updated stream object
 
@@ -114,15 +114,15 @@ Allowed by Administrator account
 Changes the stream to hold the properties in the QiStream entity given.
 Permitted changes:
 
-•	Name
+  •	Name
 
-•	BehaviorId
+  •	BehaviorId
 
-•	Description
+  •	Description
 
-An exception is thrown on unpermitted change attempt (and the stream is left unchanged). 
+  An exception is thrown on unpermitted change attempt (and the stream is left unchanged). 
 
-The *UpdateStream()* method applies the entire entity. Optional fields left out of the entity will remove the field from the stream if they had been set previously. 
+  The *UpdateStream()* method applies the entire entity. Optional fields left out of the entity will remove the field from the stream if they had been set previously. 
 
 ## DeleteStream
 *_Qi Client Library_*
@@ -137,7 +137,8 @@ DELETE Qi/Streams/{streamId}
 ```
 
 **Parameters**
-*streamId*: Identifier of the stream to delete
+
+  *streamId*: Identifier of the stream to delete
 
 **Security**
 Allowed by Administrator account
