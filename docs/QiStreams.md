@@ -34,6 +34,7 @@ GET Qi/Streams/{streamId}
 ```
 
 **Parameters**
+
 *streamId*: String identifying the stream
 
 **Security**
@@ -55,6 +56,7 @@ GET Qi/Streams
 ```
 
 **Parameters**
+
 None
 
 **Security**
@@ -77,6 +79,7 @@ POST Qi/Streams
 Content is serialized QiStream entity
 
 **Parameters**
+
 *entity*: Qi Stream object
 
 **Security**
@@ -99,7 +102,9 @@ PUT Qi/Streams/{streamId}
 Content is serialized QiStream entity
 
 **Parameters**
+
 *streamId*: Identifier of the stream to modify
+
 *entity*: Updated stream object
 
 **Security**
@@ -110,7 +115,9 @@ Changes the stream to hold the properties in the QiStream entity given.
 Permitted changes:
 
 •	Name
+
 •	BehaviorId
+
 •	Description
 
 An exception is thrown on unpermitted change attempt (and the stream is left unchanged). 
