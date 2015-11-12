@@ -12,7 +12,7 @@ The following table defines the required and optional QiStream objects:
 
 A stream is always referenced by its Id property. As shown above a QiStream must include a unique *Id* field as well as a *TypeId* field with the Id of an existing QiType. The optional *BehaviorId* is set with the Id of an existing stream behavior. When BehaviorId is not included the stream will have a default behavior mode set to continuous and extrapolation set to all. See [QiStreamBehaviors](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/) for more information.
 
-__Rules for *QiStream Id*:__
+__Rules for QiStream *Id*:__
 
 1.	Case insensitive
 2.	Allows spaces
@@ -22,7 +22,7 @@ __Rules for *QiStream Id*:__
 5.	Cannot use the following characters: (\ / : ? # [ ] @ ! $ & ' ( ) * + , ; = %)
 6.	No more than 250 periods (".") allowed  
 
-## GetStream
+## GetStream( )
 *_Qi Client Library_*
 ```
 QiStream GetStream(string streamId);
@@ -44,7 +44,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns a QiStream object
 
-## GetStreams
+## GetStreams( )
 *_Qi Client Library_*
 ```
 IEnumerable<QiStream> GetStreams ();
@@ -66,7 +66,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns IEnumerable of all streams
 
-## GetOrCreateStream
+## GetOrCreateStream( )
 *_Qi Client Library_*
 ```
 QiStream GetOrCreateStream (QiStream entity);
@@ -89,7 +89,7 @@ Allowed by Administrator account
 **Operation**
 If entity already exists on the service by *Id*, that existing stream is returned to the caller unchanged. Otherwise the new stream is created
 
-## UpdateStream
+## UpdateStream( )
 *_Qi Client Library_*
 ```
 void UpdateStream(string streamId, QiStream entity);
@@ -125,7 +125,7 @@ An exception is thrown on unpermitted change attempt (and the stream is left unc
 
 The *UpdateStream()* method applies the entire entity. Optional fields left out of the entity will remove the field from the stream if they had been set previously
 
-## DeleteStream
+## DeleteStream( )
 *_Qi Client Library_*
 ```
 void DeleteStream(string streamId);
