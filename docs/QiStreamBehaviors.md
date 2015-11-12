@@ -17,7 +17,7 @@ __Naming Rules for *QiStreamBehavior Id*__
 3.	Cannot start with two underscores ("__")
 4.	Maximum of 260 characters
 
-Stream behavior objects are always referenced by the *Id* property. A Stream can be changed to use a different stream behavior or the stream behavior itself can be changed.
+Stream behavior objects are always referenced by the *Id* property. A stream can be changed to use a different stream behavior or the stream behavior itself can be changed after it is created/configured.
 
 __Methods effected by *QiStreamBehavior*__
 
