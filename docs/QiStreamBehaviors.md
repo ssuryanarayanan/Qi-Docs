@@ -10,7 +10,7 @@ The following table defines QiStreamBehavior objects:
 |Overrides|IList&lt;QiStreamBehaviorOverride&gt;|A list of QiStreamBehaviorOverride items used to set a different interpolation behavior than the mode to a type property|
 |ExtrapolationMode|QiStreamExtrapolation|Controls extrapolation behavior for the stream|
 
-__Naming Rules for *QiStreamBehavior Id*__
+__Rules for *QiStreamBehavior Id*__
 
 1.	Case Insensitive
 2.	Allows spaces
@@ -41,7 +41,7 @@ When read methods effected by QiStreamBehavior (as shown above) are given an ind
 |Discrete|3|Returns ‘null’|
  			*Certain value types cannot be interpolated
 
-When the Mode is set to Continuous (or left at Default) calls to read the value of this Stream Behavior property will indicate ‘0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
+When *Mode* is set to continuous (or left at default) calls to read the value of the QiStreamBehavior will return "0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
 
 ##Extrapolation
 
