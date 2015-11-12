@@ -2,21 +2,13 @@ A QiStream is the fundamental unit of storage in Qi. Each stream represents an o
 
 The following table defines the required and optional QiStream objects:
 
-```
-`string Id` Required Id for referencing the stream
-`string Name` Optional name
-string Description Optional description text
-string TypeId Required type to be used for this stream
-string BehaviorIdO ptional stream behavior for this stream
-```
-
-|Object|Details|
+|Object|Type|Details|
 |---|---|
-|string Id|Required Id for referencing the stream|
-|string Name|Optional name|
-|string Description|Optional description text|
-|string TypeId|Required type to be used for this stream|
-|string BehaviorId|Optional stream behavior for this stream|
+|Id|String|Required Id for referencing the stream|
+|Name|String|Optional name|
+|Description|String|Optional description text|
+|TypeId|String|Required type to be used for this stream|
+|BehaviorId|Sting|Optional stream behavior for this stream|
 
 A stream is always referenced by its Id property. As shown above a QiStream must include a unique *Id* field as well as a *TypeId* field with the Id of an existing QiType. The optional *BehaviorId* is set with the Id of an existing stream behavior. When BehaviorId is not included the stream will have a default behavior mode set to continuous and extrapolation set to all. See [QiStreamBehaviors](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/) for more information.
 
