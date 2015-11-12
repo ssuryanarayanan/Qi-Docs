@@ -21,8 +21,6 @@ Stream behavior objects are always referenced by the *Id* property. A Stream can
 
 __Methods effected by *QiStreamBehavior*__
 
-The following Read Methods are effected by the Stream Behavior:
-
 |Method|Details|
 |---|---|
 |[*GetValue( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue)||
