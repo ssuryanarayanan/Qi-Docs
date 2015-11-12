@@ -9,7 +9,7 @@ __Rules for typeId__
 3.	Cannot start with two underscores ("__")
 4.	Maximum length of 260 characters
 
-## GetStreamType
+## GetStreamType( )
 *_Qi Client Library_*
 ```
 QiType GetStreamType(string streamId);
@@ -31,7 +31,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns the type definition associated with a stream
 
-## GetType
+## GetType( )
 *_Qi Client Library_*
 ```
 QiType GetType(string typeId);
@@ -52,7 +52,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns type searched for by *typeId*
 
-## GetTypes
+## GetTypes( )
 *_Qi Client Library_*
 ```
 IEnumerable<QiType> GetTypes();
@@ -74,7 +74,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns IEnumerable of all types
 
-## GetOrCreateType
+## GetOrCreateType( )
 *_Qi Client Library_*
 ```
 QiType GetOrCreateType(QiType entity);
@@ -98,7 +98,7 @@ Allowed by administrator account
 Returns a Qi Type object.
 If entity already exists on the service by Id, the existing type is returned to the caller unchanged. Otherwise, a new type definition is added to the Qi Service
 
-## DeleteType
+## DeleteType( )
 *_Qi Client Library_*
 ```
 void DeleteType(string typeId);
@@ -121,7 +121,7 @@ Allowed by administrator account
 Deletes type from service
 A type cannot be deleted from the service if there are existing streams associated with it
 
-## UpdateType
+## UpdateType( )
 *_Qi Client Library_*
 ```
 void UpdateType(string typeId, QiType entity);
