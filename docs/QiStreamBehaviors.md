@@ -17,6 +17,18 @@ __Naming Rules for *QiStreamBehavior Id*__
 3.	Cannot start with two underscores ("__")
 4.	Maximum of 260 characters
 
+Stream behavior objects are always referenced by the *Id* property. A Stream can be changed to use a different stream behavior or the stream behavior itself can be changed.
+
+__Methods effected by *WiStreamBehavior*__
+The following Read Methods are effected by the Stream Behavior:
+
+|Method|Details|
+|---|---|
+|*GetValue( )*||
+|*GetValues( )*||
+|*GetWindowValues*|When Boundary is set to ExactOrCalculated|
+|*GetRangeValues*|When Boundary is set to ExactOrCalculated|
+
 ##Interpolation
 
 When certain Qi read methods (such as *GetValue( )* and *GetValues( )* are given an index that lands between two values in a stream, it is the *QiStreamBehavior Mode* that will determine what values will be retrieved. The table below indicates how a stream will behave for the mode values listed:
@@ -95,17 +107,7 @@ _service.GetOrCreateStream(stream1);
 
 
 
-##Methods effected by stream behavior
-Stream behavior objects are always referenced by the *Id* property. A Stream can be changed to use a different stream behavior or the stream behavior itself can be changed.
 
-The following Read Methods are effected by the Stream Behavior:
-
-|Method|Details|
-|---|---|
-|*GetValue( )*||
-|*GetValues( )*||
-|*GetWindowValues*|When Boundary is set to ExactOrCalculated|
-|*GetRangeValues*|When Boundary is set to ExactOrCalculated|
 
 ------------------------------------------------
 
