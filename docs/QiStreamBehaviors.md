@@ -32,7 +32,7 @@ __Methods effected by *QiStreamBehavior*__
 
 When read methods effected by QiStreamBehavior (as shown above) are given an index that lands between two values in a stream, it is the *Mode* object that will determine what values will be retrieved. The table below indicates how a stream will behave for the mode values listed:
 
-|Mode|Enumeration Value|Operation|
+|Mode|Enumeration value|Operation|
 |---|---|---|
 |Default|0|Continuous|
 |Continuous|0|Interpolates the data using previous and next index values\*|
@@ -45,27 +45,47 @@ When *Mode* is set to continuous (or left at default) calls to read the value of
 
 ##Extrapolation
 
-In addition to interpolations settings, stream behavior is also used to define how the stream will extrapolate data. QiStreamExtrapolation acts as a master switch to determine whether extrapolation will be done and at which end of the data. When defined, stream extrapolation works with the mode to determine how a stream will respond to requests for an index that precedes or follows all of the data in the stream. 
+In addition to interpolations settings, stream behavior is also used to define how the stream will extrapolate data. *ExtrapolationMode* acts as a master switch to determine whether extrapolation will occur and at which end of the data. When defined, *ExtrapolationMode* works with the *Mode* to determine how a stream will respond to requests for an index that precedes or follows all of the data in the stream. 
 
-The following table shows stream behavior for QiStreamExtrapolation values:
+The following tables show how *ExtrapolationMode* effects returned values for each *Mode* value:
 
-|QiStreamExtrapolation|Index before data|Index after data|
+__*ExtrapolationMode* with *Mode*=Default or Continuous__
+
+|ExtrapolationMode|Enumeration value|Index before data|Index after data|
+|---|---|---|---|
+|All|0|Returns first data value|Returns last data value|
+|None|1|Return null|Return null|
+|Forward|2|Returns first data value|Return null|
+|Backward|3|Return null|Returns last data value|
+
+__*ExtrapolationMode* with *Mode*=Discrete)__
+
+|ExtrapolationMode|Index before data|Index after data|
 |---|---|---|
-|All|Extrapolation activated|Extrapolation activated|
-|None|No extrapolation|No extrapolation|
-|Forward|Extrapolation activated|No extrapolation|
-|Backward|No extrapolation|Extrapolation activated|
+|All|0|Return null|Return null|
+|None|1|Return null|Return null|
+|Forward|2|Return null|Return null|
+|Backward|3|Return null|Return null|
 
-When the QiStreamExtrapolation setting allows for extrapolation, then the value returned will be determined by the stream behavior mode setting. This table shows what occurs when the mode is *Continuous*:
+__*ExtrapolationMode* with *Mode*=StepwiseContinuousLeading)__
 
-|QiStreamExtrapolation|Index before data|Index after data|
+|ExtrapolationMode|Index before data|Index after data|
 |---|---|---|
-|All|Returns first data value|Returns last data value|
-|None|No extrapolation|No extrapolation|
-|Forward|Returns first data value|No extrapolation|
-|Backward|No extrapolation|Returns last data value|
+|All|0|Returns first data value|Returns last data value|
+|None|1|Return null|Return null|
+|Forward|2|Returns first data value|Return null|
+|Backward|3|Return null|Returns last data value|
 
-For best results, see the documentation on the read method you are using regarding the effect of the stream behavior.
+__*ExtrapolationMode* with *Mode*=StepwiseContinuousTrailing)__
+
+|ExtrapolationMode|Index before data|Index after data|
+|---|---|---|
+|All|0|Returns first data value|Returns last data value|
+|None|1|Return null|Return null|
+|Forward|2|Returns first data value|Return null|
+|Backward|3|Return null|Returns last data value|
+
+For additonal information on the effect of stream behaviors, see the documentation on the read method you are using.
 
 ##Stream behavior overrides
 As described above, the interpolation behavior for all values in the stream event type is determined by the stream behavior `Mode` property. Individual data properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different interpolation behavior for different event properties within the stream. 
@@ -110,55 +130,8 @@ _service.GetOrCreateStream(stream1);
 
 ------------------------------------------------
 
-##Stream behavior `QiStreamExtrapolation`
-When the index of a *GetValue( )* (or *GetValues( )*) read falls before or after all of the data in a stream, the QIStreamExtrapolation setting acts as a master switch which determines whether or not extrapolation will be done. If extrapolation is done, the setting of the Stream Behavior Mode determines the value included. 
 
-The following charts show how the `QiStreamExtrapolation` settings effect returned values:
 
-__Stream behavior `QiStreamExtrapolation` values__
-
-|`QiStreamExtrapolation`|Index before data|Index after data|
-|---|---|---|
-|0=All|Returns data of the first event|Returns data of the last event|
-|1=None|No extrapolation (returns null)|No extrapolation (returns null)|
-|2=Forward|No extrapolation (returns null)|Returns data of the last event|
-|3=Backward|Returns data of the first event|No extrapolation (returns null)|
-
-__`QiStreamExtrapolation` values (with Mode=Continuous)__
-
-|`QiStreamExtrapolation`|Index before data|Index after data|
-|---|---|---|
-|*All*|Returns first data value|Returns last data value|
-|*None*|Return null|Return null|
-|*Forward*|Returns first data value|Return null|
-|*Backward*|Return null|Returns last data value|
-
-__`QiStreamExtrapolation` values (with Mode=Discrete)__
-
-|`QiStreamExtrapolation`|Index before data|Index after data|
-|---|---|---|
-|*All*|Return null|Return null|
-|*None*|Return null|Return null|
-|*Forward*|Return null|Return null|
-|*Backward*|Return null|Return null|
-
-__`QiStreamExtrapolation` values (with Mode=StepwiseContinuousLeading)__
-
-|`QiStreamExtrapolation`|Index before data|Index after data|
-|---|---|---|
-|*All*|Returns first data value|Returns last data value|
-|*None*|Return null|Return null|
-|*Forward*|Returns first data value|Return null|
-|*Backward*|Return null|Returns last data value|
-
-__`QiStreamExtrapolation` values (with Mode=StepwiseContinuousTrailing)__
-
-|`QiStreamExtrapolation`|Index before data|Index after data|
-|---|---|---|
-|*All*|Returns first data value|Returns last data value|
-|*None*|Return null|Return null|
-|*Forward*|Returns first data value|Return null|
-|*Backward*|Return null|Returns last data value|
 
 
 
