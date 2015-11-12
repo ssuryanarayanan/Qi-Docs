@@ -3,6 +3,7 @@ A QiType is what Qi uses to store definable data types. A QiType consists of one
 Once a QiType is created it cannot be changed and can only be deleted if there are no streams associated with it.
 
 __Rules for typeId__
+
 1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
