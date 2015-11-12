@@ -30,15 +30,15 @@ __Methods effected by *QiStreamBehavior*__
 
 ##Interpolation
 
-When certain Qi read methods (such as *GetValue( )* and *GetValues( )* are given an index that lands between two values in a stream, it is the *QiStreamBehavior Mode* that will determine what values will be retrieved. The table below indicates how a stream will behave for the mode values listed:
+When read methods effected by QiStreamBehavior (as shown above) are given an index that lands between two values in a stream, it is the *Mode* object that will determine what values will be retrieved. The table below indicates how a stream will behave for the mode values listed:
 
-|Mode|Operation|
-|---|---|
-|Default|Continuous|
-|Continuous|Interpolates the data using previous and next index values\*|
-|StepwiseContinuousLeading|Returns the data from the previous index|
-|StepwiseContinuousTrailing|Returns the data from the next index|
-|Discrete|Returns ‘null’|
+|Mode|Enumeration Value|Operation|
+|---|---|---|
+|Default|0|Continuous|
+|Continuous|0|Interpolates the data using previous and next index values\*|
+|StepwiseContinuousLeading|1|Returns the data from the previous index|
+|StepwiseContinuousTrailing|2|Returns the data from the next index|
+|Discrete|3|Returns ‘null’|
  			*Certain value types cannot be interpolated
 
 When the Mode is set to Continuous (or left at Default) calls to read the value of this Stream Behavior property will indicate ‘0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
