@@ -10,7 +10,7 @@ The following table defines QiStreamBehavior objects:
 |Overrides|IList&lt;QiStreamBehaviorOverride&gt;|A list of QiStreamBehaviorOverride items used to set a different interpolation behavior than the mode to a type property|
 |ExtrapolationMode|QiStreamExtrapolation|Controls extrapolation behavior for the stream|
 
-__Rules for *QiStreamBehavior Id*__
+__Rules for QiStreamBehavior *Id*__
 
 1.	Case Insensitive
 2.	Allows spaces
@@ -19,7 +19,7 @@ __Rules for *QiStreamBehavior Id*__
 
 Stream behavior objects are always referenced by the *Id* property. A stream can be changed to use a different stream behavior or the stream behavior itself can be changed after it is created/configured.
 
-__Methods effected by *QiStreamBehavior*__
+__Methods effected by QiStreamBehavior__
 
 |Method|Details|
 |---|---|
@@ -65,9 +65,9 @@ When read methods effected by QiStreamBehavior (as shown above) are given an ind
 |StepwiseContinuousLeading|1|Returns the data from the previous index|
 |StepwiseContinuousTrailing|2|Returns the data from the next index|
 |Discrete|3|Returns ‘null’|
- 			*Certain value types cannot be interpolated
+ 					*Certain value types cannot be interpolated
 
-When *Mode* is set to continuous (or left at default) calls to read the value of the QiStreamBehavior will return "0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
+When *Mode* is set to continuous (or left at default) calls to read the value of the QiStreamBehavior will return "0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a Discrete mode setting for one property and a Continuous mode setting for another.
 
 When the Stream Behavior is set to Continuous or Default read methods attempt return an interpolated value for indexes that land between two existing data events in a stream. This cannot always be done, for example when the type is not numeric.
 
@@ -146,7 +146,7 @@ QiStreamMode Mode
 
 Note that when using the override list the *Mode* setting of Discrete cannot be overridden. If the *Mode* is set to Discrete a null value is returned for the entire event. If a Discrete setting is desired for one of the types within a stream and a different setting (e.g. StepwiseContinuousLeading) is desired for other properties within the stream, set the *Mode* to StepwiseContinuousLeading and use the override list to set the desired property to Discrete. 
 
-## DeleteBehavior
+## DeleteBehavior( )
 *_Qi Client Library_*
 ```
 void DeleteBehavior(string behaviorId);
@@ -169,7 +169,7 @@ Allowed by administrator account
 Deletes the specified behavior
 Stream Behaviors objects that are still associated with a stream cannot be deleted
 
-## GetBehavior
+## GetBehavior( )
 *_Qi Client Library_*
 ```
 QiStreamBehavior GetBehavior(string behaviorId);
@@ -190,7 +190,7 @@ Allowed by administrator and user accounts
 **Operation**
 Gets a QiStreamBehavior object from service
 
-## GetBehaviors
+## GetBehaviors( )
 *_Qi Client Library_*
 ```
 IEnumerable<QiStreamBehavior> GetBehaviors();
@@ -212,7 +212,7 @@ Allowed by administrator and user accounts
 **Operation**
 Returns IEnumerable of all behavior objects
 
-## GetOrCreateBehavior
+## GetOrCreateBehavior( )
 *_Qi Client Library_*
 ```
 QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
@@ -236,7 +236,7 @@ Allowed by administrator account
 Creates a QiStreamBehavior (or returns it if it already exists)
 If *entity* already exists on the server by *Id*, that existing behavior is returned to the caller unchanged
 
-## UpdateBehavior
+## UpdateBehavior( )
 *_Qi Client Library_*
 ```
 void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
