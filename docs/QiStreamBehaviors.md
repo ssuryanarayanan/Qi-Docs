@@ -60,7 +60,7 @@ __*ExtrapolationMode* with *Mode*=Default or Continuous__
 
 __*ExtrapolationMode* with *Mode*=Discrete__
 
-|ExtrapolationMode|Index before data|Index after data|
+|ExtrapolationMode|Enumeration value|Index before data|Index after data|
 |---|---|---|---|
 |All|0|Return null|Return null|
 |None|1|Return null|Return null|
@@ -69,7 +69,7 @@ __*ExtrapolationMode* with *Mode*=Discrete__
 
 __*ExtrapolationMode* with *Mode*=StepwiseContinuousLeading__
 
-|ExtrapolationMode|Index before data|Index after data|
+|ExtrapolationMode|Enumeration value|Index before data|Index after data|
 |---|---|---|---|
 |All|0|Returns first data value|Returns last data value|
 |None|1|Return null|Return null|
@@ -78,7 +78,7 @@ __*ExtrapolationMode* with *Mode*=StepwiseContinuousLeading__
 
 __*ExtrapolationMode* with *Mode*=StepwiseContinuousTrailing__
 
-|ExtrapolationMode|Index before data|Index after data|
+|ExtrapolationMode|Enumeration value|Index before data|Index after data|
 |---|---|---|---|
 |All|0|Returns first data value|Returns last data value|
 |None|1|Return null|Return null|
