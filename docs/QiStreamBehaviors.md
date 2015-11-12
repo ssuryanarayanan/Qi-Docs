@@ -85,7 +85,7 @@ __*ExtrapolationMode* with *Mode*=StepwiseContinuousTrailing__
 |Forward|2|Returns first data value|Return null|
 |Backward|3|Return null|Returns last data value|
 
-For additonal information on the effect of stream behaviors, see the documentation on the read method you are using.
+For additonal information on the effect of stream behaviors, see the documentation on the [read method](https://qi-docs.readthedocs.org/en/latest/Reading%20data/) you are using.
 
 ##Stream behavior overrides
 As described above, the interpolation behavior for all values in the stream event type is determined by the stream behavior `Mode` property. Individual data properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different interpolation behavior for different event properties within the stream. 
