@@ -11,6 +11,7 @@ The following table defines QiStreamBehavior objects:
 |ExtrapolationMode|QiStreamExtrapolation|Controls extrapolation behavior for the stream|
 
 __Naming Rules for *QiStreamBehavior Id*__
+
 1.	Case Insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
