@@ -2,7 +2,7 @@ A QiType is what Qi uses to store definable data types. A QiType consists of one
 
 Once a QiType is created it cannot be changed and can only be deleted if there are no streams associated with it.
 
-##Naming Rules for typeId
+__Rules for typeId__
 1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
@@ -21,6 +21,7 @@ GET Qi/Streams/{streamId}/Type
 ```
 
 **Parameters**
+
 *streamId*: Id of the stream for which type request will be made
 
 **Security**
@@ -41,6 +42,7 @@ GET Qi/Types/{typeId}
 ```
 
 **Parameters**
+
 *typeId*: Id of the type to retrieve
 
 **Security**
@@ -62,6 +64,7 @@ GET Qi/Types
 ```
 
 **Parameters**
+
 None
 
 **Security**
@@ -84,6 +87,7 @@ POST Qi/Types
 Content is serialized QiType entity
 
 **Parameters**
+
 *entity*: Qi Type object
 
 **Security**
@@ -106,6 +110,7 @@ DELETE Qi/Types/{typeId}
 ```
 
 **Parameters**
+
 *typeId*: String typeId of the type to delete
 
 **Security**
@@ -128,6 +133,7 @@ PUT Qi/Types/{typeId}
 ```
 
 **Parameters**
+
 *typeId*: String typeId of the type to update
 
 **Security**
