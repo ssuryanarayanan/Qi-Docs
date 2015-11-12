@@ -12,7 +12,8 @@ The following table defines the required and optional QiStream objects:
 
 A stream is always referenced by its Id property. As shown above a QiStream must include a unique *Id* field as well as a *TypeId* field with the Id of an existing QiType. The optional *BehaviorId* is set with the Id of an existing stream behavior. When BehaviorId is not included the stream will have a default behavior mode set to continuous and extrapolation set to all. See [QiStreamBehaviors](https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/) for more information.
 
-## Naming Rules for Stream Identifiers
+Naming Rules for QiStream Id:
+
 1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start or end with two underscores ("__")
