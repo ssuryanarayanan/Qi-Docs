@@ -28,6 +28,32 @@ __Methods effected by *QiStreamBehavior*__
 |[*GetWindowValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues)|When Boundary is set to ExactOrCalculated|
 |[*GetRangeValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues)|When Boundary is set to ExactOrCalculated|
 
+The code here shows the definition and creation of a simple QiStreamBehavior:
+
+```
+String behaviorid = “myFirstBehavior”;
+QiStreamBehavior simpleBehavior = new QiStreamBehavior()
+{
+	Id = behaviorId,
+        Mode = QiStreamMode.StepwiseContinuousLeading,
+};
+_service.GetOrCreateBehavior(createdBehavior);
+```
+
+Once the stream behavior is defined, the behavior can be applied to a stream as shown here:
+
+```
+string streamId = "MyFirstStream";
+string streamType = " mySimpleType ";
+QiStream stream1 = new QiStream()
+{
+	Id = streamId,
+	TypeId = streamType,
+	BehaviorId = “MyFirstBehavior”
+}
+_service.GetOrCreateStream(stream1);
+```
+
 ##Interpolation
 
 When read methods effected by QiStreamBehavior (as shown above) are given an index that lands between two values in a stream, it is the *Mode* object that will determine what values will be retrieved. The table below indicates how a stream will behave for the mode values listed:
@@ -42,6 +68,27 @@ When read methods effected by QiStreamBehavior (as shown above) are given an ind
  			*Certain value types cannot be interpolated
 
 When *Mode* is set to continuous (or left at default) calls to read the value of the QiStreamBehavior will return "0=Default”. Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using overrides. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
+
+When the Stream Behavior is set to Continuous or Default read methods attempt return an interpolated value for indexes that land between two existing data events in a stream. This cannot always be done, for example when the type is not numeric.
+
+The table below describes how the Continuous or Default *Mode* effects indexes between data in a stream:
+
+__*Mode* = Continuous or Default__
+
+|*Type*|Result for an index between data in a stream|Comment|
+|---|---|---|
+|Numeric Types|Interpolated\*|Rounding is done as needed for integer types|
+|Time related Types|Interpolated|DateTime, DateTimeOffset, TimeSpan|
+|Nullable Types|Returns ‘null’|Cannot reliably interpolate due to possibility of a null value
+|Array and List Types|Returns ‘null’||
+|String Type|Returns ‘null’||
+|Boolean Type|Returns value of nearest index||
+|Enumeration Types|Returns Enum value at 0|This may have a value for the enumeration|
+|GUID|||
+|Version|Returns ‘null’||
+|IDictionary or Ienumerable|Returns ‘null’||
+
+When extreme values are involved in an interpolation (e.g. Decimal.MaxValue) the call may result in a *BadRequest* exception if the interpolation cannot be completed successfully.
 
 ##Extrapolation
 
@@ -87,81 +134,19 @@ __*ExtrapolationMode* with *Mode*=StepwiseContinuousTrailing__
 
 For additonal information on the effect of stream behaviors, see the documentation on the [read method](https://qi-docs.readthedocs.org/en/latest/Reading%20data/) you are using.
 
-##Stream behavior overrides
-As described above, the interpolation behavior for all values in the stream event type is determined by the stream behavior `Mode` property. Individual data properties can be overridden to act as another behavior by setting the `Overrides` property. In this way the user can have different interpolation behavior for different event properties within the stream. 
+##Overrides
+As described above, the interpolation behavior for the values in a stream is determined by the stream behavior *Mode*, however individual data types can be overridden to conform to another behavior by setting the *Overrides* property. In this way the user can have different interpolation behaviors for different types within the stream. Without the overrides, properties will get the interpolation behavior defined by the *Mode* object of the stream behavior.
 
-The Override field of the Stream Behavior is made up of a list of `QiStreamBehaviorOverride` object. The `QiStreamBehaviorOverride` object has the following structure:
-	 `string QiTypePropertyId`
-	 `QiStreamMode Mode`
-
-Note that when using the override list, be aware that a Mode setting of ‘Discrete’ cannot be overridden. If the Mode is set to ‘Discrete’ a null value is returned for the entire event. If a ‘Discrete’ setting is desired for one of the type properties and a different setting (e.g. StepwiseContinuousLeading) is desired for other properties within the type, make sure to set the Mode to the StepwiseContinuousLeading and use the override list to set the other property to Discrete. 
-
-Without the overrides, properties will get the interpolation behavior defined by the Mode field of the Stream Behavior.
-
-The code here shows the definition and creation of a simple QiStreamBehavior:
+The *Override* object has the following structure:
 
 ```
-String behaviorid = “myFirstBehavior”;
-QiStreamBehavior simpleBehavior = new QiStreamBehavior()
-{
-	Id = behaviorId,
-        Mode = QiStreamMode.StepwiseContinuousLeading,
-};
-_service.GetOrCreateBehavior(createdBehavior);
+string QiTypePropertyId
+QiStreamMode Mode
 ```
 
-Once the stream behavior is defined, the user can apply the behavior to a stream as shown here:
+Note that when using the override list the *Mode* setting of Discrete cannot be overridden. If the *Mode* is set to Discrete a null value is returned for the entire event. If a Discrete setting is desired for one of the types within a stream and a different setting (e.g. StepwiseContinuousLeading) is desired for other properties within the stream, set the *Mode* to StepwiseContinuousLeading and use the override list to set the desired property to Discrete. 
 
-```
-string streamId = "MyFirstStream";
-string streamType = " mySimpleType ";
-QiStream stream1 = new QiStream()
-{
-	Id = streamId,
-	TypeId = streamType,
-	BehaviorId = “MyFirstBehavior”
-}
-_service.GetOrCreateStream(stream1);
-```
-
-
-
-
-
-------------------------------------------------
-
-
-
-
-
-
-## Additional stream behavior topics
-
-### Interpolation
-When the Stream Behavior is set to ‘Continuous’ (or left at the default value which is also ‘Continuous’) read methods (Such as `GetValue( )`) attempt return an interpolated value for indexes that land between to existing data events in a stream. This cannot always be done (e.g. when the type is not ‘numeric’)
-
-This chart describes how the Default Continuous Mode setting effects indexes between data in a stream:
-
-__Stream Behavior Mode = Default (Continuous)__
-
-|`Type`|Result for an index between data in a stream|Comment|
-|---|---|---|
-|Numeric Types|Interpolated\*|Rounding is done as needed for integer types|
-|Time related Types|Interpolated|DateTime, DateTimeOffset, TimeSpan|
-|Nullable Types|Returns ‘null’|Cannot reliably interpolate due to possibility of a null value
-|Array and List Types|Returns ‘null’||
-|String Type|Returns ‘null’||
-|Boolean Type|Returns value of nearest index||
-|Enumeration Types|Returns Enum value at 0|This may have a value for the enumeration|
-|GUID|||
-|Version|Returns ‘null’||
-|IDictionary or Ienumerable|Returns ‘null’||
-
-*When extreme values are involved in an interpolation (e.g. Decimal.MaxValue) the call may result in a ‘BadRequest’ exception if the interpolation cannot be completed successfully.
-
-## Qi Stream Behavior Methods
-
-### DeleteBehavior
+## DeleteBehavior
 *_Qi Client Library_*
 ```
 void DeleteBehavior(string behaviorId);
@@ -174,16 +159,17 @@ DELETE Qi/Behaviors/{behaviorId}
 ```
 
 **Parameters**
-`behaviorId` -- id of the behavior to delete; the behavior must not be associated with any streams
+
+*behaviorId*: Id of the behavior to delete; the behavior must not be associated with any streams
 
 **Security**
-Allowed by Administrator account
+Allowed by administrator account
 
 **Operation**
 Deletes the specified behavior
 Stream Behaviors objects that are still associated with a stream cannot be deleted
 
-### GetBehavior
+## GetBehavior
 *_Qi Client Library_*
 ```
 QiStreamBehavior GetBehavior(string behaviorId);
@@ -195,15 +181,16 @@ GET Qi/Behaviors/{behaviorId}
 ```
 
 **Parameters**
-`behaviorId` -- id of the behavior definition to retrieve
+
+*behaviorId*: Id of the behavior definition to retrieve
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
 Gets a QiStreamBehavior object from service
 
-### GetBehaviors
+## GetBehaviors
 *_Qi Client Library_*
 ```
 IEnumerable<QiStreamBehavior> GetBehaviors();
@@ -216,15 +203,16 @@ GET Qi/Behaviors
 ```
 
 **Parameters**
+
 None
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
 Returns IEnumerable of all behavior objects
 
-### GetOrCreateBehavior
+## GetOrCreateBehavior
 *_Qi Client Library_*
 ```
 QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
@@ -238,16 +226,17 @@ POSTQi/Behaviors
 Content is serialized `QiStreamBehavior` entity
 
 **Parameters**
-`entity` -- a QiStreamBehavior object to add to the Qi Service
+
+*entity*: A QiStreamBehavior object to add to Qi
 
 **Security**
-Allowed by Administrator account
+Allowed by administrator account
 
 **Operation**
 Creates a QiStreamBehavior (or returns it if it already exists)
-If `entity` already exists on the server by `Id`, that existing behavior is returned to the caller unchanged
+If *entity* already exists on the server by *Id*, that existing behavior is returned to the caller unchanged
 
-### UpdateBehavior
+## UpdateBehavior
 *_Qi Client Library_*
 ```
 void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
@@ -260,8 +249,10 @@ PUT Qi/Behaviors/{behaviorId}
 Content is a serialization of the behavior to update
 
 **Parameters**
-`behaviorId` -- identifier of the stream behavior to update
-`entity` -- updated stream behavior 
+
+*entity*: Updated stream behavior 
+
+*behaviorId*: Identifier of the stream behavior to update
 
 **Security**
 Allowed by Administrator account
