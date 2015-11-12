@@ -88,7 +88,7 @@ __*Mode* = Continuous or Default__
 |Version|Returns ‘null’||
 |IDictionary or Ienumerable|Returns ‘null’||
 
-			*When extreme values are involved in an interpolation (e.g. Decimal.MaxValue) the call may result in a BadRequest exception if the interpolation cannot be completed successfully.
+*When extreme values are involved in an interpolation (e.g. Decimal.MaxValue) the call may result in a BadRequest exception if the interpolation cannot be completed successfully.
 
 ##Extrapolation
 
