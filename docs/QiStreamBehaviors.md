@@ -19,7 +19,7 @@ __Naming Rules for *QiStreamBehavior Id*__
 
 Stream behavior objects are always referenced by the *Id* property. A Stream can be changed to use a different stream behavior or the stream behavior itself can be changed.
 
-__Methods effected by *WiStreamBehavior*__
+__Methods effected by *QiStreamBehavior*__
 
 The following Read Methods are effected by the Stream Behavior:
 
