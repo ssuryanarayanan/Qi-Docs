@@ -5,7 +5,7 @@ QiStreamBehaviors dictate how data read operations will be performed. For exampl
 |Id|String|Unique identifier used to reference this behavior|
 |Name|String|Optional descriptor|
 |Mode|QiStreamMode|Interpolation behavior setting to all value properties (unless overridden by Override list)|
-|Overrides|IList<QiStreamBehaviorOverride>|A list of QiStreamBehaviorOverride items used to set a different interpolation behavior than the mode to a type property|
+|Overrides|IList&lt;QiStreamBehaviorOverride&gt;|A list of QiStreamBehaviorOverride items used to set a different interpolation behavior than the mode to a type property|
 |ExtrapolationMode|QiStreamExtrapolation|Controls extrapolation behavior for the stream|
 
 ## Stream Behavior Mode
