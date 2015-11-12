@@ -1,111 +1,12 @@
-Qi Stream Behaviors are applied to streams to affect how certain data read operations will be performed. The Stream Behavior object effects if interpolation and\or extrapolation will be done when the index of a read operation falls between, before or after stream data. 
+QiStreamBehaviors dictate how data read operations will be performed. For example, QiStreamBehavior defines whether or not interpolation and\or extrapolation will be applied when the index of a read operation falls between, before or after stream data. QiStreamBehavior is an object that the user defines and includes in the definition of a stream (similar to how a QiType is defined for a QiStream).
 
-A Stream Behavior is an object that the user defines and includes in the definition of a stream (similar to how a Type is defined at set for a stream).
-
-The code here shows the definition and creation a simple Stream Behavior object:
-
-```
-String behaviorid = “myFirstBehavior”;
-QiStreamBehavior simpleBehavior = new QiStreamBehavior()
-{
-	Id = behaviorId,
-        Mode = QiStreamMode.StepwiseContinuousLeading,
-};
-_service.GetOrCreateBehavior(createdBehavior);
-```
-
-When creating the stream, the user can apply the behavior as shown here:
-
-```
-string streamId = "MyFirstStream";
-string streamType = " mySimpleType ";
-QiStream stream1 = new QiStream()
-{
-	Id = streamId,
-	TypeId = streamType,
-	BehaviorId = “MyFirstBehavior”
-}
-_service.GetOrCreateStream(stream1);
-```
-
-The value of the Stream Behavior ‘Mode’ determines how the stream will interpolate data (i.e. how it will respond to requests for data in-between existing indexes). The table here indicates how a stream will behave for given Mode values:
-
-|Mode|Operation|
-|---|---|
-|Default|= Continuous|
-|Continuous|Interpolates the data using previous and next index values\*|
-|StepwiseContinuousLeading|Returns the data from the previous index|
-|StepwiseContinuousTrailing|Returns the data from the next index|
-|Discrete|Returns ‘null’|
- 			*Certain value types cannot be interpolated. See Stream Behavior for these special cases
-
-The Stream Behavior object can also be used to give different Mode settings to different data properties within the stream’s type. This allows you to for example have a ‘Discrete’ mode setting for one property and a ‘Continuous’ Mode setting for another. This is done with the Overrides list.
-
-In addition to interpolations settings, the Stream Behavior also has a property called ‘QiStreamExtrapolation’ that along with the Mode will determine how a stream will respond to requests for an index that precedes or follows all of the data in the stream. ‘QiStreamExtrapolation’ acts as a master switch to determine whether extrapolation will be done and at which end of the data. 
-
-‘QiStreamExtrapolation’ can be set to one of these values:
-* All (default)
-* None
-* Forward
-* Backward
-
-A QiStreamExtrapolation value setting of ‘None’ will turn ‘off’ all extrapolation (for indexes both before and after all the data in the stream). The ‘Forward’ setting will extrapolate for indexes prior to the stream data, but will not extrapolate at indexes after all the data. Conversely the ‘Backward’ setting will do extrapolation at the end of the data, but not at indexes at the front of stream data.
-
-The following table shows stream behavior for QiStreamExtrapolation values:
-
-|QiStreamExtrapolation|Index before data|Index after data|
+|Object|Type|Details|
 |---|---|---|
-|All|Extrapolation activated|Extrapolation activated|
-|None|No extrapolation|No extrapolation|
-|Forward|Extrapolation activated|No extrapolation|
-|Backward|No extrapolation|Extrapolation activated|
-
-When the QiStreamExtrapolation setting allows for extrapolation, then the value returned will be determined by the Stream Behavior Mode setting. This table shows what occurs when the Mode is ‘Continuous’:
-
-|QiStreamExtrapolation|Index before data|Index after data|
-|All|Returns first data value|Returns last data value|
-|None|No extrapolation|No extrapolation|
-|Forward|Returns first data value|No extrapolation|
-|Backward|No extrapolation|Returns last data value|
-
-For best results, see the documentation on the read method you are using regarding the effect of the Stream Behavior.
-
-Note that if you do not assign a specific Stream Behavior object to a stream, it will assume the default behavior which is Mode = ‘Continuous’ (with no Overrides) and a QiStreamExtrapolation setting of ‘All’. 
-
-###Methods effected by stream behavior
-The Stream Behavior setting effects the *GetValue( )* and *GetValues( )* methods as described above.
-
-The *GetWindowValues( )*  and *GetRangeValues( )* calls are also effected by the Stream Behavior when the indexes used fall before, after or between data indexes.
-
-A Stream Behavior object must first be defined and then can be applied to a stream when it is created (`GetOrCreateStream` method) or updated (`UpdateStream` method). 
-
-Stream Behavior objects are always referenced by the `Id` property.
-
-A Stream can be changed to use a different Stream Behavior or the Stream Behavior itself can be changed.
-
-The default behavior for a stream (when a defined stream behavior is not applied to the stream) is `Mode = ‘Continuous’` and `ExtrapolationMode = ‘All’`.
-
-The following Read Methods are effected by the Stream Behavior:
-*GetValue( )*
-*GetValues( )*
-*GetWindowValues* (when Boundary is set to ExactOrCalculated)
-*GetRangeValues* (when Boundary is set to ExactOrCalculated)
-
-## Qi Stream Behavior Object
-
-```
-string Id
-string Name
-QiStreamMode Mode
-IList<QiStreamBehaviorOverride> Overrides
-QiStreamExtrapolation ExtrapolationMode
-```
-
-`Id` -- Unique identifier used to reference this behavior
-`Name` -- Optional descriptor
-`Mode` -- Interpolation behavior setting to all ‘value’ properties (unless overridden by Override list)
-`Overrides` -- A list of `QiStreamBehaviorOverride items`, which is used to set a different Interpolation behavior than the Mode to a Type property
-`ExtrapolationMode` -- Controls extrapolation behavior for the stream
+|Id|String|Unique identifier used to reference this behavior|
+|Name|String|Optional descriptor|
+|Mode|QiStreamMode|Interpolation behavior setting to all value properties (unless overridden by Override list)|
+|Overrides|IList<QiStreamBehaviorOverride>|A list of QiStreamBehaviorOverride items used to set a different interpolation behavior than the mode to a type property|
+|ExtrapolationMode|QiStreamExtrapolation|Controls extrapolation behavior for the stream|
 
 ## Stream Behavior Mode
 When certain Qi Read methods (such as *GetValue( )* and *GetValues( )* are given an index that lands between two values in a stream, it is the Stream Behavior Mode that will determine what values will be retrieved. 
@@ -133,6 +34,82 @@ The Override field of the Stream Behavior is made up of a list of `QiStreamBehav
 Note that when using the override list, be aware that a Mode setting of ‘Discrete’ cannot be overridden. If the Mode is set to ‘Discrete’ a null value is returned for the entire event. If a ‘Discrete’ setting is desired for one of the type properties and a different setting (e.g. StepwiseContinuousLeading) is desired for other properties within the type, make sure to set the Mode to the StepwiseContinuousLeading and use the override list to set the other property to Discrete. 
 
 Without the overrides, properties will get the interpolation behavior defined by the Mode field of the Stream Behavior.
+
+The code here shows the definition and creation of a simple QiStreamBehavior:
+
+```
+String behaviorid = “myFirstBehavior”;
+QiStreamBehavior simpleBehavior = new QiStreamBehavior()
+{
+	Id = behaviorId,
+        Mode = QiStreamMode.StepwiseContinuousLeading,
+};
+_service.GetOrCreateBehavior(createdBehavior);
+```
+
+Once the stream behavior is defined, the user can apply the behavior to a stream as shown here:
+
+```
+string streamId = "MyFirstStream";
+string streamType = " mySimpleType ";
+QiStream stream1 = new QiStream()
+{
+	Id = streamId,
+	TypeId = streamType,
+	BehaviorId = “MyFirstBehavior”
+}
+_service.GetOrCreateStream(stream1);
+```
+
+The value of the stream behavior *Mode* determines how the stream will interpolate data (respond to requests for data in-between existing indexes.) The table below indicates how a stream will behave for the mode values listed:
+
+|Mode|Operation|
+|---|---|
+|Default|Continuous|
+|Continuous|Interpolates the data using previous and next index values\*|
+|StepwiseContinuousLeading|Returns the data from the previous index|
+|StepwiseContinuousTrailing|Returns the data from the next index|
+|Discrete|Returns ‘null’|
+ 			*Certain value types cannot be interpolated
+
+Stream behavior can also be used to give different mode settings to different data properties within the stream’s type using the overrides list. For example, this allows for a *discrete* mode setting for one property and a *continuous* mode setting for another.
+
+In addition to interpolations settings, stream behavior is also used to define how the stream will extrapolate data. QiStreamExtrapolation acts as a master switch to determine whether extrapolation will be done and at which end of the data. When defined, stream extrapolation works with the mode to determine how a stream will respond to requests for an index that precedes or follows all of the data in the stream. 
+
+The following table shows stream behavior for QiStreamExtrapolation values:
+
+|QiStreamExtrapolation|Index before data|Index after data|
+|---|---|---|
+|All|Extrapolation activated|Extrapolation activated|
+|None|No extrapolation|No extrapolation|
+|Forward|Extrapolation activated|No extrapolation|
+|Backward|No extrapolation|Extrapolation activated|
+
+When the QiStreamExtrapolation setting allows for extrapolation, then the value returned will be determined by the stream behavior mode setting. This table shows what occurs when the mode is *Continuous*:
+
+|QiStreamExtrapolation|Index before data|Index after data|
+|All|Returns first data value|Returns last data value|
+|None|No extrapolation|No extrapolation|
+|Forward|Returns first data value|No extrapolation|
+|Backward|No extrapolation|Returns last data value|
+
+For best results, see the documentation on the read method you are using regarding the effect of the stream behavior.
+
+Note that if you do not assign a specific Stream Behavior object to a stream, it will assume the default behavior which is mode = *continuous* (with no overrides) and a *QiStreamExtrapolation* = *All*. 
+
+##Methods effected by stream behavior
+Stream behavior objects are always referenced by the *Id* property. A Stream can be changed to use a different stream behavior or the stream behavior itself can be changed.
+
+The following Read Methods are effected by the Stream Behavior:
+
+|Method|Details|
+|---|---|
+|*GetValue( )*||
+|*GetValues( )*||
+|*GetWindowValues*|When Boundary is set to ExactOrCalculated|
+|*GetRangeValues*|When Boundary is set to ExactOrCalculated|
+
+------------------------------------------------
 
 ##Stream behavior `QiStreamExtrapolation`
 When the index of a *GetValue( )* (or *GetValues( )*) read falls before or after all of the data in a stream, the QIStreamExtrapolation setting acts as a master switch which determines whether or not extrapolation will be done. If extrapolation is done, the setting of the Stream Behavior Mode determines the value included. 
