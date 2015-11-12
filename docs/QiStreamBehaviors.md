@@ -25,8 +25,8 @@ __Methods effected by *QiStreamBehavior*__
 |---|---|
 |[*GetValue( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue)||
 |[*GetValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues)||
-|[*GetWindowValues*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues)|When Boundary is set to ExactOrCalculated|
-|[*GetRangeValues*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues)|When Boundary is set to ExactOrCalculated|
+|[*GetWindowValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues)|When Boundary is set to ExactOrCalculated|
+|[*GetRangeValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues)|When Boundary is set to ExactOrCalculated|
 
 ##Interpolation
 
