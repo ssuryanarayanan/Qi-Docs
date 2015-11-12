@@ -3,7 +3,7 @@ A QiStream is the fundamental unit of storage in Qi. Each stream represents an o
 The following table defines the required and optional QiStream objects:
 
 |Object|Type|Details|
-|---|---|
+|---|---|---|
 |Id|String|Required Id for referencing the stream|
 |Name|String|Optional name|
 |Description|String|Optional description text|
