@@ -25,10 +25,10 @@ The following Read Methods are effected by the Stream Behavior:
 
 |Method|Details|
 |---|---|
-|*GetValue( )*||
-|*GetValues( )*||
-|*GetWindowValues*|When Boundary is set to ExactOrCalculated|
-|*GetRangeValues*|When Boundary is set to ExactOrCalculated|
+|[*GetValue( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue)||
+|[*GetValues( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues)||
+|[*GetWindowValues*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues)|When Boundary is set to ExactOrCalculated|
+|[*GetRangeValues*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues)|When Boundary is set to ExactOrCalculated|
 
 ##Interpolation
 
