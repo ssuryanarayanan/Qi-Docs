@@ -62,7 +62,7 @@ string index = DateTime.Now.ToString(“o”);
 var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
 ```
 
-This next example does the same thing, while illustrating the use of the generic overload allowing DateTime to be used directly as the index instead of a string:
+The next example does the same thing, while illustrating the use of the generic overload allowing DateTime to be used directly as the index instead of a string:
 
 ```
 searchMode = QiSearchMode.ExactOrPrevious;
