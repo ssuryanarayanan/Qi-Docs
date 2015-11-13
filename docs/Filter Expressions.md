@@ -1,8 +1,8 @@
-Filter expressions can be included in overloads for the GetRangeValues( ) or GetWindowValues() methods. The filter is applied to the events that are found by the call, such that the user can affect which events are returned (i.e. conditionally filter out certain events).  
+Filter expressions can be included in overloads for *GetRangeValues( )* and *GetWindowValues( )*. The filter expression is applied to events returned such that the user can conditionally filter out certain events.
 
-## QiTypeCodes supported in filter expressions
+## QiTypeCodes supported
 
-Fields of the following types can be used within Filter Text.
+The following types are supported for use within a filter expression:
 
 - Enum
 - Boolean
@@ -22,7 +22,9 @@ Fields of the following types can be used within Filter Text.
 - ULong	(Uint64)
 - UShort	(Uint16)
 
-## QiTypeCodes not supported in filter expressions
+## QiTypeCodes not supported
+
+The following types are not supported for use within a filter expression:
 
 - Array
 - IEnumerable
@@ -36,9 +38,11 @@ Fields of the following types can be used within Filter Text.
 - NullableDateTime
 - TimeSpan
 
-## Logical operators supported in filter expressions
+## Logical operators supported
 
-| operator | Comment |
+The following logical operators are supported for use within a filter expression:
+
+| Operator | Comment |
 | -------- | ------- |
 | eq | Equal to |
 | ne | Not equal |
@@ -52,9 +56,9 @@ Fields of the following types can be used within Filter Text.
 | not | Not logical operator |
 |-|Negation|
 
-### Logical Operator Examples
+**Logical Operator Examples**
 
-These examples assume that the event Qi Type includes a field named ‘Value’ of type double. 
+These examples assume that the event Qi Type includes a field named ‘Value’ of type double:
 - "Value eq 1.0"	
 - "Value ne 15.6"
 - "Value ge 5.0"
@@ -65,7 +69,9 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "Value gt 6.0 or Value lt 2.0"
 - "not (Value eq 1.0)"
 
-## Math functions
+## Math functions supported
+
+The following math functions are supported for use within a filter expression:
 
 | function | Comment |
 | -------- | ------- |
@@ -78,7 +84,7 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 | floor |Rounds down to nearest numeric component without a decimal|
 | ceiling |Rounds up to nearest numeric component without a decimal|
 
-### Math Function Examples
+**Math Function Examples**
 
 These examples assume that the event Qi Type includes a field named ‘Value’ of type double. 
 - "Value add 3.0 gt 5.0"
@@ -91,9 +97,9 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "floor(Value) eq 15"
 - "ceiling(Value) eq 16"
 
-## String functions supported in filter expressions
+## String functions supported
 
-String operations are case sensitive. Character index in a string is 0-based.
+String operations are case sensitive. Character index in a string is 0-based. The following string functions are supported for use within a filter expression:
 
 | function | Comment |
 |---|---|
@@ -109,9 +115,9 @@ String operations are case sensitive. Character index in a string is 0-based.
 | concat | Concatenate strings together |
 | replace | Replace one set of characters with another |
 
-###String function examples
+**String function examples**
 
-These examples assume that the event Qi Type includes a field named ‘sValue’ of type string.
+These examples assume that the event Qi Type includes a field named ‘sValue’ of type string:
 
 |Example|Result|
 |---|---|
@@ -127,7 +133,9 @@ These examples assume that the event Qi Type includes a field named ‘sValue’
 |concat(sValue,'xyz') eq 'dataValue_7xyz'|add characters to sValues and compare to ‘dataValue_7xyz’|
 |replace(sValue,'L','D') eq 'Dog1'|replace any ‘L’ in sValue with ‘D’ and compare to ‘Dog1’|
 
-## DateTime functions supported in filter expressions
+## DateTime functions supported
+
+The following DateTime functions are supported for use within a filter expression:
 
 | Function | Comment |
 | -------- | ------- |
@@ -138,9 +146,9 @@ These examples assume that the event Qi Type includes a field named ‘sValue’
 | minute | Get minute value from DateTime |
 | second | Get second value from DateTime |
 
-###DateTime Function Examples
+**DateTime Function Examples**
 
-These examples assume that the event Qi Type includes a field named ‘TimeId’ of type DateTime.
+These examples assume that the event Qi Type includes a field named ‘TimeId’ of type DateTime:
 
 - "year(TimeId) eq 2015"
 - "month(TimeId) eq 11"
@@ -149,7 +157,9 @@ These examples assume that the event Qi Type includes a field named ‘TimeId’
 - "minute(TimeId) eq 5"
 - "second(TimeId) eq 3"
 
-##TimeSpan functions supported in filter expressions
+##TimeSpan functions supported
+
+The following TimeSpan functions are supported for use within a filter expression:
 
 | function | Comment |
 | -------- | ------- |
@@ -159,10 +169,10 @@ These examples assume that the event Qi Type includes a field named ‘TimeId’
 | minutes | Get minute value from TimeSpan |
 | seconds | Get second value from TimeSpan |
 
-###TimeSpan Function Examples
+**TimeSpan Function Examples**
 
 These examples assume that the event Qi Type includes a field named ‘TimeSpanValue’ of type 
-TimeSpan.
+TimeSpan:
 
 - "years(TimeSpanValue) eq 1"
 - "days(TimeSpanValue) eq 22"
