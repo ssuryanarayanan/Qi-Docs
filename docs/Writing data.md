@@ -266,7 +266,7 @@ Content is serialized list of replacement values
 Allowed by administrator account.
 
 **Operation**
-Writes `items` over existing events in the specified stream. Throws an exception if any index does not have a value to be replaced.
+Writes *items* over existing events in the specified stream. Throws an exception if any index does not have a value to be replaced.
 If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index that caused the issue and the streamId are included in the error response.
 
 There are also overloads of the *ReplaceValues( )* method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
@@ -331,7 +331,7 @@ Overloads for several of the QiValue methods can be used to act upon multiple st
 
 
 ##Write execption handling
-If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
+If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred will be identified in the exception.
 
 For example:
 
