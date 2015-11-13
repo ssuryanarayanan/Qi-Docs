@@ -44,7 +44,7 @@ Several of Qi’s read methods have options which assist you reading sequentiall
 
 The *GetRangeValues( )* method also has overloads that include a ‘skip’ parameter which allows you to retrieve make multiple calls and retrieve different sets of data after a specified time stamp.
 
-## FindDistinctValue
+## FindDistinctValue( )
 *_Qi Client Library_*
 ```
 T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
@@ -108,7 +108,7 @@ var tupleId = new Tuple<DateTime, int>(DateTime.Now, 0);
 var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(streamId, tupleId, searchMode);
 ```
 
-##GetDistinctValue
+##GetDistinctValue( )
 *_Qi Client Library_*
 ```
 T GetDistinctValue<T>(string streamId, string index);
@@ -158,7 +158,7 @@ Can be used to supply the index of the call as a tuple (for compound indexes).
 See the *FindDistinctValue* examples for an illustration of this.
 
 
-## GetFirstValue
+## GetFirstValue( )
 *_Qi Client Library_*
 ```
 T GetFirstValue<T>(string streamId);
@@ -200,7 +200,7 @@ Allowed by Administrator and User accounts
 **Operation**
 Returns the last data event in the stream. Returns null if the stream has no data (no exception thrown).
 
-##GetRangeValues
+##GetRangeValues( )
 *_Qi Client Library_*
 ```
 IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count);
@@ -314,7 +314,7 @@ When the startIndex falls between data:
 |ContinuousLeading|Event is calculated using the index and previous event values|
 |ContinuousTrailing|Event is calculated using the index and next event values|
 
-## GetValue
+## GetValue( )
 *_Qi Client Library_*
 ```
 T GetValue<T>(string streamId, string index);
@@ -369,7 +369,7 @@ This overload:	**T GetValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);**
 Can be used to supply the index of the call as a tuple (for compound indexes).
 See the FindDistinctValue examples for an illustration of this.
 
-##GetValues
+##GetValues( )
 *_Qi Client Library_*
 ```
 IEnumerable<T> GetValues<T>(string streamId, IEnumerable<string> index);
@@ -411,7 +411,7 @@ For the `GetValues( )` overloads that include a startIndex, endIndex and count, 
 For the `GetValues( )` overloads that include the filterExpression parameters are used to create a list of indexes that match the OData filter text used.
 More information on OData Filter Expressions can be found in Advanced Topics.
 
-##GetWindowValues
+##GetWindowValues( )
 *_Qi Client Library_*
 ```
 IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex);
