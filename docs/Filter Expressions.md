@@ -3,6 +3,7 @@ Filter expressions can be included in overloads for *GetRangeValues( )* and *Get
 ## QiTypeCodes
 
 **Supported**
+
 The following types are supported for use within a filter expression:
 
 - Enum
@@ -24,6 +25,7 @@ The following types are supported for use within a filter expression:
 - UShort	(Uint16)
 
 **Not Supported**
+
 The following types are not supported for use within a filter expression:
 
 - Array
@@ -41,6 +43,7 @@ The following types are not supported for use within a filter expression:
 ## Logical operators
 
 **Supported**
+
 The following logical operators are supported for use within a filter expression:
 
 | Operator | Comment |
@@ -73,6 +76,7 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 ## Math functions
 
 **Supported**
+
 The following math functions are supported for use within a filter expression:
 
 | function | Comment |
@@ -102,6 +106,7 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 ## String functions
 
 **Supported**
+
 String operations are case sensitive. Character index in a string is 0-based. The following string functions are supported for use within a filter expression:
 
 | function | Comment |
@@ -139,6 +144,7 @@ These examples assume that the event Qi Type includes a field named ‘sValue’
 ## DateTime functions
 
 **Supported**
+
 The following DateTime functions are supported for use within a filter expression:
 
 | Function | Comment |
@@ -164,6 +170,7 @@ These examples assume that the event Qi Type includes a field named ‘TimeId’
 ##TimeSpan functions
 
 **Supported**
+
 The following TimeSpan functions are supported for use within a filter expression:
 
 | function | Comment |
