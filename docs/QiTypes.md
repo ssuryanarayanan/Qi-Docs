@@ -154,6 +154,10 @@ Allowed by Administrator account
 Updates a type’s definition
 A type cannot be updated if there are existing streams associated with it
 
+## Compound Indexes
+
+When defining a QiType the index property to be used to sequence the data must be defined by the user in the type definition. Often a single index, such as DateTime, is used, but for more complex scenarios Qi allows multiple indexes to be defined in a type. These indexes are concatenated together to form a compound index. The Qi REST API methods that use tuples were created to assist the user in using compound indexes.
+
 ##Supported QiTypes
 
 The following are explicitely supported types that can be used when creating a QiType:
