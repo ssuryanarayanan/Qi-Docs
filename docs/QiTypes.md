@@ -9,7 +9,7 @@ The following table defines the required and optional QiType objects:
 |Id|String|Required Id for referencing the type|
 |Name|String|Optional name|
 |Description|String|Optional description text|
-|QiTypeCode|QiTypeCode|Defines teh type of the QiType|
+|QiTypeCode|QiTypeCode|Defines the type|
 
 __Rules for typeId__
 
