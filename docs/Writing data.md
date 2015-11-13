@@ -256,7 +256,7 @@ PUT Qi/Streams/{streamId}/Data/ReplaceValues
 ```
 Content is serialized list of replacement values
 
-**Parameters*
+**Parameters**
 
 *streamId*: Stream identifier for the request
 
