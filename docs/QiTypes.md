@@ -10,6 +10,7 @@ The following table defines the required and optional QiType objects:
 |Name|String|Optional name|
 |Description|String|Optional description text|
 |QiTypeCode|QiTypeCode|Defines the type|
+|QiTypeProperty|Properties|List of QiTypeProperty items|
 
 __Rules for typeId__
 
@@ -104,7 +105,7 @@ Content is serialized QiType entity
 Allowed by administrator account
 
 **Operation**
-Returns a Qi Type object.
+Returns a Qi Type object
 If entity already exists on the service by Id, the existing type is returned to the caller unchanged. Otherwise, a new type definition is added to the Qi Service
 
 ## DeleteType( )
