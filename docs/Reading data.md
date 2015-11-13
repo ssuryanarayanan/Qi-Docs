@@ -124,11 +124,11 @@ Catch (exception e)
 
 **Overloads**
 
-*T GetDistinctValue<T, T1>(string streamId, T1 index);*
+**T GetDistinctValue<T, T1>(string streamId, T1 index);**
 
 Can be used to supply the index of the call as a different type. 
 
-*T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);*
+**T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);**
 
 Can be used to supply the index of the call as a tuple (for compound indexes). 
 
