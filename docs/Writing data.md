@@ -329,6 +329,33 @@ If any item fails to write, entire operation is rolled back and no events are wr
 
 Overloads for several of the QiValue methods can be used to act upon multiple streams with a single call. For more information on these operations refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/#methods-that-act-upon-multiple-streams).
 
+## Methods that effect multiple streams
+
+The Qi Client Library includes several methods that act upon multiple streams with the same call. These calls require the user to create a ‘QiValues’ list which indicates the streamId and data for each independent operation. 
+This example will write an event of Type1 to streamId1 (at a TimeId of ‘now’) and an event of Type2 to streamId2 (with a timestamp 1 second after ‘now’).  
+
+```
+  // create QiValues object to hold data to write
+  QiValues insertValuesItems = new QiValues();
+  var dataEvent1 = new Type1()
+  {
+    TimeId = DateTime.Now
+    Value = (double)1,1
+  };
+  insertValuesItems.Add<TestTypeClass>(streamId1, dataEvent1);
+
+  var dataEvent2 = new Type2()
+  {
+    TimeId = DateTime.Now.AddSeconds(1),
+    Value = (double)2.2
+  };
+  insertValuesItems.Add<TestTypeClass>(streamId2, dataEvent2);
+
+  _service.InsertValues(insertValuesItems);
+```
+
+There are overloads that act upon multiple streams for *ReplaceValues( )*  and *UpdateValues( )* in addition to the *InsertValues( )* overload illustrated above.
+
 
 ##Write execption handling
 If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred will be identified in the exception.
