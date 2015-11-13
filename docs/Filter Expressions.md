@@ -1,7 +1,8 @@
 Filter expressions can be included in overloads for *GetRangeValues( )* and *GetWindowValues( )*. The filter expression is applied to events returned such that the user can conditionally filter out certain events.
 
-## QiTypeCodes supported
+## QiTypeCodes
 
+**Supported**
 The following types are supported for use within a filter expression:
 
 - Enum
@@ -22,8 +23,7 @@ The following types are supported for use within a filter expression:
 - ULong	(Uint64)
 - UShort	(Uint16)
 
-## QiTypeCodes not supported
-
+**Not Supported**
 The following types are not supported for use within a filter expression:
 
 - Array
@@ -38,8 +38,9 @@ The following types are not supported for use within a filter expression:
 - NullableDateTime
 - TimeSpan
 
-## Logical operators supported
+## Logical operators
 
+**Supported**
 The following logical operators are supported for use within a filter expression:
 
 | Operator | Comment |
@@ -69,8 +70,9 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "Value gt 6.0 or Value lt 2.0"
 - "not (Value eq 1.0)"
 
-## Math functions supported
+## Math functions
 
+**Supported**
 The following math functions are supported for use within a filter expression:
 
 | function | Comment |
@@ -97,8 +99,9 @@ These examples assume that the event Qi Type includes a field named ‘Value’ 
 - "floor(Value) eq 15"
 - "ceiling(Value) eq 16"
 
-## String functions supported
+## String functions
 
+**Supported**
 String operations are case sensitive. Character index in a string is 0-based. The following string functions are supported for use within a filter expression:
 
 | function | Comment |
@@ -133,8 +136,9 @@ These examples assume that the event Qi Type includes a field named ‘sValue’
 |concat(sValue,'xyz') eq 'dataValue_7xyz'|add characters to sValues and compare to ‘dataValue_7xyz’|
 |replace(sValue,'L','D') eq 'Dog1'|replace any ‘L’ in sValue with ‘D’ and compare to ‘Dog1’|
 
-## DateTime functions supported
+## DateTime functions
 
+**Supported**
 The following DateTime functions are supported for use within a filter expression:
 
 | Function | Comment |
@@ -157,8 +161,9 @@ These examples assume that the event Qi Type includes a field named ‘TimeId’
 - "minute(TimeId) eq 5"
 - "second(TimeId) eq 3"
 
-##TimeSpan functions supported
+##TimeSpan functions
 
+**Supported**
 The following TimeSpan functions are supported for use within a filter expression:
 
 | function | Comment |
