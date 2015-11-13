@@ -2,6 +2,15 @@ A QiType is what Qi uses to store definable data types. A QiType consists of one
 
 Once a QiType is created it cannot be changed and can only be deleted if there are no streams associated with it.
 
+The following table defines the required and optional QiType objects:
+
+|Object|Type|Details|
+|---|---|---|
+|Id|String|Required Id for referencing the type|
+|Name|String|Optional name|
+|Description|String|Optional description text|
+|QiTypeCode|QiTypeCode|Defines teh type of the QiType|
+
 __Rules for typeId__
 
 1.	Case insensitive
