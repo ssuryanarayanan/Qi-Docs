@@ -15,6 +15,7 @@ Content is serialized event of type T
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *item*: Event to insert, where T is the type of the event and the stream
 
 **Security**
@@ -43,6 +44,7 @@ Content is serialized list of events of type T
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *items*: List of events to insert, where T is the type of the stream and events
 
 **Security**
@@ -70,7 +72,9 @@ Content is serialized patch property
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *selectExpression*: CSV list strings that indicates the event fields will be changed in stream events.
+
 *item*: Object with index and new values to patch in the stream
 
 **Security **
@@ -102,7 +106,9 @@ Content is serialized list of patch property values
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *selectExpression*: CSV list strings that indicates the event fields will be changed in stream events
+
 *items*: List which contain indexes and new values to patch in the stream
 
 **Security** 
@@ -133,6 +139,7 @@ DELETE Qi/Streams/{streamId}/Data/RemoveValue?index={index}
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *index*: String representation of the index in the stream to be deleted
 
 **Security**
@@ -162,6 +169,7 @@ DELETE Qi/Streams/{streamId}/Data/RemoveValues?index={index}
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *index*: List of indices at which to remove events in the stream
 
 **Security**
@@ -190,8 +198,11 @@ DELETE Qi/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&end
 ```
 
 **Parameters**
+
 *streamId*: Stream identifier for the request
+
 *startIndex*: String representation of the starting index value
+
 *endIndex*: String representation of the ending index value
 
 **Security**
@@ -219,6 +230,7 @@ Content is serialzied replacement object
 *Parameters*
 
 *streamId*: Identifier of the stream in which to replace value
+
 *item*: Item to replace existing stream event
 
 **Security** 
@@ -229,6 +241,7 @@ Writes an item over an existing event in the specified stream.
 Throws an exception if the stream does not have an event at the index to be replaced
 
 ##ReplaceValues( )
+
 *_Qi Client Library_*
 ```
 void ReplaceValues(IDictionary<string, IQiValues> items);
@@ -246,6 +259,7 @@ Content is serialized list of replacement values
 **Parameters*
 
 *streamId*: Stream identifier for the request
+
 *items*: List of new items to replace existing items in the stream
 
 **Security**
@@ -272,7 +286,9 @@ PUT Qi/Streams/{streamId}/Data/UpdateValue
 Content is serialized updated value
 
 **Parameters**
+
 *streamId*: Stream identifier for the request
+
 *item*: Event to write to the stream
 
 **Security**
@@ -301,6 +317,7 @@ Content is serialized list of updated values
 **Parameters**
 
 *streamId*: Stream identifier for the request
+
 *items*: Events to write to the stream
 
 **Security**
@@ -314,7 +331,7 @@ Overloads for several of the QiValue methods can be used to act upon multiple st
 
 
 ##Write execption handling
-If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
+If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred cwill be identified in the exception.
 
 For example:
 
