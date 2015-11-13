@@ -1,15 +1,9 @@
-###Generics and tuples
-All of the Read Methods have additional overloads that assist you with indexing into a stream when it is inconvenient 	or difficult to convert the index into a string.
-
-Using Generics, the overloads allow the caller to indicate the type of the index (for example DateTime) and then use 	this type for the index parameter(s) in the call. This is done instead of requiring the index be converted into a string.
+##Generics and tuples
+Many of the read methods in the Qi Client Library have additional overloads that assist with indexing into a stream when it is inconvenient or difficult to convert the index into a string. Using Generics, the overloads allow the caller to indicate the type of the index and then use the type for the index parameter(s) in the call.
 	
-Similarly the Read Methods have overloads that use Tuples that are accepted for the indexing instead of a string. 		Using a Tuple for the index make managing compound index calls easier to make. 
-	
-See the Advanced Topics for more information on Generics, Tuples and the use of Compound Indexes.
+Similarly the read methods have overloads that use Tuples that are also accepted for the indexing instead of a string.
 
-To read a specified number of events from a stream, starting at a predefined start index, the *GetRangeValues( )* method is a good choice. 
-
-This example returns a list of events (up to 100) from streamId starting 30 minutes ago:
+This example uses *GetRangeValues( )* to return a list of events (up to 100) from streamId starting 30 minutes ago:
 
 ```
 List< SimpleTypeClass > readEvents;
@@ -17,34 +11,10 @@ String startindex = DateTime.UtcNow.AddMinutes(-30).ToString("o");
 readEvents = _service.GetRangeValues< SimpleTypeClass >(streamId, startindex, 100).ToList();
 ```
 
-The *GetRangesValues( )* method (like many others in the library) have an assortment of overloads that allow you to tailor your calls for maximum effectiveness. For Example the *GetRangeValues( )* method  has overloads that allow data to be filtered according to a specified expression or returned the events in in reverse order.
-
-To read all of the events between a start and ending index, the *GetWindowValues( )* method and its overloads can be used. 
-
-The table below summarizes the read methods that are available:
-
-|Read Method|Description|
-|---|---|
-|FindDistinctValue( )|Returns the event found at a specified index or a ‘null’ if no data exists at the index|
-|GetDistinctValue( )|Returns the event found at a specified index or throws an exception if no data exists at the index|
-|GetValues( )\*|Returns a value from a specified index. Options allow for interpolation and extrapolation for indexes between, before or after the data in the stream|
-|GetValues( )\*|Returns a set of values using a specified set of indexes|
-|GetFirstValue( )|Returns the first (oldest) event from a stream|
-|GetLastValue( )|Returns the last (most recent) event from a stream|
-|GetRangeValues( )\*|Returns a set of events from a stream starting from a predefined start index|
-|GetWindowValues( )\*|Reads a set of events from a stream using a specified start and an end index|
-								
-								*methods effected by Stream Behaviors
-
-###Interpolation and extrapolation
-While using methods to read data from Qi, the indexes requested may land between, after or before the events in a stream. The *FindDistinctValue( )* and *GetDistinctValue( )* methods have a predefined outcome for these cases. The *FindDistinctValue( )* will return a ‘null’ when no event exists at the defined index, while the *GetDistinctValue( )* method will throw an exception. Other read methods that will use predefined stream settings to determine how to report when indexes land between, before or after data. These predefined settings are called Stream Behaviors and they determine when and how data is interpolated and extrapolated by certain read methods. Stream Behaviors are described in a later subsection of this document. Documentation for each read method will also indicate any pertinent interpolation or extrapolation information.
-
-###Reading through data in a stream
-Several of Qi’s read methods have options which assist you reading sequentially through the data in a stream. For Example the *GetWindowValues( )* method retrieves data between two indexes, but it also includes overloads which allow you to specific the maximum number of events you would like to receive from the call. When you use this *GetWindowValues( )* overload it return a set of events of the size requested, but also gives the caller a ‘continuation token’ which can be used on a subsequent *GetWindowValues( )* call to return the next set of sequential events in the stream.
-
-The *GetRangeValues( )* method also has overloads that include a ‘skip’ parameter which allows you to retrieve make multiple calls and retrieve different sets of data after a specified time stamp.
+*GetRangeValues( )* also has overloads that include a *skip* parameter which makes multiple calls and retrieves different sets of data after a specified time stamp.
 
 ## FindDistinctValue( )
+
 *_Qi Client Library_*
 ```
 T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
@@ -60,31 +30,33 @@ Task<T> FindDistinctValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, 
  ```
 
 **Parameters**
-`streamId` -- stream identifier for the request
-`index` -- string representation of the index value at which to search
-`mode` -- search mode (see *Operation* below)
+
+*streamId*: Stream identifier for the request
+
+*index*: String representation of the index value at which to search
+
+*mode*: Search mode (see **Operation** below)
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
 This method searches for data in a stream using the search mode defined. If a data is not found a null is returned.  
+The mode parameter determines how the search for data is executed:
 
-The (search) mode determines how the search for data is executed:
-
-|Search Mode|Action|
-|---|---|
-|1=Exact|Returns a data if found at the index, else null is returned|
-|2=ExactOrNext|Returns a data if found at the index or searches forward for the next index with data|
-|3=ExactOrPrevious|Returns a data if found at the index or searches for the first previous index with data|
-|4=Next|Searches forward (immediately after the index given) for the next index with data|
-|5=Previous|Searches for the first previous index with data starting immediately behind the index given|
+|Search Mode|Enumeration Value|Action|
+|---|---|---|
+|Exact|1|Returns a data if found at the index, else null is returned|
+|ExactOrNext|2|Returns a data if found at the index or searches forward for the next index with data|
+|ExactOrPrevious|3|Returns a data if found at the index or searches for the first previous index with data|
+|Next|4|Searches forward (immediately after the index given) for the next index with data|
+|Previous|5|Searches for the first previous index with data starting immediately behind the index given|
 
 **Examples**
 
-Assume a Type named *TestType* has been created (with a DateTime index field named TimeId field and a Double data field called ‘Value’). Assume that the stream identified by streamId was created with that type.
+Assume a type named "TestType" has been created (with a DateTime index parameter named "TimeId" and a double data parameter called "Value"). Assume that the stream identified by streamId was created with "TestType".
 
-This call will obtain the most recent event in the stream by starting at the index ‘Now’ and search backwards until it finds a value. Note if the stream is empty a null will be returned in readEvent:
+The following example will obtain the most recent event in the stream by starting at the index ‘Now’ and searching backwards until a value is found. Note if the stream is empty a null will be returned in readEvent:
 
 ```
 searchMode = QiSearchMode.ExactOrPrevious;
@@ -92,7 +64,7 @@ string index = DateTime.Now.ToString(“o”);
 var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
 ```
 
-This call does the same thing, but illustrates the use of the generic overload allowing DateTime to be used directly as the index (instead of a string):
+This next example does the same thing, while illustrating the use of the generic overload allowing DateTime to be used directly as the index instead of a string:
 
 ```
 searchMode = QiSearchMode.ExactOrPrevious;
@@ -100,7 +72,7 @@ DateTime indexDT = DateTime.Now;
 var  readEvent = _service.FindDistinctValue<TestType, DateTime>(streamId, indexDT, searchMode);
 ```
 
-If the type of the stream has a compound index (such as a DateTime and an Integer), then this call can be used using Tuples to indicate the index.
+The next example uses Tuples to indicate the index. This is useful for stream types with a compound index, such as a DateTime and an Integer. then this call 
 
 ```
 searchMode = QiSearchMode.ExactOrPrevious;
@@ -125,17 +97,20 @@ GET Qi/Streams/{streamId}/Data/GetDistinctValue?index={index}
 ```
 
 **Parameters**
-`streamId` -- stream identifier for the request
-`index` -- string representation of the index value at which to search
+
+*streamId*: Stream identifier for the request
+
+*index*: String representation of the index value at which to search
 
 **Security**
-Allowed by Administrator and User accounts
+Allowed by administrator and user accounts
 
 **Operation**
-This method returns an event from the specified stream at the specified index. An exception is thrown if no event exists at index.
+This method returns an event from the specified stream at the specified index
+An exception is thrown if no event exists at index
 
 **Examples**
-This call will obtain the event in the stream at the index defined by ‘Now’. If there is no event at that index an exception will be thrown:
+The following example will obtain the event in the stream at the index defined by ‘Now’. If there is no event at that index an exception will be thrown:
 
 ```
 string index = DateTime.Now.ToString(“o”);
@@ -149,16 +124,21 @@ Catch (exception e)
 }
 ```
 
-This overload:	**T GetDistinctValue<T, T1>(string streamId, T1 index);**
+**Overloads**
+
+*T GetDistinctValue<T, T1>(string streamId, T1 index);*
+
 Can be used to supply the index of the call as a different type. 
 See the *FindDistinctValue* examples for an illustration of this.
 
-This overload:	**T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);**
+*T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);*
+
 Can be used to supply the index of the call as a tuple (for compound indexes). 
 See the *FindDistinctValue* examples for an illustration of this.
 
 
 ## GetFirstValue( )
+
 *_Qi Client Library_*
 ```
 T GetFirstValue<T>(string streamId);
