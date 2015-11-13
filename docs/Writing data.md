@@ -77,7 +77,7 @@ Content is serialized patch property
 
 *item*: Object with index and new values to patch in the stream
 
-**Security **
+**Security**
 Allowed by administrator account
 
 **Operation**
@@ -227,7 +227,7 @@ PUT Qi/Streams/{streamId}/Data/ReplaceValue
 ```
 Content is serialzied replacement object
 
-*Parameters*
+**Parameters**
 
 *streamId*: Identifier of the stream in which to replace value
 
