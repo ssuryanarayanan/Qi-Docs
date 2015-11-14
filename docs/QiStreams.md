@@ -16,7 +16,7 @@ __Rules for QiStream *Id*:__
 
 1.	Case insensitive
 2.	Allows spaces
-3.	Cannot start or end with two underscores ("__")
+3.	Cannot start with two underscores ("__")
 4.	Cannot start or end with period (".")
 4.	Maximum of 260 characters
 5.	Cannot use the following characters: (\ / : ? # [ ] @ ! $ & ' ( ) * + , ; = %)
