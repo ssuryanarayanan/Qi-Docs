@@ -10,7 +10,7 @@ The following table defines the required and optional QiType objects:
 |Name|String|Optional name|
 |Description|String|Optional description text|
 |QiTypeCode|QiTypeCode|Defines the type|
-|QiTypeProperty|Properties|List of QiTypeProperty items|
+|Properties|IList&lt;QiTypeProperty&gt;|List of QiTypeProperty items|
 
 __Rules for typeId__
 
