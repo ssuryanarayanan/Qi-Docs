@@ -132,7 +132,7 @@ Can be used to supply the index of the call as a different type.
 
 Can be used to supply the index of the call as a tuple (for compound indexes). 
 
-See the [*FindDistinctValue( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#finddistinctvalue) examples for an illustration of these.
+See the [*FindDistinctValue( )*](http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue) examples for an illustration of these.
 
 
 ## GetFirstValue( )
@@ -219,7 +219,7 @@ GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip
 
 *startIndex*: String representation of the starting index value 
 
-*count*: Number of events to return
+*count*: Maximum number of events to return
 
 *reversed*: Order of event retrieval; true to retrieve events in reverse order 
 
@@ -233,7 +233,7 @@ GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip
 Allowed by administrator and user accounts
 
 **Operation**
-This call is used to obtain events from a stream based on a starting index and a requested number of events. The overloads allow the client to optionally specify search direction, number of events to skip over while getting collecting response, special boundary handling (for events near the startIndex) and an event filter.
+This call is used to obtain events from a stream based on a starting index and a requested number of events. The overloads allow the client to optionally specify search direction, number of events to skip over, special boundary handling for *startIndex*, and an event filter.  Events returned by *GetRangeValues( )* are stored events, not calculated events, with the exception of the starting event if ExactOrCalculated is specified for *boundaryType*.
 
 *GetRangeValues( )* will search FORWARD if the ‘reverse’ parameter is false and REVERSE if the ‘reverse’ parameter is true. For overloads that do not include the ‘reverse’ parameter, the default is FORWARD.
 
@@ -266,7 +266,7 @@ The table below indicates how the first value is determined for *GetRangeValues(
 The order of execution first determines the direction of the method and the starting event using the *BoundaryType*. Once the starting event is determined, the filterExpression is applied in the direction requested to determine potential return values. Then, *skip* is applied to pass over the specified number of events, including any calculated events. Finally, events up to the number specified by count are returned.
 
 The filter expression uses OData query language. Most of the query language is supported.
-More information on OData Filter Expressions can be found in [Filter expressions](https://qi-docs.readthedocs.org/en/latest/Filter%20Expressions/)
+More information on OData Filter Expressions can be found in [Filter expressions](http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/)
 
 **Calculated startIndex**
 When the startIndex for *GetRangeValues( )* lands before, after or in-between data in the stream, and the ExactOrCalculated *boundaryType* is used the stream behavior determines whether an additional ‘calculated’ event is created and returned in the response. 
@@ -362,7 +362,7 @@ Can be used to supply the index of the call as a different type
 
 Can be used to supply the index of the call as a tuple (for compound indexes)
 
-See the [*FindDistinctValue( )*](https://qi-docs.readthedocs.org/en/latest/Reading%20data/#finddistinctvalue) examples for an illustration of these.
+See the [*FindDistinctValue( )*](http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue) examples for an illustration of these.
 
 ##GetValues( )
 
@@ -393,24 +393,22 @@ GET Qi/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIn
 
 *streamId*: Stream identifier for the request
 
-*index*: String representation of the index value for GetValue or IEnumerable of index values requested for GetValues
+*index*: IEnumerable of index values at which to return calculated events
 
-*startIndex*: String representation of the starting index value for GetValues
+*startIndex*: String representation of the starting index value
 
-*endIndex*: String representation of the ending index value for GetValues
+*endIndex*: String representation of the ending index value
 
-*count*: Number of events to return for GetValues
+*count*: Number of equally-spaced calculated events to return within the *startIndex* and *endIndex* boundaries
 
 **Security **
 Allowed by administrator and user accounts
 
 **Operation**
-For *GetValues( )* overloads that include a streamId and IEnumberable index list, the call acts like multiple *GetValue( )* calls. Each index indicated in the IEnumberable list obtains a return event according to the rules described by *GetValues( )*.
-
-For the *GetValues( )* overloads that include a startIndex, endIndex and count, these parameters are used to create a list of indexes for which to obtain values. Events returned for each index in the created list are determined according to the rules described in the *GetValues( )* call.
+*GetValues( )* returns calculated events at the requested index values in *index*, or *count* number of evenly spaced calculated events between *startIndex* and *endIndex*.  For *GetValues( )* overloads that include a streamId and IEnumberable *index*, this call behaves like multiple *GetValue( )* calls. For the *GetValues( )* overloads that include *startIndex*, *endIndex* and *count*, these parameters are used to generate a list of indexes for which to obtain values. Events returned for each index are determined according to the QiStreamBehavior assigned to the stream being read.
 
 For *GetValues( )* overloads that include the filterExpression parameters are used to create a list of indexes that match the OData filter text used.
-More information on OData Filter Expressions can be found in [Filter expressions](https://qi-docs.readthedocs.org/en/latest/Filter%20Expressions/)
+More information on OData Filter Expressions can be found in [Filter expressions](http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/)
 
 ##GetWindowValues( )
 
@@ -446,7 +444,7 @@ GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex
 
 *streamId*: Stream identifier for the request
 
-*startIndex*: String representation of the starting index value, must be less than endIndex
+*startIndex*: String representation of the starting index value, must be less than *endIndex*
 
 *endIndex*: String representation of the ending index value
 
@@ -454,7 +452,7 @@ GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex
 
 *filterExpression*: OData filter expression
 
-*count*: Number of events to return
+*count*: Maximum of events to return within the specified index range. For paging through data.
 
 *continuationToken*: Continuation token for handling multiple return data sets
 
@@ -468,22 +466,21 @@ GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex
 Allowed by administrator and user accounts
 
 **Operation**
-Obtains stream data between 2 indices
+*GetWindowValues( )* returns stored events within a specified index range.  If *count* and *continuationToken* are used, up to *count* events are returned within the specified index range along with a continuation token that may be passed into a subsequent *GetWindowValues( )* call to obtain the next *count* events.  Note that *count* need not stay the same through multiple *GetWindowValues( )* calls with *continuationToken*.
 
-*boundaryType* has the following possible values:
+Boundary events at or near *startIndex* and *endIndex* are handled according to *boundaryType* or *startBoundaryType* and *endBoundaryType*, which have the following possible values:
 •	Exact
 •	ExactOrCalculated
 •	Inside
 •	Outside
 
-The *boundaryType* determines how to obtain the values at the border of the range defined by the startIndex and endIndex.  
 
 The table below indicates how the first value is determined for *GetWindowValues ( )* for the *startBoundaryType* shown:
 
 |*startBoundaryType*|First value obtained|
 |---|---|
 |Exact|The first value at or after the startIndex|
-|ExactOrCalculated|If a value exists at the startIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting|
+|ExactOrCalculated|If a value exists at the startIndex it is used, else a value is ‘calculated’ according to the stream's behavior setting|
 |Inside|The first value after the startIndex|
 |Outside|The first value before the startIndex|
 
@@ -492,13 +489,13 @@ This chart indicates how the last value is determined for *GetWindowValues( )* f
 |*endBoundaryType*|First value obtained|
 |---|---|
 |Exact|The first value at or before the endIndex|
-|ExactOrCalculated|If a value exists at the endIndex it is used, else a value is ‘calculated’ according to the Stream Behavior setting|
+|ExactOrCalculated|If a value exists at the endIndex it is used, else a value is ‘calculated’ according to the stream's behavior setting|
 |Inside|The first value before the endIndex|
 |Outside|The first value after the endtIndex|
 
 Calls against an empty stream will always return a single null regardless of boundary type used. 
 
-The filter expression uses OData syntax. More information on OData Filter Expressions can be found in [Filter expressions](https://qi-docs.readthedocs.org/en/latest/Filter%20Expressions/)
+The filter expression uses OData syntax. More information on OData Filter Expressions can be found in [Filter expressions](http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/)
 
 The select expression is a CSV list of strings that indicate which field of the stream type are being requested. By default all type fields are included in the response. Select may improve the performance of the call by avoiding management of the unneeded fields. Note that the index is always included in the returned results.
 
