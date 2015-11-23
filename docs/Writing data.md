@@ -329,7 +329,7 @@ If any item fails to write, entire operation is rolled back and no events are wr
 
 Overloads for several of the QiValue methods can be used to act upon multiple streams with a single call. For more information on these operations refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/#methods-that-act-upon-multiple-streams).
 
-##Write execption handling
+##Write exception handling
 If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred will be identified in the exception.
 
 For example:
