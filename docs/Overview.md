@@ -8,7 +8,7 @@ A Qi tenant is a self-contained entity within Qi and can be utilized to define 3
 
 ##Creating a type
 
-A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/).
+A QiType is made of one or more index properties and one more or more data properties. Index properties are used to put data into a sequence. DateTime is a common index property, but any native type can be used as an index as long as it allows for ordering of values. For information on compound indexes refer to [QiTypes](https://qi-docs.readthedocs.org/en/latest/QiTypes/#compound-indexes).
 
 Creating one or more types which define the structure of data is done by defining a QiType object and sending it to Qi via the [*GetOrCreateType( )*](https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype) method.
 
