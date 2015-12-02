@@ -53,8 +53,6 @@ Allowed by administrator account
 **Operation**
 Inserts the items into the specified stream. Will throw an exception if any index in items already has an event. If any individual index has a problem, the entire operation is rolled back and no insertions are made. The streamId and index that caused the issue is included in the error response.
 
-There are also overloads of the InsertValues method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
-
 ##PatchValue( )
 
 *_Qi Client Library_*
@@ -269,8 +267,6 @@ Allowed by administrator account.
 Writes *items* over existing events in the specified stream. Throws an exception if any index does not have a value to be replaced.
 If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index that caused the issue and the streamId are included in the error response.
 
-There are also overloads of the *ReplaceValues( )* method that allow the user to put a ‘batch’ of writes together and send data to multiple streams in the same operation. For more information see the Advanced Topics: ‘Methods that act upon Multiple Streams’ section.
-
 ##UpdateValue( )
 
 *_Qi Client Library_*
@@ -326,8 +322,6 @@ Allowed by administrator account
 **Operation**
 Writes items to the specified stream. Performs an insert or a replace, depending on whether an events already exists at the items indexes. 
 If any item fails to write, entire operation is rolled back and no events are written to the stream. The index that caused the issue is included in the error response.
-
-Overloads for several of the QiValue methods can be used to act upon multiple streams with a single call. For more information on these operations refer to [Advanced topics](https://qi-docs.readthedocs.org/en/latest/Advanced%20Topics/#methods-that-act-upon-multiple-streams).
 
 ##Write exception handling
 If a method that acts upon multiple data events has a problem carrying out the operation an exception is thrown and none of the list of elements is acted upon. For example [*InsertValues( )*](https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues) is called with a list of 100 events and one of the events uses an index at which there is already data present. An exception will be thrown and all of the events will be rolled back resulting in no inserts for the 100 events. The event at which the error occurred will be identified in the exception.
