@@ -15,7 +15,8 @@ __Rules for QiStreamBehavior *Id*__
 1.	Case Insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
-4.	Maximum of 260 characters
+4.	Cannot contain slash characters ("/" and "\")
+5.	Maximum of 260 characters
 
 Stream behavior objects are always referenced by the *Id* property. A stream can be changed to use a different stream behavior or the stream behavior itself can be changed after it is created/configured.
 
