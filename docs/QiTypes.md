@@ -17,7 +17,8 @@ __Rules for typeId__
 1.	Case insensitive
 2.	Allows spaces
 3.	Cannot start with two underscores ("__")
-4.	Maximum length of 260 characters
+4.	Cannot contain slash characters ("/" and "\")
+5.	Maximum length of 260 characters
 
 ## GetStreamType( )
 *_Qi Client Library_*
