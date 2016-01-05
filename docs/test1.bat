@@ -1,0 +1,1 @@
+for %%x in (*.md) do (pandoc -s -f markdown -t rst "%%x" -o "%%x.rst")
