@@ -8,6 +8,10 @@ Familiarization with Qi and its capabilities is easy. Introductory information s
 - If consuming the .NET Qi Client Libraries, you must be using tools capable of using the .NET 4.5.2 Runtimes in your enviroment
 - A Qi Preview tenant from OSIsoft and corresponding set of OAuth2 authentication keys
 
+The video below will help you get started with Qi:
+
+<a href="http://www.osisoft.com/Templates/item-abstract.aspx?id=13014" target="_blank"><img src="http://cdn.osisoft.com/corp/en/media/videos/Getting%20Started%20with%20Qi.jpg"/></a>
+
 ## Using the samples
 Code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
 
