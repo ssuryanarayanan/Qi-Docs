@@ -2,6 +2,7 @@ Qi is a cloud-based highly flexible sequential data historian that can be used t
 
 ## Getting started
 Familiarization with Qi and its capabilities is easy. Introductory information such as API refernces can be found in [Overview](https://qi-docs.readthedocs.org/en/latest/Overview/). In order to use the Qi REST API in your applications, make sure you have the following requirements:
+
 - A computer
 - A set of tools that you feel comfortable using to consume and use RESTful Web Services
 - If consuming the .NET Qi Client Libraries, you must be using tools capable of using the .NET 4.5.2 Runtimes in your enviroment
