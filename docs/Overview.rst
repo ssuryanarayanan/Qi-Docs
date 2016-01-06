@@ -1,7 +1,3 @@
-.. role:: raw-latex(raw)
-   :format: latex
-..
-
 After obtaining Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__, samples of clients using Qi
 can be found on the Qi-Samples repository on GitHub.
@@ -172,8 +168,8 @@ Stream behaviors
 ================
 
 Qi Stream Behaviors are applied to streams to affect how certain data
-read operations will be performed. The Stream Behavior object effects if
-interpolation and:raw-latex:`\or `extrapolation will be done when the
+read operations will be performed. The Stream Behavior object affects whether
+interpolation and/or extrapolation will be done when the
 index of a read operation falls between, before or after stream data.
 
 Additonal information on stream behaviors can be found in
@@ -184,37 +180,12 @@ Security
 
 There are two types of security accounts for Qi users:
 
-+-----+-----+
-| Account Type | Description |
-+=====+=====+
-| Admistrator | Allowed to do all CRUD operations on Qi type, stream and stream behavior objects. Also allowed to read and write data to streams |
-+-----+-----+
-| Use | All |
-| r   | owe |
-|     | d   |
-|     | rea |
-|     | d   |
-|     | ope |
-|     | rat |
-|     | ion |
-|     | s   |
-|     | on  |
-|     | Qi  |
-|     | obj |
-|     | ect |
-|     | s   |
-|     | and |
-|     | all |
-|     | owe |
-|     | d   |
-|     | to  |
-|     | rea |
-|     | d   |
-|     | dat |
-|     | a   |
-|     | fro |
-|     | m   |
-|     | str |
-|     | eam |
-|     | s   |
-+-----+-----+
++----------------+------------------------------------------------------------------+
+| Account Type   | Description                                                      |
++----------------+------------------------------------------------------------------+
+| Administrator  | Allowed to do all CRUD operations on Qi type, stream and stream  |
+|                | behavior objects. Also allowed to read and write data to streams |
++----------------+------------------------------------------------------------------+
+| User           | Allowed read operations on Qi objects and allowed to read data   | 
+|                | from streams                                                     |
++----------------+------------------------------------------------------------------+
