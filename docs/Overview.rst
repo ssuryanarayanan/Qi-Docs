@@ -185,56 +185,9 @@ Security
 There are two types of security accounts for Qi users:
 
 +-----+-----+
-| Acc | Des |
-| oun | cri |
-| t   | pti |
-| Typ | on  |
-| e   |     |
+| Account Type | Description |
 +=====+=====+
-| Adm | All |
-| ini | owe |
-| str | d   |
-| ato | to  |
-| r   | do  |
-|     | all |
-|     | CRU |
-|     | D   |
-|     | ope |
-|     | rat |
-|     | ion |
-|     | s   |
-|     | on  |
-|     | Qi  |
-|     | typ |
-|     | e,  |
-|     | str |
-|     | eam |
-|     | and |
-|     | str |
-|     | eam |
-|     | beh |
-|     | avi |
-|     | or  |
-|     | obj |
-|     | ect |
-|     | s.  |
-|     | Als |
-|     | o   |
-|     | all |
-|     | owe |
-|     | d   |
-|     | to  |
-|     | rea |
-|     | d   |
-|     | and |
-|     | wri |
-|     | te  |
-|     | dat |
-|     | a   |
-|     | to  |
-|     | str |
-|     | eam |
-|     | s   |
+| Admistrator | Allowed to do all CRUD operations on Qi type, stream and stream behavior objects. Also allowed to read and write data to streams |
 +-----+-----+
 | Use | All |
 | r   | owe |
