@@ -45,7 +45,7 @@ feedback please contact
 more details.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    Overview
    samples
