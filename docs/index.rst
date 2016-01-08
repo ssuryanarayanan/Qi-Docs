@@ -48,12 +48,6 @@ more details.
    :maxdepth: 1
 
    Overview
-   QiTypes
-   QiStreams
-   QiStreamBehaviors
-   Writing data
-   Reading data
-   Filter Expressions
    samples
    preview
    support
