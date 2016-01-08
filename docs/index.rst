@@ -22,6 +22,10 @@ the following requirements:
 -  A Qi Preview tenant from OSIsoft and corresponding set of OAuth2
    authentication keys
 
+The video below will help you get started with Qi:
+
+<a href="http://www.osisoft.com/Templates/item-abstract.aspx?id=13014" target="_blank"><img src="http://cdn.osisoft.com/corp/en/media/videos/Getting%20Started%20with%20Qi.jpg"/></a>
+
 Using the samples
 =================
 
@@ -37,3 +41,17 @@ feedback please contact
 `QiSupport@osisoft.com <Mailto:QiSupport@osisoft.com>`__ and visit
 `Support <https://qi-docs.readthedocs.org/en/latest/support/>`__ for
 more details.
+
+.. toctree::
+   :maxdepth: 2
+
+   overview
+   qitypes
+   qistreams
+   qistreambehaviors
+   writing data
+   reading data
+   filter expressions
+   samples
+   preview
+   support
