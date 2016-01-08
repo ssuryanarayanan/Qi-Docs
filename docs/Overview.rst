@@ -190,7 +190,3 @@ There are two types of security accounts for Qi users:
 |                | from streams                                                     |
 +----------------+------------------------------------------------------------------+
 
-.. toctree::
-   :maxdepth: 1
-   
-   
