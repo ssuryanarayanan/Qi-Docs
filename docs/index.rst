@@ -45,7 +45,6 @@ feedback please contact
 more details.
 
 .. toctree::
-   :titlesonly:
    :maxdepth: 2
 
    index
