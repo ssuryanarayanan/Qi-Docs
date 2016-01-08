@@ -45,7 +45,7 @@ feedback please contact
 more details.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    Overview
    QiTypes
