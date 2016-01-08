@@ -24,7 +24,9 @@ the following requirements:
 
 The video below will help you get started with Qi:
 
-<a href="http://www.osisoft.com/Templates/item-abstract.aspx?id=13014" target="_blank"><img src="http://cdn.osisoft.com/corp/en/media/videos/Getting%20Started%20with%20Qi.jpg"/></a>
+.. raw:: html
+
+   <a href="http://www.osisoft.com/Templates/item-abstract.aspx?id=13014" target="_blank"><img src="http://cdn.osisoft.com/corp/en/media/videos/Getting%20Started%20with%20Qi.jpg"/></a>   
 
 Using the samples
 =================
