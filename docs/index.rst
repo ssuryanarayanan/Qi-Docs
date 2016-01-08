@@ -50,10 +50,4 @@ more details.
    overview
    qitypes
    qistreams
-   qistreambehaviors
-   writing data
-   reading data
-   filter expressions
-   samples
-   preview
-   support
+   
