@@ -48,6 +48,7 @@ more details.
    :titlesonly:
    :maxdepth: 2
 
+   index
    Overview
    samples
    preview
