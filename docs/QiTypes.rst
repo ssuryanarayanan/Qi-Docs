@@ -1,5 +1,5 @@
 Qi Types
-========
+########
 
 A QiType is what Qi uses to store definable data types. A QiType
 consists of one or more properties that are either simple atomic types
