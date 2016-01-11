@@ -1,3 +1,6 @@
+Overview
+########
+
 After obtaining Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__, samples of clients using Qi
 can be found on the Qi-Samples repository on GitHub.
@@ -14,7 +17,7 @@ define 3 different objects to store and manage data:
    existing data events
 
 Creating a type
-===============
+---------------
 
 A QiType is made of one or more index properties and one more or more
 data properties. Index properties are used to put data into a sequence.
@@ -56,7 +59,7 @@ This example creates a simple type:
     var mySimpleType = _service.GetOrCreateType(SimpleType);
 
 Creating a stream
-=================
+-----------------
 
 Streams are used to hold data of a predefined type. To create a QiStream
 the Id and TypeId of the stream must be defined. Optionally a Name,
@@ -85,7 +88,7 @@ Additonal information on streams can be found in
 `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__.
 
 Writing data
-============
+------------
 
 Qi has several methods that can be used to write data. For example,
 `*InsertValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalue>`__
@@ -137,7 +140,7 @@ Additonal information on writing data can be found in `Writing
 data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
 
 Reading data
-============
+------------
 
 Qi includes different read methods and overloads that can be used to
 retrieve data from streams for a large assortment of circumstances.
@@ -165,7 +168,7 @@ Additional information on reading data can be found in `Reading
 data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__
 
 Stream behaviors
-================
+----------------
 
 Qi Stream Behaviors are applied to streams to affect how certain data
 read operations will be performed. The Stream Behavior object affects whether
@@ -176,7 +179,7 @@ Additonal information on stream behaviors can be found in
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
 
 Security
-========
+--------
 
 There are two types of security accounts for Qi users:
 
