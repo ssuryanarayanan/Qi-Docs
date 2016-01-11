@@ -1,5 +1,8 @@
+Writing Data
+============
+
 InsertValue( )
-==============
+------------
 
 **Qi Client Library**
 
@@ -28,7 +31,7 @@ Content is serialized event of type T
 exception if an event already exists at the index of the item
 
 InsertValues( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -63,7 +66,7 @@ insertions are made. The streamId and index that caused the issue is
 included in the error response.
 
 PatchValue( )
-=============
+------------
 
 **Qi Client Library**
 
@@ -103,7 +106,7 @@ for each SelectExpression field are taken from the item and replaced
     PatchValue(“someStreamId”, “Value”, obj);
 
 PatchValues( )
-==============
+------------
 
 **Qi Client Library**
 
@@ -144,7 +147,7 @@ rolled back and the error will indicate the streamID and index of the
 problem.
 
 RemoveValue( )
-==============
+------------
 
 **Qi Client Library**
 
@@ -176,7 +179,7 @@ Precision can matter when finding a value. If the index is a DateTime,
 use the round-trip format specifier: DateTime.ToString(“o”).
 
 RemoveValues( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -210,7 +213,7 @@ operation is rolled back and no removes are done. The streamId and index
 that caused the issue is included in the error response.
 
 RemoveWindowValues( )
-=====================
+------------
 
 **Qi Client Library**
 
@@ -246,7 +249,7 @@ If any individual event fails to be removed, the entire operation is
 rolled back and no removes are done.
 
 ReplaceValue( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -276,7 +279,7 @@ stream. Throws an exception if the stream does not have an event at the
 index to be replaced
 
 ReplaceValues( )
-================
+------------
 
 **Qi Client Library**
 
@@ -310,7 +313,7 @@ operation is rolled back and no replaces are performed. The index that
 caused the issue and the streamId are included in the error response.
 
 UpdateValue( )
-==============
+------------
 
 **Qi Client Library**
 
@@ -340,7 +343,7 @@ replace, depending on whether an event already exists at the index in
 the stream
 
 UpdateValues( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -374,7 +377,7 @@ no events are written to the stream. The index that caused the issue is
 included in the error response.
 
 Write exception handling
-========================
+------------
 
 If a method that acts upon multiple data events has a problem carrying
 out the operation an exception is thrown and none of the list of
