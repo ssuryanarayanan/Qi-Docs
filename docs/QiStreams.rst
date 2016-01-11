@@ -1,3 +1,6 @@
+Qi Streams
+==========
+
 A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
@@ -39,7 +42,7 @@ for more information.
 7. No more than 250 periods (".") allowed
 
 GetStream( )
-============
+------------
 
 **Qi Client Library**
 
@@ -63,7 +66,7 @@ GetStream( )
 **Operation** Returns a QiStream object
 
 GetStreams( )
-=============
+------------
 
 **Qi Client Library**
 
@@ -87,7 +90,7 @@ None
 **Operation** Returns IEnumerable of all streams
 
 GetOrCreateStream( )
-====================
+------------
 
 **Qi Client Library**
 
@@ -115,7 +118,7 @@ existing stream is returned to the caller unchanged. Otherwise the new
 stream is created
 
 UpdateStream( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -157,7 +160,7 @@ left out of the entity will remove the field from the stream if they had
 been set previously
 
 DeleteStream( )
-===============
+------------
 
 **Qi Client Library**
 
