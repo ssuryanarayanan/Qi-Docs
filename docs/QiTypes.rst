@@ -1,3 +1,6 @@
+Qi Types
+========
+
 A QiType is what Qi uses to store definable data types. A QiType
 consists of one or more properties that are either simple atomic types
 (e.g. integer) or previously-defined QiTypes. A type is always
@@ -35,7 +38,7 @@ The following table defines the required and optional QiType objects:
 5. Maximum length of 260 characters
 
 GetStreamType( )
-================
+----------------
 
 **Qi Client Library**
 
@@ -59,7 +62,7 @@ GetStreamType( )
 **Operation** Returns the type definition associated with a stream
 
 GetType( )
-==========
+----------------
 
 **Qi Client Library**
 
@@ -83,7 +86,7 @@ GetType( )
 **Operation** Returns type searched for by *typeId*
 
 GetTypes( )
-===========
+----------------
 
 **Qi Client Library**
 
@@ -107,7 +110,7 @@ None
 **Operation** Returns IEnumerable of all types
 
 GetOrCreateType( )
-==================
+----------------
 
 **Qi Client Library**
 
@@ -135,7 +138,7 @@ service by Id, the existing type is returned to the caller unchanged.
 Otherwise, a new type definition is added to the Qi Service
 
 DeleteType( )
-=============
+----------------
 
 **Qi Client Library**
 
@@ -160,7 +163,7 @@ DeleteType( )
 the service if there are existing streams associated with it
 
 UpdateType( )
-=============
+----------------
 
 **Qi Client Library**
 
@@ -185,7 +188,7 @@ UpdateType( )
 there are existing streams associated with it
 
 Compound Indexes
-================
+----------------
 
 When defining a QiType the index property to be used to sequence the
 data must be defined by the user in the type definition. Often a single
@@ -196,7 +199,7 @@ that use tuples were created to assist the user in using compound
 indexes.
 
 Supported QiTypes
-=================
+----------------
 
 The following are explicitely supported types that can be used when
 creating a QiType:
