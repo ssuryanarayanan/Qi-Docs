@@ -1,5 +1,8 @@
+Reading Data
+============
+
 Generics and tuples
-===================
+------------
 
 Many of the read methods in the Qi Client Library have additional
 overloads that assist with indexing into a stream when it is
@@ -23,7 +26,7 @@ which makes multiple calls and retrieves different sets of data after a
 specified time stamp.
 
 FindDistinctValue( )
-====================
+------------
 
 **Qi Client Library**
 
@@ -243,7 +246,7 @@ then this call
     var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(streamId, tupleId, searchMode);
 
 GetDistinctValue( )
-===================
+------------
 
 **Qi Client Library**
 
@@ -305,7 +308,7 @@ See the `*FindDistinctValue(
 examples for an illustration of these.
 
 GetFirstValue( )
-================
+------------
 
 **Qi Client Library**
 
@@ -330,7 +333,7 @@ GetFirstValue( )
 the stream has no data (no exception thrown)
 
 GetLastValue( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -355,7 +358,7 @@ GetLastValue( )
 the stream has no data (no exception thrown)
 
 GetRangeValues( )
-=================
+------------
 
 **Qi Client Library**
 
@@ -896,7 +899,7 @@ When the startIndex falls between data:
 +-----+-----+
 
 GetValue( )
-===========
+------------
 
 **Qi Client Library**
 
@@ -968,7 +971,7 @@ See the `*FindDistinctValue(
 examples for an illustration of these.
 
 GetValues( )
-============
+------------
 
 **Qi Client Library**
 
@@ -1028,7 +1031,7 @@ found in `Filter
 expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
 
 GetWindowValues( )
-==================
+------------
 
 **Qi Client Library**
 
