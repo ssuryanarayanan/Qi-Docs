@@ -1,5 +1,5 @@
-Geting Support
-##############
+Getting Support
+###############
 
 The following email will be available to those participating in the Qi
 Preview for both product support and feedback:
