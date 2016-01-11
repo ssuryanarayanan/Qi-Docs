@@ -47,7 +47,6 @@ more details.
 .. toctree::
    :maxdepth: 2
 
-   index
    Overview
    samples
    preview
