@@ -1,3 +1,6 @@
+Samples
+#######
+
 The Qi-Samples demonstrate a few ways to interact with the Qi REST API.
 
 They cover the basics, such as: \* Connecting to Qi \* Creating QiTypes
