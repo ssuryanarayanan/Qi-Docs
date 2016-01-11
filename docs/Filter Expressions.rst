@@ -1,9 +1,12 @@
+Filter Expressions
+==================
+
 Filter expressions can be included in overloads for *GetRangeValues( )*
 and *GetWindowValues( )*. The filter expression is applied to events
 returned such that the user can conditionally filter out certain events.
 
 QiTypeCodes
-===========
+------------
 
 **Supported**
 
@@ -45,7 +48,7 @@ expression:
 -  TimeSpan
 
 Logical operators
-=================
+------------
 
 **Supported**
 
@@ -87,7 +90,7 @@ expression:
   Value lt 2.0" - "not (Value eq 1.0)"
 
 Math functions
-==============
+------------
 
 **Supported**
 
@@ -164,7 +167,7 @@ eq 0.0" - "Value add -3.0 gt 5.0" - "round(Value) eq 16" - "floor(Value)
 eq 15" - "ceiling(Value) eq 16"
 
 String functions
-================
+------------
 
 **Supported**
 
@@ -400,7 +403,7 @@ These examples assume that the event Qi Type includes a field named
 +-----+-----+
 
 DateTime functions
-==================
+------------
 
 **Supported**
 
@@ -436,7 +439,7 @@ These examples assume that the event Qi Type includes a field named
 -  "second(TimeId) eq 3"
 
 TimeSpan functions
-==================
+------------
 
 **Supported**
 
