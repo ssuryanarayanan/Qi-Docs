@@ -1,3 +1,6 @@
+Qi Stream Behavior
+==================
+
 .. role:: raw-latex(raw)
    :format: latex
 ..
@@ -193,7 +196,7 @@ stream as shown here:
     _service.GetOrCreateStream(stream1);
 
 Interpolation
-=============
+------------
 
 When read methods effected by QiStreamBehavior (as shown above) are
 given an index that lands between two values in a stream, it is the
@@ -359,7 +362,7 @@ Decimal.MaxValue) the call may result in a BadRequest exception if the
 interpolation cannot be completed successfully.
 
 Extrapolation
-=============
+------------
 
 In addition to interpolations settings, stream behavior is also used to
 define how the stream will extrapolate data. *ExtrapolationMode* acts as
@@ -433,7 +436,7 @@ method <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__
 you are using.
 
 Overrides
-=========
+------------
 
 As described above, the interpolation behavior for the values in a
 stream is determined by the stream behavior *Mode*, however individual
@@ -459,7 +462,7 @@ stream, set the *Mode* to StepwiseContinuousLeading and use the override
 list to set the desired property to Discrete.
 
 DeleteBehavior( )
-=================
+------------
 
 **Qi Client Library**
 
@@ -485,7 +488,7 @@ associated with any streams
 that are still associated with a stream cannot be deleted
 
 GetBehavior( )
-==============
+------------
 
 **Qi Client Library**
 
@@ -509,7 +512,7 @@ GetBehavior( )
 **Operation** Gets a QiStreamBehavior object from service
 
 GetBehaviors( )
-===============
+------------
 
 **Qi Client Library**
 
@@ -533,7 +536,7 @@ None
 **Operation** Returns IEnumerable of all behavior objects
 
 GetOrCreateBehavior( )
-======================
+------------
 
 **Qi Client Library**
 
@@ -561,7 +564,7 @@ exists) If *entity* already exists on the server by *Id*, that existing
 behavior is returned to the caller unchanged
 
 UpdateBehavior( )
-=================
+------------
 
 **Qi Client Library**
 
