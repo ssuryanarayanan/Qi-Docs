@@ -300,204 +300,35 @@ direction of the method. The table below indicates how the first value
 is determined for *GetRangeValues( )* for a FORWARD search of the
 BoundaryTypes shown:
 
-+-----+-----+
-| Bou | Fir |
-| nda | st  |
-| ry  | val |
-| Typ | ue  |
-| e   | obt |
-|     | ain |
-|     | ed  |
-+=====+=====+
-| Exa | The |
-| ct  | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | at  |
-|     | or  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Exa | If  |
-| ctO | a   |
-| rCa | val |
-| lcu | ue  |
-| lat | exi |
-| ed  | sts |
-|     | at  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-|     | it  |
-|     | is  |
-|     | use |
-|     | d,  |
-|     | els |
-|     | e   |
-|     | a   |
-|     | val |
-|     | ue  |
-|     | is  |
-|     | ‘ca |
-|     | lcu |
-|     | lat |
-|     | ed’ |
-|     | acc |
-|     | ord |
-|     | ing |
-|     | to  |
-|     | the |
-|     | Str |
-|     | eam |
-|     | Beh |
-|     | avi |
-|     | or  |
-|     | set |
-|     | tin |
-|     | g   |
-+-----+-----+
-| Ins | The |
-| ide | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Out | The |
-| sid | fir |
-| e   | st  |
-|     | val |
-|     | ue  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
++--------------------------+-------------------------------------------------------------------------------+
+| Boundary Type            | First value obtained                                                          |
++==========================+===============================================================================+
+|Exact                     |The first value at or after the startIndex                                     |
++--------------------------+-------------------------------------------------------------------------------+
+|ExactOrCalculated         |If a value exists at the startIndex it is used, else a value is ‘calculated’   |
+|                          |according to the Stream Behavior setting                                       |
++--------------------------+-------------------------------------------------------------------------------+
+|Inside                    |The first value after the startIndex                                           |
++--------------------------+-------------------------------------------------------------------------------+
+|Outside                   | The first value before the startIndex                                         |
++--------------------------+-------------------------------------------------------------------------------+
 
 The table below indicates how the first value is determined for
 *GetRangeValues( )* for a REVERSE search of the BoundaryTypes shown:
 
-+-----+-----+
-| Bou | Fir |
-| nda | st  |
-| ry  | val |
-| Typ | ue  |
-| e   | obt |
-|     | ain |
-|     | ed  |
-+=====+=====+
-| Exa | The |
-| ct  | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | at  |
-|     | or  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Exa | If  |
-| ctO | a   |
-| rCa | val |
-| lcu | ue  |
-| lat | exi |
-| ed  | sts |
-|     | at  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-|     | it  |
-|     | is  |
-|     | use |
-|     | d,  |
-|     | els |
-|     | e   |
-|     | a   |
-|     | val |
-|     | ue  |
-|     | is  |
-|     | ‘ca |
-|     | lcu |
-|     | lat |
-|     | ed’ |
-|     | acc |
-|     | ord |
-|     | ing |
-|     | to  |
-|     | the |
-|     | Str |
-|     | eam |
-|     | Beh |
-|     | avi |
-|     | or  |
-|     | set |
-|     | tin |
-|     | g.  |
-|     | See |
-|     | the |
-|     | *Ca |
-|     | lcu |
-|     | lat |
-|     | ed  |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x*  |
-|     | top |
-|     | ic  |
-|     | bel |
-|     | ow. |
-+-----+-----+
-| Ins | The |
-| ide | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Out | The |
-| sid | fir |
-| e   | st  |
-|     | val |
-|     | ue  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
++--------------------------+-------------------------------------------------------------------------------+
+| Boundary Type            | First value obtained                                                          |
++==========================+===============================================================================+
+|Exact                     |The first value at or before the startIndex                                    |
++--------------------------+-------------------------------------------------------------------------------+
+|ExactOrCalculated         |If a value exists at the startIndex it is used, else a value is ‘calculated’   |
+|                          |according to the Stream Behavior setting. See the Calculated startIndex topic  |
+|                          |below.                                                                         | 
++--------------------------+-------------------------------------------------------------------------------+
+|Inside                    |The first value before the startIndex                                          |
++--------------------------+-------------------------------------------------------------------------------+
+|Outside                   | The first value after the startIndex                                          |
++--------------------------+-------------------------------------------------------------------------------+
 
 The order of execution first determines the direction of the method and
 the starting event using the *BoundaryType*. Once the starting event is
