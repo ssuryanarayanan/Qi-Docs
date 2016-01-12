@@ -52,161 +52,26 @@ FindDistinctValue( )
 
 **Security** Allowed by administrator and user accounts
 
-| **Operation** This method searches for data in a stream using the
-  search mode defined. If a data is not found a null is returned.
-| The mode parameter determines how the search for data is executed:
+**Operation** This method searches for data in a stream using the search mode defined. If a data is not found a null is returned. The mode parameter determines how the search for data is executed:
 
-+-----+-----+-----+
-| Sea | Enu | Act |
-| rch | mer | ion |
-| Mod | ati |     |
-| e   | on  |     |
-|     | Val |     |
-|     | ue  |     |
-+=====+=====+=====+
-| Exa | 1   | Ret |
-| ct  |     | urn |
-|     |     | s   |
-|     |     | a   |
-|     |     | dat |
-|     |     | a   |
-|     |     | if  |
-|     |     | fou |
-|     |     | nd  |
-|     |     | at  |
-|     |     | the |
-|     |     | ind |
-|     |     | ex, |
-|     |     | els |
-|     |     | e   |
-|     |     | nul |
-|     |     | l   |
-|     |     | is  |
-|     |     | ret |
-|     |     | urn |
-|     |     | ed  |
-+-----+-----+-----+
-| Exa | 2   | Ret |
-| ctO |     | urn |
-| rNe |     | s   |
-| xt  |     | a   |
-|     |     | dat |
-|     |     | a   |
-|     |     | if  |
-|     |     | fou |
-|     |     | nd  |
-|     |     | at  |
-|     |     | the |
-|     |     | ind |
-|     |     | ex  |
-|     |     | or  |
-|     |     | sea |
-|     |     | rch |
-|     |     | es  |
-|     |     | for |
-|     |     | war |
-|     |     | d   |
-|     |     | for |
-|     |     | the |
-|     |     | nex |
-|     |     | t   |
-|     |     | ind |
-|     |     | ex  |
-|     |     | wit |
-|     |     | h   |
-|     |     | dat |
-|     |     | a   |
-+-----+-----+-----+
-| Exa | 3   | Ret |
-| ctO |     | urn |
-| rPr |     | s   |
-| evi |     | a   |
-| ous |     | dat |
-|     |     | a   |
-|     |     | if  |
-|     |     | fou |
-|     |     | nd  |
-|     |     | at  |
-|     |     | the |
-|     |     | ind |
-|     |     | ex  |
-|     |     | or  |
-|     |     | sea |
-|     |     | rch |
-|     |     | es  |
-|     |     | for |
-|     |     | the |
-|     |     | fir |
-|     |     | st  |
-|     |     | pre |
-|     |     | vio |
-|     |     | us  |
-|     |     | ind |
-|     |     | ex  |
-|     |     | wit |
-|     |     | h   |
-|     |     | dat |
-|     |     | a   |
-+-----+-----+-----+
-| Nex | 4   | Sea |
-| t   |     | rch |
-|     |     | es  |
-|     |     | for |
-|     |     | war |
-|     |     | d   |
-|     |     | (im |
-|     |     | med |
-|     |     | iat |
-|     |     | ely |
-|     |     | aft |
-|     |     | er  |
-|     |     | the |
-|     |     | ind |
-|     |     | ex  |
-|     |     | giv |
-|     |     | en) |
-|     |     | for |
-|     |     | the |
-|     |     | nex |
-|     |     | t   |
-|     |     | ind |
-|     |     | ex  |
-|     |     | wit |
-|     |     | h   |
-|     |     | dat |
-|     |     | a   |
-+-----+-----+-----+
-| Pre | 5   | Sea |
-| vio |     | rch |
-| us  |     | es  |
-|     |     | for |
-|     |     | the |
-|     |     | fir |
-|     |     | st  |
-|     |     | pre |
-|     |     | vio |
-|     |     | us  |
-|     |     | ind |
-|     |     | ex  |
-|     |     | wit |
-|     |     | h   |
-|     |     | dat |
-|     |     | a   |
-|     |     | sta |
-|     |     | rti |
-|     |     | ng  |
-|     |     | imm |
-|     |     | edi |
-|     |     | ate |
-|     |     | ly  |
-|     |     | beh |
-|     |     | ind |
-|     |     | the |
-|     |     | ind |
-|     |     | ex  |
-|     |     | giv |
-|     |     | en  |
-+-----+-----+-----+
++-------------------+------------+-------------------------------------------------------------------+
+|Search Mode        |Enumeration |Action                                                             |
+|                   |Value       |                                                                   |
++===================+============+===================================================================+
+|Exact              |1           |Returns a data if found at the index, else null is returned        |      
++-------------------+------------+-------------------------------------------------------------------+
+|ExactOrNext        |2           | Returns a data if found at the index or searches forward for the  |
+|                   |            |next index with data                                               |
++-------------------+------------+-------------------------------------------------------------------+
+|ExactOrPrevious    |3           |Returns a data if found at the index or searches for the first     |
+|                   |            |previous index with data                                           |
++-------------------+------------+-------------------------------------------------------------------+
+|Next               |4           |Searches forward (immediately after the index given) for the next  |
+|                   |            |index with data                                                    |
++-------------------+------------+-------------------------------------------------------------------+
+|Previous           |5           |Searches for the first previous index with data starting           |
+|                   |            |immediately behind the index given                                 |
++-------------------+------------+-------------------------------------------------------------------+
 
 **Examples**
 
