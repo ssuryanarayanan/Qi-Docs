@@ -17,129 +17,22 @@ behavior which is *Mode* = *Continuous* (with no overrides) and a
 
 The following table defines QiStreamBehavior objects:
 
-+-----+-----+-----+
-| Obj | Typ | Det |
-| ect | e   | ail |
-|     |     | s   |
-+=====+=====+=====+
-| Id  | Str | Uni |
-|     | ing | que |
-|     |     | ide |
-|     |     | nti |
-|     |     | fie |
-|     |     | r   |
-|     |     | use |
-|     |     | d   |
-|     |     | to  |
-|     |     | ref |
-|     |     | ere |
-|     |     | nce |
-|     |     | thi |
-|     |     | s   |
-|     |     | beh |
-|     |     | avi |
-|     |     | or  |
-+-----+-----+-----+
-| Nam | Str | Opt |
-| e   | ing | ion |
-|     |     | al  |
-|     |     | des |
-|     |     | cri |
-|     |     | pto |
-|     |     | r   |
-+-----+-----+-----+
-| Mod | QiS | Int |
-| e   | tre | erp |
-|     | amM | ola |
-|     | ode | tio |
-|     |     | n   |
-|     |     | beh |
-|     |     | avi |
-|     |     | or  |
-|     |     | set |
-|     |     | tin |
-|     |     | g   |
-|     |     | to  |
-|     |     | all |
-|     |     | val |
-|     |     | ue  |
-|     |     | pro |
-|     |     | per |
-|     |     | tie |
-|     |     | s   |
-|     |     | (un |
-|     |     | les |
-|     |     | s   |
-|     |     | ove |
-|     |     | rri |
-|     |     | dde |
-|     |     | n   |
-|     |     | by  |
-|     |     | Ove |
-|     |     | rri |
-|     |     | de  |
-|     |     | lis |
-|     |     | t)  |
-+-----+-----+-----+
-| Ove | ILi | A   |
-| rri | st< | lis |
-| des | QiS | t   |
-|     | tre | of  |
-|     | amB | QiS |
-|     | eha | tre |
-|     | vio | amB |
-|     | rOv | eha |
-|     | err | vio |
-|     | ide | rOv |
-|     | >   | err |
-|     |     | ide |
-|     |     | ite |
-|     |     | ms  |
-|     |     | use |
-|     |     | d   |
-|     |     | to  |
-|     |     | set |
-|     |     | a   |
-|     |     | dif |
-|     |     | fer |
-|     |     | ent |
-|     |     | int |
-|     |     | erp |
-|     |     | ola |
-|     |     | tio |
-|     |     | n   |
-|     |     | beh |
-|     |     | avi |
-|     |     | or  |
-|     |     | tha |
-|     |     | n   |
-|     |     | the |
-|     |     | mod |
-|     |     | e   |
-|     |     | to  |
-|     |     | a   |
-|     |     | typ |
-|     |     | e   |
-|     |     | pro |
-|     |     | per |
-|     |     | ty  |
-+-----+-----+-----+
-| Ext | QiS | Con |
-| rap | tre | tro |
-| ola | amE | ls  |
-| tio | xtr | ext |
-| nMo | apo | rap |
-| de  | lat | ola |
-|     | ion | tio |
-|     |     | n   |
-|     |     | beh |
-|     |     | avi |
-|     |     | or  |
-|     |     | for |
-|     |     | the |
-|     |     | str |
-|     |     | eam |
-+-----+-----+-----+
++------------------+--------------------------------+--------------------------------------------------+
+|Object            |Type                            |Details                                           |
++==================+================================+==================================================+
+|Id                |String                          |Unique identifier used to reference this behavior |
++------------------+--------------------------------+--------------------------------------------------+
+|Name              |String                          |Optional descriptor                               |
++------------------+--------------------------------+--------------------------------------------------+
+|Mode              |QiStreamMode                    |Interpolation behavior setting to all value       |
+|                  |                                |properties (unless overridden by Override list)   |
++------------------+--------------------------------+--------------------------------------------------+
+|Overrides         |IList<QiStreamBehaviorOverride> |A list of QiStreamBehaviorOverride items used to  |
+|                  |                                |set a different interpolation behavior than the   |
+|                  |                                |mode to a type property                           |
++------------------+--------------------------------+--------------------------------------------------+
+|ExtrapolationMode |QiStreamExtrapolation           |Controls extrapolation behavior for the stream    |
++------------------+--------------------------------+--------------------------------------------------+
 
 **Rules for QiStreamBehavior *Id***
 
@@ -204,13 +97,20 @@ given an index that lands between two values in a stream, it is the
 table below indicates how a stream will behave for the mode values
 listed:
 
-\|Mode\|Enumeration value\|Operation\| \|---\|---\|---\|
-\|Default\|0\|Continuous\| \|Continuous\|0\|Interpolates the data using
-previous and next index values\*\|
-\|StepwiseContinuousLeading\|1\|Returns the data from the previous
-index\| \|StepwiseContinuousTrailing\|2\|Returns the data from the next
-index\| \|Discrete\|3\|Returns ‘null’\| \*Certain value types cannot be
-interpolated
++---------------------------+--------------------------------+--------------------------------------------------+
+|Mode                       |Enumeration value               |Operation                                         |
++===========================+================================+==================================================+
+|Default                    |0                               |Continuous                                        |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Continoous                 |0                               |Interpolates the data using previous and next     |
+|                           |                                |index values                                      |
++---------------------------+--------------------------------+--------------------------------------------------+
+|StepwiseContinuousLeading  |1                               |Returns the data from the previous index          |
++---------------------------+--------------------------------+--------------------------------------------------+
+|StepwiseContinuousTrailing |2                               |Returns the data from the next index              |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Discrete                   |3                               |Returns ‘null’                                    |
++---------------------------+--------------------------------+--------------------------------------------------+
 
 When *Mode* is set to continuous (or left at default) calls to read the
 value of the QiStreamBehavior will return "0=Default”. Stream behavior
@@ -229,133 +129,31 @@ indexes between data in a stream:
 
 ***Mode* = Continuous or Default**
 
-+-----+-----+-----+
-| *Ty | Res | Com |
-| pe* | ult | men |
-|     | for | t   |
-|     | an  |     |
-|     | ind |     |
-|     | ex  |     |
-|     | bet |     |
-|     | wee |     |
-|     | n   |     |
-|     | dat |     |
-|     | a   |     |
-|     | in  |     |
-|     | a   |     |
-|     | str |     |
-|     | eam |     |
-+=====+=====+=====+
-| Num | Int | Rou |
-| eri | erp | ndi |
-| c   | ola | ng  |
-| Typ | ted | is  |
-| es  | \*  | don |
-|     |     | e   |
-|     |     | as  |
-|     |     | nee |
-|     |     | ded |
-|     |     | for |
-|     |     | int |
-|     |     | ege |
-|     |     | r   |
-|     |     | typ |
-|     |     | es  |
-+-----+-----+-----+
-| Tim | Int | Dat |
-| e   | erp | eTi |
-| rel | ola | me, |
-| ate | ted | Dat |
-| d   |     | eTi |
-| Typ |     | meO |
-| es  |     | ffs |
-|     |     | et, |
-|     |     | Tim |
-|     |     | eSp |
-|     |     | an  |
-+-----+-----+-----+
-| Nul | Ret | Can |
-| lab | urn | not |
-| le  | s   | rel |
-| Typ | ‘nu | iab |
-| es  | ll’ | ly  |
-|     |     | int |
-|     |     | erp |
-|     |     | ola |
-|     |     | te  |
-|     |     | due |
-|     |     | to  |
-|     |     | pos |
-|     |     | sib |
-|     |     | ili |
-|     |     | ty  |
-|     |     | of  |
-|     |     | a   |
-|     |     | nul |
-|     |     | l   |
-|     |     | val |
-|     |     | ue  |
-+-----+-----+-----+
-| Arr | Ret |     |
-| ay  | urn |     |
-| and | s   |     |
-| Lis | ‘nu |     |
-| t   | ll’ |     |
-| Typ |     |     |
-| es  |     |     |
-+-----+-----+-----+
-| Str | Ret |     |
-| ing | urn |     |
-| Typ | s   |     |
-| e   | ‘nu |     |
-|     | ll’ |     |
-+-----+-----+-----+
-| Boo | Ret |     |
-| lea | urn |     |
-| n   | s   |     |
-| Typ | val |     |
-| e   | ue  |     |
-|     | of  |     |
-|     | nea |     |
-|     | res |     |
-|     | t   |     |
-|     | ind |     |
-|     | ex  |     |
-+-----+-----+-----+
-| Enu | Ret | Thi |
-| mer | urn | s   |
-| ati | s   | may |
-| on  | Enu | hav |
-| Typ | m   | e   |
-| es  | val | a   |
-|     | ue  | val |
-|     | at  | ue  |
-|     | 0   | for |
-|     |     | the |
-|     |     | enu |
-|     |     | mer |
-|     |     | ati |
-|     |     | on  |
-+-----+-----+-----+
-| GUI |     |     |
-| D   |     |     |
-+-----+-----+-----+
-| Ver | Ret |     |
-| sio | urn |     |
-| n   | s   |     |
-|     | ‘nu |     |
-|     | ll’ |     |
-+-----+-----+-----+
-| IDi | Ret |     |
-| cti | urn |     |
-| ona | s   |     |
-| ry  | ‘nu |     |
-| or  | ll’ |     |
-| Ien |     |     |
-| ume |     |     |
-| rab |     |     |
-| le  |     |     |
-+-----+-----+-----+
++---------------------------+--------------------------------+--------------------------------------------------+
+|Type                       |Result for an index between     |Comment                                           |
+|                           |data in a stream                |                                                  |
++===========================+================================+==================================================+
+|Numeric Types              |Interpolated*                   |Rounding is done as needed for integer types      |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Time related Types         |Interpolated                    |DateTime, DateTimeOffset, TimeSpan                |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Nullable Types             |Returns ‘null’                  |Cannot reliably interpolate due to possibility of |
+|                           |                                |a null value                                      |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Array and List Types       |Returns ‘null’                  |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
+|String Type                |Returns ‘null’                  |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Boolean Type               |Returns value of nearest index  |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Enumeration Types          |Returns Enum value at 0         |This may have a value for the enumeration         |
++---------------------------+--------------------------------+--------------------------------------------------+
+|GUID                       |                                |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
+|Version                    |Returns ‘null’                  |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
+|IDictionary or Ienumerable |Returns ‘null’                  |                                                  |
++---------------------------+--------------------------------+--------------------------------------------------+
 
 \*When extreme values are involved in an interpolation (e.g.
 Decimal.MaxValue) the call may result in a BadRequest exception if the
