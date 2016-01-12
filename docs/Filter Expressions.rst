@@ -83,11 +83,17 @@ expression:
 
 **Logical Operator Examples**
 
-| These examples assume that the event Qi Type includes a field named
-  ‘Value’ of type double: - "Value eq 1.0"
-| - "Value ne 15.6" - "Value ge 5.0" - "Value le 8.0" - "Value gt 5.0" -
-  "Value lt 4.0" - "Value gt 2.0 and Value lt 9.0" - "Value gt 6.0 or
-  Value lt 2.0" - "not (Value eq 1.0)"
+These examples assume that the event Qi Type includes a field named ‘Value’ of type double: 
+
+- "Value eq 1.0"
+- "Value ne 15.6" 
+- "Value ge 5.0" 
+- "Value le 8.0" 
+- "Value gt 5.0" 
+- "Value lt 4.0" 
+- "Value gt 2.0 and Value lt 9.0" 
+- "Value gt 6.0 or Value lt 2.0" 
+- "not (Value eq 1.0)"
 
 Math functions
 ------------
@@ -160,11 +166,17 @@ expression:
 
 **Math Function Examples**
 
-These examples assume that the event Qi Type includes a field named
-‘Value’ of type double. - "Value add 3.0 gt 5.0" - "Value sub 5.0 lt
-4.0" - "Value mul 2.0 lt 9.0" - "Value div 2.0 eq 3.0" - "Value mod 7.0
-eq 0.0" - "Value add -3.0 gt 5.0" - "round(Value) eq 16" - "floor(Value)
-eq 15" - "ceiling(Value) eq 16"
+These examples assume that the event Qi Type includes a field named ‘Value’ of type double. 
+
+- "Value add 3.0 gt 5.0" 
+- "Value sub 5.0 lt 4.0" 
+- "Value mul 2.0 lt 9.0" 
+- "Value div 2.0 eq 3.0" 
+- "Value mod 7.0 eq 0.0" 
+- "Value add -3.0 gt 5.0" 
+- "round(Value) eq 16" 
+- "floor(Value) eq 15" 
+- "ceiling(Value) eq 16"
 
 String functions
 ------------
@@ -206,201 +218,32 @@ filter expression:
 These examples assume that the event Qi Type includes a field named
 ‘sValue’ of type string:
 
-+-----+-----+
-| Exa | Res |
-| mpl | ult |
-| e   |     |
-+=====+=====+
-| end | tru |
-| swi | e   |
-| th( | if  |
-| sVa | Val |
-| lue | ue  |
-| ,   | end |
-| 'XY | s   |
-| Z’) | wit |
-|     | h   |
-|     | the |
-|     | cha |
-|     | rac |
-|     | ter |
-|     | s   |
-|     | ‘XY |
-|     | Z’  |
-+-----+-----+
-| sta | tru |
-| rts | e   |
-| wit | if  |
-| h(s | Val |
-| Val | ue  |
-| ue, | sta |
-| 'Va | rts |
-| l') | wit |
-|     | h   |
-|     | the |
-|     | cha |
-|     | rac |
-|     | ter |
-|     | s   |
-|     | ‘Va |
-|     | l’  |
-+-----+-----+
-| len | tru |
-| gth | e   |
-| (sV | of  |
-| alu | len |
-| e)  | gth |
-| eq  | of  |
-| 11  | str |
-|     | ing |
-|     | val |
-|     | ue  |
-+-----+-----+
-| ind | tru |
-| exo | e   |
-| f(s | if  |
-| Val | the |
-| ue, | 5th |
-| 'ab | and |
-| ')  | 6th |
-| eq  | cha |
-| 4   | rac |
-|     | ter |
-|     | s   |
-|     | are |
-|     | ‘ab |
-|     | ’   |
-+-----+-----+
-| sub | tru |
-| str | e   |
-| ing | ‘a  |
-| (sV | b’  |
-| alu | is  |
-| e,  | fou |
-| 10) | nd  |
-| eq  | in  |
-| 'a  | sVa |
-| b'  | lue |
-|     | at  |
-|     | ind |
-|     | ex  |
-|     | 10  |
-+-----+-----+
-| sub | tru |
-| str | e   |
-| ing | if  |
-| of( | cha |
-| 'va | rac |
-| l', | ter |
-| Val | s   |
-| ue) | ‘va |
-|     | l’  |
-|     | are |
-|     | any |
-|     | whe |
-|     | re  |
-|     | in  |
-|     | sVa |
-|     | lue |
-+-----+-----+
-| tol | cha |
-| owe | nge |
-| r(s | sVa |
-| Val | lue |
-| ue) | to  |
-| eq  | low |
-| 'va | er  |
-| l5' | cas |
-|     | e   |
-|     | and |
-|     | com |
-|     | par |
-|     | es  |
-|     | to  |
-|     | ‘va |
-|     | l5’ |
-+-----+-----+
-| tou | cha |
-| ppe | nge |
-| r(s | sVa |
-| Val | lue |
-| ue) | to  |
-| eq  | upp |
-| 'AB | er  |
-| C'  | cas |
-|     | e   |
-|     | and |
-|     | com |
-|     | par |
-|     | es  |
-|     | to  |
-|     | ‘AB |
-|     | C’  |
-+-----+-----+
-| tri | tri |
-| m(s | m   |
-| Val | whi |
-| ue) | tes |
-| eq  | pac |
-| ‘va | e   |
-| ll2 | fro |
-| 2’  | m   |
-|     | fro |
-|     | nt  |
-|     | and |
-|     | end |
-|     | of  |
-|     | sVa |
-|     | lue |
-|     | and |
-|     | com |
-|     | par |
-|     | e   |
-|     | to  |
-|     | ‘va |
-|     | l22 |
-|     | ’   |
-+-----+-----+
-| con | add |
-| cat | cha |
-| (sV | rac |
-| alu | ter |
-| e,' | s   |
-| xyz | to  |
-| ')  | sVa |
-| eq  | lue |
-| 'da | s   |
-| taV | and |
-| alu | com |
-| e\_ | par |
-| 7xy | e   |
-| z'  | to  |
-|     | ‘da |
-|     | taV |
-|     | alu |
-|     | e\_ |
-|     | 7xy |
-|     | z’  |
-+-----+-----+
-| rep | rep |
-| lac | lac |
-| e(s | e   |
-| Val | any |
-| ue, | ‘L’ |
-| 'L' | in  |
-| ,'D | sVa |
-| ')  | lue |
-| eq  | wit |
-| 'Do | h   |
-| g1' | ‘D’ |
-|     | and |
-|     | com |
-|     | par |
-|     | e   |
-|     | to  |
-|     | ‘Do |
-|     | g1’ |
-+-----+-----+
++-----------------------------------------+-----------------------------------------------------------------+
+|Example                                  |Result                                                           |
++=========================================+=================================================================+
+|endswith(sValue, 'XYZ’)                  |true if Value ends with the characters ‘XYZ’                     |
++-----------------------------------------+-----------------------------------------------------------------+
+|startswith(sValue, 'Val'                 |true if Value starts with the characters ‘Val’                   |
++-----------------------------------------+-----------------------------------------------------------------+
+|length(sValue) eq 11                     |true of length of string value                                   |
++-----------------------------------------+-----------------------------------------------------------------+
+|indexof(sValue, 'ab') eq 4               |true if the 5th and 6th characters are ‘ab’                      |
++-----------------------------------------+-----------------------------------------------------------------+
+|substring(sValue, 10) eq 'a b'           |true ‘a b’ is found in sValue at index 10                        |
++-----------------------------------------+-----------------------------------------------------------------+
+|substringof('val', Value)                |true if characters ‘val’ are anywhere in sValue                  |
++-----------------------------------------+-----------------------------------------------------------------+
+|tolower(sValue) eq 'val5'                |change sValue to lower case and compares to ‘val5’               |
++-----------------------------------------+-----------------------------------------------------------------+
+|toupper(sValue) eq 'ABC'                 |change sValue to upper case and compares to ‘ABC’                |
++-----------------------------------------+-----------------------------------------------------------------+
+|trim(sValue) eq ‘vall22’                 |trim whitespace from front and end of sValue and compare to      |
+|                                         |‘val22’                                                          |
++-----------------------------------------+-----------------------------------------------------------------+
+|concat(sValue,'xyz') eq 'dataValue_7xyz' |add characters to sValues and compare to ‘dataValue_7xyz’        |
++-----------------------------------------+-----------------------------------------------------------------+
+|replace(sValue,'L','D') eq 'Dog1'        |replace any ‘L’ in sValue with ‘D’ and compare to ‘Dog1’         |
++-----------------------------------------+-----------------------------------------------------------------+
 
 DateTime functions
 ------------
