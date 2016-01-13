@@ -352,150 +352,42 @@ The table below indicates when an event will be calculated and included
 in the *GetRangeValues( )* response for a *startIndex* before or after
 all data in the stream. (This is for FORWARD search modes):
 
-+-----+-----+-----+-----+
-| Str | Str | Whe | Whe |
-| eam | eam | n   | n   |
-| Beh | Beh | sta | sta |
-| avi | avi | rt  | rt  |
-| or  | or  | ind | ind |
-| Mod | QiS | ex  | ex  |
-| e   | tre | is  | is  |
-|     | amE | **b | **a |
-|     | xtr | efo | fte |
-|     | apo | re* | r** |
-|     | lat | *   | all |
-|     | ion | all | dat |
-|     |     | dat | a   |
-|     |     | a   |     |
-+=====+=====+=====+=====+
-| Con | All | Eve | Eve |
-| tin |     | nt  | nt  |
-| uou |     | is  | is  |
-| s   |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d\* | d\* |
-+-----+-----+-----+-----+
-|     | Non | No  | No  |
-|     | e   | eve | eve |
-|     |     | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | Bac | Eve | No  |
-|     | kwa | nt  | eve |
-|     | rd  | is  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d\* | d   |
-+-----+-----+-----+-----+
-|     | For | No  | Eve |
-|     | war | eve | nt  |
-|     | d   | nt  | is  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d\* |
-+-----+-----+-----+-----+
-| Dis | All | No  | No  |
-| cre |     | eve | eve |
-| te  |     | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | Non | No  | No  |
-|     | e   | eve | eve |
-|     |     | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | Bac | No  | No  |
-|     | kwa | eve | eve |
-|     | rd  | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | For | No  | No  |
-|     | war | eve | eve |
-|     | d   | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-| Con | All | No  | Eve |
-| tin |     | eve | nt  |
-| uou |     | nt  | is  |
-| sLe |     | cal | cal |
-| adi |     | cul | cul |
-| ng  |     | ate | ate |
-|     |     | d   | d\* |
-+-----+-----+-----+-----+
-|     | Non | No  | No  |
-|     | e   | eve | eve |
-|     |     | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | Bac | No  | No  |
-|     | kwa | eve | eve |
-|     | rd  | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | For | No  | Eve |
-|     | war | eve | nt  |
-|     | d   | nt  | is  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d\* |
-+-----+-----+-----+-----+
-| Con | All | Eve | No  |
-| tin |     | nt  | eve |
-| uou |     | is  | nt  |
-| sTr |     | cal | cal |
-| ail |     | cul | cul |
-| ing |     | ate | ate |
-|     |     | d\* | d   |
-+-----+-----+-----+-----+
-|     | Non | No  | No  |
-|     | e   | eve | eve |
-|     |     | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
-|     | Bac | Eve | No  |
-|     | kwa | nt  | eve |
-|     | rd  | is  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d\* | d   |
-+-----+-----+-----+-----+
-|     | For | No  | No  |
-|     | war | eve | eve |
-|     | d   | nt  | nt  |
-|     |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d   | d   |
-+-----+-----+-----+-----+
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Stream Behavior           |Stream Behavior           |When start index is           |When start index is           |
+|Mode                      |QiStreamExtrapolation     |before all data               |after all data                |
++==========================+==========================+==============================+==============================+
+|Continuous                |All                       |Event is calculated*          |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Discrete                  |All                       |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousLeading         |All                       |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
 
 ::
 
@@ -503,96 +395,19 @@ all data in the stream. (This is for FORWARD search modes):
 
 When the startIndex falls between data:
 
-+-----+-----+
-| Str | Cal |
-| eam | cul |
-| Beh | ate |
-| avi | d   |
-| or  | Eve |
-| Mod | nt  |
-| e   |     |
-+=====+=====+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| s   | cal |
-|     | cul |
-|     | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | a   |
-|     | val |
-|     | ue  |
-|     | int |
-|     | erp |
-|     | ola |
-|     | ted |
-|     | for |
-|     | m   |
-|     | the |
-|     | sur |
-|     | rou |
-|     | ndi |
-|     | ng  |
-|     | ind |
-|     | ex  |
-|     | val |
-|     | ues |
-+-----+-----+
-| Dis | No  |
-| cre | eve |
-| te  | nt  |
-|     | cal |
-|     | cul |
-|     | ate |
-|     | d   |
-+-----+-----+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| sLe | cal |
-| adi | cul |
-| ng  | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | pre |
-|     | vio |
-|     | us  |
-|     | eve |
-|     | nt  |
-|     | val |
-|     | ues |
-+-----+-----+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| sTr | cal |
-| ail | cul |
-| ing | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | nex |
-|     | t   |
-|     | eve |
-|     | nt  |
-|     | val |
-|     | ues |
-+-----+-----+
++-----------------------+--------------------------------------------------------------------------+
+|Stream Behavior        |Calculated Event                                                          |
+|Mode                   |                                                                          |
++=======================+==========================================================================+
+|Continuous             |Event is calculated using the index and a value interpolated from the     |
+|                       |surrounding index values                                                  |
++-----------------------+--------------------------------------------------------------------------+
+|Discrete               |No event calculated                                                       |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousLeading      | Event is calculated using the index and previous event values            |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousTrailing     |Event is calculated using the index and next event values                 |
++-----------------------+--------------------------------------------------------------------------+
 
 GetValue( )
 ------------
@@ -803,188 +618,35 @@ ExactOrCalculated • Inside • Outside
 The table below indicates how the first value is determined for
 *GetWindowValues ( )* for the *startBoundaryType* shown:
 
-+-----+-----+
-| *st | Fir |
-| art | st  |
-| Bou | val |
-| nda | ue  |
-| ryT | obt |
-| ype | ain |
-| *   | ed  |
-+=====+=====+
-| Exa | The |
-| ct  | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | at  |
-|     | or  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Exa | If  |
-| ctO | a   |
-| rCa | val |
-| lcu | ue  |
-| lat | exi |
-| ed  | sts |
-|     | at  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-|     | it  |
-|     | is  |
-|     | use |
-|     | d,  |
-|     | els |
-|     | e   |
-|     | a   |
-|     | val |
-|     | ue  |
-|     | is  |
-|     | ‘ca |
-|     | lcu |
-|     | lat |
-|     | ed’ |
-|     | acc |
-|     | ord |
-|     | ing |
-|     | to  |
-|     | the |
-|     | str |
-|     | eam |
-|     | 's  |
-|     | beh |
-|     | avi |
-|     | or  |
-|     | set |
-|     | tin |
-|     | g   |
-+-----+-----+
-| Ins | The |
-| ide | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
-| Out | The |
-| sid | fir |
-| e   | st  |
-|     | val |
-|     | ue  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | sta |
-|     | rtI |
-|     | nde |
-|     | x   |
-+-----+-----+
+
++----------------------+-----------------------------------------------------------------------------+
+|*startBoundaryType*   |First value obtained                                                         |
++======================+=============================================================================+
+|Exact                 |The first value at or after the startIndex                                   |
++----------------------+-----------------------------------------------------------------------------+
+|ExactOrCalculated     |If a value exists at the startIndex it is used, else a value is ‘calculated’ |
+|                      |according to the stream's behavior setting                                   |
++----------------------+-----------------------------------------------------------------------------+
+|Inside                | The first value after the startIndex                                        |
++----------------------+-----------------------------------------------------------------------------+
+|Outside               | The first value before the startIndex                                       |
++----------------------+-----------------------------------------------------------------------------+
 
 This chart indicates how the last value is determined for
 *GetWindowValues( )* for the *endBoundaryType* shown:
 
-+-----+-----+
-| *en | Fir |
-| dBo | st  |
-| und | val |
-| ary | ue  |
-| Typ | obt |
-| e*  | ain |
-|     | ed  |
-+=====+=====+
-| Exa | The |
-| ct  | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | at  |
-|     | or  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | end |
-|     | Ind |
-|     | ex  |
-+-----+-----+
-| Exa | If  |
-| ctO | a   |
-| rCa | val |
-| lcu | ue  |
-| lat | exi |
-| ed  | sts |
-|     | at  |
-|     | the |
-|     | end |
-|     | Ind |
-|     | ex  |
-|     | it  |
-|     | is  |
-|     | use |
-|     | d,  |
-|     | els |
-|     | e   |
-|     | a   |
-|     | val |
-|     | ue  |
-|     | is  |
-|     | ‘ca |
-|     | lcu |
-|     | lat |
-|     | ed’ |
-|     | acc |
-|     | ord |
-|     | ing |
-|     | to  |
-|     | the |
-|     | str |
-|     | eam |
-|     | 's  |
-|     | beh |
-|     | avi |
-|     | or  |
-|     | set |
-|     | tin |
-|     | g   |
-+-----+-----+
-| Ins | The |
-| ide | fir |
-|     | st  |
-|     | val |
-|     | ue  |
-|     | bef |
-|     | ore |
-|     | the |
-|     | end |
-|     | Ind |
-|     | ex  |
-+-----+-----+
-| Out | The |
-| sid | fir |
-| e   | st  |
-|     | val |
-|     | ue  |
-|     | aft |
-|     | er  |
-|     | the |
-|     | end |
-|     | tIn |
-|     | dex |
-+-----+-----+
++----------------------+-----------------------------------------------------------------------------+
+|*endBoundaryType*     |First value obtained                                                         |
++======================+=============================================================================+
+|Exact                 |The first value at or before the endIndex                                    |
++----------------------+-----------------------------------------------------------------------------+
+|ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is ‘calculated’   |
+|                      |according to the stream's behavior setting                                   |
++----------------------+-----------------------------------------------------------------------------+
+|Inside                | The first value after the endIndex                                          |
++----------------------+-----------------------------------------------------------------------------+
+|Outside               | The first value before the endIndex                                         |
++----------------------+-----------------------------------------------------------------------------+
 
 Calls against an empty stream will always return a single null
 regardless of boundary type used.
@@ -1010,319 +672,44 @@ returned in the GetWindowValues call response.
 The table below indicates the when a calculated event is created for
 indexes before or after stream data:
 
-+-----+-----+-----+-----+
-| QiS | QiS | Whe | Whe |
-| tre | tre | n   | n   |
-| amB | amB | sta | sta |
-| eha | eha | rt  | rt  |
-| vio | vio | ind | ind |
-| r   | r   | ex  | ex  |
-| *Mo | *Ex | is  | is  |
-| de* | tra | **b | **a |
-|     | pol | efo | fte |
-|     | ati | re* | r** |
-|     | onM | *   | all |
-|     | ode | all | dat |
-|     | *   | dat | a   |
-|     |     | a   |     |
-+=====+=====+=====+=====+
-| Con | All | eve | Eve |
-| tin |     | nt  | nt  |
-| uou |     | is  | is  |
-| s   |     | cal | cal |
-|     |     | cul | cul |
-|     |     | ate | ate |
-|     |     | d\* | d\* |
-|     |     |     | \|  |
-|     |     |     | \|\ |
-|     |     |     | |No |
-|     |     |     | ne\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Ba |
-|     |     |     | ckw |
-|     |     |     | ard |
-|     |     |     | \|E |
-|     |     |     | ven |
-|     |     |     | t   |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Fo |
-|     |     |     | rwa |
-|     |     |     | rd\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | Eve |
-|     |     |     | nt  |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|  |
-|     |     |     | \|D |
-|     |     |     | isc |
-|     |     |     | ret |
-|     |     |     | e\| |
-|     |     |     | All |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |No |
-|     |     |     | ne\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Ba |
-|     |     |     | ckw |
-|     |     |     | ard |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Fo |
-|     |     |     | rwa |
-|     |     |     | rd\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|C |
-|     |     |     | ont |
-|     |     |     | inu |
-|     |     |     | ous |
-|     |     |     | Lea |
-|     |     |     | din |
-|     |     |     | g\| |
-|     |     |     | All |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | Eve |
-|     |     |     | nt  |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|  |
-|     |     |     | \|\ |
-|     |     |     | |No |
-|     |     |     | ne\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Ba |
-|     |     |     | ckw |
-|     |     |     | ard |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Fo |
-|     |     |     | rwa |
-|     |     |     | rd\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | Eve |
-|     |     |     | nt  |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|  |
-|     |     |     | \|C |
-|     |     |     | ont |
-|     |     |     | inu |
-|     |     |     | ous |
-|     |     |     | Tra |
-|     |     |     | ili |
-|     |     |     | ng\ |
-|     |     |     | |Al |
-|     |     |     | l\| |
-|     |     |     | Eve |
-|     |     |     | nt  |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |No |
-|     |     |     | ne\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | \|\ |
-|     |     |     | |Ba |
-|     |     |     | ckw |
-|     |     |     | ard |
-|     |     |     | \|E |
-|     |     |     | ven |
-|     |     |     | t   |
-|     |     |     | is  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\* |
-|     |     |     | \|N |
-|     |     |     | o   |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d   |
-|     |     |     | \|\ |
-|     |     |     | |Fo |
-|     |     |     | rwa |
-|     |     |     | rd\ |
-|     |     |     | |No |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-|     |     |     | No  |
-|     |     |     | eve |
-|     |     |     | nt  |
-|     |     |     | cal |
-|     |     |     | cul |
-|     |     |     | ate |
-|     |     |     | d\| |
-+-----+-----+-----+-----+
++--------------------------+--------------------------+------------------------------+------------------------------+
+|QiStreamBehavior          |QiStreamBehavior          |When start index is           |When start index is           |
+|*Mode*                    |*ExtrapolationMode*       |before all data               |after all data                |
++==========================+==========================+==============================+==============================+
+|Continuous                |All                       |Event is calculated*          |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Discrete                  |All                       |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousLeading         |All                       |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+
+
 
 \*When a startIndex event is calculated, the created event has the
 startIndex and the value of the first data event in the stream. When an
@@ -1335,81 +722,16 @@ between data in the stream, and the BoundaryT Type is set to
 ExactOrCalculated, and event will be created according to the following
 chart:
 
-+-----+-----+
-| Str | Cal |
-| eam | cul |
-| Beh | ate |
-| avi | d   |
-| or  | Eve |
-| Mod | nt  |
-| e   |     |
-+=====+=====+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| s   | cal |
-|     | cul |
-|     | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | int |
-|     | erp |
-|     | ola |
-|     | ted |
-|     | val |
-|     | ues |
-+-----+-----+
-| Dis | No  |
-| cre | eve |
-| te  | nt  |
-|     | cal |
-|     | cul |
-|     | ate |
-|     | d   |
-+-----+-----+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| sLe | cal |
-| adi | cul |
-| ng  | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | pre |
-|     | vio |
-|     | us  |
-|     | eve |
-|     | nt  |
-|     | val |
-|     | ues |
-+-----+-----+
-| Con | Eve |
-| tin | nt  |
-| uou | is  |
-| sTr | cal |
-| ail | cul |
-| ing | ate |
-|     | d   |
-|     | usi |
-|     | ng  |
-|     | the |
-|     | ind |
-|     | ex  |
-|     | and |
-|     | nex |
-|     | t   |
-|     | eve |
-|     | nt  |
-|     | val |
-|     | ues |
-+-----+-----+
++-----------------------+--------------------------------------------------------------------------+
+|Stream Behavior        |Calculated Event                                                          |
+|Mode                   |                                                                          |
++=======================+==========================================================================+
+|Continuous             |Event is calculated using the index and a value interpolated from the     |
+|                       |surrounding index values                                                  |
++-----------------------+--------------------------------------------------------------------------+
+|Discrete               |No event calculated                                                       |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousLeading      | Event is calculated using the index and previous event values            |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousTrailing     |Event is calculated using the index and next event values                 |
++-----------------------+--------------------------------------------------------------------------+
