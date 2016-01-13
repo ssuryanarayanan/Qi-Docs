@@ -322,8 +322,8 @@ The table below indicates how the first value is determined for
 |Exact                     |The first value at or before the startIndex                                    |
 +--------------------------+-------------------------------------------------------------------------------+
 |ExactOrCalculated         |If a value exists at the startIndex it is used, else a value is ‘calculated’   |
-|                          |according to the Stream Behavior setting. See the Calculated startIndex topic  |
-|                          |below.                                                                         | 
+|                          |according to the Stream Behavior setting. See the *Calculated startIndex*      |
+|                          |topic below.                                                                   | 
 +--------------------------+-------------------------------------------------------------------------------+
 |Inside                    |The first value before the startIndex                                          |
 +--------------------------+-------------------------------------------------------------------------------+
@@ -360,7 +360,7 @@ all data in the stream. (This is for FORWARD search modes):
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |None                      |No event calculated           |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
-|                          |Backward                  |Event is calculated           |No event calculated           |
+|                          |Backward                  |Event is calculated*          |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |Forward                   |No event calculated           |Event is calculated*          |
 +--------------------------+--------------------------+------------------------------+------------------------------+
@@ -378,7 +378,7 @@ all data in the stream. (This is for FORWARD search modes):
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |Backward                  |No event calculated           |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
-|                          |Forward                   |No event calculated           |No event calculated           |
+|                          |Forward                   |No event calculated           |Event is calculated*          |
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
@@ -643,9 +643,9 @@ This chart indicates how the last value is determined for
 |ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is ‘calculated’   |
 |                      |according to the stream's behavior setting                                   |
 +----------------------+-----------------------------------------------------------------------------+
-|Inside                | The first value after the endIndex                                          |
+|Inside                | The first value before the endIndex                                         |
 +----------------------+-----------------------------------------------------------------------------+
-|Outside               | The first value before the endIndex                                         |
+|Outside               | The first value after the endIndex                                          |
 +----------------------+-----------------------------------------------------------------------------+
 
 Calls against an empty stream will always return a single null
@@ -680,7 +680,7 @@ indexes before or after stream data:
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |None                      |No event calculated           |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
-|                          |Backward                  |Event is calculated           |No event calculated           |
+|                          |Backward                  |Event is calculated*          |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |Forward                   |No event calculated           |Event is calculated*          |
 +--------------------------+--------------------------+------------------------------+------------------------------+
@@ -698,7 +698,7 @@ indexes before or after stream data:
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |                          |Backward                  |No event calculated           |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
-|                          |Forward                   |No event calculated           |No event calculated           |
+|                          |Forward                   |No event calculated           |Event is calculated*          |
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
 +--------------------------+--------------------------+------------------------------+------------------------------+
