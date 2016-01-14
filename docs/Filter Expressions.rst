@@ -30,7 +30,7 @@ The following types are supported for use within a filter expression:
 -  ULong (Uint64)
 -  UShort (Uint16)
 
-**Not Supported**
+**Types that are not supported**
 
 The following types are not supported for use within a filter
 expression:
@@ -62,7 +62,7 @@ expression:
 +------------+-----------------------------------------------------+
 | ne         | Not equal                                           |
 +------------+-----------------------------------------------------+
-| ge         | Gerater than or equal to                            |
+| ge         | Greater than or equal to                            |
 +------------+-----------------------------------------------------+
 | le         | Less than or equal to                               |
 +------------+-----------------------------------------------------+
@@ -70,7 +70,8 @@ expression:
 +------------+-----------------------------------------------------+
 | gt         | Greater than                                        |
 +------------+-----------------------------------------------------+
-| ( )        | Parenthesis can be used to effect operation order   |
+| ( )        | Parenthesis can be used to affect the order of the  |
+|            | operation                                           |
 +------------+-----------------------------------------------------+
 | or         | Or logical operator                                 |
 +------------+-----------------------------------------------------+
@@ -83,7 +84,7 @@ expression:
 
 **Logical Operator Examples**
 
-These examples assume that the event Qi Type includes a field named ‘Value’ of type double: 
+The following examples assume that the Qi Type event includes a field named ‘Value’ of type double: 
 
 - "Value eq 1.0"
 - "Value ne 15.6" 
@@ -103,70 +104,41 @@ Math functions
 The following math functions are supported for use within a filter
 expression:
 
-+-----------+---------+
-| function  | Comment |
-+===========+=========+
-| add       | Additio |
-|           | n       |
-+-----------+---------+
-| sub       | Subtrac |
-|           | tion    |
-+-----------+---------+
-| mul       | Multipl |
-|           | ication |
-+-----------+---------+
-| div       | Divisio |
-|           | n       |
-+-----------+---------+
-| mod       | Modulo  |
-+-----------+---------+
-| round     | Rounds  |
-|           | to      |
-|           | nearest |
-|           | numeric |
-|           | compone |
-|           | nt      |
-|           | without |
-|           | a       |
-|           | decimal |
-|           | with    |
-|           | midpoin |
-|           | t       |
-|           | rounded |
-|           | away    |
-|           | from 0. |
-|           | (e.g.   |
-|           | 0.5     |
-|           | rounds  |
-|           | to 1,   |
-|           | -0.5    |
-|           | rounds  |
-|           | to -1)  |
-+-----------+---------+
-| floor     | Rounds  |
-|           | down to |
-|           | nearest |
-|           | numeric |
-|           | compone |
-|           | nt      |
-|           | without |
-|           | a       |
-|           | decimal |
-+-----------+---------+
-| ceiling   | Rounds  |
-|           | up to   |
-|           | nearest |
-|           | numeric |
-|           | compone |
-|           | nt      |
-|           | without |
-|           | a       |
-|           | decimal |
-+-----------+---------+
++-----------+-------------------------+
+| Function  | Comment                 |
++===========+=========================+
+| add       | Addition                |
++-----------+-------------------------+
+| sub       | Subtraction             |
++-----------+-------------------------+
+| mul       | Multiplication          |
++-----------+-------------------------+
+| div       | Division                |
++-----------+-------------------------+
+| mod       | Modulo                  |
++-----------+-------------------------+
+| round     | Rounds to the nearest   |
+|           | numeric component       |
+|           | without a decimal, with |
+|           | the midpoint rounded    |
+|           | away from 0. For        |
+|           | example, 0.5            |
+|           | rounds to 1; -0.5 rounds| 
+|           | to -1)                  |
++-----------+-------------------------+
+| floor     | Rounds down to the      |
+|           | nearest numeric         |
+|           | component without a     | 
+|           | decimal                 |
++-----------+-------------------------+
+| ceiling   | Rounds up to the nearest|
+|           | numeric component       |
+|           | without a decimal       |
++-----------+-------------------------+
 
 **Math Function Examples**
 
-These examples assume that the event Qi Type includes a field named ‘Value’ of type double. 
+In the following examples, assume that the Qi Type event includes a field named ‘Value’ of type double. 
 
 - "Value add 3.0 gt 5.0" 
 - "Value sub 5.0 lt 4.0" 
@@ -183,30 +155,30 @@ String functions
 
 **Supported**
 
-String operations are case sensitive. Character index in a string is
+String operations are case sensitive. The character index in a string is
 0-based. The following string functions are supported for use within a
 filter expression:
 
 +---------------+-----------------------------------------------------------------+
 | function      | Comment                                                         |
 +===============+=================================================================+
-| endswith      | Compare character at end of input string                        |
+| endswith      | Compare the character at the end of the input string            |
 +---------------+-----------------------------------------------------------------+
-| startwith     | Compare character at start of input string                      |
+| startwith     | Compare the character at the start of the input string          |
 +---------------+-----------------------------------------------------------------+
-| length        | Looks at string length                                          |
+| length        | Examines the string length                                      |
 +---------------+-----------------------------------------------------------------+
-| indexof       | Looks at character starting at given index                      |
+| indexof       | Examines the character starting at a given index                |
 +---------------+-----------------------------------------------------------------+
-| substring     | Look at characters within another string at specific location   |
+| substring     | Examine characters within another string at a specific location |
 +---------------+-----------------------------------------------------------------+
-| substringof   | Look for characters anywhere in another string                  |
+| substringof   | Search for characters anywhere in another string                |
 +---------------+-----------------------------------------------------------------+
-| tolower       | Convert characters to lower case                                |
+| tolower       | Convert characters to lowercase                                 |
 +---------------+-----------------------------------------------------------------+
-| toupper       | Convert characters to upper case                                |
+| toupper       | Convert characters to uppercase                                 |
 +---------------+-----------------------------------------------------------------+
-| trim          | Remove whitespace from front and end of string                  |
+| trim          | Remove whitespace from front and end of a string                |
 +---------------+-----------------------------------------------------------------+
 | concat        | Concatenate strings together                                    |
 +---------------+-----------------------------------------------------------------+
@@ -215,7 +187,7 @@ filter expression:
 
 **String function examples**
 
-These examples assume that the event Qi Type includes a field named
+The following examples assume that the Qi Type event includes a field named
 ‘sValue’ of type string:
 
 +-----------------------------------------+-----------------------------------------------------------------+
@@ -225,17 +197,17 @@ These examples assume that the event Qi Type includes a field named
 +-----------------------------------------+-----------------------------------------------------------------+
 |startswith(sValue, 'Val'                 |true if Value starts with the characters ‘Val’                   |
 +-----------------------------------------+-----------------------------------------------------------------+
-|length(sValue) eq 11                     |true of length of string value                                   |
+|length(sValue) eq 11                     |true if length of string value                                   |
 +-----------------------------------------+-----------------------------------------------------------------+
 |indexof(sValue, 'ab') eq 4               |true if the 5th and 6th characters are ‘ab’                      |
 +-----------------------------------------+-----------------------------------------------------------------+
-|substring(sValue, 10) eq 'a b'           |true ‘a b’ is found in sValue at index 10                        |
+|substring(sValue, 10) eq 'a b'           |true if ‘a b’ is found in sValue at index 10                     |
 +-----------------------------------------+-----------------------------------------------------------------+
-|substringof('val', Value)                |true if characters ‘val’ are anywhere in sValue                  |
+|substringof('val', Value)                |true if characters ‘val’ are found anywhere in sValue            |
 +-----------------------------------------+-----------------------------------------------------------------+
-|tolower(sValue) eq 'val5'                |change sValue to lower case and compares to ‘val5’               |
+|tolower(sValue) eq 'val5'                |change sValue to lowercase and compare to ‘val5’                 |
 +-----------------------------------------+-----------------------------------------------------------------+
-|toupper(sValue) eq 'ABC'                 |change sValue to upper case and compares to ‘ABC’                |
+|toupper(sValue) eq 'ABC'                 |change sValue to uppercase and compare to ‘ABC’                  |
 +-----------------------------------------+-----------------------------------------------------------------+
 |trim(sValue) eq ‘vall22’                 |trim whitespace from front and end of sValue and compare to      |
 |                                         |‘val22’                                                          |
@@ -271,7 +243,7 @@ expression:
 
 **DateTime Function Examples**
 
-These examples assume that the event Qi Type includes a field named
+The following examples assume that the Qi Type event includes a field named
 ‘TimeId’ of type DateTime:
 
 -  "year(TimeId) eq 2015"
@@ -305,7 +277,7 @@ expression:
 
 **TimeSpan Function Examples**
 
-These examples assume that the event Qi Type includes a field named
+The following examples assume that the Qi Type event includes a field named
 ‘TimeSpanValue’ of type TimeSpan:
 
 -  "years(TimeSpanValue) eq 1"
