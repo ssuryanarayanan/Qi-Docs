@@ -1,20 +1,20 @@
 Overview
 ########
 
-After obtaining Qi REST API access keys from
-`qi.osisoft.com <https://qi.osisoft.com>`__, samples of clients using Qi
-can be found on the Qi-Samples repository on GitHub.
+You can find code sameples for Python, .NET, Node.js, and Java in the
+Qi-Samples repository on GitHub. You should obtain Qi REST API access keys from
+`qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
 
-A Qi tenant is a self-contained entity within Qi and can be utilized to
-define 3 different objects to store and manage data:
+A Qi tenant is a self-contained entity within Qi that can be used to
+define three different objects in which to store and manage data:
 
--  **Type**: user defined structure denoting a single measured event or
-   object for storage
--  **Stream**: basic unit of storage consisting of an ordered series of
-   objects conforming to a type definition
--  **Stream Behavior**: defines how Qi will interpolate or extrapolate
-   during event retrieval when requests land before, after or in-between
-   existing data events
+-  **Type**: A user-defined structure that denotes a single measured event or
+   object for storage.
+-  **Stream**: A basic unit of storage consisting of an ordered series of
+   objects that conform to a type definition.
+-  **Stream Behavior**: Defines how Qi interpolates or extrapolates
+   data during event retrieval when requests occur before, after, or between
+   existing data events.
 
 Creating a type
 ---------------
