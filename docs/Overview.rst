@@ -62,8 +62,8 @@ To create a stream
 ------------------
 
 You use streams to hold data of a predefined type. To create a QiStream
-the Id and TypeId of the stream must be defined. Optionally a Name,
-Description, and BehaviorID can be defined.
+the Id and TypeId of the stream must be defined. Optionally, you can also
+define a Name, Description, and BehaviorID.
 
 The following example creates a QiStream with an Id of ‘MyFistStream’ of type
 ‘mySimpleType’:
@@ -79,10 +79,10 @@ The following example creates a QiStream with an Id of ‘MyFistStream’ of typ
     }
     _service.GetOrCreateStream(stream1);
 
-The stream in the above example can now be used to hold data values of 
+The stream in the previous example can now be used to hold data values of 
 the structure that is defined in mySimpleType. The stream's Name, 
-Description, and BehaviorId field can be modified; however, the Id 
-and TypeId cannot be changed once the stream has been created.
+Description, and BehaviorId fields can be modified; however, the Id 
+and TypeId cannot be changed after the stream has been created.
 
 Additonal information about streams can be found in
 `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__.
@@ -93,13 +93,13 @@ To write data
 Qi has several methods that can be used to write data. For example,
 `*InsertValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalue>`__
 is used to write a single data event to a stream. If the data event
-that is written includes an index at which there is already an event, 
+includes an index at that is the same as a previous event, 
 this method will throw an exception. However
 `*UpdateValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#updatevalue>`__
 can also be used to write a single event to a stream, and will overwrite
 the existing event with the new event.
 
-Each of these methods has a counterpart which acts upon a list of data
+Each of these methods has a counterpart that acts upon a list of data
 events instead of only a single event. For example,
 `*InsertValues()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues>`__
 writes multiple events. Similarly,
@@ -142,7 +142,7 @@ data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
 To read data
 ------------
 
-Qi includes different read methods and overloads that can be used to
+Qi includes several different read methods and overloads that can be used to
 retrieve data from streams. These methods can be used in a large 
 number of circumstances.
 
@@ -152,31 +152,31 @@ which to act.
 
 All of the read operations include a streamId property to indicate the
 stream from which to retrieve the data. With the read methods, indexes
-are supplied to the method in ‘string’ format. So for example if you
-wanted to send the index for ‘now’ to read from a stream that has data
+are supplied to the method in ‘string’ format. For example, 
+to send the index for ‘now’ to read from a stream that has data
 indexed with a DateTime type as its index, the string could be defined
-in a line something like this:
+in as in the following example:
 
 ::
 
     string start = DateTime.UtcNow.ToString("o");
 
-Notice that Utc format is used (time indexes in Qi use UTC format) and
-the ‘(”o”)’ formatting is used to insure that the precision of the
+Notice that UTC format is used (time indexes in Qi use UTC format) and
+the ‘(”o”)’ formatting ensures that the precision of the
 DateTime value is included on the string value.
 
-Additional information on reading data can be found in `Reading
-data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__
+Additional information about reading data can be found in `Reading
+data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__.
 
 Stream behaviors
 ----------------
 
 Qi Stream Behaviors are applied to streams to affect how certain data
-read operations will be performed. The Stream Behavior object affects whether
-interpolation and/or extrapolation will be done when the
-index of a read operation falls between, before or after stream data.
+read operations are performed. The Stream Behavior object affects whether
+interpolation or extrapolation will be done when the
+index of a read operation falls between, before, or after stream data.
 
-Additonal information on stream behaviors can be found in
+Additonal information about stream behaviors can be found in
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
 
 Security
