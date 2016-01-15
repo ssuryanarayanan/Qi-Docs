@@ -5,26 +5,26 @@ A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
-The following table defines the required and optional QiStream objects:
+The following table shows the required and optional QiStream objects:
 
-+---------------+----------+--------------------------------------------+
-| Object        | Type     | Details                                    |
-+===============+==========+============================================+
-| Id            | String   | Required Id for referencing the stream     |
-+---------------+----------+--------------------------------------------+
-| Name          | String   | Optional name                              |
-+---------------+----------+--------------------------------------------+
-| Description   | String   | Optional description text                  |
-+---------------+----------+--------------------------------------------+
-| TypeId        | String   | Required type to be used for this stream   |
-+---------------+----------+--------------------------------------------+
-| BehaviorId    | Sting    | Optional stream behavior for this stream   |
-+---------------+----------+--------------------------------------------+
++---------------+----------+-------------+--------------------------------------------+
+| Object        | Type     | Optionality |Details                                     |
++===============+==========+=============+============================================+
+| Id            | String   | Required    | Identifier for referencing the stream      |
++---------------+----------+-------------+--------------------------------------------+
+| Name          | String   | Optional    | Name of the stream                         |
++---------------+----------+-------------+--------------------------------------------+
+| Description   | String   | Optional    | Text that describes the stream             |
++---------------+----------+-------------+--------------------------------------------+
+| TypeId        | String   | Required    | The type to be used for this stream        |
++---------------+----------+-------------+--------------------------------------------+
+| BehaviorId    | Sting    | Optional    | The stream behavior for this stream        |
++---------------+----------+-------------+--------------------------------------------+
 
-A stream is always referenced by its Id property. As shown above a
+A stream is always referenced by its Id property. As shown in the preceeding table,
 QiStream must include a unique *Id* as well as a *TypeId* with the Id of
 an existing QiType. The optional *BehaviorId* is set with the Id of an
-existing stream behavior. When BehaviorId is not included the stream
+existing stream behavior. When BehaviorId is omitted, the stream
 will have a default behavior mode set to continuous and extrapolation
 set to all. See
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__
@@ -113,9 +113,9 @@ Content is serialized QiStream entity
 
 **Security** Allowed by Administrator account
 
-**Operation** If entity already exists on the service by *Id*, that
+**Operation** If an entity with the same *Id* already exists on the service, then the
 existing stream is returned to the caller unchanged. Otherwise the new
-stream is created
+stream is created.
 
 UpdateStream( )
 ------------
@@ -155,9 +155,9 @@ entity given. Permitted changes:
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStream()* method applies the entire entity. Optional fields
-left out of the entity will remove the field from the stream if they had
-been set previously
+The *UpdateStream()* method applies to the entire entity. Optional fields
+that are omitted from the entity will remove the field from the stream if the fields had
+been set previously.
 
 DeleteStream( )
 ------------
