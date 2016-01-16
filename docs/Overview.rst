@@ -1,7 +1,7 @@
 Overview
 ########
 
-You can find code sameples for Python, .NET, Node.js, and Java in the
+You can find code samples for Python, .NET, Node.js, and Java in the
 Qi-Samples repository on GitHub. You should obtain Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
 
@@ -87,6 +87,38 @@ and TypeId cannot be changed after the stream has been created.
 Additonal information about streams can be found in
 `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__.
 
+To define Stream behaviors
+--------------------------
+
+Qi Stream Behaviors are applied to streams to affect how certain data
+read operations are performed. The Stream Behavior object affects whether
+interpolation or extrapolation will be done when the
+index of a read operation falls between, before, or after stream data.
+
+Additonal information about stream behaviors can be found in
+`QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
+
+Containers
+----------
+
+As you have seen in the previous topics, when you create a tenent in Qi, you define a Type (which defines the structure of your data), a Stream (which creates an area in which to store your data), and you define a Stream Behavior (which defines rules for how data is read). Tenent information is stored within one or more *containers*. A *container* in this context stores information for a given tenent and can be thought of as an self-contained partition that you use to store the entirety of the data and metadata for your tenent. 
+
+You use containers to separate tenents into logical entities. For example, you might want to have one tenent for production, one for development, and perhaps one or more containers for QA or to serve as a pre-production staging area for certification testing. 
+
+You can create, delete, or obtain information about your containers using the following Qi methods:
+
+::
+
+   CreateContainer(string containerName)
+   -need example and API call-
+   
+   DeleteContainer(string containerName)
+   -need example and API call-
+   
+   GetContainers()
+   -need example and API call-
+
+
 To write data
 -------------
 
@@ -168,16 +200,6 @@ DateTime value is included on the string value.
 Additional information about reading data can be found in `Reading
 data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__.
 
-Stream behaviors
-----------------
-
-Qi Stream Behaviors are applied to streams to affect how certain data
-read operations are performed. The Stream Behavior object affects whether
-interpolation or extrapolation will be done when the
-index of a read operation falls between, before, or after stream data.
-
-Additonal information about stream behaviors can be found in
-`QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
 
 Security
 --------
