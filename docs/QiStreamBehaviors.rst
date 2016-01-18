@@ -67,9 +67,9 @@ QiStreamBehavior:
     QiStreamBehavior simpleBehavior = new QiStreamBehavior()
     {
         Id = behaviorId,
-            Mode = QiStreamMode.StepwiseContinuousLeading,
+        Mode = QiStreamMode.StepwiseContinuousLeading,
     };
-    _service.GetOrCreateBehavior(createdBehavior);
+    _service.GetOrCreateBehavior(containerId, createdBehavior);
 
 After the stream behavior is defined, the behavior can be applied to a
 stream as shown in the next example:
@@ -77,14 +77,14 @@ stream as shown in the next example:
 ::
 
     string streamId = "MyFirstStream";
-    string streamType = " mySimpleType ";
+    string streamType = "mySimpleType";
     QiStream stream1 = new QiStream()
     {
         Id = streamId,
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _service.GetOrCreateStream(stream1);
+    _service.GetOrCreateStream(containerId , stream1);
 
 Interpolation
 ------------
@@ -100,7 +100,7 @@ listed:
 +===========================+================================+==================================================+
 |Default                    |0                               |Continuous                                        |
 +---------------------------+--------------------------------+--------------------------------------------------+
-|Continoous                 |0                               |Interpolates the data using previous and next     |
+|Continuous                 |0                               |Interpolates the data using previous and next     |
 |                           |                                |index values                                      |
 +---------------------------+--------------------------------+--------------------------------------------------+
 |StepwiseContinuousLeading  |1                               |Returns the data from the previous index          |
