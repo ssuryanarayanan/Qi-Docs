@@ -101,9 +101,9 @@ Additonal information about stream behaviors can be found in
 Containers
 ----------
 
-As you have seen in the previous topics, when you create a tenent in Qi, you define a Type (which defines the structure of your data), a Stream (which creates an area in which to store your data), and you define a Stream Behavior (which defines rules for how data is read). Tenent information is stored within one or more *containers*. A *container* in this context stores information for a given tenent and can be thought of as an self-contained partition that you use to store the entirety of the data and metadata for your tenent. 
+As you have seen in the previous topics, when you create a tenant in Qi, you define a Type (which defines the structure of your data), a Stream (which creates an area in which to store your data), and you define a Stream Behavior (which defines rules for how data is read). Tenant information is stored within one or more *containers*. A *container* in this context stores information for a given tenant and can be thought of as an self-contained partition that you use to store the entirety of the data and metadata for your tenant. 
 
-You use containers to separate tenents into logical entities. For example, you might want to have one tenent for production, one for development, and perhaps one or more containers for QA or to serve as a pre-production staging area for certification testing. 
+You use containers to separate tenants into logical entities. For example, you might want to have one tenant for production, one for development, and perhaps one or more containers for QA or to serve as a pre-production staging area for certification testing. 
 
 You can create, delete, or obtain information about your containers using the following Qi methods:
 
