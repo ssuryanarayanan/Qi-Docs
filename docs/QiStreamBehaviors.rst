@@ -39,20 +39,20 @@ behavior itself can be changed after it is created or configured.
 +-----------------------------------------------------------------------------------------+----------------------------------------+
 | Method                                                                                  | Details                                |
 +=========================================================================================+========================================+
-|`*GetValue( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__   |Stream behavior is applied when the     |
+|`GetValue( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__     |Stream behavior is applied when the     |
 |                                                                                         |index is between, before, or after all  |
 |                                                                                         |data.                                   |
 +-----------------------------------------------------------------------------------------+----------------------------------------+
-|`*GetValues( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__ |Stream behavior is applied when an      |
+|`GetValues( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__   |Stream behavior is applied when an      |
 |                                                                                         |index determined by the call is         | 
 |                                                                                         |between, before, or after all data.     |
 +-----------------------------------------------------------------------------------------+----------------------------------------+
-| `*GetWindowValues( )*                                                                   |Stream behavior is applied to indexes   |
+| `GetWindowValues( )                                                                     |Stream behavior is applied to indexes   |
 | <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__          |between, before, or after data when the |
 |                                                                                         |calls Boundary parameter is set to      |
 |                                                                                         |ExactOrCalculated                       |
 +-----------------------------------------------------------------------------------------+----------------------------------------+
-| `*GetRangeValues( )*                                                                    |Stream behavior is applied to indexes   |
+| `GetRangeValues( )                                                                      |Stream behavior is applied to indexes   |
 | <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__           |between, before, or after data when the |
 |                                                                                         |calls Boundary parameter is set to      |
 |                                                                                         |ExactOrCalculated                       |
