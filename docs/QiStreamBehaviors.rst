@@ -1,21 +1,8 @@
 Qi Stream Behavior
 ==================
 
-.. role:: raw-latex(raw)
-   :format: latex
-..
-
-The QiStreamBehavior object determines how data read operations are 
-performed by defining whether interpolation or extrapolation
-will be applied when the index of a read operation falls between, before,
-or after stream data. QiStreamBehavior is an object that you define
-and include in the definition of a stream (similar to the way a
-QiType is defined for a QiStream). Note that, if you do not assign a
-specific Stream Behavior object to a stream, the default
-behavior is assumed, which is *Mode* = *Continuous* (with no overrides)
-and *QiStreamExtrapolation* = *All*.
-
-The following table defines QiStreamBehavior objects:
+The QiStreamBehavior object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you you might want instead the value from the preceding event returned. Similarly if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A QiStreamBehavior object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
+Note that, if you do not assign a specific Stream Behavior object to a stream, the default behavior is assumed.
 
 +------------------+--------------------------------+--------------------------------------------------+
 |Object            |Type                            |Details                                           |
@@ -35,6 +22,10 @@ The following table defines QiStreamBehavior objects:
 |ExtrapolationMode |QiStreamExtrapolation           |Controls extrapolation behavior for the stream    |
 +------------------+--------------------------------+--------------------------------------------------+
 
+Stream behavior objects are always referenced by the *Id* property. A
+stream can be changed to use a different stream behavior or the stream
+behavior itself can be changed after it is created or configured.
+
 **Rules for QiStreamBehavior *Id***
 
 1. Case Insensitive
@@ -43,23 +34,29 @@ The following table defines QiStreamBehavior objects:
 4. Cannot contain slash characters ("/" or "\\")
 5. Maximum of 260 characters
 
-Stream behavior objects are always referenced by the *Id* property. A
-stream can be changed to use a different stream behavior or the stream
-behavior itself can be changed after it is created or configured.
+**Methods affected by QiStreamBehavior**
 
-**Methods effected by QiStreamBehavior**
-
-+--------------------------------------------------------------------------------------------------------+---------------------------------------------+
-| Method                                                                                                 | Details                                     |
-+========================================================================================================+=============================================+
-| `*GetValue( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__                 |                                             |
-+--------------------------------------------------------------------------------------------------------+---------------------------------------------+
-| `*GetValues( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__               |                                             |
-+--------------------------------------------------------------------------------------------------------+---------------------------------------------+
-| `*GetWindowValues( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__   | When Boundary is set to ExactOrCalculated   |
-+--------------------------------------------------------------------------------------------------------+---------------------------------------------+
-| `*GetRangeValues( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__     | When Boundary is set to ExactOrCalculated   |
-+--------------------------------------------------------------------------------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------------------+----------------------------------------+
+| Method                                                                                  | Details                                |
++=========================================================================================+========================================+
+|`*GetValue( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__   |Stream behavior is applied when the     |
+|                                                                                         |index is between, before, or after all  |
+|                                                                                         |data.                                   |
++-----------------------------------------------------------------------------------------+----------------------------------------+
+|`*GetValues( )* <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__ |Stream behavior is applied when an      |
+|                                                                                         |index determined by the call is         | 
+|                                                                                         |between, before, or after all data.     |
++-----------------------------------------------------------------------------------------+----------------------------------------+
+| `*GetWindowValues( )*                                                                   |Stream behavior is applied to indexes   |
+| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__          |between, before, or after data when the |
+|                                                                                         |calls Boundary parameter is set to      |
+|                                                                                         |ExactOrCalculated                       |
++-----------------------------------------------------------------------------------------+----------------------------------------+
+| `*GetRangeValues( )*                                                                    |Stream behavior is applied to indexes   |
+| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__           |between, before, or after data when the |
+|                                                                                         |calls Boundary parameter is set to      |
+|                                                                                         |ExactOrCalculated                       |
++-----------------------------------------------------------------------------------------+----------------------------------------+
 
 The code in the following example shows how to define and create a simple
 QiStreamBehavior:
