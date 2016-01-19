@@ -22,7 +22,7 @@ The following table shows the required and optional QiStream objects:
 +---------------+----------+-------------+--------------------------------------------+
 
 A stream is always referenced by its Id property. As shown in the preceeding table,
-QiStream must include a unique *Id* as well as a *TypeId* with the Id of
+a QiStream must include a unique *Id* as well as a *TypeId* with the Id of
 an existing QiType. The optional *BehaviorId* is set with the Id of an
 existing stream behavior. When BehaviorId is omitted, the stream
 will have a default behavior mode set to continuous and extrapolation
@@ -32,10 +32,10 @@ for more information.
 
 **Rules for QiStream *Id*:**
 
-1. Case insensitive
-2. Allows spaces
+1. Not case sensitive
+2. Spaces are allowed
 3. Cannot start with two underscores ("\_\_")
-4. Cannot start or end with period (".")
+4. Cannot start or end with a period (".")
 5. Maximum of 260 characters
 6. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
    , ; = %)
