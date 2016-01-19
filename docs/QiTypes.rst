@@ -1,19 +1,19 @@
 Qi Types
 ########
 
-A QiType is what Qi uses to store definable data types. A QiType
+A QiType is used by Qi to store definable data types. A QiType
 consists of one or more properties that are either simple atomic types
-(e.g. integer) or previously-defined QiTypes. A type is always
-referenced with its Id property. Leveraging a QiType as a property
+(such as an integer) or previously-defined QiTypes. A type is always
+referenced with its Id property. Using a QiType as a property
 permits the construction of complex, nested data types. A QiType must
 have have one or more properties that constitute an ordered key to be
 used as an index. While a timestamp (DateTime) is a very common type of
 key, any ordered value is permitted.
 
-Once a QiType is created it cannot be changed and can only be deleted if
+When a QiType is created it cannot be changed and it can only be deleted if
 there are no streams associated with it.
 
-The following table defines the required and optional QiType objects:
+The following table shows the required and optional QiType objects:
 
 +---------------+-------------------------+----------------------------------------+
 | Object        | Type                    | Details                                |
@@ -31,10 +31,10 @@ The following table defines the required and optional QiType objects:
 
 **Rules for typeId**
 
-1. Case insensitive
-2. Allows spaces
+1. Not case sensitive
+2. Spaces are allowed
 3. Cannot start with two underscores ("\_\_")
-4. Cannot contain slash characters ("/" and "")
+4. Cannot contain forward slash or backslash characters ("/" or "\\")
 5. Maximum length of 260 characters
 
 GetStreamType( )
@@ -55,11 +55,11 @@ GetStreamType( )
 
 **Parameters**
 
-*streamId*: Id of the stream for which type request will be made
+*streamId*: Id of the stream for which the type request is made
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** Returns the type definition associated with a stream
+**Operation** Returns the type definition that is associated with a stream
 
 GetType( )
 ----------------
@@ -83,7 +83,7 @@ GetType( )
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** Returns type searched for by *typeId*
+**Operation** Returns the type that is searched for by *typeId*
 
 GetTypes( )
 ----------------
@@ -133,8 +133,8 @@ Content is serialized QiType entity
 
 **Security** Allowed by administrator account
 
-**Operation** Returns a Qi Type object If entity already exists on the
-service by Id, the existing type is returned to the caller unchanged.
+**Operation** Returns a Qi Type object. If the entity Id already exists on the
+service, the existing type is returned to the caller unchanged.
 Otherwise, a new type definition is added to the Qi Service
 
 DeleteType( )
@@ -159,8 +159,8 @@ DeleteType( )
 
 **Security** Allowed by administrator account
 
-**Operation** Deletes type from service A type cannot be deleted from
-the service if there are existing streams associated with it
+**Operation** Deletes the type from service A. The type cannot be deleted from
+the service if existing streams are associated with it.
 
 UpdateType( )
 ----------------
@@ -184,162 +184,93 @@ UpdateType( )
 
 **Security** Allowed by Administrator account
 
-**Operation** Updates a type’s definition A type cannot be updated if
-there are existing streams associated with it
+**Operation** Updates a type’s definition. A type cannot be updated if
+existing streams are associated with it.
 
 Compound Indexes
 ----------------
 
-When defining a QiType the index property to be used to sequence the
-data must be defined by the user in the type definition. Often a single
+When defining a QiType, the index property you use to sequence the
+data must be defined by in the type definition. Often a single
 index, such as DateTime, is used, but for more complex scenarios Qi
-allows multiple indexes to be defined in a type. These indexes are
-concatenated together to form a compound index. The Qi REST API methods
-that use tuples were created to assist the user in using compound
+allows multiple indexes to be defined in a type. Multiple indexes are
+concatenated to form a compound index. The Qi REST API methods
+that use tuples were created to assist you to use compound
 indexes.
 
 Supported QiTypes
 ----------------
 
-The following are explicitely supported types that can be used when
+The following are types are supported when
 creating a QiType:
 
-Empty
-
-Object
-
-DBNull
-
-Boolean
-
-Char
-
-SByte
-
-Byte
-
-Int16
-
-UInt16
-
-Int32
-
-UInt32
-
-Int64
-
-UInt64
-
-Single
-
-Double
-
-Decimal
-
-DateTime
-
-String
-
-Guid
-
-DateTimeOffset
-
-TimeSpan
-
-Version
-
-NullableBoolean
-
-NullableChar
-
-NullableSByte
-
-NullableByte
-
-NullableInt16
-
-NullableUInt16
-
-NullableInt32
-
-NullableUInt32
-
-NullableInt64
-
-NullableUInt64
-
-NullableSingle
-
-NullableDouble
-
-NullableDecimal
-
-NullableDateTime
-
-NullableGuid
-
-NullableDateTimeOffset
-
-NullableTimeSpan
-
-BooleanArray
-
-CharArray
-
-SByteArray
-
-ByteArray
-
-Int16Array
-
-UInt16Array
-
-Int32Array
-
-UInt32Array
-
-Int64Array
-
-UInt64Array
-
-SingleArray
-
-DoubleArray
-
-DecimalArray
-
-DateTimeArray
-
-StringArray
-
-GuidArray
-
-DateTimeOffsetArray
-
-TimeSpanArray
-
-VersionArray
-
-Array
-
-IList
-
-IDictionary
-
-IEnumerable
-
-SByteEnum
-
-ByteEnum
-
-Int16Enum
-
-UInt16Enum
-
-Int32Enum
-
-UInt32Enum
-
-Int64Enum
-
-UInt64Enum
+* Array
+* Boolean
+* BooleanArray
+* Byte
+* ByteArray
+* ByteEnum
+* Char
+* CharArray
+* DateTime
+* DateTimeArray
+* DateTimeOffset
+* DateTimeOffsetArray
+* DBNull
+* Decimal
+* DecimalArray
+* Double
+* DoubleArray
+* Empty
+* Guid
+* GuidArray
+* IDictionary
+* IEnumerable
+* IList
+* Int16
+* Int16Array
+* Int16Enum
+* Int32
+* Int32Array
+* Int32Enum
+* Int64
+* Int64Array
+* Int64Enum
+* NullableBoolean
+* NullableByte
+* NullableChar
+* NullableDateTime
+* NullableDateTimeOffset
+* NullableDecimal
+* NullableDouble
+* NullableGuid
+* NullableInt16
+* NullableInt32
+* NullableInt64
+* NullableSByte
+* NullableSingle
+* NullableTimeSpan
+* NullableUInt16
+* NullableUInt32
+* NullableUInt64
+* Object
+* SByte
+* SByteArray
+* SByteEnum
+* Single
+* SingleArray
+* String
+* StringArray
+* TimeSpan
+* TimeSpanArray
+* UInt16
+* UInt16Array
+* UInt16Enum
+* UInt32
+* UInt32Array
+* UInt32Enum
+* UInt64
+* UInt64Array
+* UInt64Enum
+* Version
+* VersionArray
