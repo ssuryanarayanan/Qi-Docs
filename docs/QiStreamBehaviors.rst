@@ -4,6 +4,17 @@ Qi Stream Behavior
 The QiStreamBehavior object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A QiStreamBehavior object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
 Note that, if you do not assign a specific Stream Behavior object to a stream, the default behavior is assumed.
 
+The Stream Behavior object consists of the following parts:
+
+==================        ==================
+Id                        A string that is used to identify the behavior
+Name                      A string that you use to name the behavior
+Mode                      The behavior’s interpolation setting (type = QiStreamMode) 
+ExtrapolationMode         The behavior’s extrapolation setting (type = QiStreamExtrapolation) 
+Overrides                 A list of overrides to the Mode setting when individual properties have
+                          different interpolation behaviors
+==================        ==================
+
 +------------------+--------------------------------+--------------------------------------------------+
 |Object            |Type                            |Details                                           |
 +==================+================================+==================================================+
@@ -238,8 +249,8 @@ As described above, the interpolation behavior for the values in a
 stream is determined by the stream behavior *Mode*; however, individual
 data types can be overridden to conform to another behavior by setting
 the *Overrides* property. In this way the user can have different
-interpolation behaviors for different types within the stream. Without
-the overrides, properties will inherit the interpolation behavior defined by
+interpolation behaviors for different types within the stream data. Without
+the overrides, all properties inherit the interpolation behavior defined by
 the *Mode* object of the stream behavior.
 
 The *Override* object has the following structure:
