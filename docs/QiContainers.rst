@@ -35,6 +35,32 @@ The following table shows the required and optional Qi Container objects:
 5. Maximum length of 260 characters
 
 
+GetContainer( )
+----------------
+
+**Qi Client Library**
+
+::
+
+    string GetContainer(string containerId);
+    Task<string> GetContainerAsync(string containerId);
+
+**Http**
+
+::
+
+    GET "Qi/Containers/{containerId}”
+
+
+**Parameters**
+
+*containerId*: The Id of the container.
+
+**Security** Allowed by administrator and user accounts.
+
+**Operation** Returns a container.
+
+
 GetContainers( )
 ----------------
 
@@ -42,11 +68,9 @@ GetContainers( )
 
 ::
 
+
     IEnumerable<string> GetContainers();
     Task<IEnumerable<string>> GetContainersAsync();
-    
-    string GetContainer(string containerId);
-    Task<string> GetContainerAsync(string containerId);
 
 
 **Http**
@@ -54,8 +78,6 @@ GetContainers( )
 ::
 
     GET "Qi/Containers"
-
-    GET "Qi/Containers/{containerId}”
 
 
 **Parameters**
