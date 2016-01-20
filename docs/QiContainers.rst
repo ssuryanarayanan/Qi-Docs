@@ -27,11 +27,13 @@ The following table shows the required and optional Qi Container objects:
 **Rules for ContainerId**
 
 !!! This info needs to be verified !!!
+
 1. Not case sensitive
 2. Spaces are allowed
 3. Cannot start with two underscores ("\_\_")
 4. Cannot contain forward slash or backslash characters ("/" or "\\")
 5. Maximum length of 260 characters
+
 
 GetContainers( )
 ----------------
@@ -42,6 +44,10 @@ GetContainers( )
 
     IEnumerable<string> GetContainers();
     Task<IEnumerable<string>> GetContainersAsync();
+    
+    string GetContainer(string containerId);
+    Task<string> GetContainerAsync(string containerId);
+
 
 **Http**
 
@@ -49,61 +55,42 @@ GetContainers( )
 
     GET "Qi/Containers"
 
+    GET "Qi/Containers/{containerId}”
+
+
 **Parameters**
 
-*string*: 
+*containerId*: The Id of the container.
 
-**Security** Allowed by administrator and user accounts
+**Security** Allowed by administrator and user accounts.
 
 **Operation** Returns ???
 
-GetType( )
+
+UpdateContainer( )
 ----------------
 
 **Qi Client Library**
 
 ::
 
-    QiType GetType(string typeId);
-    Task<QiType> GetTypeAsync(string typeId);
+    void UpdateContainer(string containerId, string newContainerId);
+    Task UpdateContainerAsync(string containerId, string newContainerId);
 
+    
 **Http**
 
 ::
 
-    GET Qi/Types/{typeId}
+    HTTP PUT "Qi/Containers/{containerId}"
 
 **Parameters**
 
-*typeId*: Id of the type to retrieve
+*containerId*: The Id of the container.
 
-**Security** Allowed by administrator and user accounts
+**Security** Allowed by administrator account
 
-**Operation** Returns the type that is searched for by *typeId*
-
-GetTypes( )
-----------------
-
-**Qi Client Library**
-
-::
-
-    IEnumerable<QiType> GetTypes();
-    Task<IEnumerable<QiType>> GetTypesAsync();
-
-**Http**
-
-::
-
-    GET Qi/Types
-
-**Parameters**
-
-None
-
-**Security** Allowed by administrator and user accounts
-
-**Operation** Returns IEnumerable of all types
+**Operation** Updates a container
 
 GetOrCreateType( )
 ----------------
@@ -112,20 +99,19 @@ GetOrCreateType( )
 
 ::
 
-    QiType GetOrCreateType(QiType entity);
-    Task<QiType> GetOrCreateTypeAsync(QiType entity);
+    string GetOrCreateContainer(string containerId);
+    Task<string> GetOrCreateContainerAsync(string containerId);
 
 **Http**
 
 ::
 
-    POST Qi/Types
+    POST "Qi/Containers/{containerId}"
 
-Content is serialized QiType entity
 
 **Parameters**
 
-*entity*: Qi Type object
+*containerId*: The Id of the container.
 
 **Security** Allowed by administrator account
 
@@ -140,133 +126,22 @@ DeleteType( )
 
 ::
 
-    void DeleteType(string typeId);
-    Task DeleteTypeAsync(string typeId);
+    void DeleteContainer(string containerId);
+    Task DeleteContainerAsync(string containerId);
 
 **Http**
 
 ::
 
-    DELETE Qi/Types/{typeId}
+    DELETE "Qi/Containers/{containerId}”
 
 **Parameters**
 
-*typeId*: String typeId of the type to delete
+*containerId*: The Id of the container.
 
 **Security** Allowed by administrator account
 
 **Operation** Deletes the type from service A. The type cannot be deleted from
 the service if existing streams are associated with it.
 
-UpdateType( )
-----------------
 
-**Qi Client Library**
-
-::
-
-    void UpdateType(string typeId, QiType entity);
-    Task UpdateTypeAsync(string typeId, QiType entity);
-
-**Http**
-
-::
-
-    PUT Qi/Types/{typeId}
-
-**Parameters**
-
-*typeId*: String typeId of the type to update
-
-**Security** Allowed by Administrator account
-
-**Operation** Updates a type’s definition. A type cannot be updated if
-existing streams are associated with it.
-
-Compound Indexes
-----------------
-
-When defining a QiType, the index property you use to sequence the
-data must be defined in the type definition. Often a single
-index, such as DateTime, is used but for more complex scenarios Qi
-allows multiple indexes to be defined in a type. Multiple indexes are
-concatenated to form a compound index. The Qi REST API methods
-that use tuples were created to assist you to use compound
-indexes.
-
-Supported QiTypes
-----------------
-
-The following are types are supported when
-creating a QiType:
-
-* Array
-* Boolean
-* BooleanArray
-* Byte
-* ByteArray
-* ByteEnum
-* Char
-* CharArray
-* DateTime
-* DateTimeArray
-* DateTimeOffset
-* DateTimeOffsetArray
-* DBNull
-* Decimal
-* DecimalArray
-* Double
-* DoubleArray
-* Empty
-* Guid
-* GuidArray
-* IDictionary
-* IEnumerable
-* IList
-* Int16
-* Int16Array
-* Int16Enum
-* Int32
-* Int32Array
-* Int32Enum
-* Int64
-* Int64Array
-* Int64Enum
-* NullableBoolean
-* NullableByte
-* NullableChar
-* NullableDateTime
-* NullableDateTimeOffset
-* NullableDecimal
-* NullableDouble
-* NullableGuid
-* NullableInt16
-* NullableInt32
-* NullableInt64
-* NullableSByte
-* NullableSingle
-* NullableTimeSpan
-* NullableUInt16
-* NullableUInt32
-* NullableUInt64
-* Object
-* SByte
-* SByteArray
-* SByteEnum
-* Single
-* SingleArray
-* String
-* StringArray
-* TimeSpan
-* TimeSpanArray
-* UInt16
-* UInt16Array
-* UInt16Enum
-* UInt32
-* UInt32Array
-* UInt32Enum
-* UInt64
-* UInt64Array
-* UInt64Enum
-* Version
-* VersionArray
