@@ -1,12 +1,14 @@
 Qi Containers
 #############
 
+!!! This topic needs to be verified !!!
+
 When you create a tenant in Qi, you define a Type (which defines the structure of your data), 
 a Stream (which creates an area in which to store your data), and you define a Stream Behavior 
 (which defines rules for how data is read). 
 
 Tenant information is stored within one or more *containers*. A *container* in this context 
-stores information for a given tenant and can be thought of as an self-contained partition 
+stores information for a given tenant and can be thought of as a self-contained partition 
 that you use to store the entirety of the data and metadata for your tenant.
 
 You use containers to separate tenants into logical entities. For example, you might 
@@ -25,8 +27,6 @@ The following table shows the required and optional Qi Container objects:
 +---------------+-------------------------+----------------------------------------+
 
 **Rules for ContainerId**
-
-!!! This info needs to be verified !!!
 
 1. Not case sensitive
 2. Spaces are allowed
@@ -64,7 +64,7 @@ GetContainers( )
 
 **Security** Allowed by administrator and user accounts.
 
-**Operation** Returns ???
+**Operation** Returns a list of containers.
 
 
 UpdateContainer( )
@@ -92,7 +92,7 @@ UpdateContainer( )
 
 **Operation** Updates a container
 
-GetOrCreateType( )
+GetOrCreateContainer( )
 ----------------
 
 **Qi Client Library**
@@ -115,11 +115,9 @@ GetOrCreateType( )
 
 **Security** Allowed by administrator account
 
-**Operation** Returns a Qi Type object. If the entity Id already exists on the
-service, the existing type is returned to the caller unchanged.
-Otherwise, a new type definition is added to the Qi Service
+**Operation** Creates or returns a container
 
-DeleteType( )
+DeleteContainer( )
 ----------------
 
 **Qi Client Library**
@@ -141,7 +139,6 @@ DeleteType( )
 
 **Security** Allowed by administrator account
 
-**Operation** Deletes the type from service A. The type cannot be deleted from
-the service if existing streams are associated with it.
+**Operation** Deletes the container.
 
 
