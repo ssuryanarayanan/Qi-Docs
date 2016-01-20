@@ -195,7 +195,7 @@ The following examples assume that the Qi Type event includes a field named
 +=============================================+=================================================================+
 |``endswith(sValue, 'XYZ’)``                  |True if ``sValue`` ends with the characters ‘XYZ’                |
 +---------------------------------------------+-----------------------------------------------------------------+
-|``startswith(sValue, 'Val' ``                |True if ``sValue`` starts with the characters ‘Val’              |
+|``startswith(sValue, 'Val'``                 |True if ``sValue`` starts with the characters ‘Val’              |
 +---------------------------------------------+-----------------------------------------------------------------+
 |``length(sValue) eq 11``                     |True if ``sValue`` is 11 characters                              |
 +---------------------------------------------+-----------------------------------------------------------------+
