@@ -90,7 +90,9 @@ GetContainers( )
 
 
 UpdateContainer( )
-----------------
+------------------
+Note from Mindy: UpdateContainer (the PUT action) is not yet supported and I’m not sure if we are 
+going to implement it or not.  I’ll let you know when I find out..
 
 **Qi Client Library**
 
