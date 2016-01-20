@@ -12,8 +12,8 @@ index and then use the type for the index parameter(s) in the call.
 Similarly the read methods have overloads that use tuples that are also
 accepted for the indexing instead of a string.
 
-This example uses *GetRangeValues( )* to return a list of events (up to
-100) from streamId starting 30 minutes ago:
+The following example uses *GetRangeValues( )* to return a list of up to 100 events
+from streamId starting 30 minutes ago:
 
 ::
 
@@ -21,8 +21,8 @@ This example uses *GetRangeValues( )* to return a list of events (up to
     String startindex = DateTime.UtcNow.AddMinutes(-30).ToString("o");
     readEvents = _service.GetRangeValues< SimpleTypeClass >(streamId, startindex, 100).ToList();
 
-*GetRangeValues( )* also has overloads that include a *skip* parameter
-which makes multiple calls and retrieves different sets of data after a
+*GetRangeValues( )* also has overloads defined that include a *skip* parameter
+which makes multiple calls and retrievals from different sets of data after a
 specified time stamp.
 
 FindDistinctValue( )
@@ -52,18 +52,19 @@ FindDistinctValue( )
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** This method searches for data in a stream using the search mode defined. If a data is not found a null is returned. The mode parameter determines how the search for data is executed:
+**Operation** This method searches for data in a stream using the specified search mode. Null is returned if the data is not found.
+The mode parameter determines how the search for data is executed:
 
 +-------------------+------------+-------------------------------------------------------------------+
 |Search Mode        |Enumeration |Action                                                             |
 |                   |Value       |                                                                   |
 +===================+============+===================================================================+
-|Exact              |1           |Returns a data if found at the index, else null is returned        |      
+|Exact              |1           |Returns data if found at the index, otherwise null is returned     |      
 +-------------------+------------+-------------------------------------------------------------------+
-|ExactOrNext        |2           | Returns a data if found at the index or searches forward for the  |
+|ExactOrNext        |2           | Returns data if found at the index or searches forward for the    |
 |                   |            |next index with data                                               |
 +-------------------+------------+-------------------------------------------------------------------+
-|ExactOrPrevious    |3           |Returns a data if found at the index or searches for the first     |
+|ExactOrPrevious    |3           |Returns data if found at the index or searches for the first       |
 |                   |            |previous index with data                                           |
 +-------------------+------------+-------------------------------------------------------------------+
 |Next               |4           |Searches forward (immediately after the index given) for the next  |
@@ -80,9 +81,9 @@ parameter named "TimeId" and a double data parameter called "Value").
 Assume that the stream identified by streamId was created with
 "TestType".
 
-The following example will obtain the most recent event in the stream by
+The following example obtains the most recent event in the stream by
 starting at the index ‘Now’ and searching backwards until a value is
-found. Note if the stream is empty a null will be returned in readEvent:
+found. Note that if the stream is empty a null is returned in readEvent:
 
 ::
 
@@ -90,7 +91,7 @@ found. Note if the stream is empty a null will be returned in readEvent:
     string index = DateTime.Now.ToString(“o”);
     var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
 
-The next example does the same thing, while illustrating the use of the
+The next example does the same thing as the previous example, while illustrating the use of the
 generic overload allowing DateTime to be used directly as the index
 instead of a string:
 
@@ -100,9 +101,8 @@ instead of a string:
     DateTime indexDT = DateTime.Now;
     var  readEvent = _service.FindDistinctValue<TestType, DateTime>(streamId, indexDT, searchMode);
 
-The next example uses tuples to indicate the index. This is useful for
+The next example uses tuples to indicate the index. Using tuples is useful for
 stream types with a compound index, such as a DateTime and an Integer.
-then this call
 
 ::
 
@@ -139,11 +139,11 @@ GetDistinctValue( )
 **Security** Allowed by administrator and user accounts
 
 **Operation** This method returns an event from the specified stream at
-the specified index An exception is thrown if no event exists at index
+the specified index. An exception is thrown if no event exists at index.
 
-**Examples** The following example will obtain the event in the stream
-at the index defined by ‘Now’. If there is no event at that index an
-exception will be thrown:
+**Examples** The following example obtains the event in the stream
+at the index defined by ‘Now’. An exceeption is thrown if there is no event 
+at that index:
 
 ::
 
@@ -194,8 +194,8 @@ GetFirstValue( )
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** Returns the first data event in the stream Returns null if
-the stream has no data (no exception thrown)
+**Operation** Returns the first data event in the stream. Returns null if
+the stream has no data (no exception is thrown).
 
 GetLastValue( )
 ------------
@@ -219,8 +219,8 @@ GetLastValue( )
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** Returns the last data event in the stream Returns null if
-the stream has no data (no exception thrown)
+**Operation** Returns the last data event in the stream. Returns null if
+the stream has no data (no exception is thrown).
 
 GetRangeValues( )
 ------------
@@ -284,7 +284,7 @@ filter. Events returned by *GetRangeValues( )* are stored events, not
 calculated events, with the exception of the starting event if
 ExactOrCalculated is specified for *boundaryType*.
 
-*GetRangeValues( )* will search FORWARD if the ‘reverse’ parameter is
+*GetRangeValues( )* searches FORWARD if the ‘reverse’ parameter is
 false and REVERSE if the ‘reverse’ parameter is true. For overloads that
 do not include the ‘reverse’ parameter, the default is FORWARD.
 
@@ -295,7 +295,7 @@ BoundaryType has the following possible values: • Exact •
 ExactOrCalculated • Inside • Outside
 
 The BoundaryType determines how to determine the first value in from the
-stream starting at the start index. This is also effected by the
+stream starting at the start index. This is also affected by the
 direction of the method. The table below indicates how the first value
 is determined for *GetRangeValues( )* for a FORWARD search of the
 BoundaryTypes shown:
@@ -305,8 +305,8 @@ BoundaryTypes shown:
 +==========================+===============================================================================+
 |Exact                     |The first value at or after the startIndex                                     |
 +--------------------------+-------------------------------------------------------------------------------+
-|ExactOrCalculated         |If a value exists at the startIndex it is used, else a value is ‘calculated’   |
-|                          |according to the Stream Behavior setting                                       |
+|ExactOrCalculated         |If a value exists at the startIndex it is used, otherwise a value is           |
+|                          |‘calculated’ according to the Stream Behavior setting                          |
 +--------------------------+-------------------------------------------------------------------------------+
 |Inside                    |The first value after the startIndex                                           |
 +--------------------------+-------------------------------------------------------------------------------+
@@ -321,9 +321,9 @@ The table below indicates how the first value is determined for
 +==========================+===============================================================================+
 |Exact                     |The first value at or before the startIndex                                    |
 +--------------------------+-------------------------------------------------------------------------------+
-|ExactOrCalculated         |If a value exists at the startIndex it is used, else a value is ‘calculated’   |
-|                          |according to the Stream Behavior setting. See the *Calculated startIndex*      |
-|                          |topic below.                                                                   | 
+|ExactOrCalculated         |If a value exists at the startIndex it is used, otherwise a value is           |
+|                          |‘calculated’ according to the Stream Behavior setting. See the                 |
+|                          |*Calculated startIndex* topic below.                                           | 
 +--------------------------+-------------------------------------------------------------------------------+
 |Inside                    |The first value before the startIndex                                          |
 +--------------------------+-------------------------------------------------------------------------------+
@@ -331,7 +331,7 @@ The table below indicates how the first value is determined for
 +--------------------------+-------------------------------------------------------------------------------+
 
 The order of execution first determines the direction of the method and
-the starting event using the *BoundaryType*. Once the starting event is
+the starting event using the *BoundaryType*. After the starting event is
 determined, the filterExpression is applied in the direction requested
 to determine potential return values. Then, *skip* is applied to pass
 over the specified number of events, including any calculated events.
@@ -450,9 +450,9 @@ determined by the stream behavior and any behavior overrides.
 If the stream contains no data, null is returned regardless of the
 stream behavior.
 
-**Examples** The following example will obtain the event in the stream
-at the index defined by ‘Now’. If there is no event at that index the
-result will be determined by the stream behavior.
+**Examples** The following example obtains the event in the stream
+at the index defined by ‘Now’. If no event exists at that index the
+result is determined by the stream behavior.
 
 ::
 
