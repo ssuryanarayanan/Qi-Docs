@@ -191,8 +191,8 @@ Compound Indexes
 ----------------
 
 When defining a QiType, the index property you use to sequence the
-data must be defined by in the type definition. Often a single
-index, such as DateTime, is used, but for more complex scenarios Qi
+data must be defined in the type definition. Often a single
+index, such as DateTime, is used but for more complex scenarios Qi
 allows multiple indexes to be defined in a type. Multiple indexes are
 concatenated to form a compound index. The Qi REST API methods
 that use tuples were created to assist you to use compound
