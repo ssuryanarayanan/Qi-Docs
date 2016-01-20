@@ -1,7 +1,7 @@
 Qi Stream Behavior
 ==================
 
-The QiStreamBehavior object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A QiStreamBehavior object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
+The ``QiStreamBehavior`` object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A ``QiStreamBehavior`` object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
 Note that, if you do not assign a specific Stream Behavior object to a stream, the default behavior is assumed.
 
 The Stream Behavior object consists of the following parts:
@@ -33,11 +33,11 @@ Overrides                 A list of overrides to the Mode setting when individua
 |ExtrapolationMode |QiStreamExtrapolation           |Controls extrapolation behavior for the stream    |
 +------------------+--------------------------------+--------------------------------------------------+
 
-Stream behavior objects are always referenced by the *Id* property. A
+Stream behavior objects are always referenced by the **Id** property. A
 stream can be changed to use a different stream behavior or the stream
 behavior itself can be changed after it is created or configured.
 
-**Rules for QiStreamBehavior *Id***
+**Rules for ``QiStreamBehavior`` Id **
 
 1. Not case sensitive
 2. Spaces are allowed
@@ -70,7 +70,7 @@ behavior itself can be changed after it is created or configured.
 +-----------------------------------------------------------------------------------------+----------------------------------------+
 
 The code in the following example shows how to define and create a simple
-QiStreamBehavior:
+``QiStreamBehavior``:
 
 ::
 
@@ -101,9 +101,9 @@ Interpolation
 ------------
 
 When read methods affected by QiStreamBehavior (as shown above) are
-given an index that occurs between two values in a stream, it is the
-*Mode* object that determines what values will be retrieved. The
-table below shows how a stream will behave for the mode values
+given an index that occurs between two values in a stream, the
+**Mode** object determines which values are retrieved. The
+table below shows how a stream behaves for the mode values
 listed:
 
 +---------------------------+--------------------------------+--------------------------------------------------+
@@ -121,20 +121,20 @@ listed:
 |Discrete                   |3                               |Returns ‘null’                                    |
 +---------------------------+--------------------------------+--------------------------------------------------+
 
-When *Mode* is set to continuous (or left at the default value), calls to read the
-value of the QiStreamBehavior return "0=Default”. Stream behavior
+When **Mode** is set to continuous (or left at the default value), calls to read the
+value of the ``QiStreamBehavior`` return ``0=Default``. Stream behavior
 can also be used to give different mode settings to different data
 properties within the stream’s type using overrides. For example, using an override
-allows for a Discrete mode setting for one property and a Continuous
+allows for a **Discrete** mode setting for one property and a **Continuous**
 mode setting for another.
 
-When the Stream Behavior is set to Continuous or Default, read methods
+When the Stream Behavior is set to **Continuous** or **Default**, read methods
 attempt to return an interpolated value for indexes that occur between two
-existing data events in a stream. This interpolation cannot always be done, 
+existing data events in a stream. This interpolation cannot always be performed, 
 such as when the type is not numeric.
 
-The table below describes how the Continuous or Default *Mode* affects
-indexes between data in a stream:
+The table below describes how the **Continuous** or **Default** **Mode** affects
+indexes that occur between data in a stream:
 
 ***Mode* = Continuous or Default**
 
@@ -171,17 +171,17 @@ interpolation cannot complete successfully.
 Extrapolation
 ------------
 
-In addition to interpolations settings, stream behavior is also used to
-define how the stream extrapolates data. *ExtrapolationMode* acts as
-a master switch to determine whether extrapolation will occur and at
-which end of the data. When defined, *ExtrapolationMode* works with the
-*Mode* to determine how a stream responds to requests for an index
+In addition to interpolation settings, stream behavior is also used to
+define how the stream extrapolates data. ``ExtrapolationMode`` acts as
+a master switch to determine whether extrapolation occurs and at
+which end of the data. When defined, ``ExtrapolationMode`` works with the
+**Mode** to determine how a stream responds to requests for an index
 that precedes or follows all of the data in the stream.
 
-The following tables show how *ExtrapolationMode* affects returned
-values for each *Mode* value:
+The following tables show how ``ExtrapolationMode`` affects returned
+values for each **Mode** value:
 
-***ExtrapolationMode* with *Mode*\ =Default or Continuous**
+**ExtrapolationMode with Mode\ =Default or Continuous**
 
 +---------------------+---------------------+----------------------------+---------------------------+
 | ExtrapolationMode   | Enumeration value   | Index before data          | Index after data          |
