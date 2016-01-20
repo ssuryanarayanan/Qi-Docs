@@ -61,7 +61,7 @@ The mode parameter determines how the search for data is executed:
 +===================+============+===================================================================+
 |Exact              |1           |Returns data if found at the index, otherwise null is returned     |      
 +-------------------+------------+-------------------------------------------------------------------+
-|ExactOrNext        |2           | Returns data if found at the index or searches forward for the    |
+|ExactOrNext        |2           |Returns data if found at the index or searches forward for the     |
 |                   |            |next index with data                                               |
 +-------------------+------------+-------------------------------------------------------------------+
 |ExactOrPrevious    |3           |Returns data if found at the index or searches for the first       |
