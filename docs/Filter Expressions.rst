@@ -86,15 +86,15 @@ expression:
 
 The following examples assume that the Qi Type event includes a field named ‘Value’ of type double: 
 
-- "Value eq 1.0"
-- "Value ne 15.6" 
-- "Value ge 5.0" 
-- "Value le 8.0" 
-- "Value gt 5.0" 
-- "Value lt 4.0" 
-- "Value gt 2.0 and Value lt 9.0" 
-- "Value gt 6.0 or Value lt 2.0" 
-- "not (Value eq 1.0)"
+- ''Value eq 1.0''
+- ''Value ne 15.6''
+- Value ge 5.0
+- Value le 8.0
+- Value gt 5.0 
+- Value lt 4.0
+- Value gt 2.0 and Value lt 9.0
+- Value gt 6.0 or Value lt 2.0
+- not (Value eq 1.0)
 
 Math functions
 ------------
