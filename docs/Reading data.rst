@@ -12,7 +12,7 @@ index and then use the type for the index parameter(s) in the call.
 Similarly the read methods have overloads that use tuples that are also
 accepted for the indexing instead of a string.
 
-The following example uses *GetRangeValues( )* to return a list of up to 100 events
+The following example uses ``GetRangeValues( )`` to return a list of up to 100 events
 from streamId starting 30 minutes ago:
 
 ::
@@ -21,7 +21,7 @@ from streamId starting 30 minutes ago:
     String startindex = DateTime.UtcNow.AddMinutes(-30).ToString("o");
     readEvents = _service.GetRangeValues< SimpleTypeClass >(streamId, startindex, 100).ToList();
 
-*GetRangeValues( )* also has overloads defined that include a *skip* parameter
+``GetRangeValues( )`` also has overloads defined that include a *skip* parameter
 which makes multiple calls and retrievals from different sets of data after a
 specified time stamp.
 
@@ -59,7 +59,7 @@ The mode parameter determines how the search for data is executed:
 |Search Mode        |Enumeration |Action                                                             |
 |                   |Value       |                                                                   |
 +===================+============+===================================================================+
-|Exact              |1           |Returns data if found at the index, otherwise null is returned     |      
+|Exact              |1           |Returns data if found at the index, otherwise returns null         |      
 +-------------------+------------+-------------------------------------------------------------------+
 |ExactOrNext        |2           |Returns data if found at the index or searches forward for the     |
 |                   |            |next index with data                                               |
@@ -76,14 +76,14 @@ The mode parameter determines how the search for data is executed:
 
 **Examples**
 
-Assume a type named "TestType" has been created (with a DateTime index
-parameter named "TimeId" and a double data parameter called "Value").
+Assume a type named ``TestType`` has been created (with a DateTime index
+parameter named ``TimeId`` and a double data parameter called ``Value``).
 Assume that the stream identified by streamId was created with
-"TestType".
+``TestType``.
 
 The following example obtains the most recent event in the stream by
-starting at the index ‘Now’ and searching backwards until a value is
-found. Note that if the stream is empty a null is returned in readEvent:
+starting at the index ``Now`` and searching backwards until a value is
+found. Note that if the stream is empty a null is returned in ``readEvent``:
 
 ::
 
@@ -92,7 +92,7 @@ found. Note that if the stream is empty a null is returned in readEvent:
     var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
 
 The next example does the same thing as the previous example, while illustrating the use of the
-generic overload allowing DateTime to be used directly as the index
+generic overload allowing ``DateTime`` to be used directly as the index
 instead of a string:
 
 ::
@@ -142,7 +142,7 @@ GetDistinctValue( )
 the specified index. An exception is thrown if no event exists at index.
 
 **Examples** The following example obtains the event in the stream
-at the index defined by ‘Now’. An exceeption is thrown if there is no event 
+at the index defined by ``Now``. An exception is thrown if there is no event 
 at that index:
 
 ::
@@ -277,27 +277,27 @@ counted. (Applied after filterExpression. )
 **Security** Allowed by administrator and user accounts
 
 **Operation** This call is used to obtain events from a stream based on
-a starting index and a requested number of events. The overloads allow
-the client to optionally specify search direction, number of events to
-skip over, special boundary handling for *startIndex*, and an event
-filter. Events returned by *GetRangeValues( )* are stored events, not
+a starting index and a requested number of events. Optionally, overloads allow
+the client to specify search direction, number of events to
+skip over, special boundary handling for **startIndex**, and an event
+filter. Events returned by ``GetRangeValues( )`` are stored events, not
 calculated events, with the exception of the starting event if
-ExactOrCalculated is specified for *boundaryType*.
+ExactOrCalculated is specified for ``boundaryType``.
 
-*GetRangeValues( )* searches FORWARD if the ‘reverse’ parameter is
-false and REVERSE if the ‘reverse’ parameter is true. For overloads that
-do not include the ‘reverse’ parameter, the default is FORWARD.
+``GetRangeValues( )`` searches FORWARD if the ``reverse`` parameter is
+false and reverse if the ``reverse`` parameter is true. For overloads that
+do not include the ``reverse`` parameter, the default is forward.
 
-The *skip* parameter indicates the number of events that the call will
-skip over before it collects events for the response.
+The ``skip`` parameter indicates the number of events that the call 
+skips over before it collects events for the response.
 
 BoundaryType has the following possible values: • Exact •
 ExactOrCalculated • Inside • Outside
 
-The BoundaryType determines how to determine the first value in from the
+The BoundaryType determines how to specify the first value in from the
 stream starting at the start index. This is also affected by the
 direction of the method. The table below indicates how the first value
-is determined for *GetRangeValues( )* for a FORWARD search of the
+is determined for ``GetRangeValues( )`` for a FORWARD search of the
 BoundaryTypes shown:
 
 +--------------------------+-------------------------------------------------------------------------------+
@@ -314,7 +314,7 @@ BoundaryTypes shown:
 +--------------------------+-------------------------------------------------------------------------------+
 
 The table below indicates how the first value is determined for
-*GetRangeValues( )* for a REVERSE search of the BoundaryTypes shown:
+``GetRangeValues( )`` for a reverse search of the BoundaryTypes shown:
 
 +--------------------------+-------------------------------------------------------------------------------+
 | Boundary Type            | First value obtained                                                          |
@@ -331,26 +331,26 @@ The table below indicates how the first value is determined for
 +--------------------------+-------------------------------------------------------------------------------+
 
 The order of execution first determines the direction of the method and
-the starting event using the *BoundaryType*. After the starting event is
+the starting event using the ``BoundaryType``. After the starting event is
 determined, the filterExpression is applied in the direction requested
-to determine potential return values. Then, *skip* is applied to pass
+to determine potential return values. Then, ``skip`` is applied to pass
 over the specified number of events, including any calculated events.
 Finally, events up to the number specified by count are returned.
 
 The filter expression uses OData query language. Most of the query
-language is supported. More information on OData Filter Expressions can
+language is supported. More information about OData Filter Expressions can
 be found in `Filter
 expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
 
-**Calculated startIndex** When the startIndex for *GetRangeValues( )*
-lands before, after or in-between data in the stream, and the
-ExactOrCalculated *boundaryType* is used the stream behavior determines
-whether an additional ‘calculated’ event is created and returned in the
+**Calculated startIndex** When the startIndex for ``GetRangeValues( )`` 
+lands before, after, or in-between data in the stream, and the
+ExactOrCalculated boundaryType is used, the stream behavior determines
+whether an additional calculated event is created and returned in the
 response.
 
 The table below indicates when an event will be calculated and included
-in the *GetRangeValues( )* response for a *startIndex* before or after
-all data in the stream. (This is for FORWARD search modes):
+in the ``GetRangeValues( )`` response for a **startIndex** before or after
+all data in the stream. (This data is for FORWARD search modes):
 
 +--------------------------+--------------------------+------------------------------+------------------------------+
 |Stream Behavior           |Stream Behavior           |When start index is           |When start index is           |
@@ -437,11 +437,11 @@ values requested for GetValues
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** If there is a value at the index, the call will return
+**Operation** If there is a value at the index, the call returns
 that event.
 
 If the specified index is before or after all events, the value returned
-with that index is determined by the stream behavior (specifically the
+with that index is determined by the stream behavior (specifically, the
 stream behavior extrapolation setting).
 
 If the specified index is between events, the event returned is
@@ -451,7 +451,7 @@ If the stream contains no data, null is returned regardless of the
 stream behavior.
 
 **Examples** The following example obtains the event in the stream
-at the index defined by ‘Now’. If no event exists at that index the
+at the index defined by ``Now``. If no event exists at that index the
 result is determined by the stream behavior.
 
 ::
@@ -525,17 +525,17 @@ events
 
 **Security ** Allowed by administrator and user accounts
 
-**Operation** *GetValues( )* returns calculated events at the requested
-index values in *index*, or *count* number of evenly spaced calculated
-events between *startIndex* and *endIndex*. For *GetValues( )* overloads
-that include a streamId and IEnumberable *index*, this call behaves like
-multiple *GetValue( )* calls. For the *GetValues( )* overloads that
-include *startIndex*, *endIndex* and *count*, these parameters are used
+**Operation** ``GetValues( )`` returns calculated events at the requested
+index values in **index**, or **count** number of evenly spaced calculated
+events between **startIndex** and **endIndex**. For ``GetValues( )`` overloads
+that include a streamId and IEnumberable **index**, the call behaves like
+multiple ``GetValue( )`` calls. For the ``GetValues( )`` overloads that
+include **startIndex**, **endIndex** and **count**, these parameters are used
 to generate a list of indexes for which to obtain values. Events
 returned for each index are determined according to the QiStreamBehavior
 assigned to the stream being read.
 
-For *GetValues( )* overloads that include the filterExpression
+For ``GetValues( )`` overloads that include the filterExpression
 parameters are used to create a list of indexes that match the OData
 filter text used. More information on OData Filter Expressions can be
 found in `Filter
@@ -579,7 +579,7 @@ GetWindowValues( )
 *streamId*: Stream identifier for the request
 
 *startIndex*: String representation of the starting index value, must be
-less than *endIndex*
+less than **endIndex**
 
 *endIndex*: String representation of the ending index value
 
@@ -602,21 +602,21 @@ type should make up the return events
 
 **Security** Allowed by administrator and user accounts
 
-**Operation** *GetWindowValues( )* returns stored events within a
-specified index range. If *count* and *continuationToken* are used, up
-to *count* events are returned within the specified index range along
+**Operation** ``GetWindowValues( )`` returns stored events within a
+specified index range. If **count** and **continuationToken** are used, up
+to **count** events are returned within the specified index range along
 with a continuation token that may be passed into a subsequent
-*GetWindowValues( )* call to obtain the next *count* events. Note that
-*count* need not stay the same through multiple *GetWindowValues( )*
-calls with *continuationToken*.
+``GetWindowValues( )`` call to obtain the next **count** events. Note that
+**count** need not stay the same through multiple ``GetWindowValues( )``
+calls with **continuationToken**.
 
-Boundary events at or near *startIndex* and *endIndex* are handled
-according to *boundaryType* or *startBoundaryType* and
-*endBoundaryType*, which have the following possible values: • Exact •
+Boundary events at or near **startIndex** and **endIndex** are handled
+according to **boundaryType** or **startBoundaryType** and
+**endBoundaryType**, which have the following possible values: • Exact •
 ExactOrCalculated • Inside • Outside
 
 The table below indicates how the first value is determined for
-*GetWindowValues ( )* for the *startBoundaryType* shown:
+``GetWindowValues ( )`` for the **startBoundaryType** shown:
 
 
 +----------------------+-----------------------------------------------------------------------------+
@@ -624,7 +624,7 @@ The table below indicates how the first value is determined for
 +======================+=============================================================================+
 |Exact                 |The first value at or after the startIndex                                   |
 +----------------------+-----------------------------------------------------------------------------+
-|ExactOrCalculated     |If a value exists at the startIndex it is used, else a value is ‘calculated’ |
+|ExactOrCalculated     |If a value exists at the startIndex it is used, else a value is calculated   |
 |                      |according to the stream's behavior setting                                   |
 +----------------------+-----------------------------------------------------------------------------+
 |Inside                | The first value after the startIndex                                        |
@@ -633,14 +633,14 @@ The table below indicates how the first value is determined for
 +----------------------+-----------------------------------------------------------------------------+
 
 This chart indicates how the last value is determined for
-*GetWindowValues( )* for the *endBoundaryType* shown:
+``GetWindowValues( )`` for the **endBoundaryType** shown:
 
 +----------------------+-----------------------------------------------------------------------------+
 |*endBoundaryType*     |First value obtained                                                         |
 +======================+=============================================================================+
 |Exact                 |The first value at or before the endIndex                                    |
 +----------------------+-----------------------------------------------------------------------------+
-|ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is ‘calculated’   |
+|ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is calculated     |
 |                      |according to the stream's behavior setting                                   |
 +----------------------+-----------------------------------------------------------------------------+
 |Inside                | The first value before the endIndex                                         |
@@ -648,28 +648,28 @@ This chart indicates how the last value is determined for
 |Outside               | The first value after the endIndex                                          |
 +----------------------+-----------------------------------------------------------------------------+
 
-Calls against an empty stream will always return a single null
+Calls against an empty stream always return a single null
 regardless of boundary type used.
 
 The filter expression uses OData syntax. More information on OData
 Filter Expressions can be found in `Filter
 expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
 
-The select expression is a CSV list of strings that indicate which field
+The select expression is a CSV list of strings that indicate which fields
 of the stream type are being requested. By default all type fields are
 included in the response. Select may improve the performance of the call
 by avoiding management of the unneeded fields. Note that the index is
 always included in the returned results.
 
-Selection is applied before filtering, so any fields used in the filter
+Selection is applied before filtering; therefore, any fields that are used in the filter
 expression must be included by the select statement.
 
 **Calculated startIndex and endIndex** When the startIndex or endIndex
-of *GetWindowValues( )* does not fall on an event in the stream, and the
-*boundaryType* of ExactOrCalculated is used, an event may be created and
+of ``GetWindowValues( )`` does not fall on an event in the stream, and the
+**boundaryType** of ExactOrCalculated is used, an event may be created and
 returned in the GetWindowValues call response.
 
-The table below indicates the when a calculated event is created for
+The table below indicates when a calculated event is created for
 indexes before or after stream data:
 
 +--------------------------+--------------------------+------------------------------+------------------------------+
@@ -717,21 +717,21 @@ endIndex is calculated, the created event uses the endIndex along with
 the value from the stream’s last data event. Any calculated events are
 returned along with the result of the *GetWindowValues( )* call.
 
-If an index (startIndex or endIndex) in *GetWindowValues( )* lands
+If an index (startIndex or endIndex) in ``GetWindowValues( )`` lands
 between data in the stream, and the BoundaryT Type is set to
-ExactOrCalculated, and event will be created according to the following
-chart:
+ExactOrCalculated, and event is created according to the following
+table:
 
 +-----------------------+--------------------------------------------------------------------------+
 |Stream Behavior        |Calculated Event                                                          |
 |Mode                   |                                                                          |
 +=======================+==========================================================================+
-|Continuous             |Event is calculated using the index and a value interpolated from the     |
-|                       |surrounding index values                                                  |
+|Continuous             |The event is calculated using the index and a value that is interpolated  |
+|                       |from the surrounding index values.                                        |
 +-----------------------+--------------------------------------------------------------------------+
-|Discrete               |No event calculated                                                       |
+|Discrete               |No event is calculated.                                                   |
 +-----------------------+--------------------------------------------------------------------------+
-|ContinuousLeading      | Event is calculated using the index and previous event values            |
+|ContinuousLeading      |The event is calculated using the index and the previous event values.    |
 +-----------------------+--------------------------------------------------------------------------+
 |ContinuousTrailing     |Event is calculated using the index and next event values                 |
 +-----------------------+--------------------------------------------------------------------------+
