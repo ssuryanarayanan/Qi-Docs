@@ -19,7 +19,7 @@ from streamId starting 30 minutes ago:
 
     List< SimpleTypeClass > readEvents;
     String startindex = DateTime.UtcNow.AddMinutes(-30).ToString("o");
-    readEvents = _service.GetRangeValues< SimpleTypeClass >(streamId, startindex, 100).ToList();
+    readEvents = _service.GetRangeValues< SimpleTypeClass >(containerId, streamId, startindex, 100).ToList();
 
 ``GetRangeValues( )`` also has overloads defined that include a *skip* parameter
 which makes multiple calls and retrievals from different sets of data after a
@@ -32,17 +32,19 @@ FindDistinctValue( )
 
 ::
 
-    T FindDistinctValue<T>(string streamId, string index, QiSearchMode mode);
-    T FindDistinctValue<T, T1>(string streamId, T1 index, QiSearchMode mode);
-    T FindDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index, QiSearchMode) 
-    Task<T> FindDistinctValueAsync<T>(string streamId, string index, QiSearchMode mode);
-    Task<T> FindDistinctValueAsync<T, T1>(string streamId, T1 index, QiSearchMode mode);
-    Task<T> FindDistinctValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, QiSearchMode mode);
+    T FindDistinctValue<T>(string containerId, string streamId, string index, QiSearchMode mode);
+    T FindDistinctValue<T, T1>(string containerId, string streamId, T1 index, QiSearchMode mode);
+    T FindDistinctValue<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index, QiSearchMode) 
+    Task<T> FindDistinctValueAsync<T>(string containerId, string streamId, string index, QiSearchMode mode);
+    Task<T> FindDistinctValueAsync<T, T1>(string containerId, string streamId, T1 index, QiSearchMode mode);
+    Task<T> FindDistinctValueAsync<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index, QiSearchMode mode);
 
 **Http**
-``GET Qi/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}``
+``GET Qi/{containerId}/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}``
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -89,7 +91,7 @@ found. Note that if the stream is empty a null is returned in ``readEvent``:
 
     searchMode = QiSearchMode.ExactOrPrevious;
     string index = DateTime.Now.ToString(“o”);
-    var  readEvent = _service.FindDistinctValue<TestType>(streamId, index, searchMode);
+    var  readEvent = _service.FindDistinctValue<TestType>(containerId, streamId, index, searchMode);
 
 The next example does the same thing as the previous example, while illustrating the use of the
 generic overload allowing ``DateTime`` to be used directly as the index
@@ -99,7 +101,7 @@ instead of a string:
 
     searchMode = QiSearchMode.ExactOrPrevious;
     DateTime indexDT = DateTime.Now;
-    var  readEvent = _service.FindDistinctValue<TestType, DateTime>(streamId, indexDT, searchMode);
+    var  readEvent = _service.FindDistinctValue<TestType, DateTime>(containerId, streamId, indexDT, searchMode);
 
 The next example uses tuples to indicate the index. Using tuples is useful for
 stream types with a compound index, such as a DateTime and an Integer.
@@ -108,7 +110,7 @@ stream types with a compound index, such as a DateTime and an Integer.
 
     searchMode = QiSearchMode.ExactOrPrevious;
     var tupleId = new Tuple<DateTime, int>(DateTime.Now, 0);
-    var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(streamId, tupleId, searchMode);
+    var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(containerId, streamId, tupleId, searchMode);
 
 GetDistinctValue( )
 ------------
@@ -117,20 +119,22 @@ GetDistinctValue( )
 
 ::
 
-    T GetDistinctValue<T>(string streamId, string index);
-    T GetDistinctValue<T, T1>(string streamId, T1 index);
-    T GetDistinctValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);
-    Task<T> GetDistinctValueAsync<T>(string streamId, string index);
-    Task<T> GetDistinctValueAsync<T, T1>(string streamId, T1 index);
-    Task<T> GetDistinctValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index);
+    T GetDistinctValue<T>(string containerId, string streamId, string index);
+    T GetDistinctValue<T, T1>(string containerId, string streamId, T1 index);
+    T GetDistinctValue<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
+    Task<T> GetDistinctValueAsync<T>(string containerId, string streamId, string index);
+    Task<T> GetDistinctValueAsync<T, T1>(string containerId, string streamId, T1 index);
+    Task<T> GetDistinctValueAsync<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetDistinctValue?index={index}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetDistinctValue?index={index}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -150,7 +154,7 @@ at that index:
     string index = DateTime.Now.ToString(“o”);
     try
     {
-        var  readEvent = _service.GetDistinctValue<TestType>(streamId, index);
+        var  readEvent = _service.GetDistinctValue<TestType>(containerId, streamId, index);
     }
     Catch (exception e)
     {
@@ -159,11 +163,11 @@ at that index:
 
 **Overloads**
 
-**T GetDistinctValue(string streamId, T1 index);**
+**T GetDistinctValue(string containerId, string streamId, T1 index);**
 
 Can be used to supply the index of the call as a different type.
 
-**T GetDistinctValue(string streamId, Tuple index);**
+**T GetDistinctValue(string containerId, string streamId, Tuple index);**
 
 Can be used to supply the index of the call as a tuple (for compound
 indexes).
@@ -179,16 +183,18 @@ GetFirstValue( )
 
 ::
 
-    T GetFirstValue<T>(string streamId);
-    Task<T> GetFirstValueAsync<T>(string streamId);
+    T GetFirstValue<T>(string containerId, string streamId);
+    Task<T> GetFirstValueAsync<T>(string containerId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetFirstValue
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetFirstValue
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -204,16 +210,18 @@ GetLastValue( )
 
 ::
 
-    T GetLastValue<T>(string streamId);
-    Task<T> GetLastValueAsync<T>(string streamId);
+    T GetLastValue<T>(string containerId, string streamId);
+    Task<T> GetLastValueAsync<T>(string containerId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetLastValue
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetLastValue
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -229,33 +237,35 @@ GetRangeValues( )
 
 ::
 
-    IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count);
-    IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, bool reversed);
-    IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int count, QiBoundaryType boundaryType);
-    IEnumerable<T> GetRangeValues<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType); 
-    IEnumerable<T> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, bool reversed);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    IEnumerable<T> GetRangeValues<T>(string containerId, string streamId, string startIndex, int count);
+    IEnumerable<T> GetRangeValues<T>(string containerId, string streamId, string startIndex, int count, bool reversed);
+    IEnumerable<T> GetRangeValues<T>(string containerId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
+    IEnumerable<T> GetRangeValues<T>(string containerId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType); 
+    IEnumerable<T> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string containerId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}&filterExpression={filterExpression}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
-    GET Qi/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -416,23 +426,26 @@ GetValue( )
 
 ::
 
-    T GetValue<T>(string streamId, string index);
-    T GetValue<T, T1>(string streamId, T1 index);
-    T GetValue<T, T1, T2>(string streamId, Tuple<T1, T2> index);
-    Task<T> GetValueAsync<T>(string streamId, string index);
-    Task<T> GetValueAsync<T, T1>(string streamId, T1 index);
-    Task<T> GetValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index);
+    T GetValue<T>(string containerId, string streamId, string index);
+    T GetValue<T, T1>(string containerId, string streamId, T1 index);
+    T GetValue<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
+    Task<T> GetValueAsync<T>(string containerId, string streamId, string index);
+    Task<T> GetValueAsync<T, T1>(string containerId, string streamId, T1 index);
+    Task<T> GetValueAsync<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetValue?index={index}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetValue?index={index}
 
 **Parameters**
 
-*streamId*: Stream identifier for the request *index*: String
-representation of the index value for GetValue or IEnumerable of index
+*containerId*: Container identifier for the request
+
+*streamId*: Stream identifier for the request 
+
+*index*: String representation of the index value for GetValue or IEnumerable of index
 values requested for GetValues
 
 **Security** Allowed by administrator and user accounts
@@ -459,7 +472,7 @@ result is determined by the stream behavior.
     string index = DateTime.Now.ToString(“o”);
     try
     {
-        var  readEvent = _service.GetValue<TestType>(streamId, index);
+        var  readEvent = _service.GetValue<TestType>(containerId, streamId, index);
     }
     Catch (exception e)
     {
@@ -468,11 +481,11 @@ result is determined by the stream behavior.
 
 **Overloads**
 
-**T GetValue(string streamId, T1 index);**
+**T GetValue(string containerId, string streamId, T1 index);**
 
 Can be used to supply the index of the call as a different type
 
-**T GetValue(string streamId, Tuple index);**
+**T GetValue(string containerId, string streamId, Tuple index);**
 
 Can be used to supply the index of the call as a tuple (for compound
 indexes)
@@ -488,28 +501,30 @@ GetValues( )
 
 ::
 
-    IEnumerable<T> GetValues<T>(string streamId, IEnumerable<string> index);
-    IEnumerable<T> GetValues<T, T1>(string streamId, IEnumerable<T1> index);
-    IEnumerable<T> GetValues<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
-    IEnumerable<T> GetValues<T>(string streamId, string filterExpression);
-    IEnumerable<T> GetValues<T>(string streamId, string startIndex, string endIndex, int count);
-    IEnumerable<T> GetValues<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
-    IEnumerable<T> GetValues<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, IEnumerable<string> index);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, IEnumerable<T1> index);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string filterExpression);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string startIndex, string endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    IEnumerable<T> GetValues<T>(string containerId, string streamId, IEnumerable<string> index);
+    IEnumerable<T> GetValues<T, T1>(string containerId, string streamId, IEnumerable<T1> index);
+    IEnumerable<T> GetValues<T, T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    IEnumerable<T> GetValues<T>(string containerId, string streamId, string filterExpression);
+    IEnumerable<T> GetValues<T>(string containerId, string streamId, string startIndex, string endIndex, int count);
+    IEnumerable<T> GetValues<T, T1>(string containerId, string streamId, T1 startIndex, T1 endIndex, int count);
+    IEnumerable<T> GetValues<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string containerId, string streamId, IEnumerable<string> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string containerId, string streamId, IEnumerable<T1> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string containerId, string streamId, string filterExpression);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string containerId, string streamId, T1 startIndex, T1 endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string containerId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -548,33 +563,35 @@ GetWindowValues( )
 
 ::
 
-    IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex);
-    IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
-    IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
-    IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
-    QiResultPage<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
-    IEnumerable<T> GetWindowValues<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
-    QiResultPage<T> GetWindowValues<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
-    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
-    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
+    IEnumerable<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, string endIndex);
+    IEnumerable<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
+    IEnumerable<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
+    IEnumerable<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
+    QiResultPage<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
+    IEnumerable<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
+    QiResultPage<T> GetWindowValues<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string containerId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
-    GET Qi/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
+    GET Qi/{containerId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
