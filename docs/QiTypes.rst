@@ -13,10 +13,10 @@ key, any ordered value is permitted.
 When a QiType is created it cannot be changed and it can only be deleted if
 there are no streams associated with it.
 
-The following table shows the required and optional QiType objects:
+The following table shows the required and optional QiType properties:
 
 +---------------+-------------------------+----------------------------------------+
-| Object        | Type                    | Details                                |
+| Property      | Type                    | Details                                |
 +===============+=========================+========================================+
 | Id            | String                  | Required Id for referencing the type   |
 +---------------+-------------------------+----------------------------------------+
@@ -44,16 +44,18 @@ GetStreamType( )
 
 ::
 
-    QiType GetStreamType(string streamId);
-    Task<QiType> GetStreamTypeAsync(string streamId);
+    QiType GetStreamType(string containerId, string streamId);
+    Task<QiType> GetStreamTypeAsync(string containerId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}/Type
+    GET Qi/{containerId}/Streams/{streamId}/Type
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *streamId*: Id of the stream for which the type request is made
 
@@ -68,16 +70,18 @@ GetType( )
 
 ::
 
-    QiType GetType(string typeId);
-    Task<QiType> GetTypeAsync(string typeId);
+    QiType GetType(string containerId, string typeId);
+    Task<QiType> GetTypeAsync(string containerId, string typeId);
 
 **Http**
 
 ::
 
-    GET Qi/Types/{typeId}
+    GET Qi/{containerId}/Types/{typeId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *typeId*: Id of the type to retrieve
 
@@ -92,18 +96,18 @@ GetTypes( )
 
 ::
 
-    IEnumerable<QiType> GetTypes();
-    Task<IEnumerable<QiType>> GetTypesAsync();
+    IEnumerable<QiType> GetTypes(string containerId);
+    Task<IEnumerable<QiType>> GetTypesAsync(string containerId);
 
 **Http**
 
 ::
 
-    GET Qi/Types
+    GET Qi/{containerId}/Types
 
 **Parameters**
 
-None
+*containerId*: The container identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -116,18 +120,20 @@ GetOrCreateType( )
 
 ::
 
-    QiType GetOrCreateType(QiType entity);
-    Task<QiType> GetOrCreateTypeAsync(QiType entity);
+    QiType GetOrCreateType(string containerId, QiType entity);
+    Task<QiType> GetOrCreateTypeAsync(string containerId, QiType entity);
 
 **Http**
 
 ::
 
-    POST Qi/Types
+    POST Qi/{containerId}/Types
 
 Content is serialized QiType entity
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *entity*: Qi Type object
 
@@ -144,16 +150,18 @@ DeleteType( )
 
 ::
 
-    void DeleteType(string typeId);
-    Task DeleteTypeAsync(string typeId);
+    void DeleteType(string containerId, string typeId);
+    Task DeleteTypeAsync(string containerId, string typeId);
 
 **Http**
 
 ::
 
-    DELETE Qi/Types/{typeId}
+    DELETE Qi/{containerId}/Types/{typeId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *typeId*: String typeId of the type to delete
 
@@ -169,16 +177,18 @@ UpdateType( )
 
 ::
 
-    void UpdateType(string typeId, QiType entity);
-    Task UpdateTypeAsync(string typeId, QiType entity);
+    void UpdateType(string containerId, string typeId, QiType entity);
+    Task UpdateTypeAsync(string containerId, string typeId, QiType entity);
 
 **Http**
 
 ::
 
-    PUT Qi/Types/{typeId}
+    PUT Qi/{containerId}/Types/{typeId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *typeId*: String typeId of the type to update
 
