@@ -8,18 +8,20 @@ InsertValue( )
 
 ::
 
-    void InsertValue<T>(string streamId, T item);
-    Task InsertValueAsync<T>(string streamId, T item);
+    void InsertValue<T>(string containerId, string streamId, T item);
+    Task InsertValueAsync<T>(string containerId, string streamId, T item);
 
 *Http*
 
 ::
 
-    POST Qi/Streams/{streamId}/Data/InsertValue
+    POST Qi/{containerId}/Streams/{streamId}/Data/InsertValue
 
 Content is serialized event of type T
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -37,20 +39,22 @@ InsertValues( )
 
 ::
 
-    void InsertValues(IDictionary<string, IQiValues> items);
-    void InsertValues<T>(string streamId, IList<T> items);
-    Task InsertValuesAsync(IDictionary<string, IQiValues > items);
-    Task InsertValuesAsync<T>(string streamId, IList<T> items);
+    void InsertValues(string containerId, IDictionary<string, IQiValues> items);
+    void InsertValues<T>(string containerId, string streamId, IList<T> items);
+    Task InsertValuesAsync(string containerId, IDictionary<string, IQiValues > items);
+    Task InsertValuesAsync<T>(string containerId, string streamId, IList<T> items);
 
 **Http**
 
 ::
 
-    POST Qi/Streams/{streamId}/Data/InsertValues
+    POST Qi/{containerId}/Streams/{streamId}/Data/InsertValues
 
 Content is serialized list of events of type T
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -72,18 +76,20 @@ PatchValue( )
 
 ::
 
-    void PatchValue(string streamId, string selectExpression, T item);
-    Task PatchValueAsync(string streamId, string selectExpression, T item);
+    void PatchValue(string containerId, string streamId, string selectExpression, T item);
+    Task PatchValueAsync(string containerId, string streamId, string selectExpression, T item);
 
 **Http**
 
 ::
 
-    PATCH Qi/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
+    PATCH Qi/{containerId}/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
 
 Content is serialized patch property
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -103,7 +109,7 @@ for each **SelectExpression** field are taken from the item and replaced
 ::
 
     var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
-    PatchValue(“someStreamId”, “Value”, obj);
+    PatchValue(containerId, streamId, “Value”, obj);
 
 PatchValues( )
 ------------
@@ -112,18 +118,20 @@ PatchValues( )
 
 ::
 
-    void PatchValues(string streamId, string selectExpression, IList<T> items);
-    Task PatchValuesAsync(string streamId, string selectExpression, IList<T> items);
+    void PatchValues(string containerId, string streamId, string selectExpression, IList<T> items);
+    Task PatchValuesAsync(string containerId, string streamId, string selectExpression, IList<T> items);
 
 **Http**
 
 ::
 
-    PATCH Qi/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
+    PATCH Qi/{containerId}/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
 
 Content is serialized list of patch property values
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -153,20 +161,22 @@ RemoveValue( )
 
 ::
 
-    void RemoveValue(string streamId, string index);
-    void RemoveValue<T1>(string streamId, T1 index);
-    void RemoveValue<T1, T2>(string streamId, Tuple<T1, T2> index);
-    Task RemoveValueAsync(string streamId, string index);
-    Task RemoveValueAsync<T1>(string streamId, T1 index);
-    Task RemoveValueAsync<T1, T2>(string streamId, Tuple<T1, T2> index);
+    void RemoveValue(string containerId, string streamId, string index);
+    void RemoveValue<T1>(string containerId, string streamId, T1 index);
+    void RemoveValue<T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
+    Task RemoveValueAsync(string containerId, string streamId, string index);
+    Task RemoveValueAsync<T1>(string containerId, string streamId, T1 index);
+    Task RemoveValueAsync<T1, T2>(string containerId, string streamId, Tuple<T1, T2> index);
 
 **Http**
 
 ::
 
-    DELETE Qi/Streams/{streamId}/Data/RemoveValue?index={index}
+    DELETE Qi/{containerId}/Streams/{streamId}/Data/RemoveValue?index={index}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -185,20 +195,22 @@ RemoveValues( )
 
 ::
 
-    void RemoveValues(string streamId, IEnumerable<string> index);
-    void RemoveValues<T1>(string streamId, IEnumerable<T1> index);
-    void RemoveValues<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
-    Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
-    Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+    void RemoveValues(string containerId, string streamId, IEnumerable<string> index);
+    void RemoveValues<T1>(string containerId, string streamId, IEnumerable<T1> index);
+    void RemoveValues<T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task RemoveValuesAsync(string containerId, string streamId, IEnumerable<string> index);
+    Task RemoveValuesAsync<T1>(string containerId, string streamId, IEnumerable<T1> index);
+    Task RemoveValuesAsync<T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
 
 **Http**
 
 ::
 
-    DELETE Qi/Streams/{streamId}/Data/RemoveValues?index={index}
+    DELETE Qi/{containerId}/Streams/{streamId}/Data/RemoveValues?index={index}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -219,20 +231,22 @@ RemoveWindowValues( )
 
 ::
 
-    void RemoveValues(string streamId, IEnumerable<string> index);
-    void RemoveValues<T1>(string streamId, IEnumerable<T1> index);
-    void RemoveValues<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
-    Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
-    Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+    void RemoveValues(string containerId, string streamId, IEnumerable<string> index);
+    void RemoveValues<T1>(string containerId, string streamId, IEnumerable<T1> index);
+    void RemoveValues<T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task RemoveValuesAsync(string containerId, string streamId, IEnumerable<string> index);
+    Task RemoveValuesAsync<T1>(string containerId, string streamId, IEnumerable<T1> index);
+    Task RemoveValuesAsync<T1, T2>(string containerId, string streamId, IEnumerable<Tuple<T1, T2>> index);
 
 **Http**
 
 ::
 
-    DELETE Qi/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
+    DELETE Qi/{containerId}/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -254,18 +268,20 @@ ReplaceValue( )
 
 ::
 
-    void ReplaceValue<T>(string streamId, T item);
-    Task ReplaceValueAsync<T>(string streamId, T item);
+    void ReplaceValue<T>(string containerId, string streamId, T item);
+    Task ReplaceValueAsync<T>(string containerId, string streamId, T item);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}/Data/ReplaceValue
+    PUT Qi/{containerId}/Streams/{streamId}/Data/ReplaceValue
 
 Content is serialzied replacement object
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Identifier of the stream in which to replace value
 
@@ -284,20 +300,22 @@ ReplaceValues( )
 
 ::
 
-    void ReplaceValues(IDictionary<string, IQiValues> items);
-    void ReplaceValues<T>(string streamId, IList<T> items);
-    Task ReplaceValuesAsync(IDictionary<string, IQiValues > items);
-    Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
+    void ReplaceValues(string containerId, IDictionary<string, IQiValues> items);
+    void ReplaceValues<T>(string containerId, string streamId, IList<T> items);
+    Task ReplaceValuesAsync(string containerId, IDictionary<string, IQiValues > items);
+    Task ReplaceValuesAsync<T>(string containerId, string streamId, IList<T> items);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}/Data/ReplaceValues
+    PUT Qi/{containerId}/Streams/{streamId}/Data/ReplaceValues
 
 Content is serialized list of replacement values
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -318,18 +336,20 @@ UpdateValue( )
 
 ::
 
-    void UpdateValue<T>(string streamId, T item);
-    Task UpdateValueAsync<T>(string streamId, T item);
+    void UpdateValue<T>(string containerId, string streamId, T item);
+    Task UpdateValueAsync<T>(string containerId, string streamId, T item);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}/Data/UpdateValue
+    PUT Qi/{containerId}/Streams/{streamId}/Data/UpdateValue
 
 Content is serialized updated value
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -348,20 +368,22 @@ UpdateValues( )
 
 ::
 
-    void UpdateValues(IDictionary<string, IQiValues > items);
-    void UpdateValues<T>(string streamId, IList<T> items);
-    Task UpdateValuesAsync(IDictionary<string, IQiValues > items);
-    Task UpdateValuesAsync<T>(string streamId, IList<T> items);
+    void UpdateValues(string containerId, IDictionary<string, IQiValues > items);
+    void UpdateValues<T>(string containerId, string streamId, IList<T> items);
+    Task UpdateValuesAsync(string containerId, IDictionary<string, IQiValues > items);
+    Task UpdateValuesAsync<T>(string containerId, string streamId, IList<T> items);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}/Data/UpdateValues
+    PUT Qi/{containerId}/Streams/{streamId}/Data/UpdateValues
 
 Content is serialized list of updated values
 
 **Parameters**
+
+*containerId*: Container identifier for the request
 
 *streamId*: Stream identifier for the request
 
@@ -393,7 +415,7 @@ For example:
 ::
 
     {
-      _service.InsertValues(streamId, writeEvents);
+      _service.InsertValues(containerId, streamId, writeEvents);
     }
     catch (QiHttpClientException e)
     {
