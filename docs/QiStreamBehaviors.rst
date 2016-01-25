@@ -4,7 +4,7 @@ Qi Stream Behavior
 The ``QiStreamBehavior`` object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A ``QiStreamBehavior`` object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
 Note that, if you do not assign a specific Stream Behavior object to a stream, the default behavior is assumed.
 
-The Stream Behavior object consists of the following parts:
+The Stream Behavior object consists of the following properties:
 
 ==================        ==================
 Id                        A string that is used to identify the behavior
@@ -16,7 +16,7 @@ Overrides                 A list of overrides to the Mode setting when individua
 ==================        ==================
 
 +------------------+--------------------------------+--------------------------------------------------+
-|Object            |Type                            |Details                                           |
+|Property          |Type                            |Details                                           |
 +==================+================================+==================================================+
 |Id                |String                          |Unique identifier used to reference this behavior |
 +------------------+--------------------------------+--------------------------------------------------+
@@ -95,7 +95,7 @@ stream as shown in the next example:
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _service.GetOrCreateStream(containerId , stream1);
+    _service.GetOrCreateStream(containerId, stream1);
 
 Interpolation
 ------------
@@ -275,16 +275,18 @@ DeleteBehavior( )
 
 ::
 
-    void DeleteBehavior(string behaviorId);
-    Task DeleteBehaviorAsync(string behaviorId);
+    void DeleteBehavior(string containerId, string behaviorId);
+    Task DeleteBehaviorAsync(string containerId, string behaviorId);
 
 **Http**
 
 ::
 
-    DELETE Qi/Behaviors/{behaviorId}
+    DELETE Qi/{containerId}/Behaviors/{behaviorId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *behaviorId*: Id of the behavior to delete; the behavior must not be
 associated with any streams
@@ -301,16 +303,18 @@ GetBehavior( )
 
 ::
 
-    QiStreamBehavior GetBehavior(string behaviorId);
-    Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
+    QiStreamBehavior GetBehavior(string containerId, string behaviorId);
+    Task<QiStreamBehavior> GetBehaviorAsync(string containerId, string behaviorId);
 
 **Http**
 
 ::
 
-    GET Qi/Behaviors/{behaviorId}
+    GET Qi/{containerId}/Behaviors/{behaviorId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *behaviorId*: Id of the behavior definition to retrieve
 
@@ -325,18 +329,18 @@ GetBehaviors( )
 
 ::
 
-    IEnumerable<QiStreamBehavior> GetBehaviors();
-    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync();
+    IEnumerable<QiStreamBehavior> GetBehaviors(string containerId);
+    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(string containerId);
 
 **Http**
 
 ::
 
-    GET Qi/Behaviors
+    GET Qi/{containerId}/Behaviors
 
 **Parameters**
 
-None
+*containerId*: The container identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -349,18 +353,20 @@ GetOrCreateBehavior( )
 
 ::
 
-    QiStreamBehavior GetOrCreateBehavior(QiStreamBehavior entity);
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior entity);
+    QiStreamBehavior GetOrCreateBehavior(string containerId, QiStreamBehavior entity);
+    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string containerId, QiStreamBehavior entity);
 
 **Http**
 
 ::
 
-    POSTQi/Behaviors
+    POST  Qi/{containerId}/Behaviors
 
 Content is serialized ``QiStreamBehavior`` entity
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *entity*: A QiStreamBehavior object to add to Qi
 
@@ -377,18 +383,20 @@ UpdateBehavior( )
 
 ::
 
-    void UpdateBehavior(string behaviorId, QiStreamBehavior entity);
-    Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior entity);
+    void UpdateBehavior(string containerId, string behaviorId, QiStreamBehavior entity);
+    Task UpdateBehaviorAsync(string containerId, string behaviorId, QiStreamBehavior entity);
 
 **Http**
 
 ::
 
-    PUT Qi/Behaviors/{behaviorId}
+    PUT Qi/{containerId}/Behaviors/{behaviorId}
 
 Content is a serialization of the behavior to update
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *entity*: Updated stream behavior
 
