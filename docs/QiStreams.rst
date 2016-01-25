@@ -5,10 +5,10 @@ A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
-The following table shows the required and optional QiStream objects:
+The following table shows the required and optional QiStream properties:
 
 +---------------+----------+-------------+--------------------------------------------+
-| Object        | Type     | Optionality |Details                                     |
+| Property      | Type     | Optionality |Details                                     |
 +===============+==========+=============+============================================+
 | Id            | String   | Required    | Identifier for referencing the stream      |
 +---------------+----------+-------------+--------------------------------------------+
@@ -48,16 +48,18 @@ GetStream( )
 
 ::
 
-    QiStream GetStream(string streamId);
-    Task<QiStream> GetStreamAsync (string streamId);
+    QiStream GetStream(string conatinerId, string streamId);
+    Task<QiStream> GetStreamAsync (string containerId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}
+    GET Qi/{containerId}/Streams/{streamId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *streamId*: String identifying the stream
 
@@ -72,18 +74,18 @@ GetStreams( )
 
 ::
 
-    IEnumerable<QiStream> GetStreams ();
-    Task<IEnumerable<QiStream>> GetStreamsAsync ();
+    IEnumerable<QiStream> GetStreams (string containerId);
+    Task<IEnumerable<QiStream>> GetStreamsAsync (string containerId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams
+    GET Qi/{containerId}/Streams
 
 **Parameters**
 
-None
+*containerId*: The container identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -96,18 +98,20 @@ GetOrCreateStream( )
 
 ::
 
-    QiStream GetOrCreateStream (QiStream entity);
-    Task<QiStream> GetOrCreateStreamAsync (QiStream entity);
+    QiStream GetOrCreateStream (string containerId, QiStream entity);
+    Task<QiStream> GetOrCreateStreamAsync (string containerId, QiStream entity);
 
 **Http**
 
 ::
 
-    POST Qi/Streams
+    POST Qi/{containerId}/Streams
 
 Content is serialized QiStream entity
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *entity*: Qi Stream object
 
@@ -124,18 +128,20 @@ UpdateStream( )
 
 ::
 
-    void UpdateStream(string streamId, QiStream entity);
-    Task UpdateStreamAsync(string streamId, QiStream entity);
+    void UpdateStream(string containerId, string streamId, QiStream entity);
+    Task UpdateStreamAsync(string containerId, string streamId, QiStream entity);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}
+    PUT Qi/{containerId}/Streams/{streamId}
 
 Content is serialized QiStream entity
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *streamId*: Identifier of the stream to modify
 
@@ -166,16 +172,18 @@ DeleteStream( )
 
 ::
 
-    void DeleteStream(string streamId);
-    Task DeleteStreamAsync(string streamId);
+    void DeleteStream(string containerId, string streamId);
+    Task DeleteStreamAsync(string containerId, string streamId);
 
 **Http**
 
 ::
 
-    DELETE Qi/Streams/{streamId}
+    DELETE Qi/{containerId}/Streams/{streamId}
 
 **Parameters**
+
+*containerId*: The container identifier for the request
 
 *streamId*: Identifier of the stream to delete
 
