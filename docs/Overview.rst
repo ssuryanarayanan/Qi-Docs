@@ -5,8 +5,17 @@ You can find code samples for Python, .NET, Node.js, and Java in the
 Qi-Samples repository on GitHub. You should obtain Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
 
-A Qi tenant is a self-contained entity within Qi that is used to
-define three different objects in which to store and manage data:
+The primary object of the Qi architecture is the *tenant*. Within a tenant you create one or more 
+*containers*, in which data types are defined and data is stored. 
+
+.. image:: images/Containers.png
+
+You use containers to separate tenants into logical entities. For example, 
+you might want to have one tenant for production, one for development, and 
+perhaps another to server as a pre-production staging area where your QA 
+group can run certification testing.
+
+Within a container, Qi defines three different objects in which to store and manage data:
 
 -  **Type**: A user-defined structure that denotes a single measured event or
    object for storage.
@@ -15,6 +24,22 @@ define three different objects in which to store and manage data:
 -  **Stream Behavior**: Defines how Qi interpolates or extrapolates
    data during event retrieval when requests occur before, after, or between
    existing data events.
+
+.. image:: images/Containers_1.png
+
+Each container stores a separate and independent list of Type, Stream, and Stream Behavior objects.
+
+To create a container
+---------------------
+
+You must start by creating a container so that you have a place in which to create types, 
+streams, and behaviors.
+
+::
+
+   // create a container ‘container1’
+   _service.GetOrCreateContainerType(“container1”;);
+
 
 To create a type
 ----------------
@@ -56,7 +81,7 @@ The following example creates a simple type:
 
     // create type
     QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
-    var mySimpleType = _service.GetOrCreateType(SimpleType);
+    var mySimpleType = _service.GetOrCreateType("container1", SimpleType);
 
 To create a stream
 ------------------
@@ -77,7 +102,7 @@ The following example creates a QiStream with an Id of ‘MyFistStream’ of typ
         Id = streamId,
         TypeId = streamType
     }
-    _service.GetOrCreateStream(stream1);
+    _service.GetOrCreateStream("container1", stream1);
 
 The stream in the previous example can now be used to hold data values of 
 the structure that is defined in mySimpleType. The stream's Name, 
@@ -97,26 +122,6 @@ index of a read operation falls between, before, or after stream data.
 
 Additonal information about stream behaviors can be found in
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
-
-Containers
-----------
-
-As you have seen in the previous topics, when you create a tenant in Qi, you define a Type (which defines the structure of your data), a Stream (which creates an area in which to store your data), and you define a Stream Behavior (which defines rules for how data is read). Tenant information is stored within one or more *containers*. A *container* in this context stores information for a given tenant and can be thought of as an self-contained partition that you use to store the entirety of the data and metadata for your tenant. 
-
-You use containers to separate tenants into logical entities. For example, you might want to have one tenant for production, one for development, and perhaps one or more containers for QA or to serve as a pre-production staging area for certification testing. 
-
-You can create, delete, or obtain information about your containers using the following Qi methods:
-
-::
-
-   CreateContainer(string containerName)
-   -need example and API call-
-   
-   DeleteContainer(string containerName)
-   -need example and API call-
-   
-   GetContainers()
-   -need example and API call-
 
 
 To write data
@@ -150,7 +155,7 @@ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
       TimeId = startWrites,
       Value = (double)1.1
     };
-    _service.InsertValue(streamId, data1);
+    _service.InsertValue("container1", streamId, data1);
 
 The following example writes multiple values to the stream:
 
@@ -166,7 +171,7 @@ The following example writes multiple values to the stream:
       };
       writeEvents.Add(dataEvent);
     }
-    _service.UpdateValues(streamId, writeEvents);
+    _service.UpdateValues("container1", streamId, writeEvents);
 
 Additonal information about writing data can be found in `Writing
 data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
