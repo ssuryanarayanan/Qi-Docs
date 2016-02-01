@@ -10,7 +10,9 @@ Familiarization with Qi and its capabilities is easy. Introductory information s
 
 The video below will help you get started with Qi:
 
-![:youtube 640x360](__48uylCzsE)
+<video width="640" height="360" style="background-color: grey;" controls="controls" preload="none" poster="https://www.youtube.com/embed/__48uylCzsE?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5.jpg"><source src="https://www.youtube.com/embed/__48uylCzsE?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5"><object width="640" height="360" style="background-color: black;" type="application/x-shockwave-flash" data="http://flashfox.googlecode.com/svn/trunk/flashfox.swf"><param name="movie" value="http://flashfox.googlecode.com/svn/trunk/flashfox.swf"><param name="allowFullScreen" value="true"><param name="wmode" value="transparent"><param name="flashvars" value="
+            controlbar=over&amp;src=https://www.youtube.com/embed/__48uylCzsE?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5"></object></video>
+
 
 ## Using the samples
 Code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
