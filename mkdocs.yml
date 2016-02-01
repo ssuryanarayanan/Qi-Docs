@@ -11,6 +11,7 @@ pages:
 - Introduction: 'index.md'
 - API reference: #'Qi Service API Reference.md'
   - Overview: 'Overview.md'
+  - Video: 'Videos.md'
   - QiTypes: 'QiTypes.md'
   - QiStreams: 'QiStreams.md'
   - QiStreamBehaviors: 'QiStreamBehaviors.md'
