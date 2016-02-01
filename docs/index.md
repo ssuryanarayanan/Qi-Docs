@@ -10,7 +10,7 @@ Familiarization with Qi and its capabilities is easy. Introductory information s
 
 The video below will help you get started with Qi:
 
-
+![:youtube 640x360](__48uylCzsE)
 
 ## Using the samples
 Code samples that will help get you going quicky are accessible via the <a href="https://github.com/osisoft/Qi-Samples" target="_blank">Qi-Samples</a> repository on GitHub.
