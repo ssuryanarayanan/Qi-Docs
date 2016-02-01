@@ -19,4 +19,4 @@ Listed below are a series of videos designed to help guide you through getting s
 <iframe width="100%" height="360" src="https://www.youtube.com/embed/-mH1ZMLHOnk?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
 
 ## Find Qi documentation, code samples, and support
-<iframe width="640" height="360" src="https://www.youtube.com/embed/hkhId0zDZVg?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="https://www.youtube.com/embed/hkhId0zDZVg?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
