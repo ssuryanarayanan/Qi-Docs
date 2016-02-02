@@ -1,7 +1,7 @@
 Listed below are a series of videos designed to help guide you through getting started with Qi.
 
 ## Logon to the Qi Portal to create & manage client keys
-<iframe width="100%" height="360" src="https://www.youtube.com/embed/__48uylCzsE?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="https://www.youtube.com/embed/__48uylCzsE?rel=0&amp;fs=0&amp;showinfo=0list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
 
 ## C#: Setting up your Qi project in Visual Studio
 <iframe width="100%" height="360" src="https://www.youtube.com/embed/waRbnQ-JQQ4?list=PLMcG1Hs2JbcuKoIjlEZPVtkBnI9kV4nO5" frameborder="0" allowfullscreen></iframe>
