@@ -1,21 +1,21 @@
 Overview
 ########
 
-You can find code samples for Python, .NET, Node.js, and Java in the
-Qi-Samples repository on GitHub. You should obtain Qi REST API access keys from
+Code samples for Python, .NET, Node.js, and Java can be found in the
+Qi-Samples repository on GitHub. Obtain Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
 
 The primary object of the Qi architecture is the *tenant*. Within a tenant you create one or more 
-*containers*, in which data types are defined and data is stored. 
+*Namespaces*, in which data types are defined and data is stored. 
 
-.. image:: images/Containers.png
+.. image:: images/ContainersA.png
 
-You use containers to separate tenants into logical entities. For example, 
-you might want to have one tenant for production, one for development, and 
-perhaps another to server as a pre-production staging area where your QA 
+You use Namespaces to separate tenants into logical entities. For example, 
+you might want to have one Namespace for production, one for development, and 
+perhaps another to serve as a pre-production staging area where your QA 
 group can run certification testing.
 
-Within a container, Qi defines three different objects in which to store and manage data:
+Within a Namespace, Qi defines three different objects in which to store and manage data:
 
 -  **Type**: A user-defined structure that denotes a single measured event or
    object for storage.
@@ -25,27 +25,27 @@ Within a container, Qi defines three different objects in which to store and man
    data during event retrieval when requests occur before, after, or between
    existing data events.
 
-.. image:: images/Containers_1.png
+.. image:: images/Containers_1A.png
 
-Each container stores a separate and independent list of Type, Stream, and Stream Behavior objects.
+Each Namespace stores a separate and independent list of Type, Stream, and Stream Behavior objects.
 
-To create a container
+To create a Namespace
 ---------------------
 
-You must start by creating a container so that you have a place in which to create types, 
+You must start by creating a Namespace so that you have a place in which to create types, 
 streams, and behaviors.
 
 ::
 
-   // create a container ‘container1’
-   _service.GetOrCreateContainerType(“container1”;);
+   // create a Namespace ‘Namespace1’
+   _service.GetOrCreateNamespaceType(“Namespace1”;);
 
 
 To create a type
 ----------------
 
 A QiType consists of one or more index properties and one or more
-data properties. You use Index properties to arrange data into a sequence.
+data properties. You use index properties to arrange data into a sequence.
 For example, DateTime is a common index property, but any native type can be used as
 an index as long as it allows for ordering of values. For information about
 compound indexes refer to:
@@ -81,7 +81,7 @@ The following example creates a simple type:
 
     // create type
     QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
-    var mySimpleType = _service.GetOrCreateType("container1", SimpleType);
+    var mySimpleType = _service.GetOrCreateType("Namespace1", SimpleType);
 
 To create a stream
 ------------------
@@ -102,7 +102,7 @@ The following example creates a QiStream with an Id of ‘MyFistStream’ of typ
         Id = streamId,
         TypeId = streamType
     }
-    _service.GetOrCreateStream("container1", stream1);
+    _service.GetOrCreateStream("Namespace1", stream1);
 
 The stream in the previous example can now be used to hold data values of 
 the structure that is defined in mySimpleType. The stream's Name, 
@@ -155,7 +155,7 @@ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
       TimeId = startWrites,
       Value = (double)1.1
     };
-    _service.InsertValue("container1", streamId, data1);
+    _service.InsertValue("Namespace1", streamId, data1);
 
 The following example writes multiple values to the stream:
 
@@ -171,7 +171,7 @@ The following example writes multiple values to the stream:
       };
       writeEvents.Add(dataEvent);
     }
-    _service.UpdateValues("container1", streamId, writeEvents);
+    _service.UpdateValues("Namespace1", streamId, writeEvents);
 
 Additonal information about writing data can be found in `Writing
 data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
