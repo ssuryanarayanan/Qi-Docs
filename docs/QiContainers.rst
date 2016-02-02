@@ -1,4 +1,4 @@
-Qi Containers
+Qi Namespaces
 #############
 
 !!! This topic needs to be verified !!!
@@ -7,26 +7,26 @@ When you create a tenant in Qi, you define a Type (which defines the structure o
 a Stream (which creates an area in which to store your data), and you define a Stream Behavior 
 (which defines rules for how data is read). 
 
-Tenant information is stored within one or more *containers*. A *container* in this context 
+Tenant information is stored within one or more *namespaces*. A *namespace* in this context 
 stores information for a given tenant and can be thought of as a self-contained partition 
 that you use to store the entirety of the data and metadata for your tenant.
 
-You use containers to separate tenants into logical entities. For example, you might 
-want to have one tenant for production, one for development, and perhaps one or more 
-containers for QA or to serve as a pre-production staging area for certification testing.
+You use namespaces to separate tenants into logical entities. For example, you might 
+want to have one namespace for production, one for development, and perhaps one or more 
+namespaces for QA or to serve as a pre-production staging area for certification testing.
 
-You can create, delete, or obtain information about your containers using the following Qi methods:
+You can create, delete, or obtain information about your namespaces using the following Qi methods:
 
-The following table shows the required and optional Qi Container objects:
+The following table shows the required and optional Qi namespace objects:
 
 +---------------+-------------------------+----------------------------------------+
 | Object        | Type                    | Details                                |
 +===============+=========================+========================================+
-| ContainerId   | String                  | Required Id for referencing the        |
-|               |                         | container                              | 
+| namespaceId   | String                  | Required Id for referencing the        |
+|               |                         | namespace                              | 
 +---------------+-------------------------+----------------------------------------+
 
-**Rules for ContainerId**
+**Rules for namespaceId**
 
 1. Not case sensitive
 2. Spaces are allowed
@@ -35,33 +35,33 @@ The following table shows the required and optional Qi Container objects:
 5. Maximum length of 260 characters
 
 
-GetContainer( )
+GetNamespace( )
 ----------------
 
 **Qi Client Library**
 
 ::
 
-    string GetContainer(string containerId);
-    Task<string> GetContainerAsync(string containerId);
+    string GetNamespace(string namespaceId);
+    Task<string> GetNamespaceAsync(string namespaceId);
 
 **Http**
 
 ::
 
-    GET "Qi/Containers/{containerId}”
+    GET "Qi/Namespaces/{namespaceId}”
 
 
 **Parameters**
 
-*containerId*: The Id of the container.
+*namespaceId*: The Id of the namespace.
 
 **Security** Allowed by administrator and user accounts.
 
-**Operation** Returns a container.
+**Operation** Returns a namespace.
 
 
-GetContainers( )
+GetNamespace( )
 ----------------
 
 **Qi Client Library**
@@ -69,100 +69,100 @@ GetContainers( )
 ::
 
 
-    IEnumerable<string> GetContainers();
-    Task<IEnumerable<string>> GetContainersAsync();
+    IEnumerable<string> GetNamespaces();
+    Task<IEnumerable<string>> GetNamespacesAsync();
 
 
 **Http**
 
 ::
 
-    GET "Qi/Containers"
+    GET "Qi/Namespaces"
 
 
 **Parameters**
 
-*containerId*: The Id of the container.
+*namespaceId*: The Id of the namespace.
 
 **Security** Allowed by administrator and user accounts.
 
-**Operation** Returns a list of containers.
+**Operation** Returns a list of namespace.
 
 
-UpdateContainer( )
+UpdateNamespace( )
 ------------------
-Note from Mindy: UpdateContainer (the PUT action) is not yet supported and I’m not sure if we are 
+Note from Mindy: UpdateNamespace (the PUT action) is not yet supported and I’m not sure if we are 
 going to implement it or not.  I’ll let you know when I find out..
 
 **Qi Client Library**
 
 ::
 
-    void UpdateContainer(string containerId, string newContainerId);
-    Task UpdateContainerAsync(string containerId, string newContainerId);
+    void UpdateNamespace(string namespaceId, string newNamespaceId);
+    Task UpdateNamespaceAsync(string namspaceId, string newNamespaceId);
 
     
 **Http**
 
 ::
 
-    HTTP PUT "Qi/Containers/{containerId}"
+    HTTP PUT "Qi/Namespaces/{namespaceId}"
 
 **Parameters**
 
-*containerId*: The Id of the container.
+*namespaceId*: The Id of the namespace.
 
-**Security** Allowed by administrator account
+**Security** Allowed by administrator account.
 
-**Operation** Updates a container
+**Operation** Updates a namespace.
 
-GetOrCreateContainer( )
+GetOrCreateNamespace( )
 ----------------
 
 **Qi Client Library**
 
 ::
 
-    string GetOrCreateContainer(string containerId);
-    Task<string> GetOrCreateContainerAsync(string containerId);
+    string GetOrCreateNamespace(string namespaceId);
+    Task<string> GetOrCreateNamespaceAsync(string namespaceId);
 
 **Http**
 
 ::
 
-    POST "Qi/Containers/{containerId}"
+    POST "Qi/Namespaces/{namespaceId}"
 
 
 **Parameters**
 
-*containerId*: The Id of the container.
+*namespaceId*: The Id of the namespace.
 
-**Security** Allowed by administrator account
+**Security** Allowed by administrator account.
 
-**Operation** Creates or returns a container
+**Operation** Creates or returns a namespace.
 
-DeleteContainer( )
+DeleteNamespace( )
 ----------------
 
 **Qi Client Library**
 
 ::
 
-    void DeleteContainer(string containerId);
-    Task DeleteContainerAsync(string containerId);
+    void DeleteNamespace(string namespaceId);
+    Task DeleteNamespaceAsync(string namespaceId);
 
 **Http**
 
 ::
 
-    DELETE "Qi/Containers/{containerId}”
+    DELETE "Qi/Namespaces/{namespaceId}”
 
 **Parameters**
 
-*containerId*: The Id of the container.
+*namespaceId*: The Id of the namespace.
 
-**Security** Allowed by administrator account
+**Security** Allowed by administrator account.
 
-**Operation** Deletes the container.
+**Operation** Deletes the namespace.
 
 
