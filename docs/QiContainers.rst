@@ -22,7 +22,7 @@ The following table shows the required and optional Qi namespace objects:
 +---------------+-------------------------+----------------------------------------+
 | Object        | Type                    | Details                                |
 +===============+=========================+========================================+
-| namespaceId   | String                  | Required Id for referencing the        |
+| namespaceId   | String                  | Required ID for referencing the        |
 |               |                         | namespace                              | 
 +---------------+-------------------------+----------------------------------------+
 
@@ -54,7 +54,7 @@ GetNamespace( )
 
 **Parameters**
 
-*namespaceId*: The Id of the namespace.
+*namespaceId*: The ID of the namespace.
 
 **Security** Allowed by administrator and user accounts.
 
@@ -82,7 +82,7 @@ GetNamespaces( )
 
 **Parameters**
 
-*namespaceId*: The Id of the namespace.
+*namespaceId*: The ID of the namespace.
 
 **Security** Allowed by administrator and user accounts.
 
@@ -110,7 +110,7 @@ going to implement it or not.  I’ll let you know when I find out..
 
 **Parameters**
 
-*namespaceId*: The Id of the namespace.
+*namespaceId*: The ID of the namespace.
 
 **Security** Allowed by administrator account.
 
@@ -135,7 +135,7 @@ GetOrCreateNamespace( )
 
 **Parameters**
 
-*namespaceId*: The Id of the namespace.
+*namespaceId*: The ID of the namespace.
 
 **Security** Allowed by administrator account.
 
@@ -159,7 +159,7 @@ DeleteNamespace( )
 
 **Parameters**
 
-*namespaceId*: The Id of the namespace.
+*namespaceId*: The ID of the namespace.
 
 **Security** Allowed by administrator account.
 

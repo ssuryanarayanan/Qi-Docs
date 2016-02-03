@@ -44,18 +44,18 @@ GetStreamType( )
 
 ::
 
-    QiType GetStreamType(string containerId, string streamId);
-    Task<QiType> GetStreamTypeAsync(string containerId, string streamId);
+    QiType GetStreamType(string namespaceId, string streamId);
+    Task<QiType> GetStreamTypeAsync(string namespaceId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Streams/{streamId}/Type
+    GET Qi/{namespaceId}/Streams/{streamId}/Type
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: Id of the stream for which the type request is made
 
@@ -70,18 +70,18 @@ GetType( )
 
 ::
 
-    QiType GetType(string containerId, string typeId);
-    Task<QiType> GetTypeAsync(string containerId, string typeId);
+    QiType GetType(string namespaceId, string typeId);
+    Task<QiType> GetTypeAsync(string namespaceId, string typeId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Types/{typeId}
+    GET Qi/{namespaceId}/Types/{typeId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *typeId*: Id of the type to retrieve
 
@@ -96,18 +96,18 @@ GetTypes( )
 
 ::
 
-    IEnumerable<QiType> GetTypes(string containerId);
-    Task<IEnumerable<QiType>> GetTypesAsync(string containerId);
+    IEnumerable<QiType> GetTypes(string namespaceId);
+    Task<IEnumerable<QiType>> GetTypesAsync(string namespaceId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Types
+    GET Qi/{namespaceId}/Types
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -120,20 +120,20 @@ GetOrCreateType( )
 
 ::
 
-    QiType GetOrCreateType(string containerId, QiType entity);
-    Task<QiType> GetOrCreateTypeAsync(string containerId, QiType entity);
+    QiType GetOrCreateType(string namespaceId, QiType entity);
+    Task<QiType> GetOrCreateTypeAsync(string namespaceId, QiType entity);
 
 **Http**
 
 ::
 
-    POST Qi/{containerId}/Types
+    POST Qi/{namespaceId}/Types
 
 Content is serialized QiType entity
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *entity*: Qi Type object
 
@@ -150,18 +150,18 @@ DeleteType( )
 
 ::
 
-    void DeleteType(string containerId, string typeId);
-    Task DeleteTypeAsync(string containerId, string typeId);
+    void DeleteType(string namespaceId, string typeId);
+    Task DeleteTypeAsync(string namespaceId, string typeId);
 
 **Http**
 
 ::
 
-    DELETE Qi/{containerId}/Types/{typeId}
+    DELETE Qi/{namespaceId}/Types/{typeId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *typeId*: String typeId of the type to delete
 
@@ -177,18 +177,18 @@ UpdateType( )
 
 ::
 
-    void UpdateType(string containerId, string typeId, QiType entity);
-    Task UpdateTypeAsync(string containerId, string typeId, QiType entity);
+    void UpdateType(string namespaceId, string typeId, QiType entity);
+    Task UpdateTypeAsync(string namespaceId, string typeId, QiType entity);
 
 **Http**
 
 ::
 
-    PUT Qi/{containerId}/Types/{typeId}
+    PUT Qi/{namespaceId}/Types/{typeId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *typeId*: String typeId of the type to update
 

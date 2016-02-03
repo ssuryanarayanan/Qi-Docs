@@ -80,7 +80,7 @@ The code in the following example shows how to define and create a simple
         Id = behaviorId,
         Mode = QiStreamMode.StepwiseContinuousLeading,
     };
-    _service.GetOrCreateBehavior(containerId, createdBehavior);
+    _service.GetOrCreateBehavior(namespaceId, createdBehavior);
 
 After the stream behavior is defined, the behavior can be applied to a
 stream as shown in the next example:
@@ -95,7 +95,7 @@ stream as shown in the next example:
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _service.GetOrCreateStream(containerId, stream1);
+    _service.GetOrCreateStream(namespaceId, stream1);
 
 Interpolation
 ------------
@@ -275,18 +275,18 @@ DeleteBehavior( )
 
 ::
 
-    void DeleteBehavior(string containerId, string behaviorId);
-    Task DeleteBehaviorAsync(string containerId, string behaviorId);
+    void DeleteBehavior(string namespaceId, string behaviorId);
+    Task DeleteBehaviorAsync(string namespaceId, string behaviorId);
 
 **Http**
 
 ::
 
-    DELETE Qi/{containerId}/Behaviors/{behaviorId}
+    DELETE Qi/{namespaceId}/Behaviors/{behaviorId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *behaviorId*: Id of the behavior to delete; the behavior must not be
 associated with any streams
@@ -303,18 +303,18 @@ GetBehavior( )
 
 ::
 
-    QiStreamBehavior GetBehavior(string containerId, string behaviorId);
-    Task<QiStreamBehavior> GetBehaviorAsync(string containerId, string behaviorId);
+    QiStreamBehavior GetBehavior(string namespaceId, string behaviorId);
+    Task<QiStreamBehavior> GetBehaviorAsync(string namespaceId, string behaviorId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Behaviors/{behaviorId}
+    GET Qi/{namespaceId}/Behaviors/{behaviorId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *behaviorId*: Id of the behavior definition to retrieve
 
@@ -329,18 +329,18 @@ GetBehaviors( )
 
 ::
 
-    IEnumerable<QiStreamBehavior> GetBehaviors(string containerId);
-    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(string containerId);
+    IEnumerable<QiStreamBehavior> GetBehaviors(string namespaceId);
+    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(string namespaceId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Behaviors
+    GET Qi/{namespaceId}/Behaviors
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -353,20 +353,20 @@ GetOrCreateBehavior( )
 
 ::
 
-    QiStreamBehavior GetOrCreateBehavior(string containerId, QiStreamBehavior entity);
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string containerId, QiStreamBehavior entity);
+    QiStreamBehavior GetOrCreateBehavior(string namespaceId, QiStreamBehavior entity);
+    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string namespaceId, QiStreamBehavior entity);
 
 **Http**
 
 ::
 
-    POST  Qi/{containerId}/Behaviors
+    POST  Qi/{namespaceId}/Behaviors
 
 Content is serialized ``QiStreamBehavior`` entity
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *entity*: A QiStreamBehavior object to add to Qi
 
@@ -383,20 +383,20 @@ UpdateBehavior( )
 
 ::
 
-    void UpdateBehavior(string containerId, string behaviorId, QiStreamBehavior entity);
-    Task UpdateBehaviorAsync(string containerId, string behaviorId, QiStreamBehavior entity);
+    void UpdateBehavior(string namespaceId, string behaviorId, QiStreamBehavior entity);
+    Task UpdateBehaviorAsync(string namespaceId, string behaviorId, QiStreamBehavior entity);
 
 **Http**
 
 ::
 
-    PUT Qi/{containerId}/Behaviors/{behaviorId}
+    PUT Qi/{namespaceId}/Behaviors/{behaviorId}
 
 Content is a serialization of the behavior to update
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *entity*: Updated stream behavior
 

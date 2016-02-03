@@ -49,17 +49,17 @@ GetStream( )
 ::
 
     QiStream GetStream(string conatinerId, string streamId);
-    Task<QiStream> GetStreamAsync (string containerId, string streamId);
+    Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Streams/{streamId}
+    GET Qi/{namespaceId}/Streams/{streamId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: String identifying the stream
 
@@ -74,18 +74,18 @@ GetStreams( )
 
 ::
 
-    IEnumerable<QiStream> GetStreams (string containerId);
-    Task<IEnumerable<QiStream>> GetStreamsAsync (string containerId);
+    IEnumerable<QiStream> GetStreams (string namespaceId);
+    Task<IEnumerable<QiStream>> GetStreamsAsync (string namespaceId);
 
 **Http**
 
 ::
 
-    GET Qi/{containerId}/Streams
+    GET Qi/{namespaceId}/Streams
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
@@ -98,20 +98,20 @@ GetOrCreateStream( )
 
 ::
 
-    QiStream GetOrCreateStream (string containerId, QiStream entity);
-    Task<QiStream> GetOrCreateStreamAsync (string containerId, QiStream entity);
+    QiStream GetOrCreateStream (string namespaceId, QiStream entity);
+    Task<QiStream> GetOrCreateStreamAsync (string namespaceId, QiStream entity);
 
 **Http**
 
 ::
 
-    POST Qi/{containerId}/Streams
+    POST Qi/{namespaceId}/Streams
 
 Content is serialized QiStream entity
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *entity*: Qi Stream object
 
@@ -128,20 +128,20 @@ UpdateStream( )
 
 ::
 
-    void UpdateStream(string containerId, string streamId, QiStream entity);
-    Task UpdateStreamAsync(string containerId, string streamId, QiStream entity);
+    void UpdateStream(string namespaceId, string streamId, QiStream entity);
+    Task UpdateStreamAsync(string namespaceId, string streamId, QiStream entity);
 
 **Http**
 
 ::
 
-    PUT Qi/{containerId}/Streams/{streamId}
+    PUT Qi/{namespaceId}/Streams/{streamId}
 
 Content is serialized QiStream entity
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: Identifier of the stream to modify
 
@@ -172,18 +172,18 @@ DeleteStream( )
 
 ::
 
-    void DeleteStream(string containerId, string streamId);
-    Task DeleteStreamAsync(string containerId, string streamId);
+    void DeleteStream(string namespaceId, string streamId);
+    Task DeleteStreamAsync(string namespaceId, string streamId);
 
 **Http**
 
 ::
 
-    DELETE Qi/{containerId}/Streams/{streamId}
+    DELETE Qi/{namespaceId}/Streams/{streamId}
 
 **Parameters**
 
-*containerId*: The container identifier for the request
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: Identifier of the stream to delete
 
