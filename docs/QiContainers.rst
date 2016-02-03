@@ -61,7 +61,7 @@ GetNamespace( )
 **Operation** Returns a namespace.
 
 
-GetNamespace( )
+GetNamespaces( )
 ----------------
 
 **Qi Client Library**
