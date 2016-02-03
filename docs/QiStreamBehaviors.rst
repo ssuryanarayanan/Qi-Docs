@@ -37,7 +37,8 @@ Stream behavior objects are always referenced by the **Id** property. A
 stream can be changed to use a different stream behavior or the stream
 behavior itself can be changed after it is created or configured.
 
-**Rules for ``QiStreamBehavior`` Id **
+
+**Rules for ``QiStreamBehavior`` Id**
 
 1. Not case sensitive
 2. Spaces are allowed
