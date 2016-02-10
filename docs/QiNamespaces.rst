@@ -22,7 +22,7 @@ The following table shows the required and optional Qi namespace objects:
 +---------------+-------------------------+----------------------------------------+
 | Object        | Type                    | Details                                |
 +===============+=========================+========================================+
-| namespaceId   | String                  | Required ID for referencing the        |
+| Id            | String                  | Required ID for referencing the        |
 |               |                         | namespace                              | 
 +---------------+-------------------------+----------------------------------------+
 
@@ -42,8 +42,8 @@ GetNamespace( )
 
 ::
 
-    string GetNamespace(string namespaceId);
-    Task<string> GetNamespaceAsync(string namespaceId);
+    QiNamespace GetNamespace(string namespaceId);
+    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
 
 **Http**
 
@@ -69,8 +69,8 @@ GetNamespaces( )
 ::
 
 
-    IEnumerable<string> GetNamespaces();
-    Task<IEnumerable<string>> GetNamespacesAsync();
+    IEnumerable<QiNamespace> GetNamespaces();
+    Task<IEnumerable<QiNamespace>> GetNamespacesAsync();
 
 
 **Http**
@@ -89,33 +89,6 @@ GetNamespaces( )
 **Operation** Returns a list of namespace.
 
 
-UpdateNamespace( )
-------------------
-Note from Mindy: UpdateNamespace (the PUT action) is not yet supported and I’m not sure if we are 
-going to implement it or not.  I’ll let you know when I find out..
-
-**Qi Client Library**
-
-::
-
-    void UpdateNamespace(string namespaceId, string newNamespaceId);
-    Task UpdateNamespaceAsync(string namspaceId, string newNamespaceId);
-
-    
-**Http**
-
-::
-
-    HTTP PUT "Qi/Namespaces/{namespaceId}"
-
-**Parameters**
-
-*namespaceId*: The ID of the namespace.
-
-**Security** Allowed by administrator account.
-
-**Operation** Updates a namespace.
-
 GetOrCreateNamespace( )
 ----------------
 
@@ -123,8 +96,8 @@ GetOrCreateNamespace( )
 
 ::
 
-    string GetOrCreateNamespace(string namespaceId);
-    Task<string> GetOrCreateNamespaceAsync(string namespaceId);
+    QiNamespace GetOrCreateNamespace(QiNamespace entity);
+    Task<QiNamespace> GetOrCreateNamespaceAsync(QiNamespace entity);
 
 **Http**
 
