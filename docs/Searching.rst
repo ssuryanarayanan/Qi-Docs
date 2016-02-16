@@ -1,7 +1,7 @@
 Searching for QiStreams
 =======================
 
-``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
+``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__ for information about using ``GetStream()`` to return streams). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
 
 The syntax is as follows:
 
@@ -42,7 +42,7 @@ The ``skip`` and ``count`` parameters determine which streams are returned when 
 
 ``count`` indicates the maximum number of streams returned by the ``GetStreams()`` call.
 
-``skip`` indicates the number of matched stream names to skip over before returning matching streams. You use the skip parameter when more streams match the search criteria that can be returned in a single call. 
+``skip`` indicates the number of matched stream names to skip over before returning matching streams. You use the skip parameter when more streams match the search criteria than can be returned in a single call. 
 
 For example, assume there are 175 streams that match the search criteria: “temperature*”. 
 The following call returns the first 100 matches:
@@ -51,7 +51,7 @@ The following call returns the first 100 matches:
  
    GetStreams(“temperature*”, 0, 100)
 
-After the above call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
+After the previous call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
 
 ::
 
