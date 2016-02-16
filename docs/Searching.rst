@@ -34,7 +34,7 @@ Using the stream data above, the following table shows the results of a ``GetStr
 --------------     ----------------------------------------
 “temp*”            stream1 and stream3 returned.
 “calc*”            Only stream3 returned.
-“DeviceAc*”        All three streams returned.
+“DeviceA*”         All three streams returned.
 “humidity*”        No streams returned.
 ==============     ========================================
 
@@ -77,7 +77,7 @@ You can specify search operators in the ``searchText`` string to return more spe
          that have a term that starts with "cat", ignoring case.
 ``"``    Phrase search operator. For example, while Roach Motel 
          (without quotes) would search for documents containing 
-         Roachand/or Motel anywhere in any order, "Roach Motel" 
+         Roach Motel anywhere in any order, "Roach Motel" 
          (with quotes) will only match documents that contain the 
          whole phrase together and in that order (text analysis 
          still applies).
