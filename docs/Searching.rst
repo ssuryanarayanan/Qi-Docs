@@ -11,19 +11,19 @@ The syntax is as follows:
 
 
 The ``GetStreams()`` overload returns QiStreams that match specific search criteria within a given tenant. 
-You use the ``searchText`` parameter to specify a search string. The ``GetStreams()`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream name, description, or tag list. 
+You use the ``searchText`` parameter to specify a search string. The ``GetStreams()`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream name, the stream description, or in the tag list. 
 
 For example, assume that a tenant contains the following Streams:
 
 ========    =========   ================ =========================
 streamId    Name        Description      Tags
 --------    ---------   ---------------- -------------------------
-stream1     tempA       The temperature  “temperature”, “DeviceA”
+stream1     tempA       The temperature  â€œtemperatureâ€, â€œDeviceAâ€
                         from DeviceA                
-stream2     pressureA   The pressure     “pressure”, “DeviceA”
+stream2     pressureA   The pressure     â€œpressureâ€, â€œDeviceAâ€
                         from DeviceA     
-stream3     calcA       calculation from “temperature”, 
-                        DeviceA values   “pressure”, “DeviceA”
+stream3     calcA       calculation from â€œtemperatureâ€, 
+                        DeviceA values   â€œpressureâ€, â€œDeviceAâ€
 ========    =========   ================ =========================
 
 
@@ -32,10 +32,10 @@ In the following table, the ``SearchText`` column shows the contents of the Sear
 ============= ========================================
 SearchText    Streams returned
 ------------- ----------------------------------------
-“temp*”       stream1 and stream3
-“calc*”       only stream3
-“DeviceAc*”   all 3 streams returned.
-“humidity*”   no streams returned.
+â€œtemp*â€       stream1 and stream3
+â€œcalc*â€       only stream3
+â€œDeviceAc*â€   all 3 streams returned.
+â€œhumidity*â€   no streams returned.
 ============= ========================================
 
 The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria.
@@ -44,18 +44,18 @@ The ``skip`` and ``count`` parameters determine which streams are returned when 
 
 ``skip`` indicates the number of matched stream names to skip over before returning matching streams. You use the skip parameter when more streams match the search criteria that can be returned in a single call. 
 
-For example, assume there are 175 streams that match a particular search criteria, “temperature*”. 
+For example, assume there are 175 streams that match a particular search criteria, â€œtemperature*â€. 
 The following call returns the first 100 matches:
 
 ::
  
-   GetStreams(“temperature*”, 0, 100)
+   GetStreams(â€œtemperature*â€, 0, 100)
 
 After the preceeding call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
 
 ::
 
-   GetStreams(“temperature*”, 100, 100) 
+   GetStreams(â€œtemperature*â€, 100, 100) 
 
 The maximum value of the ``count`` parameter is 1000. 
 
@@ -69,7 +69,7 @@ You can use search operators and other characters to return more specific search
          containing both "cat" and "dog".
 ``|``    OR operator. For example, "cat|dog" searches for documents
          containing either "cat" or "dog" or both.
-``-``    NOT operator. For example, "cat –dog" searches for streams 
+``-``    NOT operator. For example, "cat â€“dog" searches for streams 
          that have the "cat" term or do not have "dog" 
 ``*``    Suffix operator. For example, "cat*" searches for streams 
          that have a term that starts with "cat", ignoring case.
