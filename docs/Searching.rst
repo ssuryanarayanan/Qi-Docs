@@ -1,7 +1,7 @@
 Searching for QiStreams
 =======================
 
-``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams. When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
+``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
 
 The syntax is as follows:
 
@@ -27,7 +27,7 @@ stream3     calcA       calculation from “temperature”,
 ========    =========   ================ =========================
 
 
-In the following table, the ``SearchText`` column shows the contents of the Searchtext parameter, while the Result column shows the streams that the call returns.
+Using the stream data above, the following table shows the results of a ``GetStreams()`` call with different ``SearchText`` values:
 
 ============= ========================================
 SearchText    Streams returned
@@ -38,7 +38,7 @@ SearchText    Streams returned
 “humidity*”   no streams returned.
 ============= ========================================
 
-The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria.
+The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria. The asterisk (*) character is a wildcard which matches zero or more characters (see _operators.).  
 
 ``count`` indicates the maximum number of streams returned by the ``GetStreams()`` call.
 
@@ -59,10 +59,13 @@ After the preceeding call, you can use the following call to return the remainin
 
 The maximum value of the ``count`` parameter is 1000. 
 
-Search parameters
------------------
+Search operators
+----------------
 
 You can use search operators and other characters to return more specific search results. Special characters include ``+`` ``-`` ``|`` ``*`` ``"`` ``(`` and ``)``. 
+
+.. _operators: 
+
 
 =======  ============================================================
 ``+``    AND operator. For example, ``"cat+dog"`` searches for streams
