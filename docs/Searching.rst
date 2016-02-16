@@ -15,16 +15,16 @@ You use the ``searchText`` parameter to specify a search string. The ``GetStream
 
 For example, assume that a tenant contains the following Streams:
 
-========    =========   ================ =========================
-streamId    Name        Description      Tags
---------    ---------   ---------------- -------------------------
-stream1     tempA       The temperature  “temperature”, “DeviceA”
-                        from DeviceA                
-stream2     pressureA   The pressure     “pressure”, “DeviceA”
-                        from DeviceA     
-stream3     calcA       calculation from “temperature”, 
-                        DeviceA values   “pressure”, “DeviceA”
-========    =========   ================ =========================
+============    =========       ================     =========================
+**streamId**    **Name**        **Description**      **Tags**
+------------    ---------       ----------------     -------------------------
+stream1         tempA           The temperature      “temperature”, “DeviceA”
+                                from DeviceA                
+stream2         pressureA       The pressure         “pressure”, “DeviceA”
+                                from DeviceA     
+stream3         calcA           calculation from     “temperature”, 
+                                DeviceA values       “pressure”, “DeviceA”
+============    =========       ================     =========================
 
 
 Using the stream data above, the following table shows the results of a ``GetStreams()`` call with different ``SearchText`` values:
