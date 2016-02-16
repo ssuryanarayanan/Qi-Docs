@@ -29,29 +29,29 @@ stream3     calcA       calculation from “temperature”,
 
 Using the stream data above, the following table shows the results of a ``GetStreams()`` call with different ``SearchText`` values:
 
-============= ========================================
-SearchText    Streams returned
-------------- ----------------------------------------
-“temp*”       stream1 and stream3
-“calc*”       only stream3
-“DeviceAc*”   all 3 streams returned.
-“humidity*”   no streams returned.
-============= ========================================
+==============     ========================================
+**SearchText**     **Streams returned**
+--------------     ----------------------------------------
+“temp*”            stream1 and stream3 returned.
+“calc*”            Only stream3 returned.
+“DeviceAc*”        All three streams returned.
+“humidity*”        No streams returned.
+==============     ========================================
 
-The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria. The asterisk (*) character is a wildcard which matches zero or more characters (see _operators.).  
+The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria. The asterisk (*) character is a wildcard which matches zero or more characters (see Search operators_).  
 
 ``count`` indicates the maximum number of streams returned by the ``GetStreams()`` call.
 
 ``skip`` indicates the number of matched stream names to skip over before returning matching streams. You use the skip parameter when more streams match the search criteria that can be returned in a single call. 
 
-For example, assume there are 175 streams that match a particular search criteria, “temperature*”. 
+For example, assume there are 175 streams that match the search criteria: “temperature*”. 
 The following call returns the first 100 matches:
 
 ::
  
    GetStreams(“temperature*”, 0, 100)
 
-After the preceeding call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
+After the above call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
 
 ::
 
@@ -62,10 +62,9 @@ The maximum value of the ``count`` parameter is 1000.
 Search operators
 ----------------
 
-You can use search operators and other characters to return more specific search results. Special characters include ``+`` ``-`` ``|`` ``*`` ``"`` ``(`` and ``)``. 
+You can specify search operators in the ``searchText`` string to return more specific search results. 
 
 .. _operators: 
-
 
 =======  ============================================================
 ``+``    AND operator. For example, ``"cat+dog"`` searches for streams
