@@ -31,11 +31,11 @@ The following table shows the required and optional QiType properties:
 
 **Rules for typeId**
 
-1. Not case sensitive
-2. Spaces are allowed
-3. Cannot start with two underscores ("\_\_")
+1. Is not case sensitive
+2. Can contain spaces
+3. Cannot begin with two underscores ("\_\_")
 4. Cannot contain forward slash or backslash characters ("/" or "\\")
-5. Maximum length of 260 characters
+5. Can contain a maximum of 260 characters
 
 GetStreamType( )
 ----------------
@@ -211,7 +211,7 @@ indexes.
 Supported QiTypes
 ----------------
 
-The following are types are supported when
+The following types are supported when
 creating a QiType:
 
 * Array
