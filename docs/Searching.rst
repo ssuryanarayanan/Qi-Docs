@@ -11,7 +11,7 @@ The syntax is as follows:
 
 
 The ``GetStreams()`` overload returns QiStreams that match specific search criteria within a given tenant. 
-You use the ``searchText`` parameter to specify a search string. The ``GetStreams()`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream name, the stream description, or in the tag list. 
+You use the ``searchText`` parameter to specify a search string. The ``GetStreams()`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream ``name``, the stream ``description``, or in the ``tag`` list. 
 
 For example, assume that a tenant contains the following Streams:
 
@@ -38,9 +38,11 @@ Using the stream data above, the following table shows the results of a ``GetStr
 “humidity*”        No streams returned.
 ==============     ========================================
 
-The ``skip`` and ``count`` parameters determine which streams are returned when more than one stream matches the ``searchText`` criteria. The asterisk (*) character is a wildcard which matches zero or more characters (see Search operators_).  
+The ``skip`` and ``count`` parameters determine which streams are returned when a large number of streams match the ``searchText`` criteria. 
 
-``count`` indicates the maximum number of streams returned by the ``GetStreams()`` call.
+The asterisk (*) character is a wildcard which matches zero or more characters (see Search operators_).  
+
+``count`` indicates the maximum number of streams returned by the ``GetStreams()`` call. The maximum value of the ``count`` parameter is 1000. 
 
 ``skip`` indicates the number of matched stream names to skip over before returning matching streams. You use the skip parameter when more streams match the search criteria than can be returned in a single call. 
 
@@ -57,7 +59,6 @@ After the previous call, you can use the following call to return the remaining 
 
    GetStreams(“temperature*”, 100, 100) 
 
-The maximum value of the ``count`` parameter is 1000. 
 
 Search operators
 ----------------
