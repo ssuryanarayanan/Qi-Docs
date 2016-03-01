@@ -1,6 +1,20 @@
 Reading Data
 ============
 
+In this section:
+
+- `Generics and tuples`_
+- `FindDistinctValue( )`_
+- `GetDistinctValue( )`_
+- `GetDistinctValue( )`_
+- `GetFirstValue( )`_
+- `GetLastValue( )`_
+- `GetRangeValues( )`_
+- `GetValue( )`_
+- `GetValues( )`_
+- `GetWindowValues( )`_
+
+
 Generics and tuples
 ------------
 
