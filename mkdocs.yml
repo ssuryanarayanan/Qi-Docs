@@ -2,7 +2,7 @@
 site_name: Qi Docs
 site_description: Documenation for the Qi service
 site_favicon: '/img/qi-docs-favicon.ico'
-copyright: Copyright &copy; 2015, OSIsoft, LLC
+copyright: Copyright &copy; 2016, OSIsoft, LLC
 docs_dir: docs
 repo_url: https://github.com/osisoft/Qi-Docs
 # theme: sphinx_rtd_theme
@@ -10,14 +10,14 @@ repo_url: https://github.com/osisoft/Qi-Docs
 pages:
 - Introduction: 'index.md'
 - API reference: #'Qi Service API Reference.md'
-  - Overview: 'Overview.md'
-  - QiTypes: 'QiTypes.md'
-  - QiStreams: 'QiStreams.md'
-  - QiStreamBehaviors: 'QiStreamBehaviors.md'
+  - Overview: 'Overview.rst'
+  - QiTypes: 'QiTypes.rst'
+  - QiStreams: 'QiStreams.rst'
+  - QiStreamBehaviors: 'QiStreamBehaviors.rst'
   - Searching for QiStreams: 'Searching.rst'
-  - Writing data: 'Writing data.md'
-  - Reading data: 'Reading data.md'
-  - Filter expressions: 'Filter Expressions.md'
-- Samples:  'samples.md'
-- Preview: 'preview.md'
-- Support:  'support.md'
+  - Writing data: 'Writing data.rst'
+  - Reading data: 'Reading data.rst'
+  - Filter expressions: 'Filter Expressions.rst'
+- Samples:  'samples.rst'
+- Preview: 'preview.rst'
+- Support:  'support.rst'
