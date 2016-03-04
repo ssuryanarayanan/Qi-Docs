@@ -14,6 +14,7 @@ pages:
   - QiTypes: 'QiTypes.md'
   - QiStreams: 'QiStreams.md'
   - QiStreamBehaviors: 'QiStreamBehaviors.md'
+  - Searching for QiStreams: 'Searching.rst'
   - Writing data: 'Writing data.md'
   - Reading data: 'Reading data.md'
   - Filter expressions: 'Filter Expressions.md'
