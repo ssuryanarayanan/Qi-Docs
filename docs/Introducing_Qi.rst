@@ -1,6 +1,11 @@
 Introducing Qi
 ##############
 
+Qi is a highly flexible cloud-based sequential data historian that you use to store, retrieve, and analyze data. You create and write data to *streams* using a simple REST (*REpresentational State Transfer*) API (*Application Programming Interface*). The streams you create are used to store simple or complex data types to suit your application needs. An assortment of methods with customizable behaviors are available to read data and easily obtain needed information.
+
+Architecture
+------------
+
 The primary object of the Qi architecture is the *tenant*. Within a tenant you create one or more 
 *Namespaces*, in which data types are defined and data is stored. 
 
@@ -25,6 +30,22 @@ Within a Namespace, Qi defines three different objects in which to store and man
 
 Each Namespace stores a separate and independent list of Type, Stream, and Stream Behavior objects.
 
+Product prerequisites
+---------------------
+
+To use Qi, you should have the following:
+
+
+Getting help
+------------
+
+The following email address is available to participants of the Qi
+Preview for both product support and feedback:
+
+`QiSupport@osisoft.com <mailto://QiSupport@osisoft.com>`__
+
+The OSIsoft team will respond to all support requests as
+quickly as possible during business hours (Pacific Time).
 
 
 Security
