@@ -45,9 +45,9 @@ The ``GetStreamType()`` method returns the type definition that is associated wi
 
 **Parameters**
 
-string namespaceId
+``string namespaceId``
   The namespace identifier for the request
-string streamId
+``string streamId``
   The ID of the stream for which the type request is made
 
 **Optional parameters**
