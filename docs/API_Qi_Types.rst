@@ -1,5 +1,6 @@
+======================
 Qi Types API Reference
-######################
+======================
 
 A QiType is used by Qi to store definable data types. A QiType
 consists of one or more properties that are either simple atomic types
@@ -37,23 +38,21 @@ The following table shows the required and optional QiType properties:
 4. Cannot contain forward slash or backslash characters ("/" or "\\")
 5. Can contain a maximum of 260 characters
 
-GetStreamType( )
+``GetStreamType()``
 ----------------
 
-**Description:**
 The ``GetStreamType()`` method returns the type definition that is associated with a stream.
 
 **Parameters**
 
 string namespaceId
   The namespace identifier for the request
-
 string streamId
   The ID of the stream for which the type request is made
 
 **Optional parameters**
 
-None
+  None
 
 **Syntax**
 
@@ -68,13 +67,11 @@ None
 
     GET Qi/{namespaceId}/Streams/{streamId}/Type
 
-**Parameters**
+Security
+  Allowed by administrator and user accounts
+Operation
+  Returns the type definition that is associated with a stream
 
-
-
-**Security** Allowed by administrator and user accounts
-
-**Operation** Returns the type definition that is associated with a stream
 
 GetType( )
 ----------------
