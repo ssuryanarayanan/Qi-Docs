@@ -54,6 +54,11 @@ The ``GetStreamType()`` method returns the type definition that is associated wi
 
   None
 
+**Returns**
+
+  Qitype
+
+
 **Syntax**
 
 ::
@@ -69,8 +74,47 @@ The ``GetStreamType()`` method returns the type definition that is associated wi
 
 Security
   Allowed by administrator and user accounts
-Operation
-  Returns the type definition that is associated with a stream
+
+
+
+
+
+``GetType()``
+----------------
+
+The ``GetType()`` method returns the type that is searched for by the ``typeId*``.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``typeId``
+  The ID of the type to retrieve
+
+**Optional parameters**
+
+  None
+  
+**Returns**
+  QiType 
+
+**Syntax**
+
+::
+
+    QiType GetType(string namespaceId, string typeId);
+    Task<QiType> GetTypeAsync(string namespaceId, string typeId);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Types/{typeId}
+    
+Security
+  Allowed by administrator and user accounts
+
+
 
 
 GetType( )
