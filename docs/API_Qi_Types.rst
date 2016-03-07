@@ -76,9 +76,6 @@ Security
   Allowed by administrator and user accounts
 
 
-
-
-
 ``GetType()``
 ----------------
 
@@ -116,32 +113,6 @@ Security
 
 
 
-
-GetType( )
-----------------
-
-**Qi Client Library**
-
-::
-
-    QiType GetType(string namespaceId, string typeId);
-    Task<QiType> GetTypeAsync(string namespaceId, string typeId);
-
-**Http**
-
-::
-
-    GET Qi/{namespaceId}/Types/{typeId}
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-*typeId*: Id of the type to retrieve
-
-**Security** Allowed by administrator and user accounts
-
-**Operation** Returns the type that is searched for by *typeId*
 
 GetTypes( )
 ----------------
