@@ -44,14 +44,10 @@ Note
 <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.  
 
 
-
-
-
-
 ``GetStreams()``
 ----------------
 
-The ``GetStreams`` method returns an IEnumerable of all streams
+The ``GetStreams()`` method returns an IEnumerable of all streams.
 
 **Parameters**
 
@@ -132,14 +128,28 @@ The ``GetStreams`` method is an overloaded method that is also used to search fo
 Security
   Allowed by administrator and user accounts
   
+``GetOrCreateStream()``
+---------------------
+
+The ``GetOrCreateStream`` method is used to retrieve or create a stream. If an entity with the same *Id* already exists on the service, then the existing stream is returned to the caller unchanged. Otherwise the new stream is created. Content is serialized QiStream entity
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``Qistream entity``
+  The ID of the stream for which the type request is made
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Qitype
 
 
-
-
-GetOrCreateStream( )
-------------
-
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -152,24 +162,48 @@ GetOrCreateStream( )
 
     POST Qi/{namespaceId}/Streams
 
+Security
+  Allowed by Administrator account
+
+
+``UpdateStream()``
+----------------
+
+The ``UpdateStream()`` method changes the stream to hold the properties in the QiStream entity given. Permitted changes include:
+
+- Name
+- BehaviorId
+- Description
+
 Content is serialized QiStream entity
+
+An exception is thrown on unpermitted change attempt (and the stream is
+left unchanged)
+
+The *UpdateStream()* method applies to the entire entity. Optional fields
+that are omitted from the entity will remove the field from the stream if the fields had
+been set previously.
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream for which the type request is made
+``Qistream entity``  
+  Updated stream object
+  
+  
+**Optional parameters**
 
-*entity*: Qi Stream object
+  None
 
-**Security** Allowed by Administrator account
+**Returns**
 
-**Operation** If an entity with the same *Id* already exists on the service, then the
-existing stream is returned to the caller unchanged. Otherwise the new
-stream is created.
+  Qitype
 
-UpdateStream( )
-------------
 
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -182,38 +216,31 @@ UpdateStream( )
 
     PUT Qi/{namespaceId}/Streams/{streamId}
 
-Content is serialized QiStream entity
+Security
+  Allowed by Administrator account
+
+``DeleteStream()``
+----------------
+
+The ``DeleteStream()`` method is used to delete a stream using its stream ID.
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream for which the type request is made
 
-*streamId*: Identifier of the stream to modify
+**Optional parameters**
 
-*entity*: Updated stream object
+  None
 
-**Security** Allowed by Administrator account
+**Returns**
 
-**Operation** Changes the stream to hold the properties in the QiStream
-entity given. Permitted changes:
+  Qitype
 
-• Name
 
-• BehaviorId
-
-• Description
-
-An exception is thrown on unpermitted change attempt (and the stream is
-left unchanged)
-
-The *UpdateStream()* method applies to the entire entity. Optional fields
-that are omitted from the entity will remove the field from the stream if the fields had
-been set previously.
-
-DeleteStream( )
-------------
-
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -226,12 +253,6 @@ DeleteStream( )
 
     DELETE Qi/{namespaceId}/Streams/{streamId}
 
-**Parameters**
 
-*namespaceId*: The namespace identifier for the request
-
-*streamId*: Identifier of the stream to delete
-
-**Security** Allowed by Administrator account
-
-**Operation** Delete stream using its stream id
+Security
+  Allowed by Administrator account
