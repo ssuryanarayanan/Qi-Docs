@@ -112,36 +112,30 @@ Security
   Allowed by administrator and user accounts
 
 
-
-
-GetTypes( )
+``GetTypes()``
 ----------------
 
-**Qi Client Library**
-
-::
-
-    IEnumerable<QiType> GetTypes(string namespaceId);
-    Task<IEnumerable<QiType>> GetTypesAsync(string namespaceId);
-
-**Http**
-
-::
-
-    GET Qi/{namespaceId}/Types
+The ``GetTypes`` method returns a Qi Type object. If the entity ID already exists
+on the service, the existing type is returned to the caller unchanged.
+Otherwise, a new type definition is added to the Qi Service
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``QiType entity``
+  The object
 
-**Security** Allowed by administrator and user accounts
+**Optional parameters**
 
-**Operation** Returns IEnumerable of all types
+  None
 
-GetOrCreateType( )
-----------------
+**Returns**
 
-**Qi Client Library**
+  IEnumerable of all types
+
+
+**Syntax**
 
 ::
 
@@ -154,24 +148,73 @@ GetOrCreateType( )
 
     POST Qi/{namespaceId}/Types
 
+
+Security
+  Allowed by administrator account
+
+
+``GetOrCreateType()``
+----------------
+
+The ``GetOrCreateType()`` method Returns a Qi Type object. If the entity ID already exists on the service, the existing type is returned to the caller unchanged. Otherwise, a new type definition is added to the Qi Service.
 Content is serialized QiType entity
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``QiType entity``
+  The ID of the stream for which the type request is made
 
-*entity*: Qi Type object
+**Optional parameters**
 
-**Security** Allowed by administrator account
+  None
 
-**Operation** Returns a Qi Type object. If the entity Id already exists on the
-service, the existing type is returned to the caller unchanged.
-Otherwise, a new type definition is added to the Qi Service
+**Returns**
 
-DeleteType( )
+  Qitype
+
+
+**Syntax**
+
+::
+
+    QiType GetOrCreateType(string namespaceId, QiType entity);
+    Task<QiType> GetOrCreateTypeAsync(string namespaceId, QiType entity);
+
+**Http**
+
+::
+
+    POST Qi/{namespaceId}/Types
+
+
+Security
+  Allowed by administrator account
+
+
+``DeleteType()``
 ----------------
 
-**Qi Client Library**
+The ``DeleteType()`` method deletes the type from service A. The type cannot be deleted from the service if existing streams are associated with it.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string typeId``
+  The ID of the type to delete
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Qitype
+
+
+**Syntax**
 
 ::
 
@@ -184,21 +227,34 @@ DeleteType( )
 
     DELETE Qi/{namespaceId}/Types/{typeId}
 
-**Parameters**
 
-*namespaceId*: The namespace identifier for the request
+Security
+  Allowed by administrator account
 
-*typeId*: String typeId of the type to delete
 
-**Security** Allowed by administrator account
-
-**Operation** Deletes the type from service A. The type cannot be deleted from
-the service if existing streams are associated with it.
-
-UpdateType( )
+``UpdateType()``
 ----------------
 
-**Qi Client Library**
+The ``UpdateType()`` method updates a type’s definition. A type cannot be updated if
+existing streams are associated with it.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string typeId``
+  The typeId of the type to update
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Qitype
+
+
+**Syntax**
 
 ::
 
@@ -211,16 +267,9 @@ UpdateType( )
 
     PUT Qi/{namespaceId}/Types/{typeId}
 
-**Parameters**
+Security
+  Allowed by Administrator account
 
-*namespaceId*: The namespace identifier for the request
-
-*typeId*: String typeId of the type to update
-
-**Security** Allowed by Administrator account
-
-**Operation** Updates a type’s definition. A type cannot be updated if
-existing streams are associated with it.
 
 Compound Indexes
 ----------------
