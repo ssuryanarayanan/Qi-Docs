@@ -1,6 +1,53 @@
 QI Stream API calls
 ====================
 
+``GetStream()``
+----------------
+
+The ``GetStream`` method returns a QiStream object
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  IEnumerable of all streams
+
+
+**Syntax**
+
+::
+
+    QiStream GetStream(string conatinerId, string streamId);
+    Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}
+
+Security
+  Allowed by administrator and user accounts
+  
+Note
+``GetStreams()`` is an overloaded method that is also used to search for and
+ return QiStreams. See `Searching for QiStreams 
+<https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.  
+
+
+
+
+
+
 ``GetStreams()``
 ----------------
 
@@ -85,49 +132,6 @@ The ``GetStreams`` method is an overloaded method that is also used to search fo
 Security
   Allowed by administrator and user accounts
   
-
-``GetStream()``
-----------------
-
-The ``GetStream`` method returns a QiStream object
-
-**Parameters**
-
-``string namespaceId``
-  The namespace identifier for the request
-``string streamId``
-  The ID of the stream
-
-**Optional parameters**
-
-  None
-
-**Returns**
-
-  IEnumerable of all streams
-
-
-**Syntax**
-
-::
-
-    QiStream GetStream(string conatinerId, string streamId);
-    Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
-
-**Http**
-
-::
-
-    GET Qi/{namespaceId}/Streams/{streamId}
-
-Security
-  Allowed by administrator and user accounts
-  
-Note
-``GetStreams()`` is an overloaded method that is also used to search for and
- return QiStreams. See `Searching for QiStreams 
-<https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.  
-
 
 
 
