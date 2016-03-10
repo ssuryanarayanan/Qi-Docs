@@ -76,7 +76,7 @@ This example creates a QiStream with an Id of ‘MyFistStream’ of type
     {
         Id = streamId,
         TypeId = streamType
-    }
+    };
     _service.GetOrCreateStream(stream1);
 
 The above stream can now be used to hold data values of the structure
