@@ -43,12 +43,12 @@ This example creates a QiStream with an Id of ‘MyFistStream’ of type ‘mySi
 
 ```
 string streamId = "MyFirstStream";
-string streamType = " mySimpleType ";
+string streamType = " mySimpleType";
 QiStream stream1 = new QiStream()
 {
     Id = streamId,
     TypeId = streamType
-}
+};
 _service.GetOrCreateStream(stream1);
 ```
 
