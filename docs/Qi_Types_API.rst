@@ -1,19 +1,20 @@
 Qi Types API calls
 ==================
 
-The following API calls relate to Qi Types.
+The API calls in this section are all related to creating and manipulating Qi Types. See Qi Types for general information about
+Qi Types.
 
 
 ``GetStreamType()``
 ----------------
 
-The ``GetStreamType()`` method returns the type definition that is associated with a stream.
+Returns the type definition that is associated with a stream.
 
 **Parameters**
 
-``string namespaceId``
+string ``namespaceId``
   The namespace identifier for the request
-``string streamId``
+string ``streamId``
   The ID of the stream for which the type request is made
 
 **Optional parameters**
@@ -45,7 +46,7 @@ Security
 ``GetType()``
 ----------------
 
-The ``GetType()`` method returns the type that is searched for by the ``typeId*``.
+The ``GetType()`` method returns the type that is searched for by the ``typeId``. Use the ``getype()`` method when you know the type ID and want to get the Qitype object
 
 **Parameters**
 
