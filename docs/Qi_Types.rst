@@ -1,6 +1,8 @@
 ======================
-Qi Types API Reference
+Qi Types reference information
 ======================
+
+This section contains information about using Qi Types. 
 
 A QiType is used by Qi to store definable data types. A QiType
 consists of one or more properties that are either simple atomic types
