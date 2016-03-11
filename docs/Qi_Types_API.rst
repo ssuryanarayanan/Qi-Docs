@@ -1,14 +1,13 @@
 Qi Types API calls
 ==================
 
-The API calls in this section are all related to creating and manipulating Qi Types. See Qi Types for general information about
-Qi Types.
+The API calls in this section are all used to create and manipulate Qi Types. See Qi Types for a list of supported QiTypes, a discussion of compound indexes, and general information about Qi Types.
 
 
 ``GetStreamType()``
 ----------------
 
-Returns the type definition that is associated with a stream.
+Returns the type definition that is associated with a given stream and namespace.
 
 **Parameters**
 
@@ -46,7 +45,7 @@ Security
 ``GetType()``
 ----------------
 
-The ``GetType()`` method returns the type that is searched for by the ``typeId``. Use the ``getype()`` method when you know the type ID and want to get the Qitype object
+Returns the type of the specified ``typeId`` within a namespace. 
 
 **Parameters**
 
@@ -60,7 +59,7 @@ The ``GetType()`` method returns the type that is searched for by the ``typeId``
   None
   
 **Returns**
-  QiType 
+  A QiType
 
 **Syntax**
 
@@ -82,9 +81,7 @@ Security
 ``GetTypes()``
 ----------------
 
-The ``GetTypes`` method returns a Qi Type object. If the entity ID already exists
-on the service, the existing type is returned to the caller unchanged.
-Otherwise, a new type definition is added to the Qi Service
+Returns a list of all types within a given namespace. 
 
 **Parameters**
 
@@ -99,7 +96,7 @@ Otherwise, a new type definition is added to the Qi Service
 
 **Returns**
 
-  IEnumerable of all types
+  IEnumerable QiType of all types in the namespace
 
 
 **Syntax**
@@ -123,8 +120,8 @@ Security
 ``GetOrCreateType()``
 ----------------
 
-The ``GetOrCreateType()`` method Returns a Qi Type object. If the entity ID already exists on the service, the existing type is returned to the caller unchanged. Otherwise, a new type definition is added to the Qi Service.
-Content is serialized QiType entity
+Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the typeId exists, it is returned to the caller unchanged. 
+
 
 **Parameters**
 
@@ -163,7 +160,7 @@ Security
 ``DeleteType()``
 ----------------
 
-The ``DeleteType()`` method deletes the type from service A. The type cannot be deleted from the service if existing streams are associated with it.
+Deletes a type from the specified namespace. Note that a type cannot be deleted if there are streams associated with it.
 
 **Parameters**
 
@@ -202,8 +199,7 @@ Security
 ``UpdateType()``
 ----------------
 
-The ``UpdateType()`` method updates a type’s definition. A type cannot be updated if
-existing streams are associated with it.
+Updates the definition of a type. Note that a type cannot be updated if there are streams associated with it.
 
 **Parameters**
 
