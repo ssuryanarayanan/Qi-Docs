@@ -1,8 +1,7 @@
-Qi Types API calls
+Qi Type API calls
 ==================
 
-The API calls in this section are all used to create and manipulate Qi Types. See Qi Types for a list of supported QiTypes, a discussion of compound indexes, and general information about Qi Types.
-
+The API calls in this section are all used to create and manipulate Qi Types. See .. _Qi Types: https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Qi_Types.rst for a list of supported QiTypes, a discussion of compound indexes, and general information about Qi Types. 
 
 ``GetStreamType()``
 ----------------
@@ -14,7 +13,7 @@ Returns the type definition that is associated with a given stream and namespace
 string ``namespaceId``
   The namespace identifier for the request
 string ``streamId``
-  The ID of the stream for which the type request is made
+  The ID of the stream to search for the specified type definition
 
 **Optional parameters**
 
@@ -22,7 +21,7 @@ string ``streamId``
 
 **Returns**
 
-  Qitype
+  Qitype type definition
 
 
 **Syntax**
