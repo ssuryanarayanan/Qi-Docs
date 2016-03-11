@@ -50,6 +50,7 @@ more details.
    Overview
    QiTypes
    QiStreams
+   Searching
    QiStreamBehaviors
    Writing data
    Reading data
