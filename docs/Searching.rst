@@ -1,5 +1,5 @@
 Searching for QiStreams
-#######################
+=======================
 
 ``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__ for information about using ``GetStream()`` to return streams). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
 
