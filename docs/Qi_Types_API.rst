@@ -15,8 +15,7 @@ Returns the type definition that is associated with a given stream from the spec
     QiType GetStreamType(string namespaceId, string streamId);
     Task<QiType> GetStreamTypeAsync(string namespaceId, string streamId);
 
-**Http**
-
+*Http*
 ::
 
     GET Qi/{namespaceId}/Streams/{streamId}/Type
@@ -54,7 +53,7 @@ Returns the type of the specified ``typeId`` from the specified namespace.
     QiType GetType(string namespaceId, string typeId);
     Task<QiType> GetTypeAsync(string namespaceId, string typeId);
 
-**Http**
+*Http*
 
 ::
 
@@ -90,7 +89,7 @@ Returns a list of all types within a given namespace.
     IEnumerable<QiType> GetTypes();
     Task<IEnumerable<QiType>> GetTypesAsync();
 
-**Http**
+*Http*
 
 ::
 
@@ -130,7 +129,7 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
     QiType GetOrCreateType(string namespaceId, QiType entity);
     Task<QiType> GetOrCreateTypeAsync(string namespaceId, QiType entity);
 
-**Http**
+*Http*
 
 ::
 
@@ -170,7 +169,7 @@ Deletes a type from the specified namespace. Note that a type cannot be deleted 
     void DeleteType(string namespaceId, string typeId);
     Task DeleteTypeAsync(string namespaceId, string typeId);
 
-**Http**
+*Http*
 
 ::
 
@@ -210,7 +209,7 @@ Updates the definition of a type. Note that a type cannot be updated if there ar
     void UpdateType(string namespaceId, string typeId, QiType entity);
     Task UpdateTypeAsync(string namespaceId, string typeId, QiType entity);
 
-**Http**
+*Http*
 
 ::
 
