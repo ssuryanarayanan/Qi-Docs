@@ -19,7 +19,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
     QiStream GetStream(string conatinerId, string streamId);
     Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
 
-**Http**
+*Http*
 
 ::
 
@@ -58,7 +58,7 @@ Returns all streams from the specified namespace.
     IEnumerable<QiStream> GetStreams (string namespaceId);
     Task<IEnumerable<QiStream>> GetStreamsAsync (string namespaceId);
 
-**Http**
+*Http*
 
 ::
 
@@ -95,7 +95,7 @@ Searches for and returns streams that fit search criteria
   
   Should the above have a namespace parameter also?
 
-**Http**
+*Http*
 
 ::
 
@@ -137,7 +137,7 @@ Returns a stream that matches the QiStream entity within the specified namespace
     QiStream GetOrCreateStream (string namespaceId, QiStream entity);
     Task<QiStream> GetOrCreateStreamAsync (string namespaceId, QiStream entity);
 
-**Http**
+*Http*
 
 ::
 
@@ -187,7 +187,7 @@ that are omitted from the entity will remove the field from the stream if the fi
     void UpdateStream(string namespaceId, string streamId, QiStream entity);
     Task UpdateStreamAsync(string namespaceId, string streamId, QiStream entity);
 
-**Http**
+*Http*
 
 ::
 
@@ -227,7 +227,7 @@ Deletes a stream that matches the QiStream entity within the specified namespace
     void DeleteStream(string namespaceId, string streamId);
     Task DeleteStreamAsync(string namespaceId, string streamId);
 
-**Http**
+*Http*
 
 ::
 
@@ -236,16 +236,16 @@ Deletes a stream that matches the QiStream entity within the specified namespace
 **Parameters**
 
 ``string namespaceId``
-  The namespace identifier for the request
+  The namespace identifier for the request.
 ``streamId``
-  Identifier of the stream to delete 
+  The identifier of the stream to delete.
 
   **Optional parameters**
 
   None
   
 **Returns**
-  An QiStream
+  A QiStream
 
 Security
   Allowed by administrator accounts
