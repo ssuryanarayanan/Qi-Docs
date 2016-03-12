@@ -4,10 +4,13 @@ QiStream Behavior API calls
 The API calls in this section are all used to create and manipulate QiStream behaviors. See .. _Qi Types: https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Qi_Types.rst for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
 
 
-DeleteBehavior( )
-------------
+``DeleteBehavior()``
+----------------
 
-**Qi Client Library**
+Deletes a QiStream behavior from the specified namespace that matches the specified behaviorId.
+
+
+**Syntax**
 
 ::
 
@@ -22,20 +25,30 @@ DeleteBehavior( )
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``behaviorId``
+  The ID of the behavior to delete; the behavior must not be associated with any streams.
 
-*behaviorId*: Id of the behavior to delete; the behavior must not be
-associated with any streams
+**Optional parameters**
 
-**Security** Allowed by administrator account
+  None
+  
+**Returns**
+  A QiStream object for the specified typeId and namespace
 
-**Operation** Deletes the specified behavior Stream Behaviors objects
-that are still associated with a stream cannot be deleted
+Security
+  Allowed by administrator accounts
 
-GetBehavior( )
-------------
+**********
 
-**Qi Client Library**
+``GetBehavior()``
+----------------
+
+Retrieves a QiStream behavior from the specified namespace that matches the specified behaviorId.
+
+
+**Syntax**
 
 ::
 
@@ -50,18 +63,30 @@ GetBehavior( )
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``behaviorId``
+  The ID of the behavior to retrieve.
 
-*behaviorId*: Id of the behavior definition to retrieve
+**Optional parameters**
 
-**Security** Allowed by administrator and user accounts
+  None
+  
+**Returns**
+  A QiStream object
 
-**Operation** Gets a QiStreamBehavior object from service
+Security
+  Allowed by administrator and user accounts
 
-GetBehaviors( )
-------------
+**********
 
-**Qi Client Library**
+``GetBehaviors()``
+----------------
+
+Retrieves all QiStream behaviors from a namespace.
+
+
+**Syntax**
 
 ::
 
@@ -76,16 +101,30 @@ GetBehaviors( )
 
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``behaviorId``
+  The ID of the behavior to retrieve.
 
-**Security** Allowed by administrator and user accounts
+**Optional parameters**
 
-**Operation** Returns IEnumerable of all behavior objects
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-GetOrCreateBehavior( )
-------------
+Security
+  Allowed by administrator and user accounts
 
-**Qi Client Library**
+  
+**********
+
+``GetOrCreateBehavior()``
+----------------
+
+Retrieves the QiStream behavior from a namespace, or creates the behavior if the  behavior does not already exist. If the bahavior exists, it is returned to the caller unchanged.
+
+**Syntax**
 
 ::
 
@@ -97,25 +136,35 @@ GetOrCreateBehavior( )
 ::
 
     POST  Qi/{namespaceId}/Behaviors
-
-Content is serialized ``QiStreamBehavior`` entity
-
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``entity``
+  A QiStreamBehavior object to add to Qi.
 
-*entity*: A QiStreamBehavior object to add to Qi
+**Optional parameters**
 
-**Security** Allowed by administrator account
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-**Operation** Creates a QiStreamBehavior (or returns it if it already
-exists) If *entity* already exists on the server by *Id*, that existing
-behavior is returned to the caller unchanged
+Security
+  Allowed by administrator accounts
 
-UpdateBehavior( )
-------------
+**********
 
-**Qi Client Library**
+``UpdateBehavior()``
+----------------
+
+Replaces the stream’s existing behavior with those defined in the ‘entity’. If certain aspects of the existing behavior are meant to remain, they must be included in entity.
+
+An override list can be included in the ‘entity’ to cause
+the addition, removal, or change to this list.
+
+**Syntax**
 
 ::
 
@@ -126,25 +175,21 @@ UpdateBehavior( )
 
 ::
 
-    PUT Qi/{namespaceId}/Behaviors/{behaviorId}
-
-Content is a serialization of the behavior to update
-
+    PUT Qi/{namespaceId}/Behaviors/{behaviorId}	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+``entity``
+  The updated stream behavior
 
-*entity*: Updated stream behavior
+**Optional parameters**
 
-*behaviorId*: Identifier of the stream behavior to update
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-**Security** Allowed by Administrator account
+Security
+  Allowed by administrator accounts
 
-**Operation** This method replaces the stream’s existing behavior with
-those defined in the ‘entity’. If certain aspects of the existing
-behavior are meant to remain, they must be included in entity.
-
-An override list can be included in the ‘entity’ of this call to cause
-the addition, removal or change to this list.
-
-The Stream Behavior Id cannot be changed.
