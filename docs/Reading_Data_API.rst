@@ -1,19 +1,6 @@
 Reading Data API calls
 ======================
 
-In this section:
-
-- `FindDistinctValue( )`_
-- `GetDistinctValue( )`_
-- `GetDistinctValue( )`_
-- `GetFirstValue( )`_
-- `GetLastValue( )`_
-- `GetRangeValues( )`_
-- `GetValue( )`_
-- `GetValues( )`_
-- `GetWindowValues( )`_
-
-
 
 ``FindDistinctValue()``
 ----------------
