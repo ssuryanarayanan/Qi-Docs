@@ -58,3 +58,5 @@ more details.
    samples
    preview
    support
+   Introducing_Qi
+   Qi_Types_API.rst
