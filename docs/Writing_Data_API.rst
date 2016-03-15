@@ -1,8 +1,15 @@
-Writing Data
-============
+Writing Data API calls
+======================
 
-InsertValue( )
-------------
+**********
+
+``InsertValue()``
+----------------
+
+Inserts data into the specified stream. The call will throw an
+exception if an event already exists at the specified index.
+
+**Syntax**
 
 **Qi Client Library**
 
@@ -18,24 +25,35 @@ InsertValue( )
     POST Qi/{namespaceId}/Streams/{streamId}/Data/InsertValue
 
 Content is serialized event of type T
-
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``item``
+  The event to insert, where T is the type of the event and the stream
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*item*: Event to insert, where T is the type of the event and the stream
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account
+**********
 
-**Operation** Inserts data into the specified stream Will throw an
-exception if an event already exists at the index of the item
+``InsertValues()``
+----------------
 
-InsertValues( )
-------------
+Inserts items into the specified stream. 
 
-**Qi Client Library**
+
+**Syntax**
 
 ::
 
@@ -50,29 +68,44 @@ InsertValues( )
 
     POST Qi/{namespaceId}/Streams/{streamId}/Data/InsertValues
 
-Content is serialized list of events of type T
+	
+Content is serialized list of events of type T	
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``items``
+  The list of events to insert, where T is the type of the stream and events
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*items*: List of events to insert, where T is the type of the stream and
-events
+**Notes**
+  The call throws an exception if any index in **items** already has an event. If any individual
+  index encounters a problem, the entire operation is rolled back and no
+  insertions are made. The streamId and index that caused the issue are
+  included in the error response.
+  
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account
+**********
 
-**Operation** Inserts the items into the specified stream. Will throw an
-exception if any index in **items** already has an event. If any individual
-index encounters a problem, the entire operation is rolled back and no
-insertions are made. The streamId and index that caused the issue are
-included in the error response.
+``PatchValue()``
+----------------
 
-PatchValue( )
-------------
+Modifies the specified stream event,
 
-**Qi Client Library**
+
+**Syntax**
 
 ::
 
@@ -85,36 +118,52 @@ PatchValue( )
 
     PATCH Qi/{namespaceId}/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
 
+	
 Content is serialized patch property
-
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``selectExpression``
+  CSV list of strings that indicates the event fields that will be changed in stream events.
+``item``
+  Object with index and new values to patch in the stream.
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*selectExpression*: CSV list strings that indicates the event fields
-will be changed in stream events.
-
-*item*: Object with index and new values to patch in the stream
-
-**Security** Allowed by administrator account
-
-**Operation** This call is used to modify the stream events. The values
-for each **SelectExpression** field are taken from the item and replaced
-(patched) in the stream using the **item** index.
+**Notes**
+  This call is used to modify the stream events. The values
+  for each **SelectExpression** field are taken from the item and replaced
+  (patched) in the stream using the **item** index.
+  
+Security
+  Allowed by administrator accounts
 
 **Example**
 
 ::
 
     var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
-    PatchValue(namespaceId, streamId, “Value”, obj);
+    PatchValue(namespaceId, streamId, “Value”, obj);  
+  
 
-PatchValues( )
-------------
+  **********
 
-**Qi Client Library**
+``PatchValues()``
+----------------
+
+Patches values of the selected fields for multiple events in the stream.
+
+
+**Syntax**
 
 ::
 
@@ -129,21 +178,30 @@ PatchValues( )
 
 Content is serialized list of patch property values
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``selectExpression``
+  CSV list strings that indicates the event fields that will be changed in stream events.
+``items``
+  List which contain indexes and new values to patch in the stream.
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*selectExpression*: CSV list strings that indicates the event fields
-that will be changed in stream events
+Security
+  Allowed by administrator accounts
 
-*items*: List which contain indexes and new values to patch in the
-stream
-
-**Security** Allowed by administrator account
-
-**Operation** This call is used to patch the values of the selected
+**Notes**
+This call is used to patch the values of the selected
 fields for multiple events in the stream. Only the fields indicated in
 **selectExpression** are modified. The events to be modified are indicated
 by the index value of each member of the **items** collection. The
@@ -152,12 +210,17 @@ individual events in **items** also hold the new values.
 **PatchValues** may be thought of as a series of PatchValue calls. If there
 is a problem patching any individual event, the entire operation is
 rolled back and the error will indicate the streamID and index of the
-problem.
+problem.  
+  
+**********
 
-RemoveValue( )
-------------
+``RemoveValue()``
+----------------
 
-**Qi Client Library**
+Removes the event at the index from the specified stream.
+
+
+**Syntax**
 
 ::
 
@@ -174,24 +237,40 @@ RemoveValue( )
 
     DELETE Qi/{namespaceId}/Streams/{streamId}/Data/RemoveValue?index={index}
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  String representation of the index in the stream to be deleted.
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*index*: String representation of the index in the stream to be deleted
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account
-
-**Operation** Removes the event at the index from the specified stream.
+**Notes**
 Precision is taken into account when finding a value. If the index is a DateTime,
-use the round-trip format specifier: ``DateTime.ToString(“o”)``.
+use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
 
-RemoveValues( )
-------------
 
-**Qi Client Library**
+**********
+
+``RemoveValues()``
+----------------
+
+Removes the event at each index from the specified stream.
+
+
+**Syntax**
 
 ::
 
@@ -208,26 +287,41 @@ RemoveValues( )
 
     DELETE Qi/{namespaceId}/Streams/{streamId}/Data/RemoveValues?index={index}
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  List of indices at which to remove events in the stream
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*index*: List of indices at which to remove events in the stream
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account
-
-**Operation** Removes the event at each index from the specified stream
-
+**Notes**
 If any individual event fails to be removed, the entire RemoveValues
-operation is rolled back and no removes are done. The streamId and index
+operation is rolled back and no events are removed. The streamId and index
 that caused the issue are included in the error response.
 
-RemoveWindowValues( )
-------------
 
-**Qi Client Library**
+**********
+
+``RemoveWindowValues()``
+----------------
+
+Removes a range of values at and between the given indices.
+
+
+**Syntax**
 
 ::
 
@@ -244,27 +338,43 @@ RemoveWindowValues( )
 
     DELETE Qi/{namespaceId}/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``startIndex``
+  String representation of the starting index value.
+``endIndex``
+  String representation of the ending index value
+  
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*startIndex*: String representation of the starting index value
+Security
+  Allowed by administrator accounts
 
-*endIndex*: String representation of the ending index value
-
-**Security** Allowed by administrator account.
-
-**Operation** Removes a range of values at and between the given indices.
-
+**Notes**
 If any individual event fails to be removed, the entire operation is
 rolled back and no removes are done.
 
-ReplaceValue( )
-------------
+  
+**********
 
-**Qi Client Library**
+``ReplaceValue()``
+----------------
+
+Writes an item over an existing event in the specified stream.
+
+
+**Syntax**
 
 ::
 
@@ -279,24 +389,37 @@ ReplaceValue( )
 
 Content is serialzied replacement object
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+  
+**Optional parameters**
 
-*streamId*: Identifier of the stream in which to replace value
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*item*: Item to replace existing stream event
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account
+**Notes**
+Throws an exception if the stream does not have an event to be replaced at the
+specified index.
+  
+**********
 
-**Operation** Writes an item over an existing event in the specified
-stream. Throws an exception if the stream does not have an event to be replaced at the
-index.
+``ReplaceValues()``
+----------------
 
-ReplaceValues( )
-------------
+Writes **items** over existing events in the specified stream.
 
-**Qi Client Library**
+
+**Syntax**
 
 ::
 
@@ -313,26 +436,43 @@ ReplaceValues( )
 
 Content is serialized list of replacement values
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``items``
+  List of new items to replace existing items in the stream
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*items*: List of new items to replace existing items in the stream
+Security
+  Allowed by administrator accounts
 
-**Security** Allowed by administrator account.
-
-**Operation** Writes **items** over existing events in the specified
-stream. Throws an exception if any index does not have a value to be
+  
+**Notes**
+Throws an exception if any index does not have a value to be
 replaced. If any individual event fails to be replaced, the entire
 operation is rolled back and no replaces are performed. The index that
 caused the issue and the streamId are included in the error response.
 
-UpdateValue( )
-------------
 
-**Qi Client Library**
+**********
+
+``UpdateValue()``
+----------------
+
+Writes **item** to the specified stream.
+
+
+**Syntax**
 
 ::
 
@@ -347,24 +487,41 @@ UpdateValue( )
 
 Content is serialized updated value
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``item``
+  Event to write to the stream
+  
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*item*: Event to write to the stream
+Security
+  Allowed by administrator accounts
+  
+**Notes**
+``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
+  
+ 
+  
+  **********
 
-**Security** Allowed by administrator account
+``UpdateValues()``
+----------------
 
-**Operation** Writes **item** to the specified stream. Performs an insert or a
-replace depending on whether an event already exists at the index in
-the stream.
+Writes items to the specified stream.
 
-UpdateValues( )
-------------
 
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -379,21 +536,33 @@ UpdateValues( )
 
     PUT Qi/{namespaceId}/Streams/{streamId}/Data/UpdateValues
 
-Content is serialized list of updated values
-
+	
+Content is serialized list of updated values	
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``items``
+  Events to write to the stream.
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*items*: Events to write to the stream
-
-**Security** Allowed by administrator account
-
-**Operation** Writes items to the specified stream. Performs an insert
+Security
+  Allowed by administrator accounts
+  
+ **Notes**
+``UpdateValues()`` performs an insert
 or a replace depending on whether an event already exists at the item's
 indexes. If any item fails to write, the entire operation is rolled back and
 no events are written to the stream. The index that caused the issue is
 included in the error response.
 
+  
