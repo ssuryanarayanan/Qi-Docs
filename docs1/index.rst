@@ -46,6 +46,22 @@ more details.
 
 .. toctree::
    :maxdepth: 2
-
-   Introducing_Qi
-   Filter Expressions
+   
+   Introducing_Qi.rst
+   Quick_Start.rst
+   API_Reference.rst
+     Qi_Types.rst
+     Qi_Types_API.rst
+     QiStreams.rst
+     QIStreamBehaviors.rst
+     QI_Streams_API.rst
+     Writing_Data.rst
+     Writing_Data_API.rst
+     Reading_Data.rst
+     Reading_Data_API.rst
+     Filter_Expressions.rst
+   Troubleshooting.rst
+   Samples.rst
+   Preview.rst
+   Tech_Support.rst
+   
