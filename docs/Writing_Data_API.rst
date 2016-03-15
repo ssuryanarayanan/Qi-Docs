@@ -28,9 +28,9 @@ Content is serialized event of type T
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``item``
+``T item``
   The event to insert, where T is the type of the event and the stream
   
 **Optional parameters**
@@ -77,9 +77,9 @@ Content is serialized list of events of type T
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``items``
+``T items``
   The list of events to insert, where T is the type of the stream and events
   
 **Optional parameters**
@@ -126,11 +126,11 @@ Content is serialized patch property
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``selectExpression``
+``string selectExpression``
   CSV list of strings that indicates the event fields that will be changed in stream events.
-``item``
+``T item``
   Object with index and new values to patch in the stream.
   
 **Optional parameters**
@@ -184,11 +184,11 @@ Content is serialized list of patch property values
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``selectExpression``
+``string selectExpression``
   CSV list strings that indicates the event fields that will be changed in stream events.
-``items``
+``T items``
   List which contain indexes and new values to patch in the stream.
   
 **Optional parameters**
@@ -243,7 +243,7 @@ Removes the event at the index from the specified stream.
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
 ``index``
   String representation of the index in the stream to be deleted.
@@ -292,7 +292,7 @@ Removes the event at each index from the specified stream.
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
 ``index``
   List of indices at which to remove events in the stream
@@ -343,7 +343,7 @@ Removes a range of values at and between the given indices.
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
 ``startIndex``
   String representation of the starting index value.
@@ -394,7 +394,7 @@ Content is serialzied replacement object
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
   
 **Optional parameters**
@@ -440,9 +440,9 @@ Content is serialized list of replacement values
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``items``
+``T items``
   List of new items to replace existing items in the stream
   
 **Optional parameters**
@@ -489,9 +489,9 @@ Content is serialized updated value
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``item``
+``T item``
   Event to write to the stream
   
   
@@ -537,9 +537,9 @@ Content is serialized list of updated values
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``items``
+``T items``
   Events to write to the stream.
   
 **Optional parameters**
