@@ -6,12 +6,10 @@ Writing Data API calls
 ``InsertValue()``
 ----------------
 
-Inserts data into the specified stream. The call will throw an
-exception if an event already exists at the specified index.
+Inserts data into the specified stream. 
 
 **Syntax**
 
-**Qi Client Library**
 
 ::
 
@@ -44,6 +42,9 @@ Content is serialized event of type T
 
 Security
   Allowed by administrator accounts
+
+**Notes**
+  ``InsertValue()`` throws an exception if an event already exists at the specified index.
 
 **********
 
@@ -89,7 +90,7 @@ Content is serialized list of events of type T
   An IEnumerable of all behavior objects
 
 **Notes**
-  The call throws an exception if any index in **items** already has an event. If any individual
+  ``InsertValues()`` throws an exception if any index in **items** already has an event. If any individual
   index encounters a problem, the entire operation is rolled back and no
   insertions are made. The streamId and index that caused the issue are
   included in the error response.
@@ -140,7 +141,7 @@ Content is serialized patch property
   An IEnumerable of all behavior objects
 
 **Notes**
-  This call is used to modify the stream events. The values
+  ``PatchValue()`` is used to modify the stream events. The values
   for each **SelectExpression** field are taken from the item and replaced
   (patched) in the stream using the **item** index.
   
@@ -201,16 +202,16 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-This call is used to patch the values of the selected
-fields for multiple events in the stream. Only the fields indicated in
-**selectExpression** are modified. The events to be modified are indicated
-by the index value of each member of the **items** collection. The
-individual events in **items** also hold the new values.
+  ``PatchValues()`` is used to patch the values of the selected
+  fields for multiple events in the stream. Only the fields indicated in
+  **selectExpression** are modified. The events to be modified are indicated
+  by the index value of each member of the **items** collection. The
+  individual events in **items** also hold the new values.
 
-**PatchValues** may be thought of as a series of PatchValue calls. If there
-is a problem patching any individual event, the entire operation is
-rolled back and the error will indicate the streamID and index of the
-problem.  
+  **PatchValues** may be thought of as a series of PatchValue calls. If there
+  is a problem patching any individual event, the entire operation is
+  rolled back and the error will indicate the streamID and index of the
+  problem.  
   
 **********
 
@@ -258,8 +259,8 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-Precision is taken into account when finding a value. If the index is a DateTime,
-use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
+  Precision is taken into account when finding a value. If the index is a DateTime,
+  use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
 
 **********
 
@@ -307,9 +308,9 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-If any individual event fails to be removed, the entire RemoveValues
-operation is rolled back and no events are removed. The streamId and index
-that caused the issue are included in the error response.
+  If any individual event fails to be removed, the entire RemoveValues
+  operation is rolled back and no events are removed. The streamId and index
+  that caused the issue are included in the error response.
 
 
 **********
@@ -361,8 +362,8 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-If any individual event fails to be removed, the entire operation is
-rolled back and no removes are done.
+  If any individual event fails to be removed, the entire operation is
+  rolled back and no removes are done.
 
   
 **********
@@ -407,8 +408,8 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-Throws an exception if the stream does not have an event to be replaced at the
-specified index.
+  Throws an exception if the stream does not have an event to be replaced at the
+  specified index.
   
   
 ``ReplaceValues()``
@@ -456,10 +457,10 @@ Security
 
   
 **Notes**
-Throws an exception if any index does not have a value to be
-replaced. If any individual event fails to be replaced, the entire
-operation is rolled back and no replaces are performed. The index that
-caused the issue and the streamId are included in the error response.
+  Throws an exception if any index does not have a value to be
+  replaced. If any individual event fails to be replaced, the entire
+  operation is rolled back and no replaces are performed. The index that
+  caused the issue and the streamId are included in the error response.
 
 
 ``UpdateValue()``
@@ -505,7 +506,7 @@ Security
   Allowed by administrator accounts
   
 **Notes**
-``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
+  ``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
 
 ``UpdateValues()``
@@ -552,9 +553,9 @@ Security
   Allowed by administrator accounts
   
  **Notes**
-``UpdateValues()`` performs an insert
-or a replace depending on whether an event already exists at the item's
-indexes. If any item fails to write, the entire operation is rolled back and
-no events are written to the stream. The index that caused the issue is
-included in the error response.
+  ``UpdateValues()`` performs an insert
+  or a replace depending on whether an event already exists at the item's
+  indexes. If any item fails to write, the entire operation is rolled back and
+  no events are written to the stream. The index that caused the issue is
+  included in the error response.
 
