@@ -508,3 +508,53 @@ Security
 ``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
 
+``UpdateValues()``
+----------------
+
+Writes items to the specified stream.
+
+
+**Syntax**
+
+::
+
+    void UpdateValues(string namespaceId, IDictionary<string, IQiValues > items);
+    void UpdateValues<T>(string namespaceId, string streamId, IList<T> items);
+    Task UpdateValuesAsync(string namespaceId, IDictionary<string, IQiValues > items);
+    Task UpdateValuesAsync<T>(string namespaceId, string streamId, IList<T> items);
+
+**Http**
+
+::
+
+    PUT Qi/{namespaceId}/Streams/{streamId}/Data/UpdateValues
+
+	
+Content is serialized list of updated values	
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``items``
+  Events to write to the stream.
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator accounts
+  
+ **Notes**
+``UpdateValues()`` performs an insert
+or a replace depending on whether an event already exists at the item's
+indexes. If any item fails to write, the entire operation is rolled back and
+no events are written to the stream. The index that caused the issue is
+included in the error response.
+
