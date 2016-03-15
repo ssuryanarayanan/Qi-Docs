@@ -410,3 +410,56 @@ Security
 Throws an exception if the stream does not have an event to be replaced at the
 specified index.
   
+  
+``ReplaceValues()``
+----------------
+
+Writes **items** over existing events in the specified stream.
+
+
+**Syntax**
+
+::
+
+    void ReplaceValues(string namespaceId, IDictionary<string, IQiValues> items);
+    void ReplaceValues<T>(string namespaceId, string streamId, IList<T> items);
+    Task ReplaceValuesAsync(string namespaceId, IDictionary<string, IQiValues > items);
+    Task ReplaceValuesAsync<T>(string namespaceId, string streamId, IList<T> items);
+
+**Http**
+
+::
+
+    PUT Qi/{namespaceId}/Streams/{streamId}/Data/ReplaceValues
+
+Content is serialized list of replacement values
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``items``
+  List of new items to replace existing items in the stream
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator accounts
+
+  
+**Notes**
+Throws an exception if any index does not have a value to be
+replaced. If any individual event fails to be replaced, the entire
+operation is rolled back and no replaces are performed. The index that
+caused the issue and the streamId are included in the error response.
+
+
+
