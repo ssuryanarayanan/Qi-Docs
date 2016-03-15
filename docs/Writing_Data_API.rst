@@ -462,4 +462,49 @@ operation is rolled back and no replaces are performed. The index that
 caused the issue and the streamId are included in the error response.
 
 
+``UpdateValue()``
+----------------
+
+Writes **item** to the specified stream.
+
+
+**Syntax**
+
+::
+
+    void UpdateValue<T>(string namespaceId, string streamId, T item);
+    Task UpdateValueAsync<T>(string namespaceId, string streamId, T item);
+
+**Http**
+
+::
+
+    PUT Qi/{namespaceId}/Streams/{streamId}/Data/UpdateValue
+
+Content is serialized updated value
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``item``
+  Event to write to the stream
+  
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator accounts
+  
+**Notes**
+``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
+  
 
