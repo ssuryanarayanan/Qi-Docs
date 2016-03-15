@@ -1,22 +1,6 @@
 Writing Data
 ============
 
-In this section:
-
-- `InsertValue( )`_
-- `InsertValues( )`_
-- `PatchValue( )`_
-- `PatchValues( )`_
-- `RemoveValue( )`_
-- `RemoveValues( )`_
-- `RemoveWindowValues( )`_
-- `ReplaceValue( )`_
-- `ReplaceValues( )`_
-- `UpdateValue( )`_
-- `UpdateValues( )`_
-- `Write exception handling`_
-
-
 InsertValue( )
 ------------
 
