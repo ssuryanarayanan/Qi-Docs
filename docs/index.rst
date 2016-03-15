@@ -59,4 +59,4 @@ more details.
    preview
    support
    Introducing_Qi
-   Qi_Types_API.rst
+   Qi_Types_API
