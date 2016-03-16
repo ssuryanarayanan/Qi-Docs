@@ -227,13 +227,13 @@ Security
   ``GetFirstValue()`` returns null if the stream has no data (no exception is thrown).
 
 
+``GetLastValue()``
+----------------
+
+Retrieves the last data event in a stream.
 
 
-
-GetLastValue( )
-------------
-
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -246,16 +246,29 @@ GetLastValue( )
 
     GET Qi/{namespaceId}/Streams/{streamId}/Data/GetLastValue
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request.
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
 
-*streamId*: Stream identifier for the request.
+  
+**Optional parameters**
 
-**Security** Allowed by administrator and user accounts.
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-**Operation** Returns the last data event in the stream. Returns null if
-the stream has no data (no exception is thrown).
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``GetLastValue()`` Returns null if the stream has no data (no exception is thrown).
+
+
 
 GetRangeValues( )
 ------------
