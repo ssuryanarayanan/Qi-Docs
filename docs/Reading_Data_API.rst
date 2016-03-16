@@ -104,6 +104,88 @@ stream types with a compound index, such as a DateTime and an Integer.
     var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(namespaceId, streamId, tupleId, searchMode);
 
 
+``GetDistinctValue()``
+----------------
+
+Returns an event from the specified stream at the specified index.
+
+
+**Syntax**
+
+::
+
+    T GetDistinctValue<T>(string namespaceId, string streamId, string index);
+    T GetDistinctValue<T, T1>(string namespaceId, string streamId, T1 index);
+    T GetDistinctValue<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> index);
+    Task<T> GetDistinctValueAsync<T>(string namespaceId, string streamId, string index);
+    Task<T> GetDistinctValueAsync<T, T1>(string namespaceId, string streamId, T1 index);
+    Task<T> GetDistinctValueAsync<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> index);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetDistinctValue?index={index}
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  String representation of the index value at which to search.
+
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``GetDistinctValue()`` returns an event from the specified stream at
+  the specified index. An exception is thrown if no event exists at index.
+
+**Examples** 
+  The following example obtains the event in the stream
+  at the index defined by ``Now``. An exception is thrown if there is no event 
+  at that index:
+
+::
+
+    string index = DateTime.Now.ToString(“o”);
+    try
+    {
+        var  readEvent = _service.GetDistinctValue<TestType>(namespaceId, streamId, index);
+    }
+    Catch (exception e)
+    {
+        //handle exception
+    }
+
+**Overloads**
+
+**T GetDistinctValue(string namespaceId, string streamId, T1 index);**
+
+Can be used to supply the index of the call as a different type.
+
+**T GetDistinctValue(string namespaceId, string streamId, Tuple index);**
+
+Can be used to supply the index of the call as a tuple (for compound
+indexes).
+
+See the `*FindDistinctValue(
+)* <http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue>`__
+examples for an illustration of these.
+
+
+
 
 GetDistinctValue( )
 ------------
