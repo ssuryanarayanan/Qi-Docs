@@ -1,5 +1,5 @@
-Reading Data API calls
-======================
+API calls for Reading Data
+==========================
 
 
 ``FindDistinctValue()``
@@ -102,7 +102,7 @@ stream types with a compound index, such as a DateTime and an Integer.
   
   
     
-**********
+
 
 ``GetDistinctValue()``
 ----------------
@@ -181,7 +181,7 @@ examples for an illustration of these.
 
   
   
-**********
+
 
 ``GetFirstValue()``
 ----------------
@@ -222,7 +222,7 @@ Security
   Allowed by administrator and user accounts
 
   
-**********
+
 
 ``GetLastValue()``
 ----------------
@@ -260,7 +260,7 @@ the stream has no data (no exception is thrown).
 Security
   Allowed by administrator and user accounts
 
-**********
+
 
 ``GetRangeValues()``
 ----------------
