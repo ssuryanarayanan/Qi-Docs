@@ -471,6 +471,97 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
+``GetValue()``
+----------------
+
+Retrieves a s[ecofoed data event from a stream.
+
+
+**Syntax**
+
+::
+
+    T GetValue<T>(string namespaceId, string streamId, string index);
+    T GetValue<T, T1>(string namespaceId, string streamId, T1 index);
+    T GetValue<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> index);
+    Task<T> GetValueAsync<T>(string namespaceId, string streamId, string index);
+    Task<T> GetValueAsync<T, T1>(string namespaceId, string streamId, T1 index);
+    Task<T> GetValueAsync<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> index);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetValue?index={index}
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  String representation of the index value for GetValue or IEnumerable of index
+  values requested for GetValues.
+  
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  If there is a value at the index, the call returns that event.
+
+If the specified index is before or after all events, the value returned
+with that index is determined by the stream behavior (specifically, the
+stream behavior extrapolation setting).
+
+If the specified index is between events, the event returned is
+determined by the stream behavior and any behavior overrides.
+
+If the stream contains no data, null is returned regardless of the
+stream behavior.
+
+**Examples** The following example obtains the event in the stream
+at the index defined by ``Now``. If no event exists at that index the
+result is determined by the stream behavior.
+
+::
+
+    string index = DateTime.Now.ToString(“o”);
+    try
+    {
+        var  readEvent = _service.GetValue<TestType>(namespaceId, streamId, index);
+    }
+    Catch (exception e)
+    {
+        //handle exception
+    }
+
+**Overloads**
+
+**T GetValue(string namespaceId, string streamId, T1 index);**
+
+Can be used to supply the index of the call as a different type
+
+**T GetValue(string namespaceId, string streamId, Tuple index);**
+
+Can be used to supply the index of the call as a tuple (for compound
+indexes)
+
+See the `*FindDistinctValue(
+)* <http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue>`__
+examples for an illustration of these.
+
+
+
 
 
 GetValue( )
