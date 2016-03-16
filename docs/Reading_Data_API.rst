@@ -474,7 +474,7 @@ When the startIndex falls between data:
 ``GetValue()``
 ----------------
 
-Retrieves a s[ecofoed data event from a stream.
+Retrieves a specified data event from a stream.
 
 
 **Syntax**
@@ -559,6 +559,88 @@ indexes)
 See the `*FindDistinctValue(
 )* <http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue>`__
 examples for an illustration of these.
+
+
+``GetValues()``
+----------------
+
+Retrievs calculated events at the requested
+index values in **index**, or **count** number of evenly spaced calculated
+events between **startIndex** and **endIndex**.
+
+
+**Syntax**
+
+::
+
+    IEnumerable<T> GetValues<T>(string namespaceId, string streamId, IEnumerable<string> index);
+    IEnumerable<T> GetValues<T, T1>(string namespaceId, string streamId, IEnumerable<T1> index);
+    IEnumerable<T> GetValues<T, T1, T2>(string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    IEnumerable<T> GetValues<T>(string namespaceId, string streamId, string filterExpression);
+    IEnumerable<T> GetValues<T>(string namespaceId, string streamId, string startIndex, string endIndex, int count);
+    IEnumerable<T> GetValues<T, T1>(string namespaceId, string streamId, T1 startIndex, T1 endIndex, int count);
+    IEnumerable<T> GetValues<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string namespaceId, string streamId, IEnumerable<string> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string namespaceId, string streamId, IEnumerable<T1> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string namespaceId, string streamId, string filterExpression);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string namespaceId, string streamId, T1 startIndex, T1 endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  IEnumerable of index values at which to return calculated events.
+``startIndex``
+  String representation of the starting index value.
+``endIndex``
+  String representation of the ending index value.
+``count``
+  Number of equally-spaced calculated events to return within the *startIndex* and *endIndex* boundaries.
+
+  
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``GetValues( )`` returns calculated events at the requested
+  index values in **index**, or **count** number of evenly spaced calculated
+  events between **startIndex** and **endIndex**. For ``GetValues( )`` overloads
+  that include a streamId and IEnumberable **index**, the call behaves like
+  multiple ``GetValue( )`` calls. For the ``GetValues( )`` overloads that
+  include **startIndex**, **endIndex** and **count**, these parameters are used
+  to generate a list of indexes for which to obtain values. Events
+  returned for each index are determined according to the QiStreamBehavior
+  assigned to the stream being read.
+
+For ``GetValues( )`` overloads that include the filterExpression
+parameters are used to create a list of indexes that match the OData
+filter text used. More information on OData Filter Expressions can be
+found in `Filter
+expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+
+
+
 
 
 
