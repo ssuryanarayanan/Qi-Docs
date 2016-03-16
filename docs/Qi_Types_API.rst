@@ -30,7 +30,7 @@ string ``streamId``
 
 **Optional parameters**
 
-  None
+    None
 
 **Returns**
 
