@@ -269,6 +269,208 @@ Security
   ``GetLastValue()`` Returns null if the stream has no data (no exception is thrown).
 
 
+``GetRangeValues()``
+----------------
+
+Retrieves the last data event in a stream.
+
+
+**Syntax**
+
+::
+
+    IEnumerable<T> GetRangeValues<T>(string namespaceId, string streamId, string startIndex, int count);
+    IEnumerable<T> GetRangeValues<T>(string namespaceId, string streamId, string startIndex, int count, bool reversed);
+    IEnumerable<T> GetRangeValues<T>(string namespaceId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
+    IEnumerable<T> GetRangeValues<T>(string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType); 
+    IEnumerable<T> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``startIndex``
+  String represntation of the starting index value.
+``count``
+  Maximum number of events to return.
+``reversed``
+  Order of event retrieval; true to retrieve events in reverse order.
+``skip``
+  Number of events to skip; skipped events are not returned or
+  counted. (Applied after filterExpression. )
+``boundaryType``
+  Enumeration indicating how to handle boundary events.
+``filterExpression``
+  String containing an OData filter expression (see *Notes* section below).
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``GetRangeValues()`` is used to obtain events from a stream based on
+a starting index and a requested number of events. Optionally, overloads allow
+the client to specify search direction, number of events to
+skip over, special boundary handling for **startIndex**, and an event
+filter. Events returned by ``GetRangeValues( )`` are stored events, not
+calculated events, with the exception of the starting event if
+ExactOrCalculated is specified for ``boundaryType``.
+
+``GetRangeValues( )`` searches FORWARD if the ``reverse`` parameter is
+false and reverse if the ``reverse`` parameter is true. For overloads that
+do not include the ``reverse`` parameter, the default is forward.
+
+The ``skip`` parameter indicates the number of events that the call 
+skips over before it collects events for the response.
+
+BoundaryType has the following possible values: • Exact •
+ExactOrCalculated • Inside • Outside
+
+The BoundaryType determines how to specify the first value in from the
+stream starting at the start index. This is also affected by the
+direction of the method. The table below indicates how the first value
+is determined for ``GetRangeValues( )`` for a FORWARD search of the
+BoundaryTypes shown:
+
++--------------------------+-------------------------------------------------------------------------------+
+| Boundary Type            | First value obtained                                                          |
++==========================+===============================================================================+
+|Exact                     |The first value at or after the startIndex                                     |
++--------------------------+-------------------------------------------------------------------------------+
+|ExactOrCalculated         |If a value exists at the startIndex it is used, otherwise a value is           |
+|                          |‘calculated’ according to the Stream Behavior setting                          |
++--------------------------+-------------------------------------------------------------------------------+
+|Inside                    |The first value after the startIndex                                           |
++--------------------------+-------------------------------------------------------------------------------+
+|Outside                   | The first value before the startIndex                                         |
++--------------------------+-------------------------------------------------------------------------------+
+
+The table below indicates how the first value is determined for
+``GetRangeValues( )`` for a reverse search of the BoundaryTypes shown:
+
++--------------------------+-------------------------------------------------------------------------------+
+| Boundary Type            | First value obtained                                                          |
++==========================+===============================================================================+
+|Exact                     |The first value at or before the startIndex                                    |
++--------------------------+-------------------------------------------------------------------------------+
+|ExactOrCalculated         |If a value exists at the startIndex it is used, otherwise a value is           |
+|                          |‘calculated’ according to the Stream Behavior setting. See the                 |
+|                          |*Calculated startIndex* topic below.                                           | 
++--------------------------+-------------------------------------------------------------------------------+
+|Inside                    |The first value before the startIndex                                          |
++--------------------------+-------------------------------------------------------------------------------+
+|Outside                   | The first value after the startIndex                                          |
++--------------------------+-------------------------------------------------------------------------------+
+
+The order of execution first determines the direction of the method and
+the starting event using the ``BoundaryType``. After the starting event is
+determined, the filterExpression is applied in the direction requested
+to determine potential return values. Then, ``skip`` is applied to pass
+over the specified number of events, including any calculated events.
+Finally, events up to the number specified by count are returned.
+
+The filter expression uses OData query language. Most of the query
+language is supported. More information about OData Filter Expressions can
+be found in `Filter
+expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+
+**Calculated startIndex** When the startIndex for ``GetRangeValues( )`` 
+lands before, after, or in-between data in the stream, and the
+ExactOrCalculated boundaryType is used, the stream behavior determines
+whether an additional calculated event is created and returned in the
+response.
+
+The table below indicates when an event will be calculated and included
+in the ``GetRangeValues( )`` response for a **startIndex** before or after
+all data in the stream. (This data is for FORWARD search modes):
+
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Stream Behavior           |Stream Behavior           |When start index is           |When start index is           |
+|Mode                      |QiStreamExtrapolation     |before all data               |after all data                |
++==========================+==========================+==============================+==============================+
+|Continuous                |All                       |Event is calculated*          |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Discrete                  |All                       |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousLeading         |All                       |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+
+::
+
+            *Events is calculated using startIndex and the value of the first event
+
+When the startIndex falls between data:
+
++-----------------------+--------------------------------------------------------------------------+
+|Stream Behavior        |Calculated Event                                                          |
+|Mode                   |                                                                          |
++=======================+==========================================================================+
+|Continuous             |Event is calculated using the index and a value interpolated from the     |
+|                       |surrounding index values                                                  |
++-----------------------+--------------------------------------------------------------------------+
+|Discrete               |No event calculated                                                       |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousLeading      | Event is calculated using the index and previous event values            |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousTrailing     |Event is calculated using the index and next event values                 |
++-----------------------+--------------------------------------------------------------------------+
+
+
 
 GetRangeValues( )
 ------------
