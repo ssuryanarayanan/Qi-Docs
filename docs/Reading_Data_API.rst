@@ -1,12 +1,13 @@
 Reading Data
 ============
 
+``FindDistinctValue()``
+----------------
+
+Searches for data in a stream using the specified search mode.
 
 
-FindDistinctValue( )
-------------
-
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -20,20 +21,31 @@ FindDistinctValue( )
 **Http**
 ``GET Qi/{namespaceId}/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}``
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request.
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``index``
+  String representation of the index value at which to search.
+``mode``
+  Search mode (see **Operation** below).
+  
+**Optional parameters**
 
-*streamId*: Stream identifier for the request.
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-*index*: String representation of the index value at which to search.
-
-*mode*: Search mode (see **Operation** below).
-
-**Security** Allowed by administrator and user accounts.
-
-**Operation** This method searches for data in a stream using the specified search mode. Null is returned if the data is not found.
-The mode parameter determines how the search for data is executed:
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``FindDistinctValue()`` returns null if the data is not found.
+  The mode parameter determines how the search for data is executed. See the following table:
 
 +-------------------+------------+-------------------------------------------------------------------+
 |Search Mode        |Enumeration |Action                                                             |
@@ -89,6 +101,8 @@ stream types with a compound index, such as a DateTime and an Integer.
     searchMode = QiSearchMode.ExactOrPrevious;
     var tupleId = new Tuple<DateTime, int>(DateTime.Now, 0);
     var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(namespaceId, streamId, tupleId, searchMode);
+
+
 
 GetDistinctValue( )
 ------------
