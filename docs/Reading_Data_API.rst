@@ -19,6 +19,7 @@ Searches for data in a stream using the specified search mode.
     Task<T> FindDistinctValueAsync<T, T1, T2>(string namespaceId, string streamId, Tuple<T1, T2> index, QiSearchMode mode);
 
 **Http**
+
 ``GET Qi/{namespaceId}/Streams/{streamId}/Data/FindDistinctValue?index={index}&mode={mode}``
 
 	
@@ -26,12 +27,12 @@ Searches for data in a stream using the specified search mode.
 
 ``string namespaceId``
   The namespace identifier for the request.
-``streamId``
+``string streamId``
   The stream identifier for the request.
-``index``
+``string index``
   String representation of the index value at which to search.
-``mode``
-  Search mode (see **Operation** below).
+``QiSearchMode mode``
+  Search mode (see **Notes** below).
   
 **Optional parameters**
 
