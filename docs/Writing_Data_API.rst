@@ -1,7 +1,7 @@
 API calls for writing data
 ==========================
 
-**********
+
 
 ``InsertValue()``
 ----------------
@@ -46,7 +46,7 @@ Security
 **Notes**
   ``InsertValue()`` throws an exception if an event already exists at the specified index.
 
-**********
+
 
 ``InsertValues()``
 ----------------
@@ -98,7 +98,7 @@ Content is serialized list of events of type T
 Security
   Allowed by administrator accounts
 
-**********
+
 
 ``PatchValue()``
 ----------------
@@ -156,7 +156,7 @@ Security
     PatchValue(namespaceId, streamId, “Value”, obj);  
   
 
-  **********
+  
 
 ``PatchValues()``
 ----------------
@@ -213,7 +213,7 @@ Security
   rolled back and the error will indicate the streamID and index of the
   problem.  
   
-**********
+
 
 ``RemoveValue()``
 ----------------
@@ -262,7 +262,7 @@ Security
   Precision is taken into account when finding a value. If the index is a DateTime,
   use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
 
-**********
+
 
 ``RemoveValues()``
 ----------------
@@ -313,7 +313,7 @@ Security
   that caused the issue are included in the error response.
 
 
-**********
+
 
 ``RemoveWindowValues()``
 ----------------
@@ -366,7 +366,7 @@ Security
   rolled back and no removes are done.
 
   
-**********
+
 
 ``ReplaceValue()``
 ----------------
