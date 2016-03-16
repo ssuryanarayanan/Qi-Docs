@@ -43,6 +43,7 @@ Note
  return QiStreams. See `Searching for QiStreams 
 <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.  
 
+-------------------------
 
 ``GetStreams()``
 ----------------
