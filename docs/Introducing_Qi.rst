@@ -19,9 +19,9 @@ group can run certification testing.
 Within a Namespace, Qi defines three different objects in which to store and manage data:
 
 -  **Type**: A user-defined structure that denotes a single measured event or
-   object for storage.
+   object for storage. In Qi, a type is called a QiType.
 -  **Stream**: A basic unit of storage consisting of an ordered series of
-   objects that conform to a type definition.
+   objects that conform to a type definition. In Qi, a strea is called a QiStream.
 -  **Stream Behavior**: Defines how Qi interpolates or extrapolates
    data during event retrieval when requests occur before, after, or between
    existing data events.
@@ -56,11 +56,12 @@ There are two types of security accounts for Qi users:
 +----------------+------------------------------------------------------------------+
 | Account Type   | Description                                                      |
 +----------------+------------------------------------------------------------------+
-| Administrator  | Allowed to do all CRUD operations on Qi type, stream and stream  |
+| Administrator  | Allowed to perform all CRUD (Create, Read, Update, Delete)       |
+|                | operations on Qitype, stream, and stream                         |
 |                | behavior objects. Also allowed to read and write data to streams |
 +----------------+------------------------------------------------------------------+
 | User           | Allowed read operations on Qi objects and allowed to read data   | 
-|                | from streams                                                     |
+|                | from streams.                                                    |
 +----------------+------------------------------------------------------------------+
 
 Getting started
