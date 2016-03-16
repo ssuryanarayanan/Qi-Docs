@@ -640,6 +640,215 @@ found in `Filter
 expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
 
 
+``GetWindowValues()``
+----------------
+
+
+
+
+**Syntax**
+
+::
+
+    IEnumerable<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, string endIndex);
+    IEnumerable<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
+    IEnumerable<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
+    IEnumerable<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
+    QiResultPage<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
+    IEnumerable<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
+    QiResultPage<T> GetWindowValues<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string namespaceId, string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
+    GET Qi/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+
+	
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
+``startIndex``
+  String representation of the starting index value, must be less than **endIndex**.
+``endIndex``
+  String representation of the ending index value.
+``boundaryType``
+  Enumeration describing how to handle boundary events.
+``filterExpression``
+  OData filter expression.
+``count``
+  Maximum of events to return within the specified index range. For paging through data.
+``continuationToken``
+  Continuation token for handling multiple return data sets.
+``startBoundaryType``
+  How to handle startIndex boundary events.
+``endBoundaryType``
+  How to handle endIndex boundary events.
+``selectExpression``
+  Expression designating which fields of the stream's type should make up the return events.
+
+  
+  
+**Optional parameters**
+
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
+
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+
+``GetWindowValues( )`` returns stored events within a
+specified index range. If **count** and **continuationToken** are used, up
+to **count** events are returned within the specified index range along
+with a continuation token that may be passed into a subsequent
+``GetWindowValues( )`` call to obtain the next **count** events. Note that
+**count** need not stay the same through multiple ``GetWindowValues( )``
+calls with **continuationToken**.
+
+Boundary events at or near **startIndex** and **endIndex** are handled
+according to **boundaryType** or **startBoundaryType** and
+**endBoundaryType**, which have the following possible values: • Exact •
+ExactOrCalculated • Inside • Outside
+
+The table below indicates how the first value is determined for
+``GetWindowValues ( )`` for the **startBoundaryType** shown:
+
+
++----------------------+-----------------------------------------------------------------------------+
+|*startBoundaryType*   |First value obtained                                                         |
++======================+=============================================================================+
+|Exact                 |The first value at or after the startIndex                                   |
++----------------------+-----------------------------------------------------------------------------+
+|ExactOrCalculated     |If a value exists at the startIndex it is used, else a value is calculated   |
+|                      |according to the stream's behavior setting                                   |
++----------------------+-----------------------------------------------------------------------------+
+|Inside                | The first value after the startIndex                                        |
++----------------------+-----------------------------------------------------------------------------+
+|Outside               | The first value before the startIndex                                       |
++----------------------+-----------------------------------------------------------------------------+
+
+This chart indicates how the last value is determined for
+``GetWindowValues( )`` for the **endBoundaryType** shown:
+
++----------------------+-----------------------------------------------------------------------------+
+|*endBoundaryType*     |First value obtained                                                         |
++======================+=============================================================================+
+|Exact                 |The first value at or before the endIndex                                    |
++----------------------+-----------------------------------------------------------------------------+
+|ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is calculated     |
+|                      |according to the stream's behavior setting                                   |
++----------------------+-----------------------------------------------------------------------------+
+|Inside                | The first value before the endIndex                                         |
++----------------------+-----------------------------------------------------------------------------+
+|Outside               | The first value after the endIndex                                          |
++----------------------+-----------------------------------------------------------------------------+
+
+Calls against an empty stream always return a single null
+regardless of boundary type used.
+
+The filter expression uses OData syntax. More information on OData
+Filter Expressions can be found in `Filter
+expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+
+The select expression is a CSV list of strings that indicate which fields
+of the stream type are being requested. By default all type fields are
+included in the response. Select may improve the performance of the call
+by avoiding management of the unneeded fields. Note that the index is
+always included in the returned results.
+
+Selection is applied before filtering; therefore, any fields that are used in the filter
+expression must be included by the select statement.
+
+**Calculated startIndex and endIndex** When the startIndex or endIndex
+of ``GetWindowValues( )`` does not fall on an event in the stream, and the
+**boundaryType** of ExactOrCalculated is used, an event may be created and
+returned in the GetWindowValues call response.
+
+The table below indicates when a calculated event is created for
+indexes before or after stream data:
+
++--------------------------+--------------------------+------------------------------+------------------------------+
+|QiStreamBehavior          |QiStreamBehavior          |When start index is           |When start index is           |
+|*Mode*                    |*ExtrapolationMode*       |before all data               |after all data                |
++==========================+==========================+==============================+==============================+
+|Continuous                |All                       |Event is calculated*          |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|Discrete                  |All                       |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousLeading         |All                       |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |Event is calculated*          |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|ContinuousTrailing        |All                       |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |None                      |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Backward                  |Event is calculated*          |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+|                          |Forward                   |No event calculated           |No event calculated           |
++--------------------------+--------------------------+------------------------------+------------------------------+
+
+
+
+\*When a startIndex event is calculated, the created event has the
+startIndex and the value of the first data event in the stream. When an
+endIndex is calculated, the created event uses the endIndex along with
+the value from the stream’s last data event. Any calculated events are
+returned along with the result of the *GetWindowValues( )* call.
+
+If an index (startIndex or endIndex) in ``GetWindowValues( )`` lands
+between data in the stream, and the BoundaryT Type is set to
+ExactOrCalculated, and event is created according to the following
+table:
+
++-----------------------+--------------------------------------------------------------------------+
+|Stream Behavior        |Calculated Event                                                          |
+|Mode                   |                                                                          |
++=======================+==========================================================================+
+|Continuous             |The event is calculated using the index and a value that is interpolated  |
+|                       |from the surrounding index values.                                        |
++-----------------------+--------------------------------------------------------------------------+
+|Discrete               |No event is calculated.                                                   |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousLeading      |The event is calculated using the index and the previous event values.    |
++-----------------------+--------------------------------------------------------------------------+
+|ContinuousTrailing     |Event is calculated using the index and next event values                 |
++-----------------------+--------------------------------------------------------------------------+
 
 
 
