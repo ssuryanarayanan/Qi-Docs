@@ -185,12 +185,13 @@ See the `*FindDistinctValue(
 examples for an illustration of these.
 
 
+``GetFirstValue()``
+----------------
+
+Retrieves the first data event in a stream.
 
 
-GetFirstValue( )
-------------
-
-**Qi Client Library**
+**Syntax**
 
 ::
 
@@ -203,16 +204,31 @@ GetFirstValue( )
 
     GET Qi/{namespaceId}/Streams/{streamId}/Data/GetFirstValue
 
+	
 **Parameters**
 
-*namespaceId*: The namespace identifier for the request.
+``string namespaceId``
+  The namespace identifier for the request.
+``streamId``
+  The stream identifier for the request.
 
-*streamId*: Stream identifier for the request.
+  
+**Optional parameters**
 
-**Security** Allowed by administrator and user accounts.
+  None
+  
+**Returns**
+  An IEnumerable of all behavior objects
 
-**Operation** Returns the first data event in the stream. Returns null if
-the stream has no data (no exception is thrown).
+Security
+  Allowed by administrator and user accounts
+  
+**Notes**
+  ``GetFirstValue()`` returns null if the stream has no data (no exception is thrown).
+
+
+
+
 
 GetLastValue( )
 ------------
