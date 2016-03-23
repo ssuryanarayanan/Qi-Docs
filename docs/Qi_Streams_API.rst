@@ -1,90 +1,115 @@
-QiStream API calls
-==================
-
-The API calls in this section are all used to create and manipulate QiStreams. See .. _Qi Types: https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Qi_Types.rst for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
-
+QI Stream API calls
+====================
 
 ``GetStream()``
 ----------------
 
-Returns a QiStream object from the specified namespace that matches the specified typeId.
+The ``GetStream`` method returns a QiStream object
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  IEnumerable of all streams
 
 
 **Syntax**
-
-**Qi Client Library**
 
 ::
 
     QiStream GetStream(string conatinerId, string streamId);
     Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
 
-*Http*
+**Http**
 
 ::
 
     GET Qi/{namespaceId}/Streams/{streamId}
 
-**Parameters**
-
-``string namespaceId``
-  The namespace identifier for the request
-``typeId``
-  The ID of the stream to retrieve
-
-**Optional parameters**
-
-  None
-  
-**Returns**
-  A QiStream object for the specified typeId and namespace
-
 Security
   Allowed by administrator and user accounts
+  
+Note
+``GetStreams()`` is an overloaded method that is also used to search for and
+ return QiStreams. See `Searching for QiStreams 
+<https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.  
 
-**************  
+-------------------------
 
 ``GetStreams()``
 ----------------
 
-Returns all streams from the specified namespace.
+The ``GetStreams()`` method returns an IEnumerable of all streams.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+
+  
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Returns IEnumerable of all streams
+
 
 **Syntax**
-
-**Qi Client Library**
 
 ::
 
     IEnumerable<QiStream> GetStreams (string namespaceId);
     Task<IEnumerable<QiStream>> GetStreamsAsync (string namespaceId);
 
-*Http*
+**Http**
 
 ::
 
     GET Qi/{namespaceId}/Streams
 
-**Parameters**
 
-``string namespaceId``
-  The namespace identifier for the request
-
-**Optional parameters**
-
-  None
-  
-**Returns**
-  An Ienumerable object for the specified namespace
 
 Security
   Allowed by administrator and user accounts
   
-*********
-
-``GetStreams()`` (GetStreams() overload)
+  
+``GetStreams()``
 ----------------
 
-Searches for and returns streams that fit search criteria
+The ``GetStreams`` method is an overloaded method that is also used to search for and return QiStreams. See `Searching for QiStreams <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.
+
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string searchText``
+  The text you want to search for.
+  ``skip``
+  The number of matched stream names to skip over before returning the matching streams.
+``count``
+  The maximum number of streams to return. 
+
+  
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Returns IEnumerable of all streams
+
 
 **Syntax**
 
@@ -93,42 +118,37 @@ Searches for and returns streams that fit search criteria
    IEnumerable<QiStream> GetStreams(string searchText, int skip, int count);
    Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
   
-  Should the above have a namespace parameter also?
 
-*Http*
+**Http**
 
 ::
 
     GET Qi/{namespaceId}/Streams  
 
+	
+Security
+  Allowed by administrator and user accounts
+  
+``GetOrCreateStream()``
+---------------------
+
+The ``GetOrCreateStream`` method is used to retrieve or create a stream. If an entity with the same *Id* already exists on the service, then the existing stream is returned to the caller unchanged. Otherwise the new stream is created. Content is serialized QiStream entity
+
 **Parameters**
 
 ``string namespaceId``
   The namespace identifier for the request
-``searchText``
-  The text to search for.
- 
+``Qistream entity``
+  The ID of the stream for which the type request is made
+
 **Optional parameters**
 
-``skip`
-  The number of matched stream names to skip over before returning the matching streams.
-``count``
-  The maximum number of streams to return. 
+  None
 
-  
 **Returns**
-  An Ienumerable object of streams that fit search criteria.
 
-Security
-  Allowed by administrator and user accounts
-  
-  
-*********
+  Qitype
 
-``GetOrCreateStream()``
-----------------
-
-Returns a stream that matches the QiStream entity within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
 
 **Syntax**
 
@@ -137,47 +157,51 @@ Returns a stream that matches the QiStream entity within the specified namespace
     QiStream GetOrCreateStream (string namespaceId, QiStream entity);
     Task<QiStream> GetOrCreateStreamAsync (string namespaceId, QiStream entity);
 
-*Http*
+**Http**
 
 ::
 
     POST Qi/{namespaceId}/Streams
 
-**Parameters**
-
-``string namespaceId``
-  The namespace identifier for the request
-``entity``
-  Qi Stream object
- 
-**Optional parameters**
-
-  None
-  
-**Returns**
-  An QiStream
-
 Security
-  Allowed by administrator accounts
-  
-*********
+  Allowed by Administrator account
+
 
 ``UpdateStream()``
 ----------------
 
-Updates a specified stream in a specified namespace with the properties in the specified QiStream entity. The following changes are permitted:
+The ``UpdateStream()`` method changes the stream to hold the properties in the QiStream entity given. Permitted changes include:
 
-• Name
+- Name
+- BehaviorId
+- Description
 
-• BehaviorId
-
-• Description
+Content is serialized QiStream entity
 
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
 The *UpdateStream()* method applies to the entire entity. Optional fields
-that are omitted from the entity will remove the field from the stream if the fields had been set previously.
+that are omitted from the entity will remove the field from the stream if the fields had
+been set previously.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream for which the type request is made
+``Qistream entity``  
+  Updated stream object
+  
+  
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Qitype
 
 
 **Syntax**
@@ -187,38 +211,35 @@ that are omitted from the entity will remove the field from the stream if the fi
     void UpdateStream(string namespaceId, string streamId, QiStream entity);
     Task UpdateStreamAsync(string namespaceId, string streamId, QiStream entity);
 
-*Http*
+**Http**
 
 ::
 
     PUT Qi/{namespaceId}/Streams/{streamId}
 
-**Parameters**
-
-``string namespaceId``
-  The namespace identifier for the request
-``streamId``
-  Identifier of the stream to modify
-``entity``
-  Updated stream object
- 
-**Optional parameters**
-
-  None
-  
-**Returns**
-  A QiStream
-
 Security
-  Allowed by administrator accounts
-  
-
-*********
+  Allowed by Administrator account
 
 ``DeleteStream()``
 ----------------
 
-Deletes a stream that matches the QiStream entity within the specified namespace.
+The ``DeleteStream()`` method is used to delete a stream using its stream ID.
+
+**Parameters**
+
+``string namespaceId``
+  The namespace identifier for the request
+``string streamId``
+  The ID of the stream for which the type request is made
+
+**Optional parameters**
+
+  None
+
+**Returns**
+
+  Qitype
+
 
 **Syntax**
 
@@ -227,26 +248,12 @@ Deletes a stream that matches the QiStream entity within the specified namespace
     void DeleteStream(string namespaceId, string streamId);
     Task DeleteStreamAsync(string namespaceId, string streamId);
 
-*Http*
+**Http**
 
 ::
 
     DELETE Qi/{namespaceId}/Streams/{streamId}
 
-**Parameters**
-
-``string namespaceId``
-  The namespace identifier for the request.
-``streamId``
-  The identifier of the stream to delete.
-
-  **Optional parameters**
-
-  None
-  
-**Returns**
-  A QiStream
 
 Security
-  Allowed by administrator accounts
-  
+  Allowed by Administrator account
