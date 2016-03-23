@@ -5,41 +5,45 @@ A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
-The following table defines the required and optional QiStream objects:
+The following table shows the required and optional QiStream properties:
 
-+---------------+----------+--------------------------------------------+
-| Object        | Type     | Details                                    |
-+===============+==========+============================================+
-| Id            | String   | Required Id for referencing the stream     |
-+---------------+----------+--------------------------------------------+
-| Name          | String   | Optional name                              |
-+---------------+----------+--------------------------------------------+
-| Description   | String   | Optional description text                  |
-+---------------+----------+--------------------------------------------+
-| TypeId        | String   | Required type to be used for this stream   |
-+---------------+----------+--------------------------------------------+
-| BehaviorId    | Sting    | Optional stream behavior for this stream   |
-+---------------+----------+--------------------------------------------+
++---------------+----------+-------------+--------------------------------------------+
+| Property      | Type     | Optionality |Details                                     |
++===============+==========+=============+============================================+
+| ID            | String   | Required    | An Identifier for referencing the stream.  |
++---------------+----------+-------------+--------------------------------------------+
+| Name          | String   | Optional    | The name of the stream.                    |
++---------------+----------+-------------+--------------------------------------------+
+| Description   | String   | Optional    | Text that describes the stream.            |
++---------------+----------+-------------+--------------------------------------------+
+| TypeId        | String   | Required    | The type to be used for this stream.       |
++---------------+----------+-------------+--------------------------------------------+
+| BehaviorId    | Sting    | Optional    | The stream behavior for this stream.       |
++---------------+----------+-------------+--------------------------------------------+
+| Tag           | Sting    | Optional    | A collection of strings that permit        |
+|               |          |             | classifying and identifying individual     |
+|               |          |             | streams.                                   |
++---------------+----------+-------------+--------------------------------------------+
 
-A stream is always referenced by its Id property. As shown above a
-QiStream must include a unique *Id* as well as a *TypeId* with the Id of
-an existing QiType. The optional *BehaviorId* is set with the Id of an
-existing stream behavior. When BehaviorId is not included the stream
-will have a default behavior mode set to continuous and extrapolation
-set to all. See
+A stream is always referenced by its ID property. As shown in the preceeding table,
+a QiStream must include a unique *ID* as well as a *TypeId* with the ID of
+an existing QiType. The optional *BehaviorId* is set with the ID of an
+existing stream behavior. When BehaviorId is omitted, the stream
+will have a default behavior mode set to *continuous* and *extrapolation*
+set to *all*. See
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__
 for more information.
 
-**Rules for QiStream *Id*:**
+**Rules for QiStream *ID*:**
 
-1. Case insensitive
-2. Allows spaces
-3. Cannot start with two underscores ("\_\_")
-4. Cannot start or end with period (".")
-5. Maximum of 260 characters
+1. Is not case sensitive.
+2. Can contain spaces.
+3. Cannot start with two underscores ("\_\_").
+4. Cannot start or end with a period (".").
+5. Can contain a maximum of 260 characters.
 6. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
    , ; = %)
-7. No more than 250 periods (".") allowed
+7. Cannot contain more than 250 periods (".").
 
 GetStream( )
 ------------
@@ -48,16 +52,18 @@ GetStream( )
 
 ::
 
-    QiStream GetStream(string streamId);
-    Task<QiStream> GetStreamAsync (string streamId);
+    QiStream GetStream(string conatinerId, string streamId);
+    Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams/{streamId}
+    GET Qi/{namespaceId}/Streams/{streamId}
 
 **Parameters**
+
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: String identifying the stream
 
@@ -72,22 +78,50 @@ GetStreams( )
 
 ::
 
-    IEnumerable<QiStream> GetStreams ();
-    Task<IEnumerable<QiStream>> GetStreamsAsync ();
+    IEnumerable<QiStream> GetStreams (string namespaceId);
+    Task<IEnumerable<QiStream>> GetStreamsAsync (string namespaceId);
 
 **Http**
 
 ::
 
-    GET Qi/Streams
+    GET Qi/{namespaceId}/Streams
 
 **Parameters**
 
-None
+*namespaceId*: The namespace identifier for the request
 
 **Security** Allowed by administrator and user accounts
 
 **Operation** Returns IEnumerable of all streams
+
+``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams. See `Searching for QiStreams <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.
+
+::
+
+   IEnumerable<QiStream> GetStreams(string searchText, int skip, int count);
+   Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
+  
+
+**Http**
+
+::
+
+    GET Qi/{namespaceId}/Streams  
+
+**Parameters**
+
+*searchText*: The text you want to search for.
+
+*skip*: The number of matched stream names to skip over before returning the matching streams.
+
+*count*: The maximum number of streams to return. 
+
+**Security** Allowed by administrator and user accounts
+
+**Operation** Returns IEnumerable of all streams
+
+
 
 GetOrCreateStream( )
 ------------
@@ -96,26 +130,28 @@ GetOrCreateStream( )
 
 ::
 
-    QiStream GetOrCreateStream (QiStream entity);
-    Task<QiStream> GetOrCreateStreamAsync (QiStream entity);
+    QiStream GetOrCreateStream (string namespaceId, QiStream entity);
+    Task<QiStream> GetOrCreateStreamAsync (string namespaceId, QiStream entity);
 
 **Http**
 
 ::
 
-    POST Qi/Streams
+    POST Qi/{namespaceId}/Streams
 
 Content is serialized QiStream entity
 
 **Parameters**
 
+*namespaceId*: The namespace identifier for the request
+
 *entity*: Qi Stream object
 
 **Security** Allowed by Administrator account
 
-**Operation** If entity already exists on the service by *Id*, that
+**Operation** If an entity with the same *Id* already exists on the service, then the
 existing stream is returned to the caller unchanged. Otherwise the new
-stream is created
+stream is created.
 
 UpdateStream( )
 ------------
@@ -124,18 +160,20 @@ UpdateStream( )
 
 ::
 
-    void UpdateStream(string streamId, QiStream entity);
-    Task UpdateStreamAsync(string streamId, QiStream entity);
+    void UpdateStream(string namespaceId, string streamId, QiStream entity);
+    Task UpdateStreamAsync(string namespaceId, string streamId, QiStream entity);
 
 **Http**
 
 ::
 
-    PUT Qi/Streams/{streamId}
+    PUT Qi/{namespaceId}/Streams/{streamId}
 
 Content is serialized QiStream entity
 
 **Parameters**
+
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: Identifier of the stream to modify
 
@@ -155,9 +193,9 @@ entity given. Permitted changes:
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStream()* method applies the entire entity. Optional fields
-left out of the entity will remove the field from the stream if they had
-been set previously
+The *UpdateStream()* method applies to the entire entity. Optional fields
+that are omitted from the entity will remove the field from the stream if the fields had
+been set previously.
 
 DeleteStream( )
 ------------
@@ -166,16 +204,18 @@ DeleteStream( )
 
 ::
 
-    void DeleteStream(string streamId);
-    Task DeleteStreamAsync(string streamId);
+    void DeleteStream(string namespaceId, string streamId);
+    Task DeleteStreamAsync(string namespaceId, string streamId);
 
 **Http**
 
 ::
 
-    DELETE Qi/Streams/{streamId}
+    DELETE Qi/{namespaceId}/Streams/{streamId}
 
 **Parameters**
+
+*namespaceId*: The namespace identifier for the request
 
 *streamId*: Identifier of the stream to delete
 
