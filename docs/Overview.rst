@@ -101,8 +101,13 @@ The following example creates a QiStream with an Id of ‘MyFistStream’ of typ
     {
         Id = streamId,
         TypeId = streamType
+<<<<<<< HEAD
     }
     _service.GetOrCreateStream("Namespace1", stream1);
+=======
+    };
+    _service.GetOrCreateStream(stream1);
+>>>>>>> refs/remotes/origin/master
 
 The stream in the previous example can now be used to hold data values of 
 the structure that is defined in mySimpleType. The stream's Name, 
