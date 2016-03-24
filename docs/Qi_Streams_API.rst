@@ -94,7 +94,6 @@ Searches for and returns streams that fit search criteria
    IEnumerable<QiStream> GetStreams(string searchText, int skip, int count);
    Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
   
-  Should the above have a namespace parameter also?
 
 *Http*
 
@@ -113,7 +112,7 @@ Searches for and returns streams that fit search criteria
  
 **Optional parameters**
 
-``skip`
+``skip``
   The number of matched stream names to skip over before returning the matching streams.
 ``count``
   The maximum number of streams to return. 
