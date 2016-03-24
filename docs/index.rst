@@ -16,7 +16,7 @@ Watch the video below to help you get started with Qi:
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    Introducing_Qi
    Quick_Start
