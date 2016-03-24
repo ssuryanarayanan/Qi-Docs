@@ -1,6 +1,16 @@
 Reading Data
 ============
 
+The QI API includes an assortment of methods for reading of data from streams.  
+
+- To read data between two indexes, use GetWindowValues.
+- To read defined elements from a start index, use GetRangeValues
+- To filter the data, use GetRangeValues
+- To use multiple calls with ‘continuation’, use GetWindowValues , GetRangeValues
+- To read at individual indexes, use GetFirstValue, GetLastValue, GetValue, FindDiscreteValue, etc….
+- To search in reverse, use GetRangeValues
+
+
 Generics and tuples
 ------------
 
