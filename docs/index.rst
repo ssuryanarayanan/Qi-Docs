@@ -8,11 +8,6 @@ complex data types to suit the application needs. An assortment of
 methods with customizable behaviors are available to read data and
 easily obtain needed information.
 
-Watch the video below to help you get started with Qi:
-
-.. raw:: html
-
-   <a href="http://www.osisoft.com/Templates/item-abstract.aspx?id=13014" target="_blank"><img src="http://cdn.osisoft.com/corp/en/media/videos/Getting%20Started%20with%20Qi.jpg"/></a>   
 
 
 .. toctree::
