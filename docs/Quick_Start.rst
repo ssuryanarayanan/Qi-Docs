@@ -13,7 +13,7 @@ streams, and behaviors.
    _service.GetOrCreateNamespaceType(“Namespace1”;);
 
 
-Step2: Create data types
+Step 2: Create data types
 ------------------------
 
 A QiType consists of one or more index properties and one or more
@@ -84,8 +84,7 @@ and TypeId cannot be changed after the stream has been created.
 Additonal information about streams can be found in
 `QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__.
 
-To define Stream behaviors
---------------------------
+**To define Stream behaviors**
 
 Qi Stream Behaviors are applied to streams to affect how certain data
 read operations are performed. The Stream Behavior object affects whether
