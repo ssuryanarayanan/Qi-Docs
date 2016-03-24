@@ -35,10 +35,7 @@ Content is serialized event of type T
 ``T item``
   The event to insert, where T is the type of the event and the stream
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -86,10 +83,7 @@ Content is serialized list of events of type T
 ``T items``
   The list of events to insert, where T is the type of the stream and events
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -139,10 +133,7 @@ Content is serialized patch property
 ``T item``
   Object with index and new values to patch in the stream.
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -199,10 +190,7 @@ Content is serialized list of patch property values
 ``T items``
   List which contain indexes and new values to patch in the stream.
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -258,10 +246,7 @@ Removes the event at the index from the specified stream.
 ``index``
   String representation of the index in the stream to be deleted.
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -309,10 +294,7 @@ Removes the event at each index from the specified stream.
 ``index``
   List of indices at which to remove events in the stream
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -365,10 +347,7 @@ Removes a range of values at and between the given indices.
   String representation of the ending index value
   
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -413,10 +392,7 @@ Content is serialzied replacement object
 ``string streamId``
   The stream identifier for the request.
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -463,10 +439,7 @@ Content is serialized list of replacement values
 ``T items``
   List of new items to replace existing items in the stream
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -515,10 +488,6 @@ Content is serialized updated value
   Event to write to the stream
   
   
-**Optional parameters**
-
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -564,10 +533,7 @@ Content is serialized list of updated values
 ``T items``
   Events to write to the stream.
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
