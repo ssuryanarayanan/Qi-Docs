@@ -401,7 +401,7 @@ Security
 
 **Notes**
   Throws an exception if the stream does not have an event to be replaced at the
-  specified index.
+  specified index. Overloads are available to help you set the indexes you want removed.
   
   
 ``ReplaceValues()``
@@ -414,9 +414,7 @@ Writes **items** over existing events in the specified stream.
 
 ::
 
-    void ReplaceValues(string tenantId, string namespaceId, IDictionary<string, IQiValues> items);
     void ReplaceValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task ReplaceValuesAsync(string tenantId, string namespaceId, IDictionary<string, IQiValues > items);
     Task ReplaceValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
 
 **Http**
@@ -450,7 +448,7 @@ Security
 **Notes**
   Throws an exception if any index does not have a value to be
   replaced. If any individual event fails to be replaced, the entire
-  operation is rolled back and no replaces are performed. The index that
+  operation is rolled back and no replaces are performed. The index  (of the *items* IEnumerable) that
   caused the issue and the streamId are included in the error response.
 
 
@@ -508,9 +506,7 @@ Writes items to the specified stream.
 
 ::
 
-    void UpdateValues(string tenantId, string namespaceId, IDictionary<string, IQiValues > items);
     void UpdateValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task UpdateValuesAsync(string tenantId, string namespaceId, IDictionary<string, IQiValues > items);
     Task UpdateValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
 
 **Http**
@@ -544,6 +540,6 @@ Security
   ``UpdateValues()`` performs an insert
   or a replace depending on whether an event already exists at the item's
   indexes. If any item fails to write, the entire operation is rolled back and
-  no events are written to the stream. The index that caused the issue is
+  no events are written to the stream. The index (of the *items* IEnumerable) that caused the issue is
   included in the error response.
 
