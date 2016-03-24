@@ -33,7 +33,7 @@ Overrides                 A list of overrides to the Mode setting when individua
 |ExtrapolationMode |QiStreamExtrapolation           |Controls extrapolation behavior for the stream    |
 +------------------+--------------------------------+--------------------------------------------------+
 
-Stream behavior objects are always referenced by the **Id** property. A
+Stream behavior objects are always referenced by the Id property. A
 stream can be changed to use a different stream behavior or the stream
 behavior itself can be changed after it is created or configured.
 
@@ -48,27 +48,27 @@ behavior itself can be changed after it is created or configured.
 
 **Methods affected by QiStreamBehavior**
 
-+-----------------------------------------------------------------------------------------+----------------------------------------+
-| Method                                                                                  | Details                                |
-+=========================================================================================+========================================+
-|`GetValue( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__     |Stream behavior is applied when the     |
-|                                                                                         |index is between, before, or after all  |
-|                                                                                         |data.                                   |
-+-----------------------------------------------------------------------------------------+----------------------------------------+
-|`GetValues( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__   |Stream behavior is applied when an      |
-|                                                                                         |index determined by the call is         | 
-|                                                                                         |between, before, or after all data.     |
-+-----------------------------------------------------------------------------------------+----------------------------------------+
-| `GetWindowValues( )                                                                     |Stream behavior is applied to indexes   |
-| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__          |between, before, or after data when the |
-|                                                                                         |calls Boundary parameter is set to      |
-|                                                                                         |ExactOrCalculated                       |
-+-----------------------------------------------------------------------------------------+----------------------------------------+
-| `GetRangeValues( )                                                                      |Stream behavior is applied to indexes   |
-| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__           |between, before, or after data when the |
-|                                                                                         |calls Boundary parameter is set to      |
-|                                                                                         |ExactOrCalculated                       |
-+-----------------------------------------------------------------------------------------+----------------------------------------+
++---------------------------------------------------------------------------------------------+----------------------------------------+
+| Method                                                                                      | Details                                |
++=============================================================================================+========================================+
+|`GetValue( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__         |Stream behavior is applied when the     |
+|                                                                                             |index is between, before, or after all  |
+|                                                                                             |data.                                   |
++---------------------------------------------------------------------------------------------+----------------------------------------+
+|`GetValues( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__       |Stream behavior is applied when an      |
+|                                                                                             |index determined by the call is         | 
+|                                                                                             |between, before, or after all data.     |
++---------------------------------------------------------------------------------------------+----------------------------------------+
+| `GetWindowValues( )                                                                         |Stream behavior is applied to indexes   |
+| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__              |between, before, or after data when the |
+|                                                                                             |calls Boundary parameter is set to      |
+|                                                                                             |ExactOrCalculated                       |
++---------------------------------------------------------------------------------------------+----------------------------------------+
+| `GetRangeValues( )                                                                          |Stream behavior is applied to indexes   |
+| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__               |between, before, or after data when the |
+|                                                                                             |calls Boundary parameter is set to      |
+|                                                                                             |ExactOrCalculated                       |
++---------------------------------------------------------------------------------------------+----------------------------------------+
 
 The code in the following example shows how to define and create a simple
 ``QiStreamBehavior``:
@@ -81,7 +81,7 @@ The code in the following example shows how to define and create a simple
         Id = behaviorId,
         Mode = QiStreamMode.StepwiseContinuousLeading,
     };
-    _service.GetOrCreateBehavior(namespaceId, createdBehavior);
+    _service.GetOrCreateBehavior(tenantId, namespaceId, createdBehavior);
 
 After the stream behavior is defined, the behavior can be applied to a
 stream as shown in the next example:
@@ -96,7 +96,7 @@ stream as shown in the next example:
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _service.GetOrCreateStream(namespaceId, stream1);
+    _service.GetOrCreateStream(tenantId, namespaceId, stream1);
 
 Interpolation
 ------------
@@ -249,8 +249,8 @@ Overrides
 As described above, the interpolation behavior for the values in a
 stream is determined by the stream behavior *Mode*; however, individual
 data types can be overridden to conform to another behavior by setting
-the *Overrides* property. In this way the user can have different
-interpolation behaviors for different types within the stream data. Without
+the *Overrides* property. In this way you can have different interpolation 
+behaviors for different parameters within the stream data’s type. Without
 the overrides, all properties inherit the interpolation behavior defined by
 the *Mode* object of the stream behavior.
 
@@ -268,148 +268,3 @@ of the types within a stream and a different setting (for example,
 StepwiseContinuousLeading) is desired for other properties within the
 stream, set the *Mode* to StepwiseContinuousLeading and use the override
 list to set the desired property to Discrete.
-
-DeleteBehavior( )
-------------
-
-**Qi Client Library**
-
-::
-
-    void DeleteBehavior(string namespaceId, string behaviorId);
-    Task DeleteBehaviorAsync(string namespaceId, string behaviorId);
-
-**Http**
-
-::
-
-    DELETE Qi/{namespaceId}/Behaviors/{behaviorId}
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-*behaviorId*: Id of the behavior to delete; the behavior must not be
-associated with any streams
-
-**Security** Allowed by administrator account
-
-**Operation** Deletes the specified behavior Stream Behaviors objects
-that are still associated with a stream cannot be deleted
-
-GetBehavior( )
-------------
-
-**Qi Client Library**
-
-::
-
-    QiStreamBehavior GetBehavior(string namespaceId, string behaviorId);
-    Task<QiStreamBehavior> GetBehaviorAsync(string namespaceId, string behaviorId);
-
-**Http**
-
-::
-
-    GET Qi/{namespaceId}/Behaviors/{behaviorId}
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-*behaviorId*: Id of the behavior definition to retrieve
-
-**Security** Allowed by administrator and user accounts
-
-**Operation** Gets a QiStreamBehavior object from service
-
-GetBehaviors( )
-------------
-
-**Qi Client Library**
-
-::
-
-    IEnumerable<QiStreamBehavior> GetBehaviors(string namespaceId);
-    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(string namespaceId);
-
-**Http**
-
-::
-
-    GET Qi/{namespaceId}/Behaviors
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-**Security** Allowed by administrator and user accounts
-
-**Operation** Returns IEnumerable of all behavior objects
-
-GetOrCreateBehavior( )
-------------
-
-**Qi Client Library**
-
-::
-
-    QiStreamBehavior GetOrCreateBehavior(string namespaceId, QiStreamBehavior entity);
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string namespaceId, QiStreamBehavior entity);
-
-**Http**
-
-::
-
-    POST  Qi/{namespaceId}/Behaviors
-
-Content is serialized ``QiStreamBehavior`` entity
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-*entity*: A QiStreamBehavior object to add to Qi
-
-**Security** Allowed by administrator account
-
-**Operation** Creates a QiStreamBehavior (or returns it if it already
-exists) If *entity* already exists on the server by *Id*, that existing
-behavior is returned to the caller unchanged
-
-UpdateBehavior( )
-------------
-
-**Qi Client Library**
-
-::
-
-    void UpdateBehavior(string namespaceId, string behaviorId, QiStreamBehavior entity);
-    Task UpdateBehaviorAsync(string namespaceId, string behaviorId, QiStreamBehavior entity);
-
-**Http**
-
-::
-
-    PUT Qi/{namespaceId}/Behaviors/{behaviorId}
-
-Content is a serialization of the behavior to update
-
-**Parameters**
-
-*namespaceId*: The namespace identifier for the request
-
-*entity*: Updated stream behavior
-
-*behaviorId*: Identifier of the stream behavior to update
-
-**Security** Allowed by Administrator account
-
-**Operation** This method replaces the stream’s existing behavior with
-those defined in the ‘entity’. If certain aspects of the existing
-behavior are meant to remain, they must be included in entity.
-
-An override list can be included in the ‘entity’ of this call to cause
-the addition, removal or change to this list.
-
-The Stream Behavior Id cannot be changed.

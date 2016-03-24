@@ -1,36 +1,8 @@
-Overview
-########
+Quick start
+###########
 
-Code samples for Python, .NET, Node.js, and Java can be found in the
-Qi-Samples repository on GitHub. Obtain Qi REST API access keys from
-`qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
-
-The primary object of the Qi architecture is the *tenant*. Within a tenant you create one or more 
-*Namespaces*, in which data types are defined and data is stored. 
-
-.. image:: images/ContainersA.png
-
-You use Namespaces to separate tenants into logical entities. For example, 
-you might want to have one Namespace for production, one for development, and 
-perhaps another to serve as a pre-production staging area where your QA 
-group can run certification testing.
-
-Within a Namespace, Qi defines three different objects in which to store and manage data:
-
--  **Type**: A user-defined structure that denotes a single measured event or
-   object for storage.
--  **Stream**: A basic unit of storage consisting of an ordered series of
-   objects that conform to a type definition.
--  **Stream Behavior**: Defines how Qi interpolates or extrapolates
-   data during event retrieval when requests occur before, after, or between
-   existing data events.
-
-.. image:: images/Containers_1A.png
-
-Each Namespace stores a separate and independent list of Type, Stream, and Stream Behavior objects.
-
-To create a Namespace
----------------------
+Step 1: Create a Namespace
+--------------------------
 
 You must start by creating a Namespace so that you have a place in which to create types, 
 streams, and behaviors.
@@ -41,8 +13,8 @@ streams, and behaviors.
    _service.GetOrCreateNamespaceType(“Namespace1”;);
 
 
-To create a type
-----------------
+Step2: Create data types
+------------------------
 
 A QiType consists of one or more index properties and one or more
 data properties. You use index properties to arrange data into a sequence.
@@ -83,8 +55,8 @@ The following example creates a simple type:
     QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
     var mySimpleType = _service.GetOrCreateType("Namespace1", SimpleType);
 
-To create a stream
-------------------
+Step 3: Create a stream
+-----------------------
 
 You use streams to hold data of a predefined type. To create a QiStream
 the Id and TypeId of the stream must be defined. Optionally, you can also
@@ -124,8 +96,8 @@ Additonal information about stream behaviors can be found in
 `QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
 
 
-To write data
--------------
+Step 4: Write data
+------------------
 
 Qi has several methods that can be used to write data. For example,
 `*InsertValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalue>`__
@@ -176,8 +148,8 @@ The following example writes multiple values to the stream:
 Additonal information about writing data can be found in `Writing
 data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
 
-To read data
-------------
+Step 5: Read data
+-----------------
 
 Qi includes several different read methods and overloads that can be used to
 retrieve data from streams. These methods can be used in a large 
@@ -206,18 +178,4 @@ Additional information about reading data can be found in `Reading
 data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__.
 
 
-Security
---------
-
-There are two types of security accounts for Qi users:
-
-+----------------+------------------------------------------------------------------+
-| Account Type   | Description                                                      |
-+----------------+------------------------------------------------------------------+
-| Administrator  | Allowed to do all CRUD operations on Qi type, stream and stream  |
-|                | behavior objects. Also allowed to read and write data to streams |
-+----------------+------------------------------------------------------------------+
-| User           | Allowed read operations on Qi objects and allowed to read data   | 
-|                | from streams                                                     |
-+----------------+------------------------------------------------------------------+
 

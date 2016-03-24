@@ -1,10 +1,15 @@
-QiTypes
-########
+======================
+QiTypes information
+======================
 
-A QiType is used by Qi to store definable data types. A QiType
+This section contains information about how to configure and use QiTypes. To use Qi,
+you define QiTypes to describe the kinds of data you want to store, 
+then you create QiStreams that are associated with one of your QiTypes.
+
+A QiType
 consists of one or more properties that are either simple atomic types
-(such as an integer) or previously-defined QiTypes. A type is always
-referenced with its Id property. Using a QiType as a property
+(such as an integer) or previously defined QiTypes. A type is always
+referenced with its ID property. Using a QiType as a property
 permits the construction of complex, nested data types. A QiType must
 have have one or more properties that constitute an ordered key to be
 used as an index. While a timestamp (DateTime) is a very common type of
@@ -18,7 +23,7 @@ The following table shows the required and optional QiType properties:
 +---------------+-------------------------+----------------------------------------+
 | Property      | Type                    | Details                                |
 +===============+=========================+========================================+
-| Id            | String                  | Required Id for referencing the type   |
+| Id            | String                  | Required ID for referencing the type   |
 +---------------+-------------------------+----------------------------------------+
 | Name          | String                  | Optional name                          |
 +---------------+-------------------------+----------------------------------------+
@@ -38,12 +43,13 @@ The following table shows the required and optional QiType properties:
 5. Can contain a maximum of 260 characters
 
 
+
 Compound Indexes
 ----------------
 
 When defining a QiType, the index property you use to sequence the
-data must be defined in the type definition. Often a single
-index, such as DateTime, is used but for more complex scenarios Qi
+data must be defined in the type definition. Often, a single
+index such as DateTime is used, but for more complex scenarios Qi
 allows multiple indexes to be defined in a type. Multiple indexes are
 concatenated to form a compound index. The Qi REST API methods
 that use tuples were created to assist you to use compound
@@ -55,73 +61,30 @@ Supported QiTypes
 The following types are supported when
 creating a QiType:
 
-* Array
-* Boolean
-* BooleanArray
-* Byte
-* ByteArray
-* ByteEnum
-* Char
-* CharArray
-* DateTime
-* DateTimeArray
-* DateTimeOffset
-* DateTimeOffsetArray
-* DBNull
-* Decimal
-* DecimalArray
-* Double
-* DoubleArray
-* Empty
-* Guid
-* GuidArray
-* IDictionary
-* IEnumerable
-* IList
-* Int16
-* Int16Array
-* Int16Enum
-* Int32
-* Int32Array
-* Int32Enum
-* Int64
-* Int64Array
-* Int64Enum
-* NullableBoolean
-* NullableByte
-* NullableChar
-* NullableDateTime
-* NullableDateTimeOffset
-* NullableDecimal
-* NullableDouble
-* NullableGuid
-* NullableInt16
-* NullableInt32
-* NullableInt64
-* NullableSByte
-* NullableSingle
-* NullableTimeSpan
-* NullableUInt16
-* NullableUInt32
-* NullableUInt64
-* Object
-* SByte
-* SByteArray
-* SByteEnum
-* Single
-* SingleArray
-* String
-* StringArray
-* TimeSpan
-* TimeSpanArray
-* UInt16
-* UInt16Array
-* UInt16Enum
-* UInt32
-* UInt32Array
-* UInt32Enum
-* UInt64
-* UInt64Array
-* UInt64Enum
-* Version
-* VersionArray
+======================   =================   =======================
+Array                    Boolean             BooleanArray
+Byte                     ByteArray           ByteEnum
+Char                     CharArray           DateTime
+DateTimeArray            DateTimeOffset      DateTimeOffsetArray
+DBNull                   Decimal             DecimalArray
+Double                   DoubleArray         Empty
+Guid                     GuidArray           IDictionary
+IEnumerable              IList               Int16
+Int16Array               Int16Enum           Int32
+Int32Array               Int32Enum           Int64
+Int64Array               Int64Enum           NullableBoolean
+NullableByte             NullableChar        NullableDateTime
+NullableDateTimeOffset   NullableDecimal     NullableDouble
+NullableGuid             NullableInt16       NullableInt32
+NullableInt64            NullableSByte       NullableSingle
+NullableTimeSpan         NullableUInt16      NullableUInt32
+NullableUInt64           Object              SByte
+SByteArray               SByteEnum           Single
+SingleArray              String              StringArray
+TimeSpan                 TimeSpanArray       UInt16
+UInt16Array              UInt16Enum          UInt32
+UInt32Array              UInt32Enum          UInt64
+UInt64Array              UInt64Enum          Version
+VersionArray
+======================   =================   =======================
+
