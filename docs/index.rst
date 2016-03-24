@@ -26,7 +26,7 @@ easily obtain needed information.
    Reading_Data
    Reading_Data_API
    Filter Expressions
-   Samples
+   samples
    support
    preview
    
