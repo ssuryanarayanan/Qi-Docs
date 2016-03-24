@@ -31,5 +31,6 @@ Watch the video below to help you get started with Qi:
    Reading_Data
    Reading_Data_API
    Filter Expressions
+   Samples
    preview
    
