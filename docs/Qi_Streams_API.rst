@@ -7,7 +7,7 @@ The API calls in this section are all used to create and manipulate QiStreams. S
 ``GetStream()``
 ----------------
 
-Returns a QiStream object from the specified namespace that matches the specified typeId.
+Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
 
 
 **Syntax**
@@ -30,7 +30,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
-``typeId``
+``string streamId``
   The ID of the stream to retrieve
 
 **Optional parameters**
@@ -38,7 +38,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
   None
   
 **Returns**
-  A QiStream object for the specified typeId and namespace
+  A QiStream object for the specified streamId and namespace
 
 Security
   Allowed by administrator and user accounts
@@ -225,7 +225,7 @@ Security
 ``DeleteStream()``
 ----------------
 
-Deletes a stream that matches the QiStream entity within the specified namespace.
+Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.
 
 **Syntax**
 
