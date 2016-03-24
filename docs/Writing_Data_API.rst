@@ -6,7 +6,7 @@ API calls for writing data
 ``InsertValue()``
 ----------------
 
-Inserts data into the specified stream. 
+Inserts data into the specified stream. Throws an exception if data is already present at the index used in ‘item’.
 
 **Syntax**
 
@@ -50,16 +50,14 @@ Security
 ``InsertValues()``
 ----------------
 
-Inserts items into the specified stream. 
+Inserts items into the specified stream. Throws an exception if data is already present at an index used in one of the ‘items'.
 
 
 **Syntax**
 
 ::
 
-    void InsertValues(string tenantId, string namespaceId, IDictionary<string, IQiValues> items);
     void InsertValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task InsertValuesAsync(string tenantId, string namespaceId, IDictionary<string, IQiValues > items);
     Task InsertValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
 
 **Http**
@@ -101,7 +99,7 @@ Security
 ``PatchValue()``
 ----------------
 
-Modifies the specified stream event,
+Modifies the specified stream event. PatchValue affects only the data item parameters that are included in the call.
 
 
 **Syntax**
@@ -138,9 +136,10 @@ Content is serialized patch property
   An IEnumerable of all behavior objects
 
 **Notes**
-  ``PatchValue()`` is used to modify the stream events. The values
-  for each **SelectExpression** field are taken from the item and replaced
-  (patched) in the stream using the **item** index.
+  ``PatchValue()`` is used to modify the stream events. Only the values 
+  for fields specified in the SelectExpression are taken from the item 
+  and replaced (patched) in the stream using the item index.
+
   
 Security
   Allowed by administrator accounts
@@ -153,7 +152,6 @@ Security
     PatchValue(namespaceId, streamId, “Value”, obj);  
   
 
-  
 
 ``PatchValues()``
 ----------------
@@ -206,7 +204,7 @@ Security
 
   **PatchValues** may be thought of as a series of PatchValue calls. If there
   is a problem patching any individual event, the entire operation is
-  rolled back and the error will indicate the streamID and index of the
+  rolled back and the error will indicate the streamId and index of the
   problem.  
   
 
@@ -214,7 +212,7 @@ Security
 ``RemoveValue()``
 ----------------
 
-Removes the event at the index from the specified stream.
+Removes the event at the index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. This method throws an exception if there is no data at the specified index.
 
 
 **Syntax**
@@ -262,7 +260,7 @@ Security
 ``RemoveValues()``
 ----------------
 
-Removes the event at each index from the specified stream.
+Removes the event at each index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. 
 
 
 **Syntax**
@@ -304,7 +302,9 @@ Security
 **Notes**
   If any individual event fails to be removed, the entire RemoveValues
   operation is rolled back and no events are removed. The streamId and index
-  that caused the issue are included in the error response.
+  that caused the issue are included in the error response. 
+  
+  If you attempt to remove events at indexes that have no events, an exception is thrown. If this occurs, you can use the ‘RemoveWindowValues’ call to remove any events from a specified ‘window’ of indexes, which will not throw exceptions if no data is found.
 
 
 
