@@ -1,7 +1,8 @@
 QiType API calls
 ==================
 
-The API calls in this section are all used to create and manipulate QiTypes. See .. _Qi Types: https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Qi_Types.rst for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
+The API calls in this section are all used to create and manipulate QiTypes. See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ for general QiType information, working with compound indexes, and supported QiTypes,
+
 
 ``GetStreamType()``
 ----------------
