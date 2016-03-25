@@ -34,10 +34,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
 ``string streamId``
   The ID of the stream to retrieve
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   A QiStream object for the specified streamId and namespace
 
@@ -71,10 +68,7 @@ Returns all streams from the specified namespace.
 ``string namespaceId``
   The namespace identifier for the request
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   IEnumerable of all QiStreams in the namespace of the defined tenant.
 
@@ -155,10 +149,7 @@ Returns a stream that matches the QiStream qistream within the specified namespa
 ``qistream``
   Qi Stream object
  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An QiStream
 
@@ -209,10 +200,7 @@ that are omitted from the entity will remove the field from the stream if the fi
 ``qistream``
   Updated stream object
  
-**Optional parameters**
 
-  None
-  
 **Returns**
   A QiStream
 
@@ -249,10 +237,7 @@ Deletes a stream that matches the QiStream entity within the specified tenantId 
 ``streamId``
   The identifier of the stream to delete.
 
-  **Optional parameters**
 
-  None
-  
 **Returns**
   A QiStream
 
