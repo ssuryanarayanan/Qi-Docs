@@ -2,7 +2,7 @@ Writing Data
 ============
 
 The Qi API library includes an assortment of methods that are used to write, replace, and remove data from streams.
-Methods can be used to operatte on one or more data events in a single call. All methods that write or manipulate data values are  allowed only by the administrator security accounts.
+Methods can be used to operate on one or more data events in a single call. All methods that write or manipulate data values are  allowed only by the administrator security accounts.
 
 
 Write exception handling
