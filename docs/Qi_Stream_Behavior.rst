@@ -48,27 +48,20 @@ behavior itself can be changed after it is created or configured.
 
 **Methods affected by QiStreamBehavior**
 
-+---------------------------------------------------------------------------------------------+----------------------------------------+
-| Method                                                                                      | Details                                |
-+=============================================================================================+========================================+
-|`GetValue( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalue>`__         |Stream behavior is applied when the     |
-|                                                                                             |index is between, before, or after all  |
-|                                                                                             |data.                                   |
-+---------------------------------------------------------------------------------------------+----------------------------------------+
-|`GetValues( ) <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getvalues>`__       |Stream behavior is applied when an      |
-|                                                                                             |index determined by the call is         | 
-|                                                                                             |between, before, or after all data.     |
-+---------------------------------------------------------------------------------------------+----------------------------------------+
-| `GetWindowValues( )                                                                         |Stream behavior is applied to indexes   |
-| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getwindowvalues>`__              |between, before, or after data when the |
-|                                                                                             |calls Boundary parameter is set to      |
-|                                                                                             |ExactOrCalculated                       |
-+---------------------------------------------------------------------------------------------+----------------------------------------+
-| `GetRangeValues( )                                                                          |Stream behavior is applied to indexes   |
-| <https://qi-docs.readthedocs.org/en/latest/Reading%20data/#getrangevalues>`__               |between, before, or after data when the |
-|                                                                                             |calls Boundary parameter is set to      |
-|                                                                                             |ExactOrCalculated                       |
-+---------------------------------------------------------------------------------------------+----------------------------------------+
+`GetValue( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalue>`__
+  Stream behavior is applied when the index is between, before, or after all data.
+
+`GetValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalues>`__
+  Stream behavior is applied when an index determined by the call is between, before, or after all data.
+
+`GetWindowValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getwindowvalues>`__
+  Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
+
+`GetRangeValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getrangevalues>`__
+  Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
+
+
+
 
 The code in the following example shows how to define and create a simple
 ``QiStreamBehavior``:
@@ -240,7 +233,7 @@ values for each **Mode** value:
 
 For additonal information about the effect of stream behaviors, see the
 documentation on the `read
-method <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__
+method <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html>`__
 you are using.
 
 Overrides
