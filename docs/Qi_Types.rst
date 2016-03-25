@@ -1,5 +1,5 @@
 ======================
-QiTypes information
+QiType information
 ======================
 
 This section contains information about how to configure and use QiTypes. To use Qi,
