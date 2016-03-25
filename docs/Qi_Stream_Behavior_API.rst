@@ -33,10 +33,7 @@ Deletes a QiStream behavior from the specified namespace that matches the specif
 ``behaviorId``
   The ID of the behavior to delete.
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   A QiStream object for the specified typeId and namespace.
 
@@ -72,10 +69,6 @@ Retrieves a QiStreamBehavior from the specified namespace that matches the speci
   The namespace identifier for the request
 
 
-**Optional parameters**
-
-  None
-  
 **Returns**
   A QiStream object
 
@@ -112,10 +105,7 @@ Retrieves all QiStream behaviors from a namespace.
 ``behaviorId``
   The ID of the behavior to retrieve.
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -152,10 +142,7 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 ``qibehavior``
   A QiStreamBehavior object to add to Qi.
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects.
 
@@ -193,10 +180,7 @@ the addition, removal, or change to this list.
 ``qibehavior``
   The updated stream behavior
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
