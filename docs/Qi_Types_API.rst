@@ -31,9 +31,6 @@ string ``namespaceId``
 string ``streamId``
   The ID of the stream to search for the specified type definition
 
-**Optional parameters**
-
-    None
 
 **Returns**
 
@@ -68,13 +65,10 @@ Returns the type of the specified ``typeId`` from the specified namespace.
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
-``typeId``
+``string typeId``
   The ID of the type to retrieve
 
-**Optional parameters**
 
-  None
-  
 **Returns**
   A QiType specified by the typeId
 
@@ -108,11 +102,6 @@ Returns a list of all types within a given namespace.
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
-
-
-**Optional parameters**
-
-  None
 
 **Returns**
 
@@ -153,9 +142,6 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
 ``QiType qitype``
   The type of the stream for which the type request is made
 
-**Optional parameters**
-
-  None
 
 **Returns**
 
@@ -195,10 +181,6 @@ Deletes a type from the specified namespace. Note that a type cannot be deleted 
 ``string typeId``
   The ID of the type to delete
 
-**Optional parameters**
-
-  None
-
 **Returns**
 
   Qitype
@@ -236,9 +218,6 @@ Updates the definition of a type. Note that a type cannot be updated if there ar
 ``string qitype``
   The qitype of the type to update
 
-**Optional parameters**
-
-  None
 
 **Returns**
 
