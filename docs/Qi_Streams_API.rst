@@ -1,7 +1,8 @@
 QiStream API calls
 ==================
 
-The API calls in this section are all used to create and manipulate QiStreams. See .. _Qi Types: https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Qi_Streams.rst for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
+
+The API calls in this section are all used to create and manipulate QiStreams. See `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
 
 
 ``GetStream()``
