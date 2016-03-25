@@ -1,8 +1,6 @@
 Qi Namespaces
 #############
 
-!!! This topic needs to be verified !!!
-
 When you create a tenant in Qi, you define a Type (which defines the structure of your data), 
 a Stream (which creates an area in which to store your data), and you define a Stream Behavior 
 (which defines rules for how data is read). 
