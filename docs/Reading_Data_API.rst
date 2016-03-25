@@ -36,10 +36,7 @@ Searches for data in a stream using the specified search mode.
 ``QiSearchMode mode``
   Search mode (see **Notes** below).
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -141,11 +138,7 @@ Returns an event from the specified stream at the specified index.
 ``index``
   String representation of the index value at which to search.
 
-  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -218,11 +211,7 @@ Retrieves the first data event in a stream.
 ``streamId``
   The stream identifier for the request.
 
-  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -262,11 +251,7 @@ Retrieves the last data event in a stream.
 ``streamId``
   The stream identifier for the request.
 
-  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -336,10 +321,7 @@ Retrieves events from a stream based on a starting index and a requested number 
 ``filterExpression``
   String containing an OData filter expression (see *Notes* section below).
   
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -517,11 +499,7 @@ Retrieves a specified data event from a stream.
   String representation of the index value for GetValue or IEnumerable of index
   values requested for GetValues.
   
-  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -625,11 +603,7 @@ events between **startIndex** and **endIndex**.
   Number of equally-spaced calculated events to return within the *startIndex* and *endIndex* boundaries.
 
   
-  
-**Optional parameters**
 
-  None
-  
 **Returns**
   An IEnumerable of all behavior objects
 
@@ -718,11 +692,6 @@ expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
 ``selectExpression``
   Expression designating which fields of the stream's type should make up the return events.
 
-  
-  
-**Optional parameters**
-
-  None
   
 **Returns**
   An IEnumerable of all behavior objects
