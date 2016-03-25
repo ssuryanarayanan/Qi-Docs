@@ -49,17 +49,17 @@ data properties. You use index properties to arrange data into a sequence.
 For example, DateTime is a common index property, but any native type can be used as
 an index as long as it allows for ordering of values. For information about
 compound indexes refer to:
-`QiTypes <https://qi-docs.readthedocs.org/en/latest/QiTypes/#compound-indexes>`__.
+`QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
 sending it to Qi using `*GetOrCreateType(
-)* <https://qi-docs.readthedocs.org/en/latest/QiTypes/#getorcreatetype>`__
+)* <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetype>`__
 method.
 
 A wide variety of QiType data properties are available, 
 including lists, arrays and enumerations. For additional information,
 including a detailed list of supported data types, refer to
-`QiTypes <https://qi-docs.readthedocs.org/en/latest/QiTypes/>`__.
+`QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html>`__.
 
 The following example creates a simple type:
 
@@ -109,8 +109,8 @@ the structure that is defined in mySimpleType. The stream's Name,
 Description, and BehaviorId fields can be modified; however, the Id 
 and TypeId cannot be changed after the stream has been created.
 
-Additonal information about streams can be found in
-`QiStreams <https://qi-docs.readthedocs.org/en/latest/QiStreams/>`__.
+Information about using streams can be found here: 
+`QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__, while stream API information is here: `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams_API.html>`__.
 
 To define Stream behaviors
 --------------------------
@@ -121,26 +121,26 @@ interpolation or extrapolation will be done when the
 index of a read operation falls between, before, or after stream data.
 
 Additonal information about stream behaviors can be found in
-`QiStreamBehaviors <https://qi-docs.readthedocs.org/en/latest/QiStreamBehaviors/>`__.
+`QiStreamBehaviors <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__. Qi Stream behavior API calls can be found here: `QiStreamBehavior API calls <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior_API.html>`__.
 
 
 To write data
 -------------
 
 Qi has several methods that can be used to write data. For example,
-`*InsertValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalue>`__
+`InsertValue() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalue>`__
 is used to write a single data event to a stream. If the data event
 includes an index at that is the same as a previous event, 
 this method will throw an exception. However
-`*UpdateValue()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#updatevalue>`__
+`UpdateValue() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalue>`__
 can also be used to write a single event to a stream, and will overwrite
 the existing event with the new event.
 
 Each of these methods has a counterpart that acts upon a list of data
 events instead of only a single event. For example,
-`*InsertValues()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#insertvalues>`__
+`InsertValues() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalue>`__
 writes multiple events. Similarly,
-`*UpdateValues()* <https://qi-docs.readthedocs.org/en/latest/Writing%20data/#updatevalues>`__
+`UpdateValues() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalues>`__
 is used to update multiple events.
 
 The following example writes a single data event to the ‘MyFirstStream’
@@ -174,7 +174,7 @@ The following example writes multiple values to the stream:
     _service.UpdateValues("Namespace1", streamId, writeEvents);
 
 Additonal information about writing data can be found in `Writing
-data <https://qi-docs.readthedocs.org/en/latest/Writing%20data/>`__.
+data <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data.html>`__. Information about API calls related to writing data can be found here: `API calls for writing data <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html>`__.
 
 To read data
 ------------
@@ -203,7 +203,7 @@ the ‘(”o”)’ formatting ensures that the precision of the
 DateTime value is included on the string value.
 
 Additional information about reading data can be found in `Reading
-data <https://qi-docs.readthedocs.org/en/latest/Reading%20data/>`__.
+data <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data.html>`__. Information about API calls related to reaading data can be found here: `API Calls for reading data: <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html>`__.
 
 
 Security
