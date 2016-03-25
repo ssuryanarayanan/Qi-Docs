@@ -11,12 +11,18 @@ Searches for data in a stream using the specified search mode.
 
 ::
 
-    T FindDistinctValue<T>(string tenantId, string namespaceId, string streamId, string index, QiSearchMode mode);
-    T FindDistinctValue<T, T1>(string tenantId, string namespaceId, string streamId, T1 index, QiSearchMode mode);
-    T FindDistinctValue<T, T1, T2>(string tenantId, string namespaceId, string streamId, Tuple<T1, T2> index, QiSearchMode) 
-    Task<T> FindDistinctValueAsync<T>(string tenantId, string namespaceId, string streamId, string index, QiSearchMode mode);
-    Task<T> FindDistinctValueAsync<T, T1>(string tenantId, string namespaceId, string streamId, T1 index, QiSearchMode mode);
-    Task<T> FindDistinctValueAsync<T, T1, T2>(string tenantId, string namespaceId, string streamId, Tuple<T1, T2> index, QiSearchMode mode);
+    T FindDistinctValue<T>(string tenantId, string namespaceId, string streamId, 
+      string index, QiSearchMode mode);
+    T FindDistinctValue<T, T1>(string tenantId, string namespaceId, string streamId, 
+      T1 index, QiSearchMode mode);
+    T FindDistinctValue<T, T1, T2>(string tenantId, string namespaceId, string streamId, 
+      Tuple<T1, T2> index, QiSearchMode) 
+    Task<T> FindDistinctValueAsync<T>(string tenantId, string namespaceId, string streamId, 
+      string index, QiSearchMode mode);
+    Task<T> FindDistinctValueAsync<T, T1>(string tenantId, string namespaceId, string streamId, 
+      T1 index, QiSearchMode mode);
+    Task<T> FindDistinctValueAsync<T, T1, T2>(string tenantId, string namespaceId, string streamId, 
+      Tuple<T1, T2> index, QiSearchMode mode);
 
 **Http**
 
@@ -177,8 +183,8 @@ Can be used to supply the index of the call as a different type.
 Can be used to supply the index of the call as a tuple (for compound
 indexes).
 
-See the `*FindDistinctValue(
-)* <http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue>`__
+See the `FindDistinctValue(
+) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalue>`__
 examples for an illustration of these.
 
 
@@ -393,7 +399,7 @@ Finally, events up to the number specified by count are returned.
 The filter expression uses OData query language. Most of the query
 language is supported. More information about OData Filter Expressions can
 be found in `Filter
-expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 **Calculated startIndex** When the startIndex for ``GetRangeValues( )`` 
 lands before, after, or in-between data in the stream, and the
@@ -546,8 +552,8 @@ Can be used to supply the index of the call as a different type
 Can be used to supply the index of the call as a tuple (for compound
 indexes)
 
-See the `*FindDistinctValue(
-)* <http://qi-docs.osisoft.com/en/latest/Reading%20data/#finddistinctvalue>`__
+See the `FindDistinctValue(
+) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalue>`__
 examples for an illustration of these.
 
 
@@ -625,7 +631,7 @@ For ``GetValues( )`` overloads that include the filterExpression
 parameters are used to create a list of indexes that match the OData
 filter text used. More information on OData Filter Expressions can be
 found in `Filter
-expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
 ``GetWindowValues()``
@@ -752,7 +758,7 @@ regardless of boundary type used.
 
 The filter expression uses OData syntax. More information on OData
 Filter Expressions can be found in `Filter
-expressions <http://qi-docs.osisoft.com/en/latest/Filter%20Expressions/>`__
+expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 The select expression is a CSV list of strings that indicate which fields
 of the stream type are being requested. By default all type fields are
