@@ -47,10 +47,12 @@ GetNamespace( )
 
 ::
 
-    GET "Qi/Namespaces/{namespaceId}”
+    GET "Qi/{tenantId}/Namespaces/{namespaceId}”
 
 
 **Parameters**
+
+*tenantId*: The ID of the tenant.
 
 *namespaceId*: The ID of the namespace.
 
@@ -75,10 +77,12 @@ GetNamespaces( )
 
 ::
 
-    GET "Qi/Namespaces"
+    GET "Qi/{tenantId}/Namespaces"
 
 
 **Parameters**
+
+*tenantId*: The ID of the tenant.
 
 *namespaceId*: The ID of the namespace.
 
@@ -94,19 +98,21 @@ GetOrCreateNamespace( )
 
 ::
 
-    QiNamespace GetOrCreateNamespace(QiNamespace entity);
-    Task<QiNamespace> GetOrCreateNamespaceAsync(QiNamespace entity);
+    QiNamespace GetOrCreateNamespace(QiNamespace qinamespace);
+    Task<QiNamespace> GetOrCreateNamespaceAsync(QiNamespace qinamespace);
 
 **Http**
 
 ::
 
-    POST "Qi/Namespaces/{namespaceId}"
+    POST "Qi/{tenantId}/Namespaces/"
 
 
 **Parameters**
 
-*namespaceId*: The ID of the namespace.
+*tenantId*: The ID of the tenant.
+
+*qinamespace*: QiNamespace object.
 
 **Security** Allowed by administrator account.
 
@@ -126,9 +132,11 @@ DeleteNamespace( )
 
 ::
 
-    DELETE "Qi/Namespaces/{namespaceId}”
+    DELETE "Qi/{tenantId}/Namespaces/{namespaceId}”
 
 **Parameters**
+
+*tenantId*: The ID of the tenant.
 
 *namespaceId*: The ID of the namespace.
 
