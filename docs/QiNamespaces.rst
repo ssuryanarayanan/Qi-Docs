@@ -10,10 +10,14 @@ stores information for a given tenant and can be thought of as a self-contained 
 that you use to store the entirety of the data and metadata for your tenant.
 
 You use namespaces to separate tenants into logical entities. For example, you might 
-want to have one namespace for production, one for development, and perhaps one or more 
+want one namespace for production, one for development, and perhaps one or more 
 namespaces for QA or to serve as a pre-production staging area for certification testing.
 
-You can create, delete, or obtain information about your namespaces using the following Qi methods:
+After OSIsoft assigns your tenant ID, you must create at least one namespace. You may create 
+up to five namespaces within a tenant. Contact OSIsoft if you require more than five 
+namespaces within a tenant.
+
+You can create, delete, or obtain information about your namespaces using the Qi methods outlined in this topic.
 
 The following table shows the required and optional Qi namespace objects:
 
@@ -33,15 +37,17 @@ The following table shows the required and optional Qi namespace objects:
 5. Maximum length of 260 characters
 
 
-GetNamespace( )
-----------------
+``GetNamespace( )``
+-------------------
 
-**Qi Client Library**
+Retrieves an existing namespace.
+
+**Syntax**
 
 ::
 
-    QiNamespace GetNamespace(string namespaceId);
-    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
+    QiNamespace GetNamespace(string tenantId, string namespaceId);
+    Task<QiNamespace> GetNamespaceAsync(string tenantId, string namespaceId);
 
 **Http**
 
@@ -52,19 +58,25 @@ GetNamespace( )
 
 **Parameters**
 
-*tenantId*: The ID of the tenant.
-
-*namespaceId*: The ID of the namespace.
-
-**Security** Allowed by administrator and user accounts.
-
-**Operation** Returns a namespace.
+``string tenantID``
+  The tenant identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
 
 
-GetNamespaces( )
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+  Returns a namespace.
+
+
+``GetNamespaces( )``
 ----------------
 
-**Qi Client Library**
+Retrieves a list of existing namespaces.
+
+**Syntax**
 
 ::
 
@@ -73,7 +85,7 @@ GetNamespaces( )
     Task<IEnumerable<QiNamespace>> GetNamespacesAsync();
 
 
-**Http**
+*Http*
 
 ::
 
@@ -82,24 +94,27 @@ GetNamespaces( )
 
 **Parameters**
 
-*tenantId*: The ID of the tenant.
+``string tenantID``
+  The tenant identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+  
+Security
+  Allowed by administrator and user accounts.
 
-*namespaceId*: The ID of the namespace.
-
-**Security** Allowed by administrator and user accounts.
-
-**Operation** Returns a list of namespace.
+**Returns**
+  Returns a list of namespaces.
 
 
-GetOrCreateNamespace( )
+``GetOrCreateNamespace( )``
 ----------------
 
-**Qi Client Library**
+Returns the namespace with the specified typeId and namespace, or creates the namespace if the namespace does not already exist. If the namespace exists, it is returned to the caller unchanged.
 
 ::
 
-    QiNamespace GetOrCreateNamespace(QiNamespace qinamespace);
-    Task<QiNamespace> GetOrCreateNamespaceAsync(QiNamespace qinamespace);
+    QiNamespace GetOrCreateNamespace(string tenantId, QiNamespace qinamespace);
+    Task<QiNamespace> GetOrCreateNamespaceAsync(string tenantId, QiNamespace qinamespace);
 
 **Http**
 
@@ -110,23 +125,27 @@ GetOrCreateNamespace( )
 
 **Parameters**
 
-*tenantId*: The ID of the tenant.
+``string tenantID``
+  The tenant identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
 
-*qinamespace*: QiNamespace object.
+**Security**
+  Allowed by administrator account.
 
-**Security** Allowed by administrator account.
+**Returns** 
+  Creates or returns a namespace.
 
-**Operation** Creates or returns a namespace.
 
-DeleteNamespace( )
+``DeleteNamespace( )``
 ----------------
 
-**Qi Client Library**
+**Syntax**
 
 ::
 
-    void DeleteNamespace(string namespaceId);
-    Task DeleteNamespaceAsync(string namespaceId);
+    void DeleteNamespace(string tenantId, string namespaceId);
+    Task DeleteNamespaceAsync(string tenantId, string namespaceId);
 
 **Http**
 
@@ -136,12 +155,18 @@ DeleteNamespace( )
 
 **Parameters**
 
-*tenantId*: The ID of the tenant.
+**Parameters**
 
-*namespaceId*: The ID of the namespace.
+``string tenantID``
+  The tenant identifier for the request
+``string namespaceId``
+  The namespace identifier for the request
+  
 
-**Security** Allowed by administrator account.
+**Security** 
+  Allowed by administrator account.
 
-**Operation** Deletes the namespace.
+**Returns** 
+  Deletes the namespace.
 
 
