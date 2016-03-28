@@ -4,7 +4,7 @@ QiType API calls
 The API calls in this section are all used to create and manipulate QiTypes. See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ for general QiType information, working with compound indexes, and supported QiTypes,
 
 
-``GetStreamType()``
+GetStreamType()
 ----------------
 
 Returns the type definition that is associated with a given stream from the specified namespace.
@@ -41,7 +41,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetType()``
+GetType()
 ----------------
 
 Returns the type of the specified ``typeId`` from the specified namespace. 
@@ -76,7 +76,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetTypes()``
+GetTypes()
 ----------------
 
 Returns a list of all types within a given namespace. 
@@ -112,7 +112,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetOrCreateType()``
+GetOrCreateType()
 ----------------
 
 Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the typeId exists, it is returned to the caller unchanged. 
@@ -152,7 +152,7 @@ Security
   Allowed by administrator account
 
 
-``DeleteType()``
+DeleteType()
 ----------------
 
 Deletes a type from the specified namespace. Note that a type cannot be deleted if there are streams associated with it.
@@ -190,7 +190,7 @@ Security
   Allowed by administrator account
 
 
-``UpdateType()``
+UpdateType()
 ----------------
 
 Updates the definition of a type. Note that a type cannot be updated if there are streams associated with it. Also, certain parameters cannot be changed after they are defined.
