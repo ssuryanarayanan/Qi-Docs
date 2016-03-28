@@ -1,6 +1,8 @@
 QiStreamBehavior API calls
 ==================
 
+.. highlight:: none
+
 The API calls in this section are all used to create and manipulate QiStreamBehaviors. See `QiStream behavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of a list of properties, interpolation, extrapolation, and overrides.
 
 
