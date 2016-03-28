@@ -1,7 +1,7 @@
 API Calls for reading data
 ===========================
 
-``FindDistinctValue()``
+FindDistinctValue()
 ----------------
 
 Searches for data in a stream using the specified search mode.
@@ -109,7 +109,7 @@ stream types with a compound index, such as a DateTime and an Integer.
     var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(tenantId, namespaceId, streamId, tupleId, searchMode);
 
 
-``GetDistinctValue()``
+GetDistinctValue()
 ----------------
 
 Returns an event from the specified stream at the specified index.
@@ -188,7 +188,7 @@ See the `FindDistinctValue(
 examples for an illustration of these.
 
 
-``GetFirstValue()``
+GetFirstValue()
 ----------------
 
 Retrieves the first data event in a stream.
@@ -228,7 +228,7 @@ Security
   ``GetFirstValue()`` returns null if the stream has no data (no exception is thrown).
 
 
-``GetLastValue()``
+GetLastValue()
 ----------------
 
 Retrieves the last data event in a stream.
@@ -268,7 +268,7 @@ Security
   ``GetLastValue()`` Returns null if the stream has no data (no exception is thrown).
 
 
-``GetRangeValues()``
+GetRangeValues()
 ----------------
 
 Retrieves events from a stream based on a starting index and a requested number of events.
@@ -469,7 +469,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
-``GetValue()``
+GetValue()
 ----------------
 
 Retrieves a specified data event from a stream.
@@ -557,7 +557,7 @@ See the `FindDistinctValue(
 examples for an illustration of these.
 
 
-``GetValues()``
+GetValues()
 ----------------
 
 Retrievs calculated events at the requested
@@ -634,11 +634,8 @@ found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
-``GetWindowValues()``
+GetWindowValues()
 ----------------
-
-
-
 
 **Syntax**
 
