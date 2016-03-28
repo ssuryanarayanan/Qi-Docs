@@ -44,6 +44,8 @@ Retrieves an existing namespace.
 
 **Syntax**
 
+.. highlight:: none
+
 ::
 
     QiNamespace GetNamespace(string tenantId, string namespaceId);
