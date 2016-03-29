@@ -1,7 +1,7 @@
 [{
-    "Title": "Qi Service Update – Action required",
+    "Title": "Qi Service Update - Action required",
     "Timestamp": "2016-03-28T17:22:43.511Z",
-    "Content": "<h1>Qi Service Update – Monday March 28, 2016 – Action required<\/h1> Monday, March 28, 2016 OSIsoft performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+    "Content": "<h1>Qi Service Update - Monday March 28, 2016 – Action required<\/h1> Monday, March 28, 2016 OSIsoft performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
   },
   {
     "Title": "Service Restored",
@@ -11,6 +11,6 @@
   {
     "Title": "Service Outage",
     "Timestamp": "2016-03-24T15:00:12.511Z",
-    "Content": ":<h1>Qi Service Update – Downtime<\/h1> Today OSIsoft will begin the deployment of a new version of the Qi service. This deployment will require a downtime of approximately 2 hours. Once the deployment is complete types, streams, and behaviors will need to be recreated and any data currently stored in Qi will no longer be available. This deployment will introduce new service features requiring updates to your client side code. You will receive a messaging following the completion of this downtime including updated references to documentation and Samples covering the new service features."
+    "Content": ":<h1>Qi Service Update - Downtime<\/h1> Today OSIsoft will begin the deployment of a new version of the Qi service. This deployment will require a downtime of approximately 2 hours. Once the deployment is complete types, streams, and behaviors will need to be recreated and any data currently stored in Qi will no longer be available. This deployment will introduce new service features requiring updates to your client side code. You will receive a messaging following the completion of this downtime including updated references to documentation and Samples covering the new service features."
   }
 ]
