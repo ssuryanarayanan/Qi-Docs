@@ -166,6 +166,6 @@ Deletes the namespace with the specified namespaceId from the tenant specified b
   void
   
 **Notes**
-  You must have at least one namespace in a tenant. If a tenant contains only one namespace, it cannot be deleted. 
+  You must have at least one namespace in a tenant. If a tenant contains only one namespace, the namespace cannot be deleted. 
   Deleting a tenant does not change the maximum number of allowed namespaces within a tenant. 
 
