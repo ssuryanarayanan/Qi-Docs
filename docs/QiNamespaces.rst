@@ -1,28 +1,21 @@
 Qi Namespaces
 #############
 
-When you create a tenant in Qi, you define a Type (which defines the structure of your data), 
-a Stream (which creates an area in which to store your data), and you define a Stream Behavior 
-(which defines rules for how data is read). 
+A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
+within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
+For more information see `QiTArchitecture <https://qi-docs.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__.
 
-Tenant information is stored within one or more *namespaces*. A *namespace* in this context 
-stores information for a given tenant and can be thought of as a self-contained partition 
-that you use to store the entirety of the data and metadata for your tenant.
-
-You use namespaces to separate tenants into logical entities. For example, you might 
-want one namespace for production, one for development, and perhaps one or more 
-namespaces for QA or to serve as a pre-production staging area for certification testing.
-
-After OSIsoft assigns your tenant ID, you must create at least one namespace. You may create 
-up to five namespaces within a tenant. Contact OSIsoft if you require more than five 
-namespaces within a tenant.
+To work with your Qi Tenant, you must create at least one Namespace in which to work.
+You may create up to five namespaces within a tenant. If you use all five of your namespaces 
+and want to create another, you can first delete an existing namespace and then create a new one. 
+Contact OSIsoft if you require more than five namespaces within a tenant.
 
 You can create, delete, or obtain information about your namespaces using the Qi methods outlined in this topic.
 
-The following table shows the required and optional Qi namespace objects:
+The following table shows the required and optional Qi namespace properties:
 
 +---------------+-------------------------+----------------------------------------+
-| Object        | Type                    | Details                                |
+| Property      | Type                    | Details                                |
 +===============+=========================+========================================+
 | Id            | String                  | Required ID for referencing the        |
 |               |                         | namespace                              | 
@@ -60,7 +53,7 @@ Retrieves an existing namespace.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -96,7 +89,7 @@ Retrieves a list of existing namespaces.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -111,7 +104,8 @@ Security
 ``GetOrCreateNamespace( )``
 ----------------
 
-Returns the namespace with the specified typeId and namespace, or creates the namespace if the namespace does not already exist. If the namespace exists, it is returned to the caller unchanged.
+Returns the namespace with the specified namespaceId, or creates the namespace if the namespace does not already exist. 
+If the namespace exists, it is returned to the caller unchanged.
 
 ::
 
@@ -127,10 +121,10 @@ Returns the namespace with the specified typeId and namespace, or creates the na
 
 **Parameters**
 
-``string tenantID``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
+``string tenantId``
+  The tenant identifier for the request.
+``QiNamespace qinamespaceId``
+  The QiNamespace object for which the request is being made.
 
 **Security**
   Allowed by administrator account.
@@ -141,6 +135,8 @@ Returns the namespace with the specified typeId and namespace, or creates the na
 
 ``DeleteNamespace( )``
 ----------------
+
+Deletes the namespace with the specified namespaceId from the tenant specified by the tenantId.
 
 **Syntax**
 
@@ -157,9 +153,7 @@ Returns the namespace with the specified typeId and namespace, or creates the na
 
 **Parameters**
 
-**Parameters**
-
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -169,6 +163,9 @@ Returns the namespace with the specified typeId and namespace, or creates the na
   Allowed by administrator account.
 
 **Returns** 
-  Deletes the namespace.
-
+  void
+  
+**Notes**
+  You must have at least one namespace in a tenant. If a tenant contains only one namespace, it cannot be deleted. 
+  Deleting a tenant does not change the maximum number of allowed namespaces within a tenant. 
 
