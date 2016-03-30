@@ -1,4 +1,8 @@
 [{
+    "Title": "Qi Service Tuesday Update - Action required",
+    "Timestamp": "2016-03-29T12:22:43.511Z",
+    "Content": "<h1>Qi Service Tuesday Update - Action required<\/h1> Tuesday, March 29, 2016 OSIsoft performed an upgrade to the Qi service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and we are working towards resolving all the reported issues."
+  },{
     "Title": "Qi Service Update - Action required",
     "Timestamp": "2016-03-28T17:22:43.511Z",
     "Content": "<h1>Qi Service Update - Action required<\/h1> Monday, March 28, 2016 OSIsoft performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
