@@ -130,7 +130,7 @@ If the namespace exists, it is returned to the caller unchanged.
   Allowed by administrator account.
 
 **Returns** 
-  Creates or returns a namespace.
+  Returns a namespace.
 
 
 DeleteNamespace( )
