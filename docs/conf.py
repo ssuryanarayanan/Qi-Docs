@@ -122,7 +122,7 @@ else:
     feed_author = 'OSIsoft'
 
 def setup(app):
-    app.add_stylesheet('docs.css')
+    app.add_stylesheet('/docs.css')
     if on_rtd:
         app.add_javascript('wedc.js?v=4')
 
