@@ -121,10 +121,10 @@ else:
     feed_description = 'Qi Documentation'
     feed_author = 'OSIsoft'
 
-#def setup(app):
-    #app.add_stylesheet('/docs.css')
+def setup(app):
+    app.add_stylesheet('docs.css')
     #if on_rtd:
-        #app.add_javascript('wedc.js?v=4')
+    #    app.add_javascript('wedc.js?v=4')
 
 #html_theme = 'default'
 
