@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'OSIsoft Qi'
-copyright = '2016, OSIsoft<style type="text/css">.wy-nav-content-wrap{Background:none!important;}</style>'
+copyright = '2016, OSIsoft'
 author = 'OSIsoft'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -122,9 +122,7 @@ else:
     feed_author = 'OSIsoft'
 
 def setup(app):
-    app.add_stylesheet('custom.css?v=4')
-    app.add_javascript('helpfulness.js?v=4')
-    app.add_javascript('disqus.js')
+    app.add_stylesheet('docs.css')
     if on_rtd:
         app.add_javascript('wedc.js?v=4')
 
