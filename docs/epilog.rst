@@ -1,2 +1,3 @@
 Epilog here 
-.. <h1>html test</h1>
+.. raw:: html
+  <h1>html test</h1>
