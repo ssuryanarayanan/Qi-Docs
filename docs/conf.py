@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'OSIsoft Qi'
-copyright = '2016, OSIsoft'
+copyright = '2016, OSIsoft<style type="text/css">.wy-nav-content-wrap{Background:none!important;}</style>'
 author = 'OSIsoft'
 
 # The version info for the project you're documenting, acts as replacement for
