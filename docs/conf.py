@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 rst_epilog = """
-.. include:: /epilog.txt
+.. include:: /epilog.rst
 """
 
 # -- Options for HTML output ----------------------------------------------
