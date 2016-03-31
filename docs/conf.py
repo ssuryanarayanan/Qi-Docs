@@ -114,12 +114,12 @@ if not on_rtd:
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 else:
-    extensions.append('yasfb')
+    #extensions.append('yasfb')
     feed_num_items = 15
     feed_skip_regex = '(.)*index'
-    feed_base_url = 'http://docs.asp.net/en/latest'
-    feed_description = 'ASP.NET Documentation'
-    feed_author = 'Microsoft'
+    feed_base_url = 'http://qi-docs.osisoft.com/en/latest/'
+    feed_description = 'Qi Documentation'
+    feed_author = 'OSIsoft'
 
 def setup(app):
     app.add_stylesheet('custom.css?v=4')
