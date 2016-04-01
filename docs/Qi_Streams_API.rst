@@ -5,7 +5,7 @@ QiStream API calls
 The API calls in this section are all used to create and manipulate QiStreams. See `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
 
 
-GetStream()
+``GetStream()``
 ----------------
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
@@ -43,7 +43,7 @@ Security
 
 
 
-GetStreams()
+``GetStreams()``
 ----------------
 
 Returns all streams from the specified namespace.
@@ -77,7 +77,7 @@ Security
   
 
 
-GetStreams() (GetStreams() overload)
+``GetStreams()`` (``GetStreams()`` overload)
 ----------------
 
 Searches for and returns streams that fit search criteria
@@ -122,7 +122,7 @@ Security
   
 
 
-GetOrCreateStream()
+``GetOrCreateStream()``
 ----------------
 
 Returns a stream that matches the QiStream qistream within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
@@ -158,7 +158,7 @@ Security
   
 
 
-UpdateStream()
+``UpdateStream()``
 ----------------
 
 Updates a specified stream in a specified namespace with the properties in the specified QiStream qistream. The following changes are permitted:
@@ -210,7 +210,7 @@ Security
 
 
 
-DeleteStream()
+``DeleteStream()``
 ----------------
 
 Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.
