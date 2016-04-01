@@ -1,7 +1,7 @@
 API Calls for reading data
 ===========================
 
-FindDistinctValue()
+``FindDistinctValue()``
 ----------------
 
 Searches for data in a stream using the specified search mode.
@@ -109,7 +109,7 @@ stream types with a compound index, such as a DateTime and an Integer.
     var  readEvent = _service.FindDistinctValue<TestType, DateTime, int>(tenantId, namespaceId, streamId, tupleId, searchMode);
 
 
-GetDistinctValue()
+``GetDistinctValue()``
 ----------------
 
 Returns an event from the specified stream at the specified index.
@@ -121,10 +121,12 @@ Returns an event from the specified stream at the specified index.
 
     T GetDistinctValue<T>(string tenandId, string namespaceId, string streamId, string index);
     T GetDistinctValue<T, T1>(string tenandId, string namespaceId, string streamId, T1 index);
-    T GetDistinctValue<T, T1, T2>(string tenandId, string namespaceId, string streamId, Tuple<T1, T2> index);
+    T GetDistinctValue<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        Tuple<T1, T2> index);
     Task<T> GetDistinctValueAsync<T>(string tenandId, string namespaceId, string streamId, string index);
     Task<T> GetDistinctValueAsync<T, T1>(string tenandId, string namespaceId, string streamId, T1 index);
-    Task<T> GetDistinctValueAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, Tuple<T1, T2> index);
+    Task<T> GetDistinctValueAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        Tuple<T1, T2> index);
 
 **Http**
 
@@ -188,7 +190,7 @@ See the `FindDistinctValue(
 examples for an illustration of these.
 
 
-GetFirstValue()
+``GetFirstValue()``
 ----------------
 
 Retrieves the first data event in a stream.
@@ -228,7 +230,7 @@ Security
   ``GetFirstValue()`` returns null if the stream has no data (no exception is thrown).
 
 
-GetLastValue()
+``GetLastValue()``
 ----------------
 
 Retrieves the last data event in a stream.
@@ -268,7 +270,7 @@ Security
   ``GetLastValue()`` Returns null if the stream has no data (no exception is thrown).
 
 
-GetRangeValues()
+``GetRangeValues()``
 ----------------
 
 Retrieves events from a stream based on a starting index and a requested number of events.
@@ -278,16 +280,26 @@ Retrieves events from a stream based on a starting index and a requested number 
 
 ::
 
-    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count);
-    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count, bool reversed);
-    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
-    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType); 
-    IEnumerable<T> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count, bool reversed);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int count, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count);
+    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count, bool reversed);
+    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count, QiBoundaryType boundaryType);
+    IEnumerable<T> GetRangeValues<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType); 
+    IEnumerable<T> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int count, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
 
 **Http**
 
@@ -469,7 +481,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
-GetValue()
+``GetValue()``
 ----------------
 
 Retrieves a specified data event from a stream.
@@ -557,7 +569,7 @@ See the `FindDistinctValue(
 examples for an illustration of these.
 
 
-GetValues()
+``GetValues()``
 ----------------
 
 Retrievs calculated events at the requested
@@ -569,20 +581,34 @@ events between **startIndex** and **endIndex**.
 
 ::
 
-    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, IEnumerable<string> index);
-    IEnumerable<T> GetValues<T, T1>(string tenandId, string namespaceId, string streamId, IEnumerable<T1> index);
-    IEnumerable<T> GetValues<T, T1, T2>(string tenandId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
-    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, string filterExpression);
-    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, string startIndex, string endIndex, int count);
-    IEnumerable<T> GetValues<T, T1>(string tenandId, string namespaceId, string streamId, T1 startIndex, T1 endIndex, int count);
-    IEnumerable<T> GetValues<T, T1, T2>(string tenandId, string namespaceId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, IEnumerable<string> index);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string tenandId, string namespaceId, string streamId, IEnumerable<T1> index);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, string filterExpression);
-    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, string startIndex, string endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string tenandId, string namespaceId, string streamId, T1 startIndex, T1 endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<string> index);
+    IEnumerable<T> GetValues<T, T1>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<T1> index);
+    IEnumerable<T> GetValues<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<Tuple<T1, T2>> index);
+    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, 
+        string filterExpression);
+    IEnumerable<T> GetValues<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, string endIndex, int count);
+    IEnumerable<T> GetValues<T, T1>(string tenandId, string namespaceId, string streamId, 
+        T1 startIndex, T1 endIndex, int count);
+    IEnumerable<T> GetValues<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<string> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<T1> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        IEnumerable<Tuple<T1, T2>> index);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string filterExpression);
+    Task<IEnumerable<T>> GetValuesAsync<T>(string tenandId, string namespaceId, string streamId, 
+        string startIndex, string endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string tenandId, string namespaceId, string streamId, 
+        T1 startIndex, T1 endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string tenandId, string namespaceId, string streamId, 
+        Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
 
 **Http**
 
@@ -634,7 +660,7 @@ found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
-GetWindowValues()
+``GetWindowValues()``
 ----------------
 
 **Syntax**
