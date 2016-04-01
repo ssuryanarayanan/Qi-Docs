@@ -1,7 +1,7 @@
 [{
     "Title": "Upgrade Complete - Action required",
     "Timestamp": "2016-04-01T21:55:00.000Z",
-    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
   },{
     "Title": "Upgrade Starting",
     "Timestamp": "2016-04-01T18:25:00.511Z",
@@ -9,11 +9,11 @@
   },{
     "Title": "Upgrade Complete - Action required",
     "Timestamp": "2016-03-29T12:22:43.511Z",
-    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft performed an upgrade to the Qi service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and we are working towards resolving all the reported issues."
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and we are working towards resolving all the reported issues."
   },{
     "Title": "Upgrade Complete - Action required",
     "Timestamp": "2016-03-28T17:22:43.511Z",
-    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
   },
   {
     "Title": "Service Restored",
