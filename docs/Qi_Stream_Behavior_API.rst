@@ -126,8 +126,10 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 
 ::
 
-    QiStreamBehavior GetOrCreateBehavior(string tenantId, string namespaceId, QiStreamBehavior qibehavior);
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string tenantId, string namespaceId, QiStreamBehavior qibehavior);
+    QiStreamBehavior GetOrCreateBehavior(string tenantId, string namespaceId, 
+        QiStreamBehavior qibehavior);
+    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string tenantId, string namespaceId, 
+        QiStreamBehavior qibehavior);
 
 **Http**
 
@@ -165,8 +167,10 @@ the addition, removal, or change to this list.
 
 ::
 
-    void UpdateBehavior(string tenantId, string namespaceId, string behaviorId, QiStreamBehavior qibehavior);
-    Task UpdateBehaviorAsync(string tenantId, string namespaceId, string behaviorId, QiStreamBehavior qibehavior);
+    void UpdateBehavior(string tenantId, string namespaceId, string behaviorId, 
+        QiStreamBehavior qibehavior);
+    Task UpdateBehaviorAsync(string tenantId, string namespaceId, string behaviorId, 
+        QiStreamBehavior qibehavior);
 
 **Http**
 
