@@ -2,7 +2,7 @@ API calls for writing data
 ==========================
 
 
-InsertValue()
+``InsertValue()``
 ----------------
 
 Inserts data into the specified stream. Throws an exception if data is already present at the index used in ‘item’.
@@ -46,7 +46,7 @@ Security
 
 
 
-InsertValues()
+``InsertValues()``
 ----------------
 
 Inserts items into the specified stream. Throws an exception if data is already present at an index used in one of the ‘items'.
@@ -95,7 +95,7 @@ Security
 
 
 
-PatchValue()
+``PatchValue()``
 ----------------
 
 Modifies the specified stream event. PatchValue affects only the data item parameters that are included in the call.
@@ -152,7 +152,7 @@ Security
   
 
 
-PatchValues()
+``PatchValues()``
 ----------------
 
 Patches values of the selected fields for multiple events in the stream.
@@ -208,7 +208,7 @@ Security
   
 
 
-RemoveValue()
+``RemoveValue()``
 ----------------
 
 Removes the event at the index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. This method throws an exception if there is no data at the specified index.
@@ -256,7 +256,7 @@ Security
 
 
 
-RemoveValues()
+``RemoveValues()``
 ----------------
 
 Removes the event at each index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. 
@@ -308,7 +308,7 @@ Security
 
 
 
-RemoveWindowValues()
+``RemoveWindowValues()``
 ----------------
 
 Removes a range of values at and between the given indices.
@@ -360,7 +360,7 @@ Security
   
 
 
-ReplaceValue()
+``ReplaceValue()``
 ----------------
 
 Writes an item over an existing event in the specified stream.
@@ -403,7 +403,7 @@ Security
   specified index. Overloads are available to help you set the indexes you want removed.
   
   
-ReplaceValues()
+``ReplaceValues()``
 ----------------
 
 Writes **items** over existing events in the specified stream.
@@ -451,7 +451,7 @@ Security
   caused the issue and the streamId are included in the error response.
 
 
-UpdateValue()
+``UpdateValue()``
 ----------------
 
 Writes **item** to the specified stream.
@@ -495,7 +495,7 @@ Security
   ``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
 
-UpdateValues()
+``UpdateValues()``
 ----------------
 
 Writes items to the specified stream.
