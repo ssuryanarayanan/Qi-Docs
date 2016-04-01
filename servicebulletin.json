@@ -1,4 +1,8 @@
 [{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-01T21:55:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
     "Title": "Upgrade Starting",
     "Timestamp": "2016-04-01T18:25:00.511Z",
     "Content": "<h1>Qi Service Upgrade Staring<\/h1> At 18:25 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 3 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
