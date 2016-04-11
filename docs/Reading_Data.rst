@@ -10,6 +10,7 @@ The QI API includes an assortment of methods for reading of data from streams.
 - To read at individual indexes, use GetFirstValue, GetLastValue, GetValue, FindDiscreteValue, etc….
 - To search in reverse, use GetRangeValues
 
+Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
 
 Generics and tuples
 ------------
@@ -22,15 +23,15 @@ index and then use the type for the index parameter(s) in the call.
 Similarly the read methods have overloads that use tuples that are also
 accepted for the indexing instead of a string.
 
-The following example uses ``GetRangeValues( )`` to return a list of up to 100 events
+The following example uses ``GetRangeValuesAsync( )`` to return a list of up to 100 events
 from streamId starting 30 minutes ago:
 
 ::
 
     List< SimpleTypeClass > readEvents;
     String startindex = DateTime.UtcNow.AddMinutes(-30).ToString("o");
-    readEvents = _service.GetRangeValues< SimpleTypeClass >(namespaceId, streamId, startindex, 100).ToList();
+    readEvents = _dataService.GetRangeValuesAsync< SimpleTypeClass >(streamId, startindex, 100).Result.ToList();
 
-``GetRangeValues( )`` also has overloads defined that include a *skip* parameter
+``GetRangeValuesAsync( )`` also has overloads defined that include a *skip* parameter
 which makes multiple calls and retrievals from different sets of data after a
 specified time stamp.

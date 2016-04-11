@@ -10,7 +10,8 @@ streams, and behaviors.
 ::
 
    // create a Namespace ‘Namespace1’
-   _service.GetOrCreateNamespaceType(“Namespace1”;);
+   QiNamespace qinamespace = new QiNamespace(“Namespace1”);
+   await _adminService.GetOrCreateNamespaceAsync(qinamespace);
 
 
 Step 2: Create data types
@@ -24,8 +25,7 @@ compound indexes refer to:
 `QiTypes <https://qi-docs.readthedocs.org/en/latest/QiTypes/#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
-sending it to Qi using `GetOrCreateType(
-) <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetype>`__
+sending it to Qi using `GetOrCreateType <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetype>`__
 method.
 
 A wide variety of QiType data properties are available, 
@@ -53,7 +53,7 @@ The following example creates a simple type:
 
     // create type
     QiType simpleType = QiTypeBuilder.CreateQiType<SimpleTypeClass>();
-    var mySimpleType = _service.GetOrCreateType("Namespace1", SimpleType);
+    var mySimpleType = await _metadataService.GetOrCreateTypeAsync(simpleType);
 
 Step 3: Create a stream
 -----------------------
@@ -74,7 +74,8 @@ The following example creates a QiStream with an Id of ‘MyFistStream’ of typ
         Id = streamId,
         TypeId = streamType
     }
-    _service.GetOrCreateStream("Namespace1", stream1);
+    
+    await _metadataService.GetOrCreateStreamAsync(stream1);
 
 The stream in the previous example can now be used to hold data values of 
 the structure that is defined in mySimpleType. The stream's Name, 
@@ -99,19 +100,19 @@ Step 4: Write data
 ------------------
 
 Qi has several methods that can be used to write data. For example,
-`InsertValue() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalue>`__
+`InsertValue <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalue>`__
 is used to write a single data event to a stream. If the data event
 includes an index at that is the same as a previous event, 
 this method will throw an exception. However
-`UpdateValue() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalue>`__
+`UpdateValue <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalue>`__
 can also be used to write a single event to a stream, and will overwrite
 the existing event with the new event.
 
 Each of these methods has a counterpart that acts upon a list of data
 events instead of only a single event. For example,
-`InsertValues() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalues>`__
+`InsertValues <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalues>`__
 writes multiple events. Similarly,
-`UpdateValues() <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalues>`__
+`UpdateValues <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalues>`__
 is used to update multiple events.
 
 The following example writes a single data event to the ‘MyFirstStream’
@@ -126,7 +127,8 @@ stream. The event has a time index of ‘Now’ and a double ‘Value’ of 1.1:
       TimeId = startWrites,
       Value = (double)1.1
     };
-    _service.InsertValue("Namespace1", streamId, data1);
+    
+    await _dataService.InsertValueAsync(streamId, data1);
 
 The following example writes multiple values to the stream:
 
@@ -142,7 +144,8 @@ The following example writes multiple values to the stream:
       };
       writeEvents.Add(dataEvent);
     }
-    _service.UpdateValues("Namespace1", streamId, writeEvents);
+    
+    await _dataService.UpdateValuesAsync(streamId, writeEvents);
 
 Additonal information about writing data can be found in `Writing
 data <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data.html>`__.

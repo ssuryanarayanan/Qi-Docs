@@ -4,6 +4,8 @@ QiStream Behavior
 The ``QiStreamBehavior`` object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A ``QiStreamBehavior`` object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
 Note that, if you do not assign a specific Stream Behavior object to a stream, the default behavior is assumed.
 
+QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+
 The Stream Behavior object consists of the following properties:
 
 ==================        ==================
@@ -48,16 +50,16 @@ behavior itself can be changed after it is created or configured.
 
 **Methods affected by QiStreamBehavior**
 
-`GetValue( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalue>`__
+`GetValue <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalue>`__
   Stream behavior is applied when the index is between, before, or after all data.
 
-`GetValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalues>`__
+`GetValues <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalues>`__
   Stream behavior is applied when an index determined by the call is between, before, or after all data.
 
-`GetWindowValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getwindowvalues>`__
+`GetWindowValues <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getwindowvalues>`__
   Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
 
-`GetRangeValues( ) <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getrangevalues>`__
+`GetRangeValues <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getrangevalues>`__
   Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
 
 
@@ -74,7 +76,7 @@ The code in the following example shows how to define and create a simple
         Id = behaviorId,
         Mode = QiStreamMode.StepwiseContinuousLeading,
     };
-    _service.GetOrCreateBehavior(tenantId, namespaceId, createdBehavior);
+    _metadataService.GetOrCreateBehavior(createdBehavior);
 
 After the stream behavior is defined, the behavior can be applied to a
 stream as shown in the next example:
@@ -89,7 +91,7 @@ stream as shown in the next example:
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _service.GetOrCreateStream(tenantId, namespaceId, stream1);
+    _metadataService.GetOrCreateStream(stream1);
 
 Interpolation
 ------------

@@ -10,7 +10,7 @@ You may create up to five namespaces within a tenant. If you use all five of you
 and want to create another, you can first delete an existing namespace and then create a new one. 
 Contact OSIsoft if you require more than five namespaces within a tenant.
 
-You can create, delete, or obtain information about your namespaces using the Qi methods outlined in this topic.
+You can create, delete, or obtain information about your namespaces using the methods outlined in this topic.  Namespace management via the Qi Client Libraries is performed through the ``IQiAdministrationService`` interface, which may be accessed via the ``QiService.GetAdministrationService( )`` helper.
 
 The following table shows the required and optional Qi namespace properties:
 
@@ -30,7 +30,7 @@ The following table shows the required and optional Qi namespace properties:
 5. Maximum length of 260 characters
 
 
-``GetNamespace()``
+GetNamespace( )
 -------------------
 
 Retrieves an existing namespace.
@@ -41,8 +41,7 @@ Retrieves an existing namespace.
 
 ::
 
-    QiNamespace GetNamespace(string tenantId, string namespaceId);
-    Task<QiNamespace> GetNamespaceAsync(string tenantId, string namespaceId);
+    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
 
 **Http**
 
@@ -66,7 +65,7 @@ Security
   Returns a namespace.
 
 
-``GetNamespaces()``
+GetNamespaces( )
 ----------------
 
 Retrieves a list of existing namespaces.
@@ -75,8 +74,6 @@ Retrieves a list of existing namespaces.
 
 ::
 
-
-    IEnumerable<QiNamespace> GetNamespaces();
     Task<IEnumerable<QiNamespace>> GetNamespacesAsync();
 
 
@@ -101,7 +98,7 @@ Security
   Returns a list of namespaces.
 
 
-``GetOrCreateNamespace()``
+GetOrCreateNamespace( )
 ----------------
 
 Returns the namespace with the specified namespaceId, or creates the namespace if the namespace does not already exist. 
@@ -109,8 +106,7 @@ If the namespace exists, it is returned to the caller unchanged.
 
 ::
 
-    QiNamespace GetOrCreateNamespace(string tenantId, QiNamespace qinamespace);
-    Task<QiNamespace> GetOrCreateNamespaceAsync(string tenantId, QiNamespace qinamespace);
+    Task<QiNamespace> GetOrCreateNamespaceAsync(QiNamespace qinamespace);
 
 **Http**
 
@@ -133,7 +129,7 @@ If the namespace exists, it is returned to the caller unchanged.
   Returns a namespace.
 
 
-``DeleteNamespace()``
+DeleteNamespace( )
 ----------------
 
 Deletes the namespace with the specified namespaceId from the tenant specified by the tenantId.
@@ -142,8 +138,7 @@ Deletes the namespace with the specified namespaceId from the tenant specified b
 
 ::
 
-    void DeleteNamespace(string tenantId, string namespaceId);
-    Task DeleteNamespaceAsync(string tenantId, string namespaceId);
+    Task DeleteNamespaceAsync(string namespaceId);
 
 **Http**
 

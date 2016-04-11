@@ -1,10 +1,10 @@
 QiType API calls
 ==================
 
-The API calls in this section are all used to create and manipulate QiTypes. See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ for general QiType information, working with compound indexes, and supported QiTypes,
+The API calls in this section are all used to create and manipulate QiTypes. QiType management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.  See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ for general QiType information, working with compound indexes, and supported QiTypes,
 
 
-``GetStreamType()``
+``GetStreamTypeAsync()``
 ----------------
 
 Returns the type definition that is associated with a given stream from the specified namespace.
@@ -13,8 +13,7 @@ Returns the type definition that is associated with a given stream from the spec
 
 ::
 
-    QiType GetStreamType(string tenantId, string namespaceId, string streamId);
-    Task<QiType> GetStreamTypeAsync(string tenantId, string namespaceId, string streamId);
+    Task<QiType> GetStreamTypeAsync(string streamId);
 
 *Http*
 ::
@@ -26,9 +25,9 @@ Returns the type definition that is associated with a given stream from the spec
 
 ``string tenantID``
   The tenant identifier for the request
-string ``namespaceId``
+``string namespaceId``
   The namespace identifier for the request
-string ``streamId``
+``string streamId``
   The ID of the stream to search for the specified type definition
 
 
@@ -41,7 +40,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetType()``
+``GetTypeAsync()``
 ----------------
 
 Returns the type of the specified ``typeId`` from the specified namespace. 
@@ -50,8 +49,7 @@ Returns the type of the specified ``typeId`` from the specified namespace.
 
 ::
 
-    QiType GetType(string tenantId, string namespaceId, string typeId);
-    Task<QiType> GetTypeAsync(string tenantId, string namespaceId, string typeId);
+    Task<QiType> GetTypeAsync(string typeId);
 
 *Http*
 
@@ -76,7 +74,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetTypes()``
+``GetTypesAsync()``
 ----------------
 
 Returns a list of all types within a given namespace. 
@@ -85,8 +83,7 @@ Returns a list of all types within a given namespace.
 
 ::
 
-    IEnumerable<QiType> GetTypes(string tenantId, string namespaceId);
-    Task<IEnumerable<QiType>> GetTypesAsync(string tenantId, string namespaceId);
+    Task<IEnumerable<QiType>> GetTypesAsync( );
 
 
 *Http*
@@ -112,7 +109,7 @@ Security
   Allowed by administrator and user accounts
 
 
-``GetOrCreateType()``
+``GetOrCreateTypeAsync()``
 ----------------
 
 Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the typeId exists, it is returned to the caller unchanged. 
@@ -122,8 +119,7 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
 
 ::
 
-    QiType GetOrCreateType(string tenantId, string namespaceId, QiType qitype);
-    Task<QiType> GetOrCreateTypeAsync(string tenantId, string namespaceId, QiType qitype);
+    Task<QiType> GetOrCreateTypeAsync(QiType qitype);
 
 *Http*
 
@@ -152,7 +148,7 @@ Security
   Allowed by administrator account
 
 
-``DeleteType()``
+``DeleteTypeAsync()``
 ----------------
 
 Deletes a type from the specified namespace. Note that a type cannot be deleted if there are streams associated with it.
@@ -161,8 +157,7 @@ Deletes a type from the specified namespace. Note that a type cannot be deleted 
 
 ::
 
-    void DeleteType(string tenantId, string namespaceId, string typeId);
-    Task DeleteTypeAsync(string tenantId, string namespaceId, string typeId);
+    Task DeleteTypeAsync(string typeId);
 
 *Http*
 
@@ -190,7 +185,7 @@ Security
   Allowed by administrator account
 
 
-``UpdateType()``
+``UpdateTypeAsync()``
 ----------------
 
 Updates the definition of a type. Note that a type cannot be updated if there are streams associated with it. Also, certain parameters cannot be changed after they are defined.
@@ -199,8 +194,7 @@ Updates the definition of a type. Note that a type cannot be updated if there ar
 
 ::
 
-    void UpdateType(string tenantId, string namespaceId, string typeId, QiType qitype);
-    Task UpdateTypeAsync(string tenantId, string namespaceId, string typeId, QiType qitype);
+    Task UpdateTypeAsync(string typeId, QiType qitype);
 
 *Http*
 

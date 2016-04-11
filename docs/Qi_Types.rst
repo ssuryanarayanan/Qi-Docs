@@ -18,6 +18,8 @@ key, any ordered value is permitted.
 When a QiType is created it cannot be changed and it can only be deleted if
 there are no streams associated with it.
 
+QiType management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+
 The following table shows the required and optional QiType properties:
 
 +---------------+-------------------------+----------------------------------------+

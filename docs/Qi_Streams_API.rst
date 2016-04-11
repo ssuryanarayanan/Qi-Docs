@@ -4,8 +4,10 @@ QiStream API calls
 
 The API calls in this section are all used to create and manipulate QiStreams. See `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
 
+QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
-``GetStream()``
+
+``GetStream``
 ----------------
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
@@ -16,8 +18,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
 
 ::
 
-    QiStream GetStream(string tenantId, string namespaceId, string streamId);
-    Task<QiStream> GetStreamAsync (string tenantId, string namespaceId, string streamId);
+    Task<QiStream> GetStreamAsync (string streamId);
 
 *Http*
 
@@ -43,17 +44,17 @@ Security
 
 
 
-``GetStreams()``
+``GetStreams``
 ----------------
 
-Returns all streams from the specified namespace.
+Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria.
 
 **Syntax**
 
 ::
 
-    IEnumerable<QiStream> GetStreams (string tenantId, string namespaceId);
-    Task<IEnumerable<QiStream>> GetStreamsAsync (string tenantId, string namespaceId);
+    Task<IEnumerable<QiStream>> GetStreamsAsync ( );
+    Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
 
 *Http*
 
@@ -67,62 +68,22 @@ Returns all streams from the specified namespace.
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
-
-
-**Returns**
-  IEnumerable of all QiStreams in the namespace of the defined tenant.
-
-Security
-  Allowed by administrator and user accounts
-  
-
-
-``GetStreams()`` (``GetStreams()`` overload)
-----------------
-
-Searches for and returns streams that fit search criteria
-
-**Syntax**
-
-::
-
-   IEnumerable<QiStream> GetStreams(string searchText, int skip, int count);
-   Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
-  
-
-*Http*
-
-::
-
-    GET Qi/{tenantId}/{namespaceId}/Streams  
-
-**Parameters**
-
-``string tenantID``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
 ``searchText``
-  The text to search for.
- 
-**Optional parameters**
-
+  Optional. The text to search for.
 ``skip``
-  The number of matched stream names to skip over before returning the matching streams.
+  Optional. The number of matched stream names to skip over before returning the matching streams.
 ``count``
-  The maximum number of streams to return. 
+  Optional. The maximum number of streams to return. 
 
-  
 **Returns**
-  An Ienumerable object of streams that fit search criteria.
+  IEnumerable of all QiStreams meeting specified criteria in the namespace of the defined tenant.
 
 Security
   Allowed by administrator and user accounts
   
-  
 
 
-``GetOrCreateStream()``
+``GetOrCreateStream``
 ----------------
 
 Returns a stream that matches the QiStream qistream within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
@@ -131,8 +92,7 @@ Returns a stream that matches the QiStream qistream within the specified namespa
 
 ::
 
-    QiStream GetOrCreateStream (string tenantId, string namespaceId, QiStream qistream);
-    Task<QiStream> GetOrCreateStreamAsync (string tenantId, string namespaceId, QiStream qistream);
+    Task<QiStream> GetOrCreateStreamAsync (QiStream qistream);
 
 *Http*
 
@@ -158,7 +118,7 @@ Security
   
 
 
-``UpdateStream()``
+``UpdateStream``
 ----------------
 
 Updates a specified stream in a specified namespace with the properties in the specified QiStream qistream. The following changes are permitted:
@@ -172,7 +132,7 @@ Updates a specified stream in a specified namespace with the properties in the s
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStream()* method applies to the entire entity. Optional fields
+The *UpdateStreamAsync()* method applies to the entire entity. Optional fields
 that are omitted from the entity will remove the field from the stream if the fields had been set previously.
 
 
@@ -180,8 +140,7 @@ that are omitted from the entity will remove the field from the stream if the fi
 
 ::
 
-    void UpdateStream(string tenantId, string namespaceId, string streamId, QiStream qistream);
-    Task UpdateStreamAsync(string tenantId, string namespaceId, string streamId, QiStream qistream);
+    Task UpdateStreamAsync(string streamId, QiStream qistream);
 
 *Http*
 
@@ -210,7 +169,7 @@ Security
 
 
 
-``DeleteStream()``
+``DeleteStream``
 ----------------
 
 Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.
@@ -219,8 +178,7 @@ Deletes a stream that matches the QiStream entity within the specified tenantId 
 
 ::
 
-    void DeleteStream(string tenantId, string namespaceId, string streamId);
-    Task DeleteStreamAsync(string tenantId, string namespaceId, string streamId);
+    Task DeleteStreamAsync(string streamId);
 
 *Http*
 

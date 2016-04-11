@@ -5,6 +5,8 @@ A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
+QiSTream management via the Qi Client Libraries is performed through the ``IQiMetadataService interface``, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+
 The following table shows the required and optional QiStream properties:
 
 +---------------+----------+-------------+--------------------------------------------+
@@ -45,15 +47,14 @@ for more information.
    , ; = %)
 7. Cannot contain more than 250 periods (".").
 
-GetStream( )
+GetStream
 ------------
 
 **Qi Client Library**
 
 ::
 
-    QiStream GetStream(string conatinerId, string streamId);
-    Task<QiStream> GetStreamAsync (string namespaceId, string streamId);
+    Task<QiStream> GetStreamAsync (string streamId);
 
 **Http**
 
@@ -71,15 +72,14 @@ GetStream( )
 
 **Operation** Returns a QiStream object
 
-GetStreams( )
+GetStreams
 ------------
 
 **Qi Client Library**
 
 ::
 
-    IEnumerable<QiStream> GetStreams (string namespaceId);
-    Task<IEnumerable<QiStream>> GetStreamsAsync (string namespaceId);
+    Task<IEnumerable<QiStream>> GetStreamsAsync ( );
 
 **Http**
 
@@ -95,11 +95,10 @@ GetStreams( )
 
 **Operation** Returns IEnumerable of all streams
 
-``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams. See `Searching for QiStreams <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.
+``GetStreamsAsync()`` is an overloaded method that is also used to search for and return QiStreams. See `Searching for QiStreams <https://github.com/osisoft/Qi-Docs/blob/Qi_Edits/docs/Searching.rst>`__ for more information.
 
 ::
 
-   IEnumerable<QiStream> GetStreams(string searchText, int skip, int count);
    Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
   
 
@@ -123,15 +122,14 @@ GetStreams( )
 
 
 
-GetOrCreateStream( )
+GetOrCreateStream
 ------------
 
 **Qi Client Library**
 
 ::
 
-    QiStream GetOrCreateStream (string namespaceId, QiStream entity);
-    Task<QiStream> GetOrCreateStreamAsync (string namespaceId, QiStream entity);
+    Task<QiStream> GetOrCreateStreamAsync (QiStream entity);
 
 **Http**
 
@@ -153,15 +151,14 @@ Content is serialized QiStream entity
 existing stream is returned to the caller unchanged. Otherwise the new
 stream is created.
 
-UpdateStream( )
+UpdateStream
 ------------
 
 **Qi Client Library**
 
 ::
 
-    void UpdateStream(string namespaceId, string streamId, QiStream entity);
-    Task UpdateStreamAsync(string namespaceId, string streamId, QiStream entity);
+    Task UpdateStreamAsync(string streamId, QiStream entity);
 
 **Http**
 
@@ -193,19 +190,18 @@ entity given. Permitted changes:
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStream()* method applies to the entire entity. Optional fields
+The *UpdateStreamAsync* method applies to the entire entity. Optional fields
 that are omitted from the entity will remove the field from the stream if the fields had
 been set previously.
 
-DeleteStream( )
+DeleteStream
 ------------
 
 **Qi Client Library**
 
 ::
 
-    void DeleteStream(string namespaceId, string streamId);
-    Task DeleteStreamAsync(string namespaceId, string streamId);
+    Task DeleteStreamAsync(string streamId);
 
 **Http**
 

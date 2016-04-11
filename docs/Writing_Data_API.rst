@@ -1,8 +1,9 @@
 API calls for writing data
 ==========================
 
+Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
 
-``InsertValue()``
+``InsertValue``
 ----------------
 
 Inserts data into the specified stream. Throws an exception if data is already present at the index used in ‘item’.
@@ -12,8 +13,7 @@ Inserts data into the specified stream. Throws an exception if data is already p
 
 ::
 
-    void InsertValue<T>(string tenantId, string namespaceId, string streamId, T item);
-    Task InsertValueAsync<T>(string tenantId, string namespaceId, string streamId, T item);
+    Task InsertValueAsync<T>(string streamId, T item);
 
 *Http*
 
@@ -42,11 +42,11 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-  ``InsertValue()`` throws an exception if an event already exists at the specified index.
+  ``InsertValue`` throws an exception if an event already exists at the specified index.
 
 
 
-``InsertValues()``
+``InsertValues``
 ----------------
 
 Inserts items into the specified stream. Throws an exception if data is already present at an index used in one of the ‘items'.
@@ -56,8 +56,7 @@ Inserts items into the specified stream. Throws an exception if data is already 
 
 ::
 
-    void InsertValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task InsertValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
+    Task InsertValuesAsync<T>(string streamId, IList<T> items);
 
 **Http**
 
@@ -85,7 +84,7 @@ Content is serialized list of events of type T
   An IEnumerable of all behavior objects
 
 **Notes**
-  ``InsertValues()`` throws an exception if any index in **items** already has an event. If any individual
+  ``InsertValues`` throws an exception if any index in **items** already has an event. If any individual
   index encounters a problem, the entire operation is rolled back and no
   insertions are made. The streamId and index that caused the issue are
   included in the error response.
@@ -95,7 +94,7 @@ Security
 
 
 
-``PatchValue()``
+``PatchValue``
 ----------------
 
 Modifies the specified stream event. PatchValue affects only the data item parameters that are included in the call.
@@ -105,8 +104,7 @@ Modifies the specified stream event. PatchValue affects only the data item param
 
 ::
 
-    void PatchValue(string tenantId, string namespaceId, string streamId, string selectExpression, T item);
-    Task PatchValueAsync(string tenantId, string namespaceId, string streamId, string selectExpression, T item);
+    Task PatchValueAsync(string streamId, string selectExpression, T item);
 
 **Http**
 
@@ -135,7 +133,7 @@ Content is serialized patch property
   An IEnumerable of all behavior objects
 
 **Notes**
-  ``PatchValue()`` is used to modify the stream events. Only the values 
+  ``PatchValue`` is used to modify the stream events. Only the values 
   for fields specified in the SelectExpression are taken from the item 
   and replaced (patched) in the stream using the item index.
 
@@ -148,11 +146,11 @@ Security
 ::
 
     var obj = new { TimeId = DateTime.UtcNow(), Value = 10 };
-    PatchValue(namespaceId, streamId, “Value”, obj);  
+    await _dataService.PatchValueAsync(streamId, “Value”, obj);  
   
 
 
-``PatchValues()``
+``PatchValues``
 ----------------
 
 Patches values of the selected fields for multiple events in the stream.
@@ -162,8 +160,7 @@ Patches values of the selected fields for multiple events in the stream.
 
 ::
 
-    void PatchValues(string tenantId, string namespaceId, string streamId, string selectExpression, IList<T> items);
-    Task PatchValuesAsync(string tenantId, string namespaceId, string streamId, string selectExpression, IList<T> items);
+    Task PatchValuesAsync(string streamId, string selectExpression, IList<T> items);
 
 **Http**
 
@@ -195,7 +192,7 @@ Security
   Allowed by administrator accounts
 
 **Notes**
-  ``PatchValues()`` is used to patch the values of the selected
+  ``PatchValues`` is used to patch the values of the selected
   fields for multiple events in the stream. Only the fields indicated in
   **selectExpression** are modified. The events to be modified are indicated
   by the index value of each member of the **items** collection. The
@@ -208,7 +205,7 @@ Security
   
 
 
-``RemoveValue()``
+``RemoveValue``
 ----------------
 
 Removes the event at the index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. This method throws an exception if there is no data at the specified index.
@@ -218,12 +215,9 @@ Removes the event at the index from the specified stream. Different overloads ar
 
 ::
 
-    void RemoveValue(string tenantId, string namespaceId, string streamId, string index);
-    void RemoveValue<T1>(string tenantId, string namespaceId, string streamId, T1 index);
-    void RemoveValue<T1, T2>(string tenantId, string namespaceId, string streamId, Tuple<T1, T2> index);
-    Task RemoveValueAsync(string tenantId, string namespaceId, string streamId, string index);
-    Task RemoveValueAsync<T1>(string tenantId, string namespaceId, string streamId, T1 index);
-    Task RemoveValueAsync<T1, T2>(string tenantId, string namespaceId, string streamId, Tuple<T1, T2> index);
+    Task RemoveValueAsync(string streamId, string index);
+    Task RemoveValueAsync<T1>(string streamId, T1 index);
+    Task RemoveValueAsync<T1, T2>(string streamId, Tuple<T1, T2> index);
 
 **Http**
 
@@ -256,7 +250,7 @@ Security
 
 
 
-``RemoveValues()``
+``RemoveValues``
 ----------------
 
 Removes the event at each index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. 
@@ -266,12 +260,9 @@ Removes the event at each index from the specified stream. Different overloads a
 
 ::
 
-    void RemoveValues(string tenantId, string namespaceId, string streamId, IEnumerable<string> index);
-    void RemoveValues<T1>(string tenantId, string namespaceId, string streamId, IEnumerable<T1> index);
-    void RemoveValues<T1, T2>(string tenantId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task RemoveValuesAsync(string tenantId, string namespaceId, string streamId, IEnumerable<string> index);
-    Task RemoveValuesAsync<T1>(string tenantId, string namespaceId, string streamId, IEnumerable<T1> index);
-    Task RemoveValuesAsync<T1, T2>(string tenantId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
+    Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
+    Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
 
 **Http**
 
@@ -308,7 +299,7 @@ Security
 
 
 
-``RemoveWindowValues()``
+``RemoveWindowValues``
 ----------------
 
 Removes a range of values at and between the given indices.
@@ -318,12 +309,9 @@ Removes a range of values at and between the given indices.
 
 ::
 
-    void RemoveValues(string tenantId, string namespaceId, string streamId, IEnumerable<string> index);
-    void RemoveValues<T1>(string tenantId, string namespaceId, string streamId, IEnumerable<T1> index);
-    void RemoveValues<T1, T2>(string tenantId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
-    Task RemoveValuesAsync(string tenantId, string namespaceId, string streamId, IEnumerable<string> index);
-    Task RemoveValuesAsync<T1>(string tenantId, string namespaceId, string streamId, IEnumerable<T1> index);
-    Task RemoveValuesAsync<T1, T2>(string tenantId, string namespaceId, string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
+    Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
+    Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
 
 **Http**
 
@@ -360,7 +348,7 @@ Security
   
 
 
-``ReplaceValue()``
+``ReplaceValue``
 ----------------
 
 Writes an item over an existing event in the specified stream.
@@ -370,8 +358,7 @@ Writes an item over an existing event in the specified stream.
 
 ::
 
-    void ReplaceValue<T>(string tenantId, string namespaceId, string streamId, T item);
-    Task ReplaceValueAsync<T>(string tenantId, string namespaceId, string streamId, T item);
+    Task ReplaceValueAsync<T>(string streamId, T item);
 
 **Http**
 
@@ -403,7 +390,7 @@ Security
   specified index. Overloads are available to help you set the indexes you want removed.
   
   
-``ReplaceValues()``
+``ReplaceValues``
 ----------------
 
 Writes **items** over existing events in the specified stream.
@@ -413,8 +400,7 @@ Writes **items** over existing events in the specified stream.
 
 ::
 
-    void ReplaceValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task ReplaceValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
+    Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
 
 **Http**
 
@@ -445,13 +431,10 @@ Security
 
   
 **Notes**
-  Throws an exception if any index does not have a value to be
-  replaced. If any individual event fails to be replaced, the entire
-  operation is rolled back and no replaces are performed. The index  (of the *items* IEnumerable) that
-  caused the issue and the streamId are included in the error response.
+  Throws an exception if any index does not have a value to be replaced. If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index (of the *items* IEnumerable) that caused the issue and the streamId are included in the error response.
 
 
-``UpdateValue()``
+``UpdateValue``
 ----------------
 
 Writes **item** to the specified stream.
@@ -461,8 +444,7 @@ Writes **item** to the specified stream.
 
 ::
 
-    void UpdateValue<T>(string tenantId, string namespaceId, string streamId, T item);
-    Task UpdateValueAsync<T>(string tenantId, string namespaceId, string streamId, T item);
+    Task UpdateValueAsync<T>(string streamId, T item);
 
 **Http**
 
@@ -492,10 +474,10 @@ Security
   Allowed by administrator accounts
   
 **Notes**
-  ``UpdateValue()`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
+  ``UpdateValue`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
 
-``UpdateValues()``
+``UpdateValues``
 ----------------
 
 Writes items to the specified stream.
@@ -505,8 +487,7 @@ Writes items to the specified stream.
 
 ::
 
-    void UpdateValues<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
-    Task UpdateValuesAsync<T>(string tenantId, string namespaceId, string streamId, IList<T> items);
+    Task UpdateValuesAsync<T>(string streamId, IList<T> items);
 
 **Http**
 
@@ -536,7 +517,7 @@ Security
   Allowed by administrator accounts
   
  **Notes**
-  ``UpdateValues()`` performs an insert
+  ``UpdateValues`` performs an insert
   or a replace depending on whether an event already exists at the item's
   indexes. If any item fails to write, the entire operation is rolled back and
   no events are written to the stream. The index (of the *items* IEnumerable) that caused the issue is

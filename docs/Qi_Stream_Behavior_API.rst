@@ -1,12 +1,10 @@
 QiStreamBehavior API calls
 ==================
 
-.. highlight:: none
-
-The API calls in this section are all used to create and manipulate QiStreamBehaviors. See `QiStream behavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of a list of properties, interpolation, extrapolation, and overrides.
+The API calls in this section are all used to create and manipulate QiStreamBehaviors. QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper. See `QiStreamBehavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of properties, interpolation, extrapolation, and overrides.
 
 
-``DeleteBehavior()``
+``DeleteBehavior``
 ----------------
 
 Deletes a QiStream behavior from the specified namespace that matches the specified behaviorId. You cannot delete a stream behavior that is associated with a stream.
@@ -16,8 +14,7 @@ Deletes a QiStream behavior from the specified namespace that matches the specif
 
 ::
 
-    void DeleteBehavior(string tenantId, string namespaceId, string behaviorId);
-    Task DeleteBehaviorAsync(string tenantId, string namespaceId, string behaviorId);
+    Task DeleteBehaviorAsync(string behaviorId);
 
 **Http**
 
@@ -45,7 +42,7 @@ Security
 
 
 
-``GetBehavior()``
+``GetBehavior``
 ----------------
 
 Retrieves a QiStreamBehavior from the specified namespace that matches the specified behaviorId
@@ -54,8 +51,7 @@ Retrieves a QiStreamBehavior from the specified namespace that matches the speci
 
 ::
 
-    QiStreamBehavior GetBehavior(string tenantId, string namespaceId);
-    Task<QiStreamBehavior> GetBehaviorAsync(string tenantId, string namespaceId);
+    Task<QiStreamBehavior> GetBehaviorAsync( );
 
 **Http**
 
@@ -79,7 +75,7 @@ Security
 
 
 
-``GetBehaviors()``
+``GetBehaviors``
 ----------------
 
 Retrieves all QiStream behaviors from a namespace.
@@ -89,8 +85,7 @@ Retrieves all QiStream behaviors from a namespace.
 
 ::
 
-    IEnumerable<QiStreamBehavior> GetBehaviors(string tenantId, string namespaceId);
-    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(string tenantId, string namespaceId);
+    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync( ;
 
 **Http**
 
@@ -117,7 +112,7 @@ Security
   
 **********
 
-``GetOrCreateBehavior()``
+``GetOrCreateBehavior``
 ----------------
 
 Retrieves the QiStream behavior from a namespace, or creates the behavior if the behavior does not already exist. If the behavior exists, it is returned to the caller unchanged.
@@ -126,10 +121,7 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 
 ::
 
-    QiStreamBehavior GetOrCreateBehavior(string tenantId, string namespaceId, 
-        QiStreamBehavior qibehavior);
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(string tenantId, string namespaceId, 
-        QiStreamBehavior qibehavior);
+    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior qibehavior);
 
 **Http**
 
@@ -155,7 +147,7 @@ Security
 
 **********
 
-``UpdateBehavior()``
+``UpdateBehavior``
 ----------------
 
 Replaces the stream’s existing behavior with those defined in the ‘qibehavior’. If certain aspects of the existing behavior are meant to remain, they must be included in qibehavior.
@@ -167,10 +159,7 @@ the addition, removal, or change to this list.
 
 ::
 
-    void UpdateBehavior(string tenantId, string namespaceId, string behaviorId, 
-        QiStreamBehavior qibehavior);
-    Task UpdateBehaviorAsync(string tenantId, string namespaceId, string behaviorId, 
-        QiStreamBehavior qibehavior);
+    Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior qibehavior);
 
 **Http**
 

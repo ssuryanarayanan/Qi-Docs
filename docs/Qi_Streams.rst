@@ -5,6 +5,8 @@ A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
+QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+
 The following table shows the required and optional QiStream properties:
 
 +---------------+----------+-------------+--------------------------------------------+

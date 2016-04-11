@@ -1,17 +1,17 @@
 Searching for QiStreams
 =======================
 
-``GetStreams()`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for information about using ``GetStream()`` to return streams). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
+``GetStreams`` is an overloaded method that is also used to search for and return QiStreams (also see `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for information about using ``GetStream`` to return streams). When you call an overloaded method, the software determines the most appropriate method to use by comparing the argument types specified in the call to the method definition.
 
-The syntax is as follows:
+The syntax of the client libraries method is as follows:
 
 ::
 
-  GetStreams(string searchText, int skip, int count);
+  _metadataService.GetStreamsAsync(string searchText, int skip, int count);
 
 
-The ``GetStreams()`` overload returns QiStreams that match specific search criteria within a given tenant. 
-You use the ``searchText`` parameter to specify a search string. The ``GetStreams()`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream ``name``, the stream ``description``, or in the ``tag`` list. 
+The ``GetStreams`` overload returns QiStreams that match specific search criteria within a given tenant. 
+You use the ``searchText`` parameter to specify a search string. The ``GetStreams`` method then returns any QiStreams that match the search string. The QiStreams returned are those in which the ``searchText`` is found in the stream ``name``, the stream ``description``, or in the ``tag`` list. 
 
 For example, assume that a tenant contains the following Streams:
 
@@ -27,7 +27,7 @@ stream3         calcA           calculation from     “temperature”,
 ============    =========       ================     =========================
 
 
-Using the stream data above, the following table shows the results of a ``GetStreams()`` call with different ``SearchText`` values:
+Using the stream data above, the following table shows the results of a ``GetStreams`` call with different ``SearchText`` values:
 
 ==============     ========================================
 **SearchText**     **Streams returned**
@@ -51,13 +51,13 @@ The following call returns the first 100 matches:
 
 ::
  
-   GetStreams(“temperature*”, 0, 100)
+   _metadataService.GetStreamsAsync(“temperature*”, 0, 100)
 
 After the previous call, you can use the following call to return the remaining 75 matches, skipping over the first 100 matches because of the skip parameter set at 100):
 
 ::
 
-   GetStreams(“temperature*”, 100, 100) 
+   _metadataService.GetStreamsAsync(“temperature*”, 100, 100) 
 
 
 Search operators
