@@ -1,4 +1,8 @@
-[{
+[{  
+    "Title": "Cluster Service Alert",
+    "Timestamp": "2016-04-12T21:00:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> At 12:45 UTC the Qi service began experiencing intermittent issues and we are working to resolve this as soon as possible. We will provide an update by end of day Thursday (April 14,2016)."
+  },{
     "Title": "Upgrade Complete - Action required",
     "Timestamp": "2016-04-12T16:34:00.000Z",
     "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
