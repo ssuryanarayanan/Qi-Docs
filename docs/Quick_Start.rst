@@ -179,5 +179,27 @@ DateTime value is included on the string value.
 Additional information about reading data can be found in `Reading
 data <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data.html>`__.
 
+Handling transient service interruptions
+----------------------------------------
+
+Temporary service interruptions are a fact of life in real-world cloud applications. 
+While network connections and external services are basically reliable, your 
+application should be able to handle temporary service interruptions and network 
+glitches. Often, simply retrying a failed call is all that is required after 
+a transient service interruption.
+
+If you access Qi using the Qi client .NET SDKs, error handling for certain 
+transient faults is built in; that is, the Qi client .NET SDK automatically 
+retries calls that return 503 (Service Unavailable) instead of throwing an 
+exception and displaying an error condition.
+
+However, if you access the Qi HTTP API directly, you should consider creating 
+your own retry logic to automatically retry the operation that resulted in the error.
+
+Errors that are typically transient have error codes in the 500 range and 
+your code should have logic to retry calls that return errors in this range. 
+Calls that result in a status in the 400s indicate that there is something 
+intrinsically wrong with the request. In this case you should refactor your 
+code to correct the error.
 
 
