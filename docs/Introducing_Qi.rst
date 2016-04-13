@@ -73,8 +73,8 @@ There are two types of security accounts for Qi users:
 |                | from streams.                                                    |
 +----------------+------------------------------------------------------------------+
 
-Getting started
----------------
+Code samples
+------------
 
 Code samples for Python, .NET, Node.js, and Java can be found in the
 Qi-Samples repository on GitHub. Obtain Qi REST API access keys from
