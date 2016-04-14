@@ -1,4 +1,8 @@
 [{  
+    "Title": "Service Alert Update",
+    "Timestamp": "2016-04-14T20:30:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1>The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Monday (April 18, 2016)."
+  }{  
     "Title": "Service Alert",
     "Timestamp": "2016-04-12T21:00:00.000Z",
     "Content": "<h1>Qi Service Alert<\/h1> At 12:45 UTC the Qi service began experiencing intermittent issues and we are working to resolve this as soon as possible. We will provide an update by end of day Thursday (April 14,2016)."
