@@ -202,4 +202,10 @@ Calls that result in a status in the 400s indicate that there is something
 intrinsically wrong with the request. In this case you should refactor your 
 code to correct the error.
 
+Of course, you should limit the number of times you retry a call. For example, 
+there might be many users retrying the same failed request, resulting in so 
+many queued requests that the service cannot recover. 
+
+A good example retry strategy for HTTP API users might be to retry five times, 
+waiting increasingly longer intervals from 1 to 60 seconds between retries.
 
