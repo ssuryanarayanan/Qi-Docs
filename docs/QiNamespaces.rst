@@ -30,7 +30,7 @@ The following table shows the required and optional Qi namespace properties:
 5. Maximum length of 260 characters
 
 
-GetNamespace( )
+``GetNamespace( )``
 -------------------
 
 Retrieves an existing namespace.
@@ -65,7 +65,7 @@ Security
   Returns a namespace.
 
 
-GetNamespaces( )
+``GetNamespaces( )``
 ----------------
 
 Retrieves a list of existing namespaces.
@@ -98,7 +98,7 @@ Security
   Returns a list of namespaces.
 
 
-GetOrCreateNamespace( )
+``GetOrCreateNamespace( )``
 ----------------
 
 Returns the namespace with the specified namespaceId, or creates the namespace if the namespace does not already exist. 
@@ -129,7 +129,7 @@ If the namespace exists, it is returned to the caller unchanged.
   Returns a namespace.
 
 
-DeleteNamespace( )
+``DeleteNamespace( )``
 ----------------
 
 Deletes the namespace with the specified namespaceId from the tenant specified by the tenantId.
