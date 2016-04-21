@@ -5,7 +5,7 @@ A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical 
 within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
 For more information see `Qi Architecture <https://qi-docs.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__.
 
-To work with your Qi Tenant, you must create at least one Namespace in which to work.
+Within a Qi Tenant you must have at least one Namespace in which to work.
 You may create up to five namespaces within a tenant. If you use all five of your namespaces 
 and want to create another, you can first delete an existing namespace and then create a new one. 
 Contact OSIsoft if you require more than five namespaces within a tenant.
@@ -102,7 +102,8 @@ Security
 ----------------
 
 Returns the namespace with the specified namespaceId, or creates the namespace if the namespace does not already exist. 
-If the namespace exists, it is returned to the caller unchanged.
+If the namespace exists, it is returned to the caller unchanged. For security, this method is 
+executable only by an administrator account.
 
 ::
 
@@ -162,5 +163,5 @@ Deletes the namespace with the specified namespaceId from the tenant specified b
   
 **Notes**
   You must have at least one namespace in a tenant. If a tenant contains only one namespace, the namespace cannot be deleted. 
-  Deleting a tenant does not change the maximum number of allowed namespaces within a tenant. 
+  Deleting a namespace does not change the maximum number of allowed namespaces within a tenant. 
 
