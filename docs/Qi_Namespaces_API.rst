@@ -1,3 +1,6 @@
+Qi namespaces API calls
+=======================
+
 The API calls in this section are all used to create and manipulate Qi namespaces. Qi namespace management via the Qi Client Libraries is performed through the ``IQiAdministrationService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper. See `Qi namespaces <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Namespaces.html>`__ for a list of properties, interpolation, extrapolation, and overrides.
 
 
