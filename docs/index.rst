@@ -16,7 +16,8 @@ easily obtain needed information.
 
    Introducing_Qi
    Quick_Start
-   QiNamespaces
+   Qi_Namespaces
+   Qi_Namespaces_API
    Qi_Types
    Qi_Types_API
    Qi_Streams
