@@ -20,9 +20,9 @@ The following table shows the required and optional QiStream properties:
 +---------------+----------+-------------+--------------------------------------------+
 | TypeId        | String   | Required    | The type to be used for this stream.       |
 +---------------+----------+-------------+--------------------------------------------+
-| BehaviorId    | Sting    | Optional    | The stream behavior for this stream.       |
+| BehaviorId    | String    | Optional    | The stream behavior for this stream.       |
 +---------------+----------+-------------+--------------------------------------------+
-| Tag           | Sting    | Optional    | A collection of strings that permit        |
+| Tag           | String    | Optional    | A collection of strings that permit        |
 |               |          |             | classifying and identifying individual     |
 |               |          |             | streams.                                   |
 +---------------+----------+-------------+--------------------------------------------+
