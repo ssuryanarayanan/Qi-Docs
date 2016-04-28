@@ -7,7 +7,7 @@ The API calls in this section are all used to create and manipulate QiStreams. S
 QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
 
-``GetStream``
+``GetStream()``
 ----------------
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
@@ -44,7 +44,7 @@ Security
 
 
 
-``GetStreams``
+``GetStreams()``
 ----------------
 
 Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria.
@@ -83,7 +83,7 @@ Security
   
 
 
-``GetOrCreateStream``
+``GetOrCreateStream()``
 ----------------
 
 Returns a stream that matches the QiStream qistream within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
@@ -118,7 +118,7 @@ Security
   
 
 
-``UpdateStream``
+``UpdateStream()``
 ----------------
 
 Updates a specified stream in a specified namespace with the properties in the specified QiStream qistream. The following changes are permitted:
@@ -169,7 +169,7 @@ Security
 
 
 
-``DeleteStream``
+``DeleteStream()``
 ----------------
 
 Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.
