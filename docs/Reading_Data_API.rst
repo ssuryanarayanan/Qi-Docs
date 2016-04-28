@@ -3,7 +3,7 @@ API Calls for reading data
 
 Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
 
-``FindDistinct``
+``FindDistinct()``
 ----------------
 
 Searches for data in a stream using the specified search mode.
@@ -102,7 +102,7 @@ stream types with a compound index, such as a DateTime and an Integer.
     var readEvent = _dataService.FindDistinctValueAsync<TestType, DateTime, int>(streamId, tupleId, searchMode).Result;
 
 
-``GetDistinctValue``
+``GetDistinctValue()``
 ----------------
 
 Returns an event from the specified stream at the specified index.
@@ -177,7 +177,7 @@ See the `FindDistinctValue <http://qi-docs-rst.readthedocs.org/en/latest/Reading
 examples for an illustration of these.
 
 
-``GetFirstValue``
+``GetFirstValue()``
 ----------------
 
 Retrieves the first data event in a stream.
@@ -216,7 +216,7 @@ Security
   ``GetFirstValue`` returns null if the stream has no data (no exception is thrown).
 
 
-``GetLastValue``
+``GetLastValue()``
 ----------------
 
 Retrieves the last data event in a stream.
@@ -255,7 +255,7 @@ Security
   ``GetLastValue`` Returns null if the stream has no data (no exception is thrown).
 
 
-``GetRangeValues``
+``GetRangeValues()``
 ----------------
 
 Retrieves events from a stream based on a starting index and a requested number of events.
@@ -452,7 +452,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
-``GetValue``
+``GetValue()``
 ----------------
 
 Retrieves a specified data event from a stream.
@@ -535,7 +535,7 @@ See the `FindDistinctValue <http://qi-docs-rst.readthedocs.org/en/latest/Reading
 examples for an illustration of these.
 
 
-``GetValues``
+``GetValues()``
 ----------------
 
 Retrieves calculated events at the requested index values in **index**, or **count** number of evenly spaced calculated events between **startIndex** and **endIndex**.
@@ -603,7 +603,7 @@ found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
-``GetWindowValues``
+``GetWindowValues()``
 ----------------
 
 Retrieves values between the specified start and end indexes.
