@@ -1,5 +1,5 @@
-QiStreams
-==========
+QiStream Information
+====================
 
 A QiStream is the fundamental unit of storage in Qi. Each stream
 represents an ordered series of events or observations for a particular
@@ -9,23 +9,28 @@ QiStream management via the Qi Client Libraries is performed through the ``IQiMe
 
 The following table shows the required and optional QiStream properties:
 
-+---------------+----------+-------------+--------------------------------------------+
-| Property      | Type     | Optionality |Details                                     |
-+===============+==========+=============+============================================+
-| Id            | String   | Required    | An Identifier for referencing the stream.  |
-+---------------+----------+-------------+--------------------------------------------+
-| Name          | String   | Optional    | The name of the stream.                    |
-+---------------+----------+-------------+--------------------------------------------+
-| Description   | String   | Optional    | Text that describes the stream.            |
-+---------------+----------+-------------+--------------------------------------------+
-| TypeId        | String   | Required    | The type to be used for this stream.       |
-+---------------+----------+-------------+--------------------------------------------+
-| BehaviorId    | String    | Optional    | The stream behavior for this stream.       |
-+---------------+----------+-------------+--------------------------------------------+
-| Tag           | Sting    | Optional    | A collection of strings that permit        |
-|               |          |             | classifying and identifying individual     |
-|               |          |             | streams.                                   |
-+---------------+----------+-------------+--------------------------------------------+
++---------------+------------------------------+-------------+--------------------------------------------+
+| Property      | Type                         | Optionality |Details                                     |
++===============+==============================+=============+============================================+
+| ID            | String                       | Required    | An Identifier for referencing the stream.  |
++---------------+------------------------------+-------------+--------------------------------------------+
+| TypeId        | String                       | Required    | The type to be used for this stream.       |
++---------------+------------------------------+-------------+--------------------------------------------+
+| Name          | String                       | Optional    | The name of the stream.                    |
++---------------+------------------------------+-------------+--------------------------------------------+
+| Description   | String                       | Optional    | Text that describes the stream.            |
++---------------+------------------------------+-------------+--------------------------------------------+
+| BehaviorId    | String                       | Optional    | The stream behavior for this stream.       |
++---------------+------------------------------+-------------+--------------------------------------------+
+| Tag           | String                       | Optional    | A collection of strings that permit        |
+|               |                              |             | classifying and identifying individual     |
+|               |                              |             | streams.                                   |
++---------------+------------------------------+-------------+--------------------------------------------+
+| Metadata      | iDictionary<string, object>  | Optional    | A dictionary for users to store information|
+|               |                              |             | that is relevant to the stream             |
++---------------+------------------------------+-------------+--------------------------------------------+
+| Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream|
++---------------+------------------------------+-------------+--------------------------------------------+
 
 A stream is always referenced by its Id property. As shown in the preceeding table,
 a QiStream must include a unique *ID* as well as a *TypeId* with the ID of
