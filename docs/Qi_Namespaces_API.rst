@@ -1,5 +1,5 @@
-Qi namespaces API calls
-=======================
+Qi namespace API calls
+======================
 
 The API calls in this section are all used to create and manipulate Qi namespaces. You can create, delete, or obtain information about your namespaces using the methods outlined in this topic. Namespace management via the Qi Client Libraries is performed through the ``IQiAdministrationService`` interface, which may be accessed via the ``QiService.GetAdministrationService( )`` helper.
 
