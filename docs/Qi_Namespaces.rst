@@ -1,5 +1,5 @@
-Qi Namespaces
-#############
+Qi Namespace information
+========================
 
 A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
 within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
