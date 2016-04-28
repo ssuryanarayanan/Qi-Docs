@@ -4,7 +4,7 @@ QiStreamBehavior API calls
 The API calls in this section are all used to create and manipulate QiStreamBehaviors. QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper. See `QiStreamBehavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of properties, interpolation, extrapolation, and overrides.
 
 
-``DeleteBehavior``
+``DeleteBehavior()``
 ----------------
 
 Deletes a QiStream behavior from the specified namespace that matches the specified behaviorId. You cannot delete a stream behavior that is associated with a stream.
@@ -42,7 +42,7 @@ Security
 
 
 
-``GetBehavior``
+``GetBehavior()``
 ----------------
 
 Retrieves a QiStreamBehavior from the specified namespace that matches the specified behaviorId
@@ -75,7 +75,7 @@ Security
 
 
 
-``GetBehaviors``
+``GetBehaviors()``
 ----------------
 
 Retrieves all QiStream behaviors from a namespace.
@@ -112,7 +112,7 @@ Security
   
 **********
 
-``GetOrCreateBehavior``
+``GetOrCreateBehavior()``
 ----------------
 
 Retrieves the QiStream behavior from a namespace, or creates the behavior if the behavior does not already exist. If the behavior exists, it is returned to the caller unchanged.
@@ -147,7 +147,7 @@ Security
 
 **********
 
-``UpdateBehavior``
+``UpdateBehavior()``
 ----------------
 
 Replaces the stream’s existing behavior with those defined in the ‘qibehavior’. If certain aspects of the existing behavior are meant to remain, they must be included in qibehavior.
