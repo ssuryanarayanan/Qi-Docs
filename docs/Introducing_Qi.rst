@@ -21,7 +21,7 @@ Within a Namespace, Qi defines three different objects in which to store and man
 -  **Type**: A user-defined structure that denotes a single measured event or
    object for storage. In Qi, a type is called a QiType.
 -  **Stream**: A basic unit of storage consisting of an ordered series of
-   objects that conform to a type definition. In Qi, a strea is called a QiStream.
+   objects that conform to a type definition. In Qi, a stream is called a QiStream.
 -  **Stream Behavior**: Defines how Qi interpolates or extrapolates
    data during event retrieval when requests occur before, after, or between
    existing data events.
