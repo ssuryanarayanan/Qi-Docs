@@ -265,27 +265,44 @@ Retrieves events from a stream based on a starting index and a requested number 
 
 ::
 
-    IEnumerable<T> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    IEnumerable<T> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
+                   bool reversed, QiBoundaryType boundaryType, string filter);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, bool reversed);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, string filterExpression);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
+                         bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
+                         QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
+                         int count, bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
+                         int count, bool reversed, QiBoundaryType boundaryType, string filter);
 
 **Http**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}&filterExpression={filterExpression}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&reversed={reversed}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&count={count}&boundaryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&filterExpression={filterExpression}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}&reversed={reversed}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}&boundaryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &filter={filterExpression}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}&reversed={reversed}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &count={count}&boundaryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
+                      &filter={filterExpression}
 
 	
 **Parameters**
@@ -307,7 +324,7 @@ Retrieves events from a stream based on a starting index and a requested number 
   counted. (Applied after filterExpression. )
 ``boundaryType``
   Enumeration indicating how to handle boundary events.
-``filterExpression``
+``filter``
   String containing an OData filter expression (see *Notes* section below).
   
 
@@ -374,7 +391,7 @@ The table below indicates how the first value is determined for
 
 The order of execution first determines the direction of the method and
 the starting event using the ``BoundaryType``. After the starting event is
-determined, the filterExpression is applied in the direction requested
+determined, the filter is applied in the direction requested
 to determine potential return values. Then, ``skip`` is applied to pass
 over the specified number of events, including any calculated events.
 Finally, events up to the number specified by count are returned.
@@ -614,23 +631,37 @@ Retrieves values between the specified start and end indexes.
 ::
 
     Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression);
-    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, int count, string continuationToken);
-    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, string filterExpression, string selectExpression);
-    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, QiBoundaryType boundaryType, string filterExpression, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
+                         QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
+                         QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
+                         QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, 
+                         string filter);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
+                         QiBoundaryType boundaryType, int count, string continuationToken);
+    Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
+                         QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, 
+                         string filter, string selectExpression);
+    Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
+                         QiBoundaryType boundaryType, string filter, int count, string continuationToken);
 
 **Http**
 
 ::
 
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType}&filterExpression={filterExpression}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}&filterExpression={filterExpression}&selectExpression={selectExpression}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
+                      &boundaryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
+                      &boundaryType={boundaryType}&filter={filterExpression}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}
+                      &boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
+                      &filter={filterExpression}&selectExpression={selectExpression}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 
 	
 **Parameters**
@@ -647,7 +678,7 @@ Retrieves values between the specified start and end indexes.
   String representation of the ending index value.
 ``boundaryType``
   Enumeration describing how to handle boundary events.
-``filterExpression``
+``filter``
   OData filter expression.
 ``count``
   Maximum of events to return within the specified index range. For paging through data.
