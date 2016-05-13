@@ -555,7 +555,8 @@ examples for an illustration of these.
 ``GetValues()``
 ----------------
 
-Retrieves calculated events at the requested index values in **index**, or **count** number of evenly spaced calculated events between **startIndex** and **endIndex**.
+Retrieves a number of calculated events from a stream using a set of indexes. The set of indexes 
+is determined by the particular method overload that is used.  
 
 
 **Syntax**
@@ -602,20 +603,49 @@ Retrieves calculated events at the requested index values in **index**, or **cou
 Security
   Allowed by administrator and user accounts
   
+  
 **Notes**
-  ``GetValues`` returns calculated events at the requested
-  index values in **index**, or **count** number of evenly spaced calculated
-  events between **startIndex** and **endIndex**. For ``GetValues`` overloads
-  that include a streamId and IEnumberable **index**, the call behaves like
-  multiple ``GetValue`` calls. For the ``GetValues`` overloads that
-  include **startIndex**, **endIndex** and **count**, these parameters are used
-  to generate a list of indexes for which to obtain values. Events
-  returned for each index are determined according to the QiStreamBehavior
-  assigned to the stream being read.
 
-For ``GetValues`` overloads that include the filterExpression
-parameters are used to create a list of indexes that match the OData
-filter text used. More information on OData Filter Expressions can be
+The ``GetValues()`` method has several overloads that perform different retrieval functions: 
+Simple, Count-based, and Filter-based, which are described below.
+
+Simple: 
+  The following ``GetValues()`` overloads include an enumerable of indexes and return a calculated value for 
+  each of the specified indexes. For the specified index, one of two values is returned: either the event 
+  that is found at the index, or a value is calculated for the index using adjacent events found in the stream.
+  
+::
+
+    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, IEnumerable<string> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, IEnumerable<T1> index);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);  
+  
+Count-based:
+  The following ``GetValues()`` overloads contain a startindex, endindex, and a count. They return a ``count`` 
+  number of values at indexes that are evenly divided across the range between the startIndex and endIndex. 
+  For Example, specifying a count of 3, a startIndex of 1:00PM, and an endIndex of 2:00PM, three indexes 
+  are used to retrieve events (1:00, 1:30 and 2:00PM). When these indexes are determined, either an actual or 
+  a calculated ``event`` is returned. 
+  
+::
+
+    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string startIndex, string endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);  
+  
+Filter-based
+  The following ``GetValues()`` overload include a ``filter`` parameter that finds all of the indexes in 
+  the stream that have events that match the expression that is given in the filter. For this overload, 
+  all of the returned events will be real events (that is, none of the events will be calculated).
+
+::
+
+    Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string filterExpression);
+
+
+Calculated values are determined using the Stream Behavior object that is associated with the stream.   
+  
+More information about OData Filter Expressions can be
 found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
@@ -655,13 +685,13 @@ Retrieves values between the specified start and end indexes.
                       &boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
                       &boundaryType={boundaryType}&filter={filterExpression}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&&endIndex={endIndex}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
                       &boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
                       &filter={filterExpression}&selectExpression={selectExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
-                      &&endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+                      &endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 
 	
 **Parameters**
