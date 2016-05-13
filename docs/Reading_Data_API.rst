@@ -611,7 +611,7 @@ Simple, Count-based, and Filter-based, which are described below.
 
 Simple: 
   The following ``GetValues()`` overloads include an enumerable of indexes and return a calculated value for 
-  each of the specified indexes. For the specified index, one of two values is returned: either the event 
+  each of the specified indexes. For each of the specified indexes, one of two values is returned: either the event 
   that is found at the index, or a value is calculated for the index using adjacent events found in the stream.
   
 ::
@@ -621,9 +621,9 @@ Simple:
     Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);  
   
 Count-based:
-  The following ``GetValues()`` overloads contain a startindex, endindex, and a count. They return a ``count`` 
-  number of values at indexes that are evenly divided across the range between the startIndex and endIndex. 
-  For Example, specifying a count of 3, a startIndex of 1:00PM, and an endIndex of 2:00PM, three indexes 
+  The following ``GetValues()`` overloads contain a ``startindex``, ``endindex``, and a ``count``. The methods return ``count`` 
+  number of values at indexes that are evenly divided across the range between ``startIndex`` and ``endIndex``. 
+  For Example, specifying a count of 3, a ``startIndex`` of 1:00PM, and an ``endIndex`` of 2:00PM, three indexes 
   are used to retrieve events (1:00, 1:30 and 2:00PM). When these indexes are determined, either an actual or 
   a calculated ``event`` is returned. 
   
