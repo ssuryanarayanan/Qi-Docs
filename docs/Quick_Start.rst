@@ -4,7 +4,7 @@ Quick start
 Step 1: Create a Namespace
 --------------------------
 
-You must start by creating a Namespace so that you have a place in which to create types, 
+You start by creating a Namespace so that you have a place in which to create types, 
 streams, and behaviors.
 
 ::
@@ -166,7 +166,7 @@ stream from which to retrieve the data. With the read methods, indexes
 are supplied to the method in ‘string’ format. For example, 
 to send the index for ‘now’ to read from a stream that has data
 indexed with a DateTime type as its index, the string could be defined
-in as in the following example:
+as in the following example:
 
 ::
 
