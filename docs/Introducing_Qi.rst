@@ -65,12 +65,14 @@ There are two types of security accounts for Qi users:
 +----------------+------------------------------------------------------------------+
 | Account Type   | Description                                                      |
 +----------------+------------------------------------------------------------------+
-| Administrator  | Allowed to perform all CRUD (Create, Read, Update, Delete)       |
+| Administrator  | Accounts with administrator authority are allowed to perform all |
+|                | CRUD (Create, Read, Update, Delete)                              |
 |                | operations on Qitype, stream, and stream                         |
-|                | behavior objects. Also allowed to read and write data to streams |
+|                | behavior objects. Accounts also allowed to read and write data   |
+|                | to streams                                                       |
 +----------------+------------------------------------------------------------------+
-| User           | Allowed read operations on Qi objects and allowed to read data   | 
-|                | from streams.                                                    |
+| User           | Accounts with user authority are allowed read operations on      |
+|                | Qi objects and allowed to read data from streams                 | 
 +----------------+------------------------------------------------------------------+
 
 Code samples
