@@ -594,6 +594,8 @@ is determined by the particular method overload that is used.
   String representation of the ending index value.
 ``count``
   Number of equally-spaced calculated events to return within the *startIndex* and *endIndex* boundaries.
+``filter``
+  OData filter expression.
 
   
 
