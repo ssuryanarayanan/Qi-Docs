@@ -64,10 +64,10 @@ which means that it is not necessary to provide the tenant and namespace informa
 with each library call. If you are switching from the IQiService to the new services, 
 you will notice that method calls no longer include tenantId and namespaceID parameters.
 
-Security information is provided to the QiService calls using a new SecurityHandler object. 
+Security information is provided to the QiService calls using a new ``SecurityHandler`` object. 
 Constructors for this object accept security credentials that are provided by the client 
 so that the appropriate role of administrator or user can be implemented for the service 
-in which the created SecurityHandler is used. 
+in which the created ``SecurityHandler`` is used. 
 
 **If you are new to the Qi .NET library:**
 
@@ -75,29 +75,37 @@ Proceed to the documentation and samples for guidance in setting up and programm
 
 **If you have already been using the Qi .NET library:**
 
+Your code will continue to work, but you will need to replace your use of the 
+IQiServer C# Interface as outlined above. Specifically you will need to remove 
+your instantiation of the IQiService C# interface and replace it with code that 
+instantiates ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``.  
 
-Your code will continue to work, but you will need to replace your use of the IQiServer C# Interface as outlined above. Specifically you will need to remove your instantiation of the IQiService C# interface and replace it with code that instantiates IQiAdministrationService, IQiMetaDataService and IQiDataService.  
+To assist you in incorporating these new C# interfaces, the QI .NET libraries include 
+a QiService class, which includes methods that can be used to quickly instantiate the 
+new services. The methods are ``GetAdministratioService()``, ``GetMetadataService()`` 
+and ``GetDataService()``. These calls accept URI, tenants, namespace and security 
+information. A new class called ``SecurityHandler`` is now provided so you can set 
+and pass security information to the Services in one easy step. 
 
-To assist you in instantiated these new C# interfaces, the QI .NET libraries includes a QiService class. This class includes methods which can be used to quickly instantiate the new services. They are GetAdministratioService( ), GetMetadataService( ) and GetDataService( ). These calls accept URI, tenants, namespace and security information. Anew class called the SecurityHandler is now provided for you to set and pass security information to the Services in one easy step. 
+After you have modified your code to instantiate the new interfaces, you should replace 
+the specific method calls that used the old IQiServer C# Interface.
 
-Once you have modified your code to instantiate the new interfaces, you will need to replace the specific method calls that used the old IQiServer C# Interface.
-
-Here are some steps that you might find useful when replacing these calls:
+Here are some steps you might find useful when replacing these calls:
 
 For each of the method calls that were previously made with IQiServer:
 
-1.  Replace the use of IQIService with one of the new 
+1.  Replace the use of ``IQIService`` with one of the new 
     ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService objects.``
-2.  At this point you should be able to find the method you need using the objects Completion Aids. 
+2.  You should be able to find the method you need by using the object's Completion Aids. 
     The new services use the same method names as the old IQiServer, with the exception that the 
     synchronous method overloads are no longer provided. All of the synchronous methods have an 
-    equivalent asynchronous method in the new Services. They simply include ``Async`` at 
-    the end of the method name. For Example ``GetValue(…)`` becomes ``GetValueAsync(…)``.
-3.  Also consider adding ``.GetAwaiter().GetResult()`` to the end of the call as needed.
-    GetAwaiter() gets an ``awaiter`` to await the completion of the task.  
-    GetResult() returns the result of the completed task.
-4.  You will also notice that you must remove the passing of a TenantId and\or NamespaceId as 
-    parameters to these methods. The new methods do not require these.
+    equivalent asynchronous method in the new Services; they simply include ``Async`` at 
+    the end of the method name. For Example ``GetValue(...)`` becomes ``GetValueAsync(...)``.
+3.  Also, consider adding ``.GetAwaiter().GetResult()`` to the end of the call as needed.
+    ``GetAwaiter()`` gets an ``awaiter`` to await the completion of the task.  
+    ``GetResult()`` returns the result of the completed task.
+4.  Notice also that you must remove the passing of a TenantId and/or NamespaceId as 
+    parameters to these methods. The new methods do not require these parameters.
 
 *Example method call change:*
 
