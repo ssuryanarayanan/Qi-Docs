@@ -41,12 +41,19 @@ Once you have modified your code to instantiate the new interfaces, you will nee
 Here are some steps that you might find useful when replacing these calls:
 
 For each of the method calls that were previously made with IQiServer:
-1.	Replace the use of IQIService with one of the new IQiAdministrationService, IQiMetaDataService and IQiDataService objects.
-2.	At this point you should be able to find the method you need using the objects Completion Aids. The new services use the same method names as the old IQiServer, with the exception that the synchronous method overloads are no longer provided. All of the synchronous methods have an equivalent asynchronous method in the new Services. They simply include ‘Async’ at the end of the method name. For Example GetValue(…) becomes GetValueAsync(…).
-a.	Also consider adding ‘.GetAwaiter().GetResult()’ to the end of the call as needed.  
-i.	GetAwaiter() gets an ‘awaiter’ to await the completion of the task.  
-ii.	GetResult() returns the result of the completed task.
-3.	You will also notice that you must remove the passing of a TenantId and\or NamespaceId as parameters to these methods. The new methods do not require these.
+
+1.  Replace the use of IQIService with one of the new 
+    ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService objects.``
+2.  At this point you should be able to find the method you need using the objects Completion Aids. 
+    The new services use the same method names as the old IQiServer, with the exception that the 
+    synchronous method overloads are no longer provided. All of the synchronous methods have an 
+    equivalent asynchronous method in the new Services. They simply include ``Async`` at 
+    the end of the method name. For Example ``GetValue(…)`` becomes ``GetValueAsync(…)``.
+3.  Also consider adding ``.GetAwaiter().GetResult()`` to the end of the call as needed.
+    GetAwaiter() gets an ``awaiter`` to await the completion of the task.  
+    GetResult() returns the result of the completed task.
+4.  You will also notice that you must remove the passing of a TenantId and\or NamespaceId as 
+    parameters to these methods. The new methods do not require these.
 
 *Example method call change:*
 
