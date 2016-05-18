@@ -1,10 +1,13 @@
-What's New
-==========
+What's New?
+===========
 
-What's new as of May 18th, 2016
--------------------------------
+New as of May 19th, 2016
+------------------------
 
-Some important changes were made to the Qi .Net Library that you should be aware of. As of May 18th, 2016, the IQiService C# interface will be deprecated and replaced with several new interfaces. The IQiService formerly included calls to manipulate Qi objects and to read and write data. Calls that were previously included in the IQiService C# interface were integrated into newly designed services and the IQiService will be depricated.
+Some important changes were made to the Qi .Net Library that you should be aware of. As of May 19th, 2016, 
+the IQiService C# interface will be deprecated and replaced with several new interfaces. The IQiService 
+formerly included calls to manipulate Qi objects and to read and write data. Calls that were previously 
+included in the IQiService C# interface were integrated into newly designed services and the IQiService will be depricated.
 
 
 +---------------------------+---------------------------------------------------+
@@ -54,17 +57,12 @@ you will notice that method calls no longer include tenantId and namespaceID par
 
 Security information is provided to the QiService calls using a new SecurityHandler object. Constructors for this object accept security credentials that are provided by the client so that the appropriate role of ‘administrator’ or ‘user’ can be implemented for the service in which the created SecurityHandler is used. 
 
+**If you are new to the Qi .NET library:**
 
-
-
-
-
-If you are new to the Qi .NET library:
---------------------------------------
 Proceed to the documentation and samples for guidance in setting up and programming your Qi Clients with the Qi .NET Library
 
-If you have already been using the Qi .NET library:
----------------------------------------------------
+**If you have already been using the Qi .NET library:**
+
 
 Your code will continue to work, but you will need to replace your use of the IQiServer C# Interface as outlined above. Specifically you will need to remove your instantiation of the IQiService C# interface and replace it with code that instantiates IQiAdministrationService, IQiMetaDataService and IQiDataService.  
 
