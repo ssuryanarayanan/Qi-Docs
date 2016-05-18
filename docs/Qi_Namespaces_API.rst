@@ -37,6 +37,8 @@ Security
 **Returns** 
   Returns a namespace.
 
+**********************
+
 
 ``GetNamespaces()``
 ----------------
