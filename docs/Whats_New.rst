@@ -6,10 +6,21 @@ What's new as of May 18th, 2016
 
 Some important changes were made to the Qi .Net Library that you should be aware of. As of May 18th, 2016, the IQiService C# interface will be deprecated and replaced with several new interfaces. The IQiService formerly included calls to manipulate Qi objects and to read and write data. Calls that were previously included in the IQiService C# interface were integrated into newly designed services and the IQiService will be depricated.
 
-Interface name	Description
-IQiAdministrationService	Includes methods that you use to manage QiNamespace objects within a tenant.
-IQiMetaDataService	Includes methods that you use to manage QiTypes, QiStreams, and QiStreamBehavior objects within a namespace.
-IQiDataService	Includes methods that you use to read and write data to QiStreams.
+
++---------------------------+---------------------------------------------------+
+| Interface name            | Description                                       |
++===========================+===================================================+
+| IQiAdministrationService  | Includes methods that you use to manage           |
+|                           | QiNamespace objects within a tenant.              |
++---------------------------+---------------------------------------------------+
+| IQiMetaDataService        | Includes methods that you use to manage QiTypes,  |
+|                           | QiStreams, and QiStreamBehavior objects within    |
+|                           | a namespace.                                      |
++---------------------------+---------------------------------------------------+
+| IQiDataService            | Includes methods that you use to read and write   |
+|                           | data to QiStreams                                 |
++---------------------------+---------------------------------------------------+
+
 
 In addition to the new layout of methods shown in the previous table, all of the synchronous calls are also being deprecated. Before deprecating, each of the .NET library calls included a full complement of both synchronous and asynchronous overloads. After the library change, only the asynchronous overloads will remain. 
 
