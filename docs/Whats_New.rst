@@ -36,7 +36,9 @@ soon become unavailable. At your earliest possible convenience you should change
 your code to use the new services (``IQiAdministrationService``, ``IQiMetaDataService``
 and ``IQiDataService``) and remove the ``IQiService`` interface from your client code.
 
-The libraries also include new methods and objects to assist with configuring user security roles within your client. QiService and QiSecurityHandler objects are now included in the .Net libraries.  
+The libraries also include new methods and objects to assist with configuring user 
+security roles within your client. QiService and QiSecurityHandler objects are 
+now included in the .Net libraries.  
 
 The QiService object is used to create service objects that implement each of the new interfaces. 
 
@@ -54,15 +56,18 @@ Methods included with QiService object include:
 
 These ``Getxxx`` methods in the previous table permit you to provide URI, tenant, 
 and namespace information as well as security credentials and setting, which will 
-give the service the security access desired. Security is described below. 
+give the service the security access desired. 
 
-The IQiAdministrationService, IQiMetaDataService and IQiDataService interfaces 
+The ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService`` interfaces 
 are passed tenant and namespace information when the methods are instantiated, 
 which means that it is not necessary to provide the tenant and namespace information 
 with each library call. If you are switching from the IQiService to the new services, 
 you will notice that method calls no longer include tenantId and namespaceID parameters.
 
-Security information is provided to the QiService calls using a new SecurityHandler object. Constructors for this object accept security credentials that are provided by the client so that the appropriate role of ‘administrator’ or ‘user’ can be implemented for the service in which the created SecurityHandler is used. 
+Security information is provided to the QiService calls using a new SecurityHandler object. 
+Constructors for this object accept security credentials that are provided by the client 
+so that the appropriate role of administrator or user can be implemented for the service 
+in which the created SecurityHandler is used. 
 
 **If you are new to the Qi .NET library:**
 
