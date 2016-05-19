@@ -101,7 +101,7 @@ Here are some steps you might find useful when replacing these calls:
 
 For each of the method calls that were previously made with IQiServer:
 
-1.  Replace the use of ``IQIService`` with one of the new 
+1.  Replace the use of ``IQiService`` with one of the new 
     ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService objects.``
 2.  You should be able to find the method you need by using the object's Completion Aids. 
     The new services use the same method names as the old IQiServer, with the exception that the 
