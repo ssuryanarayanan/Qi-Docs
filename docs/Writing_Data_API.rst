@@ -45,6 +45,8 @@ Security
   ``InsertValue`` throws an exception if an event already exists at the specified index.
 
 
+**********************
+
 
 ``InsertValuesAsync()``
 ----------------
@@ -92,6 +94,8 @@ Content is serialized list of events of type T
 Security
   Allowed by administrator accounts
 
+
+**********************
 
 
 ``PatchValueAsync()``
@@ -149,6 +153,8 @@ Security
     await _dataService.PatchValueAsync(streamId, “Value”, obj);  
   
 
+**********************
+
 
 ``PatchValuesAsync()``
 ----------------
@@ -203,6 +209,7 @@ Security
   rolled back and the error will indicate the streamId and index of the
   problem.  
   
+
 
 
 ``RemoveValueAsync()``
