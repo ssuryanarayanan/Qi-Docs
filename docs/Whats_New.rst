@@ -1,8 +1,12 @@
 What's New in Qi?
 =================
 
-Summary of May 19th, 2016 changes:
-----------------------------------
+
+Summary of changes:
+-------------------
+
+**20 May 2016**
+
 
 * Deprecation of IQiServer C# Interface and introduction of ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``.
 * Removal of synchronous method calls
@@ -91,7 +95,7 @@ with the Qi .NET Library
 
 To assist you in incorporating these new C# interfaces, the Qi .NET libraries include 
 a QiService class, which includes methods that can be used to quickly instantiate the 
-new services. The methods are ``GetAdministratioService()``, ``GetMetadataService()`` 
+new services. The methods are ``GetAdministrationService()``, ``GetMetadataService()`` 
 and ``GetDataService()``. These calls accept URI, tenants, namespace and security 
 information. A new class called ``SecurityHandler`` is now provided so you can set 
 and pass security information to the Services in one easy step. 
