@@ -73,6 +73,9 @@ Security
   Returns a list of namespaces.
 
 
+**********************
+
+
 ``GetOrCreateNamespaceAsync()``
 ----------------
 
@@ -103,6 +106,8 @@ executable only by an administrator account.
 
 **Returns** 
   Returns a namespace.
+
+**********************
 
 
 ``DeleteNamespaceAsync()``
