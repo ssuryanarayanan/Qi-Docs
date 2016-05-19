@@ -40,6 +40,7 @@ Security
   Allowed by administrator accounts
 
 
+**********************
 
 
 ``GetBehaviorAsync()``
@@ -73,6 +74,7 @@ Retrieves a QiStreamBehavior from the specified namespace that matches the speci
 Security
   Allowed by administrator and user accounts
 
+**********************
 
 
 ``GetBehaviorsAsync()``
@@ -110,7 +112,8 @@ Security
   Allowed by administrator and user accounts
 
   
-**********
+**********************
+
 
 ``GetOrCreateBehaviorAsync()``
 ----------------
@@ -145,7 +148,9 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 Security
   Allowed by administrator accounts
 
-**********
+
+**********************
+
 
 ``UpdateBehaviorAsync()``
 ----------------
