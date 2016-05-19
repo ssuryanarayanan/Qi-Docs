@@ -1,8 +1,13 @@
 What's New in Qi?
 =================
 
-May 19th, 2016
---------------
+Summary of May 19th, 2016 changes:
+----------------------------------
+
+* Deprecation of IQiServer C# Interface and introduction of ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``.
+* Removal of synchronous method calls
+* Addition of methods and objects to assist with service and security configuration
+* TCP/IP port changed from 3380 to 443
 
 Some important changes were made to the Qi .Net Library that you should be aware of. Starting May 19th, 2016, 
 the IQiService C# interface will be deprecated and replaced with several new interfaces. The IQiService 
@@ -12,7 +17,7 @@ included in the IQiService C# interface were integrated into newly designed serv
 The new interfaces and their descriptions are as follows:
 
 +---------------------------+---------------------------------------------------+
-| Interface name            | Description                                       |
+| Method name               | Description                                       |
 +===========================+===================================================+
 | IQiAdministrationService  | Includes methods that you use to manage           |
 |                           | QiNamespace objects within a tenant.              |
@@ -54,9 +59,8 @@ Methods included with QiService object include:
 | GetDataService            | Returns an IQiDataService object                  |
 +---------------------------+---------------------------------------------------+
 
-These ``Getxxx`` methods in the previous table permit you to provide URI, tenant, 
-and namespace information as well as security credentials and setting, which will 
-give the service the security access desired. 
+The Getxxx methods in the previous table accept a URI, tenant, and namespace information 
+as well as security credentials and return the service interface with the desired security access.
 
 The ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService`` interfaces 
 are passed tenant and namespace information when the methods are instantiated, 
@@ -80,7 +84,7 @@ IQiServer C# Interface as outlined above. Specifically you will need to remove
 your instantiation of the IQiService C# interface and replace it with code that 
 instantiates ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``.  
 
-To assist you in incorporating these new C# interfaces, the QI .NET libraries include 
+To assist you in incorporating these new C# interfaces, the Qi .NET libraries include 
 a QiService class, which includes methods that can be used to quickly instantiate the 
 new services. The methods are ``GetAdministratioService()``, ``GetMetadataService()`` 
 and ``GetDataService()``. These calls accept URI, tenants, namespace and security 
