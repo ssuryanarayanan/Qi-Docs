@@ -13,12 +13,13 @@ Summary of changes:
 * Addition of methods and objects to assist with service and security configuration
 * TCP/IP port changed from 3380 to 443
 
-Some important changes were made to the Qi .Net Library that you should be aware of. Starting May 19th, 2016, 
-the IQiService C# interface will be deprecated and replaced with several new interfaces. The IQiService 
+Some important changes were made to the Qi .Net Library that you should be aware of. Starting May 20th, 2016, 
+the IQiServer C# interface will be deprecated and replaced with several new interfaces. The IQiServer interface 
 formerly included calls to manipulate Qi objects and to read and write data. Calls that were previously 
-included in the IQiService C# interface were integrated into newly designed services and the IQiService will be depricated.
+included in the IQiServer interface were integrated into newly designed services and the IQiServer interface 
+will be deprecated.
 
-The TCP/IP port for the Qi server has also changed. You should update any references in your code from port 3380 to port 443.
+The TCP/IP port for the Qi service has also changed. You should update any references in your code from port 3380 to port 443.
 
 The new interfaces and their descriptions are as follows:
 
@@ -39,13 +40,13 @@ The new interfaces and their descriptions are as follows:
 In addition to the new layout of methods shown in the previous table, all of the 
 synchronous calls are also being deprecated. Before deprecating, each of the .NET 
 library calls included a full complement of both synchronous and asynchronous 
-overloads. After the library change, only the asynchronous overloads will remain. 
+overloads. With this update to the Qi libraries, only the asynchronous overloads will remain. 
 
-If you are currently using the IQiService your client code will still work, but 
+If you are currently using the IQiServer, your client code will still work, but 
 you will receive compiler warnings to let you know you are using a call that will 
-soon become unavailable. At your earliest possible convenience you should change 
+soon become unavailable. At your earliest possible convenience, you should change 
 your code to use the new services (``IQiAdministrationService``, ``IQiMetaDataService``
-and ``IQiDataService``) and remove the ``IQiService`` interface from your client code.
+and ``IQiDataService``) and remove the ``IQiServer`` interface from your client code.
 
 The libraries also include new methods and objects to assist with configuring user 
 security roles within your client. QiService and QiSecurityHandler objects are 
@@ -71,7 +72,7 @@ as well as security credentials and return the service interface with the desire
 The ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService`` interfaces 
 are passed tenant and namespace information when the methods are instantiated, 
 which means that it is not necessary to provide the tenant and namespace information 
-with each library call. If you are switching from the IQiService to the new services, 
+with each library call. If you are switching from the IQiServer to the new services, 
 you will notice that method calls no longer include tenantId and namespaceID parameters.
 
 Security information is provided to the QiService calls using a new ``SecurityHandler`` object. 
@@ -87,8 +88,8 @@ your Qi Clients with the Qi .NET Library.
 **If you have already been using the Qi .NET library:**
 
 Your code will continue to work, but you will need to replace your use of the 
-IQiServer C# Interface as outlined above. Specifically you will need to remove 
-your instantiation of the IQiService C# interface and replace it with code that 
+IQiServer C# Interface as outlined above. Specifically, you will need to remove 
+your instantiation of the IQiServer C# interface and replace it with code that 
 instantiates ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``. Refer to 
 the documentation and samples for guidance about setting up and programming your Qi Clients 
 with the Qi .NET Library
@@ -107,17 +108,14 @@ Here are some steps you might find useful when replacing these calls:
 
 For each of the method calls that were previously made with IQiServer:
 
-1.  Replace the use of ``IQiService`` with one of the new 
+1.  Replace the use of ``IQiServer`` with one of the new 
     ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService objects.``
-2.  You should be able to find the method you need by using the object's Completion Aids. 
+2.  You should be able to find the method you need by using the object's completion aids. 
     The new services use the same method names as the old IQiServer, with the exception that the 
     synchronous method overloads are no longer provided. All of the synchronous methods have an 
     equivalent asynchronous method in the new Services; they simply include ``Async`` at 
-    the end of the method name. For Example ``GetValue(...)`` becomes ``GetValueAsync(...)``.
-3.  Also, consider adding ``.GetAwaiter().GetResult()`` to the end of the call as needed.
-    ``GetAwaiter()`` gets an ``awaiter`` to await the completion of the task.  
-    ``GetResult()`` returns the result of the completed task.
-4.  Notice also that you must remove the passing of a TenantId and/or NamespaceId as 
+    the end of the method name. For example ``GetValue(...)`` becomes ``GetValueAsync(...)``.
+3.  Notice also that you must remove the passing of a TenantId and/or NamespaceId as 
     parameters to these methods. The new methods do not require these parameters.
 
 *Example method call change:*
@@ -128,7 +126,7 @@ A call such as this:
 
 becomes this: 
 
-``var event1 = _QiDataService.GetDistinctValueAsync<TypeClass>(streamId, startIndexString).GetAwaiter().GetResult();``
+``var event1 = _QiDataService.GetDistinctValueAsync<TypeClass>(streamId, startIndexString).GetResult();``
 
 
 
