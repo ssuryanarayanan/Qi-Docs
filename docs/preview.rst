@@ -13,7 +13,7 @@ in mind during this preview phase:
 -  The samples and documentation will change, so be sure to check back
    here periodically
 -  The preview offering is not recommended for use against production
-   environements
+   environments
 -  The service may become unavailable. If this happens, we will strive
    to both inform preview users and restore the availability of the
    service as soon as possible.
