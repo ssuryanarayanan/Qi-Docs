@@ -14,6 +14,8 @@ the IQiService C# interface will be deprecated and replaced with several new int
 formerly included calls to manipulate Qi objects and to read and write data. Calls that were previously 
 included in the IQiService C# interface were integrated into newly designed services and the IQiService will be depricated.
 
+The TCP/IP port for the Qi server has also changed. You should update any references in your code from port 3380 to port 443.
+
 The new interfaces and their descriptions are as follows:
 
 +---------------------------+---------------------------------------------------+
