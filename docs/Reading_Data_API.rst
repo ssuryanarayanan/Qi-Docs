@@ -3,7 +3,7 @@ API Calls for reading data
 
 Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
 
-``FindDistinct()``
+``FindDistinctValueAsync()``
 ----------------
 
 Searches for data in a stream using the specified search mode.
@@ -102,7 +102,7 @@ stream types with a compound index, such as a DateTime and an Integer.
     var readEvent = _dataService.FindDistinctValueAsync<TestType, DateTime, int>(streamId, tupleId, searchMode).Result;
 
 
-``GetDistinctValue()``
+``GetDistinctValueAsync()``
 ----------------
 
 Returns an event from the specified stream at the specified index.
@@ -173,11 +173,11 @@ Can be used to supply the index of the call as a different type.
 Can be used to supply the index of the call as a tuple (for compound
 indexes).
 
-See the `FindDistinctValue <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalue>`__
-examples for an illustration of these.
+See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
+examples for an illustration.
 
 
-``GetFirstValue()``
+``GetFirstValueAsync()``
 ----------------
 
 Retrieves the first data event in a stream.
@@ -216,7 +216,7 @@ Security
   ``GetFirstValue`` returns null if the stream has no data (no exception is thrown).
 
 
-``GetLastValue()``
+``GetLastValueAsync()``
 ----------------
 
 Retrieves the last data event in a stream.
@@ -255,7 +255,7 @@ Security
   ``GetLastValue`` Returns null if the stream has no data (no exception is thrown).
 
 
-``GetRangeValues()``
+``GetRangeValuesAsync()``
 ----------------
 
 Retrieves events from a stream based on a starting index and a requested number of events.
@@ -350,8 +350,12 @@ do not include the ``reverse`` parameter, the default is forward.
 The ``skip`` parameter indicates the number of events that the call 
 skips over before it collects events for the response.
 
-BoundaryType has the following possible values: • Exact •
-ExactOrCalculated • Inside • Outside
+BoundaryType has the following possible values: 
+
+• Exact 
+• ExactOrCalculated 
+• Inside 
+• Outside
 
 The BoundaryType determines how to specify the first value in from the
 stream starting at the start index. This is also affected by the
@@ -469,7 +473,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
-``GetValue()``
+``GetValueAsync()``
 ----------------
 
 Retrieves a specified data event from a stream.
@@ -548,11 +552,11 @@ Can be used to supply the index of the call as a different type
 
 Can be used to supply the index of the call as a tuple (for compound indexes)
 
-See the `FindDistinctValue <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalue>`__
-examples for an illustration of these.
+See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
+examples for an illustration.
 
 
-``GetValues()``
+``GetValuesAsync()``
 ----------------
 
 Retrieves a number of calculated events from a stream using a set of indexes. The set of indexes 
@@ -608,11 +612,11 @@ Security
   
 **Notes**
 
-The ``GetValues()`` method has several overloads that perform different retrieval functions: 
+The ``GetValuesAsync()`` method has several overloads that perform different retrieval functions: 
 Simple, Count-based, and Filter-based, which are described below.
 
 Simple: 
-  The following ``GetValues()`` overloads include an enumerable of indexes and return a calculated value for 
+  The following ``GetValuesAsync()`` overloads include an enumerable of indexes and return a calculated value for 
   each of the specified indexes. For each of the specified indexes, one of two values is returned: either the event 
   that is found at the index, or a value is calculated for the index using adjacent events found in the stream.
   
@@ -623,7 +627,7 @@ Simple:
     Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);  
   
 Count-based:
-  The following ``GetValues()`` overloads contain a ``startindex``, ``endindex``, and a ``count``. The methods return ``count`` 
+  The following ``GetValuesAsync()`` overloads contain a ``startindex``, ``endindex``, and a ``count``. The methods return ``count`` 
   number of values at indexes that are evenly divided across the range between ``startIndex`` and ``endIndex``. 
   For Example, specifying a count of 3, a ``startIndex`` of 1:00PM, and an ``endIndex`` of 2:00PM, three indexes 
   are used to retrieve events (1:00, 1:30 and 2:00PM). When these indexes are determined, either an actual or 
@@ -636,7 +640,7 @@ Count-based:
     Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);  
   
 Filter-based
-  The following ``GetValues()`` overload include a ``filter`` parameter that finds all of the indexes in 
+  The following ``GetValuesAsync()`` overload include a ``filter`` parameter that finds all of the indexes in 
   the stream that have events that match the expression that is given in the filter. For this overload, 
   all of the returned events will be real events (that is, none of the events will be calculated).
 
@@ -652,7 +656,7 @@ found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
-``GetWindowValues()``
+``GetWindowValuesAsync()``
 ----------------
 
 Retrieves values between the specified start and end indexes.
