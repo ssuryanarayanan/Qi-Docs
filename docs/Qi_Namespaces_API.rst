@@ -3,7 +3,7 @@ Qi namespace API calls
 
 The API calls in this section are all used to create and manipulate Qi namespaces. You can create, delete, or obtain information about your namespaces using the methods outlined in this topic. Namespace management via the Qi Client Libraries is performed through the ``IQiAdministrationService`` interface, which may be accessed via the ``QiService.GetAdministrationService( )`` helper.
 
-``GetNamespace()``
+``GetNamespaceAsync()``
 -------------------
 
 Retrieves an existing namespace.
@@ -40,7 +40,7 @@ Security
 **********************
 
 
-``GetNamespaces()``
+``GetNamespacesAsync()``
 ----------------
 
 Retrieves a list of existing namespaces.
@@ -73,7 +73,7 @@ Security
   Returns a list of namespaces.
 
 
-``GetOrCreateNamespace()``
+``GetOrCreateNamespaceAsync()``
 ----------------
 
 Returns the namespace with the specified namespaceId, or creates the namespace if the namespace does not already exist. 
@@ -105,7 +105,7 @@ executable only by an administrator account.
   Returns a namespace.
 
 
-``DeleteNamespace()``
+``DeleteNamespaceAsync()``
 ----------------
 
 Deletes the namespace with the specified namespaceId from the tenant specified by the tenantId.
