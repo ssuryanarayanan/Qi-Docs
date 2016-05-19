@@ -75,14 +75,17 @@ in which the created ``SecurityHandler`` is used.
 
 **If you are new to the Qi .NET library:**
 
-Proceed to the documentation and samples for guidance in setting up and programming your Qi Clients with the Qi .NET Library
+Proceed to the documentation and samples for guidance about setting up and programming 
+your Qi Clients with the Qi .NET Library.
 
 **If you have already been using the Qi .NET library:**
 
 Your code will continue to work, but you will need to replace your use of the 
 IQiServer C# Interface as outlined above. Specifically you will need to remove 
 your instantiation of the IQiService C# interface and replace it with code that 
-instantiates ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``.  
+instantiates ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService``. Refer to 
+the documentation and samples for guidance about setting up and programming your Qi Clients 
+with the Qi .NET Library
 
 To assist you in incorporating these new C# interfaces, the Qi .NET libraries include 
 a QiService class, which includes methods that can be used to quickly instantiate the 
