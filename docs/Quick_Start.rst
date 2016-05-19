@@ -82,7 +82,7 @@ the structure that is defined in mySimpleType. The stream's Name,
 Description, and BehaviorId fields can be modified; however, the Id 
 and TypeId cannot be changed after the stream has been created.
 
-Additonal information about streams can be found in
+Additional information about streams can be found in
 `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__.
 
 **To define Stream behaviors**
