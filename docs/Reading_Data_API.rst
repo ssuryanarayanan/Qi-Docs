@@ -102,6 +102,9 @@ stream types with a compound index, such as a DateTime and an Integer.
     var readEvent = _dataService.FindDistinctValueAsync<TestType, DateTime, int>(streamId, tupleId, searchMode).Result;
 
 
+**********************
+
+
 ``GetDistinctValueAsync()``
 ----------------
 
@@ -177,6 +180,9 @@ See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Re
 examples for an illustration.
 
 
+**********************
+
+
 ``GetFirstValueAsync()``
 ----------------
 
@@ -216,6 +222,9 @@ Security
   ``GetFirstValue`` returns null if the stream has no data (no exception is thrown).
 
 
+**********************
+
+
 ``GetLastValueAsync()``
 ----------------
 
@@ -253,6 +262,9 @@ Security
   
 **Notes**
   ``GetLastValue`` Returns null if the stream has no data (no exception is thrown).
+
+
+**********************
 
 
 ``GetRangeValuesAsync()``
@@ -473,6 +485,9 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 
 
+**********************
+
+
 ``GetValueAsync()``
 ----------------
 
@@ -554,6 +569,9 @@ Can be used to supply the index of the call as a tuple (for compound indexes)
 
 See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
 examples for an illustration.
+
+
+**********************
 
 
 ``GetValuesAsync()``
@@ -654,6 +672,9 @@ Calculated values are determined using the Stream Behavior object that is associ
 More information about OData Filter Expressions can be
 found in `Filter
 expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
+
+
+**********************
 
 
 ``GetWindowValuesAsync()``
