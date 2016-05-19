@@ -366,7 +366,7 @@ Writes an item over an existing event in the specified stream.
 
     PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValue
 
-Content is serialzied replacement object
+Content is serialized replacement object
 
 	
 **Parameters**
