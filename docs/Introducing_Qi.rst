@@ -40,7 +40,7 @@ the following:
 -  A set of tools that you feel comfortable using to consume and use
    RESTful Web Services
 -  If consuming the .NET Qi Client Libraries, you must be using tools
-   capable of using the .NET 4.5.2 Runtimes in your enviroment
+   capable of using the .NET 4.5.2 Runtimes in your environment
 -  A Qi Preview tenant from OSIsoft and corresponding set of OAuth2
    authentication keys
 
