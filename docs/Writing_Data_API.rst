@@ -3,7 +3,7 @@ API calls for writing data
 
 Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
 
-``InsertValue()``
+``InsertValueAsync()``
 ----------------
 
 Inserts data into the specified stream. Throws an exception if data is already present at the index used in ‘item’.
@@ -45,8 +45,10 @@ Security
   ``InsertValue`` throws an exception if an event already exists at the specified index.
 
 
+**********************
 
-``InsertValues()``
+
+``InsertValuesAsync()``
 ----------------
 
 Inserts items into the specified stream. Throws an exception if data is already present at an index used in one of the ‘items'.
@@ -93,8 +95,10 @@ Security
   Allowed by administrator accounts
 
 
+**********************
 
-``PatchValue()``
+
+``PatchValueAsync()``
 ----------------
 
 Modifies the specified stream event. PatchValue affects only the data item parameters that are included in the call.
@@ -149,8 +153,10 @@ Security
     await _dataService.PatchValueAsync(streamId, “Value”, obj);  
   
 
+**********************
 
-``PatchValues()``
+
+``PatchValuesAsync()``
 ----------------
 
 Patches values of the selected fields for multiple events in the stream.
@@ -205,7 +211,8 @@ Security
   
 
 
-``RemoveValue()``
+
+``RemoveValueAsync()``
 ----------------
 
 Removes the event at the index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. This method throws an exception if there is no data at the specified index.
@@ -250,7 +257,7 @@ Security
 
 
 
-``RemoveValues()``
+``RemoveValuesAsync()``
 ----------------
 
 Removes the event at each index from the specified stream. Different overloads are available to make it easier to indicate the index where you want to remove a data event. 
@@ -299,7 +306,7 @@ Security
 
 
 
-``RemoveWindowValues()``
+``RemoveWindowValuesAsync()``
 ----------------
 
 Removes a range of values at and between the given indices.
@@ -348,7 +355,7 @@ Security
   
 
 
-``ReplaceValue()``
+``ReplaceValueAsync()``
 ----------------
 
 Writes an item over an existing event in the specified stream.
@@ -366,7 +373,7 @@ Writes an item over an existing event in the specified stream.
 
     PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValue
 
-Content is serialzied replacement object
+Content is serialized replacement object
 
 	
 **Parameters**
@@ -390,7 +397,7 @@ Security
   specified index. Overloads are available to help you set the indexes you want removed.
   
   
-``ReplaceValues()``
+``ReplaceValuesAsync()``
 ----------------
 
 Writes **items** over existing events in the specified stream.
@@ -434,7 +441,7 @@ Security
   Throws an exception if any index does not have a value to be replaced. If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index (of the *items* IEnumerable) that caused the issue and the streamId are included in the error response.
 
 
-``UpdateValue()``
+``UpdateValueAsync()``
 ----------------
 
 Writes **item** to the specified stream.
@@ -477,7 +484,7 @@ Security
   ``UpdateValue`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
 
-``UpdateValues()``
+``UpdateValuesAsync()``
 ----------------
 
 Writes items to the specified stream.

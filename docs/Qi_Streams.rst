@@ -32,7 +32,7 @@ The following table shows the required and optional QiStream properties:
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream|
 +---------------+------------------------------+-------------+--------------------------------------------+
 
-A stream is always referenced by its Id property. As shown in the preceeding table,
+A stream is always referenced by its Id property. As shown in the preceding table,
 a QiStream must include a unique *ID* as well as a *TypeId* with the ID of
 an existing QiType. The optional *BehaviorId* is set with the ID of an
 existing stream behavior. When BehaviorId is omitted, the stream

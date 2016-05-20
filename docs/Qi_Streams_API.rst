@@ -7,7 +7,7 @@ The API calls in this section are all used to create and manipulate QiStreams. S
 QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
 
-``GetStream()``
+``GetStreamAsync()``
 ----------------
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
@@ -44,7 +44,7 @@ Security
 
 
 
-``GetStreams()``
+``GetStreamsAsync()``
 ----------------
 
 Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria.
@@ -83,7 +83,7 @@ Security
   
 
 
-``GetOrCreateStream()``
+``GetOrCreateStreamAsync()``
 ----------------
 
 Returns a stream that matches the QiStream qistream within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
@@ -118,7 +118,7 @@ Security
   
 
 
-``UpdateStream()``
+``UpdateStreamAsync()``
 ----------------
 
 Updates a specified stream in a specified namespace with the properties in the specified QiStream qistream. The following changes are permitted:
@@ -132,7 +132,7 @@ Updates a specified stream in a specified namespace with the properties in the s
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStreamAsync()* method applies to the entire entity. Optional fields
+The *UpdateStreamAsyncAsync()* method applies to the entire entity. Optional fields
 that are omitted from the entity will remove the field from the stream if the fields had been set previously.
 
 
@@ -169,7 +169,7 @@ Security
 
 
 
-``DeleteStream()``
+``DeleteStreamAsync()``
 ----------------
 
 Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.

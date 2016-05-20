@@ -4,7 +4,7 @@ QiStreamBehavior API calls
 The API calls in this section are all used to create and manipulate QiStreamBehaviors. QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper. See `QiStreamBehavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of properties, interpolation, extrapolation, and overrides.
 
 
-``DeleteBehavior()``
+``DeleteBehaviorAsync()``
 ----------------
 
 Deletes a QiStream behavior from the specified namespace that matches the specified behaviorId. You cannot delete a stream behavior that is associated with a stream.
@@ -40,9 +40,10 @@ Security
   Allowed by administrator accounts
 
 
+**********************
 
 
-``GetBehavior()``
+``GetBehaviorAsync()``
 ----------------
 
 Retrieves a QiStreamBehavior from the specified namespace that matches the specified behaviorId
@@ -73,9 +74,10 @@ Retrieves a QiStreamBehavior from the specified namespace that matches the speci
 Security
   Allowed by administrator and user accounts
 
+**********************
 
 
-``GetBehaviors()``
+``GetBehaviorsAsync()``
 ----------------
 
 Retrieves all QiStream behaviors from a namespace.
@@ -110,9 +112,10 @@ Security
   Allowed by administrator and user accounts
 
   
-**********
+**********************
 
-``GetOrCreateBehavior()``
+
+``GetOrCreateBehaviorAsync()``
 ----------------
 
 Retrieves the QiStream behavior from a namespace, or creates the behavior if the behavior does not already exist. If the behavior exists, it is returned to the caller unchanged.
@@ -145,9 +148,11 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 Security
   Allowed by administrator accounts
 
-**********
 
-``UpdateBehavior()``
+**********************
+
+
+``UpdateBehaviorAsync()``
 ----------------
 
 Replaces the stream’s existing behavior with those defined in the ‘qibehavior’. If certain aspects of the existing behavior are meant to remain, they must be included in qibehavior.

@@ -1,8 +1,8 @@
 Filter Expressions
 ==================
 
-Filter expressions can be included in overloads for ``GetRangeValues( )``
-and ``GetWindowValues( )``. The filter expression is applied to returned events
+Filter expressions can be included in overloads for ``GetRangeValuesAsync()``
+and ``GetWindowValuesAsync()``. The filter expression is applied to returned events
 so you can conditionally filter out certain events.
 
 QiTypeCodes
