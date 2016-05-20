@@ -1,4 +1,8 @@
 [{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-05-20T15:30:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 20 May 2016 UTC 15:30 OSIsoft will be upgrading the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. The upgrade introduces a change to the TCP/IP port for the Qi any client-side code references will need to be changed from port 3380 to port 443. The upgrade also includes changes to the Qi .Net C# Library that might also require updates to your client-side code. Additional details about the changes included in the upgrade can be found here: https://qi-docs.readthedocs.io/en/latest/Whats_New.html. Generally, the changes make it easier to configure services and set up security, and also provide a more manageable programming environment when interacting with the Qi REST endpoint."
+  },{  
     "Title": "Service Alert",
     "Timestamp": "2016-05-04T21:50:00.000Z",
     "Content": "<h1>Qi Service Alert<\/h1> At 21:50 UTC Qi service functionality was restored."
