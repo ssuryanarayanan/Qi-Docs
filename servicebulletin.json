@@ -1,5 +1,9 @@
 [{  
     "Title": "Upgrade Starting",
+    "Timestamp": "2016-05-20T19:30:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>OSIsoft has completed today’s upgrade to the Qi service. At this time the Qi service is functional however the health status displayed on https://qi.osisoft.com/home has not yet been fully restored. Remaining issues with the health status are expected to be resolved by end of business today. In the event that the health status issues are not resolved, an update will be posted to the service blog. Today’s upgrade included changes to repair and improve the functionality of the service, a summary of which can be found at: https://qi-docs.readthedocs.io/en/latest/Whats_New.html Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
     "Timestamp": "2016-05-20T15:30:00.000Z",
     "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 20 May 2016 UTC 15:30 OSIsoft will be upgrading the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. The upgrade introduces a change to the TCP/IP port for the Qi any client-side code references will need to be changed from port 3380 to port 443. The upgrade also includes changes to the Qi .Net C# Library that might also require updates to your client-side code. Additional details about the changes included in the upgrade can be found here: https://qi-docs.readthedocs.io/en/latest/Whats_New.html. Generally, the changes make it easier to configure services and set up security, and also provide a more manageable programming environment when interacting with the Qi REST endpoint."
   },{  
