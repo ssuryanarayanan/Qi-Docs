@@ -37,7 +37,7 @@ Searches for data in a stream using the specified search mode.
   
 
 **Returns**
-  An IEnumerable of all behavior objects
+  An IEnumerable of all value objects
 
 Security
   Allowed by administrator and user accounts
