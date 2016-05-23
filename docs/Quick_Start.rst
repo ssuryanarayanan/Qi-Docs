@@ -25,13 +25,13 @@ compound indexes refer to:
 `QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/QiTypes/#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
-sending it to Qi using `GetOrCreateType <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
+sending it to Qi using `GetOrCreateType <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
 method.
 
 A wide variety of QiType data properties are available, 
 including lists, arrays and enumerations. For additional information,
 including a detailed list of supported data types, refer to
-`QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__.
+`QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__.
 
 The following example creates a simple type:
 
