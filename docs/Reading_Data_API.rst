@@ -488,7 +488,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 |Discrete               |No event calculated                                                       |
 +-----------------------+--------------------------------------------------------------------------+
-|ContinuousLeading      |Event is calculated using the index and previous event values            |
+|ContinuousLeading      |Event is calculated using the index and previous event values             |
 +-----------------------+--------------------------------------------------------------------------+
 |ContinuousTrailing     |Event is calculated using the index and next event values                 |
 +-----------------------+--------------------------------------------------------------------------+
