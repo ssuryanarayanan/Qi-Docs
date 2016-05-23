@@ -2,3 +2,9 @@
  .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
     color: #000000;
 }
+hr.docutils {
+    background-color: #000;
+    border: 0 none;
+    color: #000;
+    height: 2px;
+}
