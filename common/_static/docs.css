@@ -9,5 +9,5 @@ hr.docutils {
     height: 2px;
 }
 .fa-github {
- display: none;
+ display: none !important;
 }
