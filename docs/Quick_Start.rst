@@ -22,7 +22,7 @@ data properties. You use index properties to arrange data into a sequence.
 For example, DateTime is a common index property, but any native type can be used as
 an index as long as it allows for ordering of values. For information about
 compound indexes refer to:
-`QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/QiTypes/#compound-indexes>`__.
+`QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types/#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
 sending it to Qi using `GetOrCreateType <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
