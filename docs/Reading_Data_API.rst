@@ -188,7 +188,7 @@ examples for an illustration.
 
 Returns the first data event that was written in a stream. The first value is defined 
 as the data event with the smallest index. For example, if a stream contains time 
-series data, ``GetFirstValue()`` returns the oldest event in the stream.
+series data, ``GetFirstValueAsync()`` returns the oldest event in the stream.
 Returns null if the stream has no data (no exception is thrown).
 
 
@@ -234,7 +234,7 @@ Security
 
 Returns the last data event that was written in a stream. The last value is defined 
 as the data event with the largest index. For example, if a stream contains time 
-series data, ``GetLastValue()`` returns the most recent event that was written to the 
+series data, ``GetLastValueAsync()`` returns the most recent event that was written to the 
 stream, or the data event that is farthest in the future if the stream contains time 
 stamps that are greater than the current date and time. Returns null if the stream 
 has no data (no exception is thrown).
