@@ -8,9 +8,10 @@ See `QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`_
 QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` 
 interface, which you access using the ``QiService.GetMetadataService( )`` helper.
 
+***********************
 
 ``GetStreamAsync()``
-----------------
+--------------------
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
 
@@ -44,6 +45,8 @@ Returns a QiStream object from the specified namespace that matches the specifie
 Security
   Allowed by administrator and user accounts
 
+
+***********************
 
 
 ``GetStreamsAsync()``
@@ -84,6 +87,8 @@ Security
   Allowed by administrator and user accounts
   
 
+***********************
+
 
 ``GetOrCreateStreamAsync()``
 ----------------
@@ -118,6 +123,8 @@ Returns a stream that matches the QiStream qistream within the specified namespa
 Security
   Allowed by administrator accounts
   
+
+***********************
 
 
 ``UpdateStreamAsync()``
@@ -169,6 +176,7 @@ Security
   Allowed by administrator accounts
   
 
+***********************
 
 
 ``DeleteStreamAsync()``
