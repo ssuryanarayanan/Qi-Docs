@@ -2,9 +2,11 @@ QiStream API calls
 ==================
 
 
-The API calls in this section are all used to create and manipulate QiStreams. See `QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
+The API calls in this section are all used to create and manipulate QiStreams. 
+See `QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
 
-QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` 
+interface, which you access using the ``QiService.GetMetadataService( )`` helper.
 
 
 ``GetStreamAsync()``
