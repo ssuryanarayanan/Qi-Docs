@@ -1,7 +1,12 @@
 QiType API calls
 ==================
 
-The API calls in this section are all used to create and manipulate QiTypes. QiType management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.  See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ for general QiType information, working with compound indexes, and supported QiTypes,
+The API calls in this section are all used to create and manipulate QiTypes. 
+QiType management via the Qi Client Libraries is performed through the 
+``IQiMetadataService`` interface, which is accessed using the 
+``QiService.GetMetadataService( )`` helper.  
+See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ 
+for general QiType information, working with compound indexes, and supported QiTypes.
 
 
 ``GetStreamTypeAsync()``
@@ -112,7 +117,7 @@ Security
 ``GetOrCreateTypeAsync()``
 ----------------
 
-Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the typeId exists, it is returned to the caller unchanged. 
+Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the ``typeId`` exists, it is returned to the caller unchanged. 
 
 
 **Syntax**
@@ -151,7 +156,8 @@ Security
 ``DeleteTypeAsync()``
 ----------------
 
-Deletes a type from the specified namespace. Note that a type cannot be deleted if there are streams associated with it.
+Deletes a type from the specified namespace. Note that a type cannot be deleted if any 
+streams are associated with it.
 
 **Syntax**
 
@@ -188,7 +194,8 @@ Security
 ``UpdateTypeAsync()``
 ----------------
 
-Updates the definition of a type. Note that a type cannot be updated if there are streams associated with it. Also, certain parameters cannot be changed after they are defined.
+Updates the definition of a type. Note that a type cannot be updated if any streams are 
+associated with it. Also, certain parameters cannot be changed after they are defined.
 
 **Syntax**
 
