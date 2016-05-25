@@ -9,6 +9,9 @@ See `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__
 for general QiType information, working with compound indexes, and supported QiTypes.
 
 
+***********************
+
+
 ``GetStreamTypeAsync()``
 ----------------
 
@@ -45,6 +48,9 @@ Security
   Allowed by administrator and user accounts
 
 
+***********************
+
+
 ``GetTypeAsync()``
 ----------------
 
@@ -77,6 +83,9 @@ Returns the type of the specified ``typeId`` from the specified namespace.
 
 Security
   Allowed by administrator and user accounts
+
+
+***********************
 
 
 ``GetTypesAsync()``
@@ -112,6 +121,9 @@ Returns a list of all types within a given namespace.
 
 Security
   Allowed by administrator and user accounts
+
+
+***********************
 
 
 ``GetOrCreateTypeAsync()``
@@ -153,6 +165,9 @@ Security
   Allowed by administrator account
 
 
+***********************
+
+
 ``DeleteTypeAsync()``
 ----------------
 
@@ -189,6 +204,9 @@ streams are associated with it.
 
 Security
   Allowed by administrator account
+
+
+***********************
 
 
 ``UpdateTypeAsync()``
