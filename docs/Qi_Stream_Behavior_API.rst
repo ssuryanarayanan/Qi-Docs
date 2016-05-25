@@ -9,6 +9,9 @@ See `QiStreamBehavior <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_B
 a list of properties, interpolation, extrapolation, and overrides.
 
 
+***********************
+
+
 ``DeleteBehaviorAsync()``
 ----------------
 
