@@ -1,7 +1,12 @@
 QiStreamBehavior API calls
 ==================
 
-The API calls in this section are all used to create and manipulate QiStreamBehaviors. QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper. See `QiStreamBehavior <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for a list of properties, interpolation, extrapolation, and overrides.
+The API calls in this section are all used to create and manipulate QiStreamBehaviors. 
+QiStreamBehavior management via the Qi Client Libraries is performed through 
+the ``IQiMetadataService`` interface, which is accessed via the 
+``QiService.GetMetadataService( )`` helper. 
+See `QiStreamBehavior <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for 
+a list of properties, interpolation, extrapolation, and overrides.
 
 
 ``DeleteBehaviorAsync()``
