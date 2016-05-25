@@ -50,16 +50,16 @@ behavior itself can be changed after it is created or configured.
 
 **Methods affected by QiStreamBehavior**
 
-`GetValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalueasync>`__
+`GetValueAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvalueasync>`__
   Stream behavior is applied when the index is between, before, or after all data.
 
-`GetValuesAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvaluesasync>`__
+`GetValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getvaluesasync>`__
   Stream behavior is applied when an index determined by the call is between, before, or after all data.
 
-`GetWindowValuesAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getwindowvaluesasync>`__
+`GetWindowValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getwindowvaluesasync>`__
   Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
 
-`GetRangeValuesAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getrangevaluesasync>`__
+`GetRangeValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#getrangevaluesasync>`__
   Stream behavior is applied to indexes between, before, or after data when the calls Boundary parameter is set to ExactOrCalculated.
 
 
@@ -235,7 +235,7 @@ values for each **Mode** value:
 
 For additional information about the effect of stream behaviors, see the
 documentation on the `read
-method <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html>`__
+method <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html>`__
 you are using.
 
 Overrides
