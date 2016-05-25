@@ -1,7 +1,13 @@
 API calls for writing data
 ==========================
 
-Reading and writing data with the Qi Client Libraries is performed through the ``IQiDataService`` interface, which can be accessed with the ``QiService.GetDataService( )`` helper.
+Reading and writing data with the Qi Client Libraries is performed through 
+the ``IQiDataService`` interface, which is accessed with the ``QiService.GetDataService( )`` 
+helper.
+
+
+***********************
+
 
 ``InsertValueAsync()``
 ----------------
