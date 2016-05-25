@@ -25,7 +25,7 @@ compound indexes refer to:
 `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
-sending it to Qi using `GetOrCreateType <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
+sending it to Qi using `GetOrCreateTypeAsync <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
 method.
 
 A wide variety of QiType data properties are available, 
@@ -100,19 +100,19 @@ Step 4: Write data
 ------------------
 
 Qi has several methods that can be used to write data. For example,
-`InsertValue <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
+`InsertValueAsync <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
 is used to write a single data event to a stream. If the data event
 includes an index at that is the same as a previous event, 
 this method will throw an exception. However
-`UpdateValue <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#updatevalueasync>`__
+`UpdateValueAsync <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#updatevalueasync>`__
 can also be used to write a single event to a stream, and will overwrite
 the existing event with the new event.
 
 Each of these methods has a counterpart that acts upon a list of data
 events instead of only a single event. For example,
-`InsertValues <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvaluesasync>`__
+`InsertValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvaluesasync>`__
 writes multiple events. Similarly,
-`UpdateValues <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevaluesasync>`__
+`UpdateValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevaluesasync>`__
 is used to update multiple events.
 
 The following example writes a single data event to the ‘MyFirstStream’
