@@ -22,7 +22,7 @@ data properties. You use index properties to arrange data into a sequence.
 For example, DateTime is a common index property, but any native type can be used as
 an index as long as it allows for ordering of values. For information about
 compound indexes refer to:
-`QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types/#compound-indexes>`__.
+`QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html#compound-indexes>`__.
 
 You define the structure of your data by defining a QiType object and then
 sending it to Qi using `GetOrCreateType <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types_API.html#getorcreatetypeasync>`__
@@ -31,7 +31,7 @@ method.
 A wide variety of QiType data properties are available, 
 including lists, arrays and enumerations. For additional information,
 including a detailed list of supported data types, refer to
-`QiTypes <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__.
+`QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__.
 
 The following example creates a simple type:
 
@@ -83,7 +83,7 @@ Description, and BehaviorId fields can be modified; however, the Id
 and TypeId cannot be changed after the stream has been created.
 
 Additional information about streams can be found in
-`QiStreams <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__.
+`QiStreams <http://qi-docs.readthedocs.org/en/latest/Qi_Streams.html>`__.
 
 **To define Stream behaviors**
 
@@ -93,18 +93,18 @@ interpolation or extrapolation will be done when the
 index of a read operation falls between, before, or after stream data.
 
 Additonal information about stream behaviors can be found in
-`QiStreamBehaviors <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__.
+`QiStreamBehaviors <http://qi-docs.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__.
 
 
 Step 4: Write data
 ------------------
 
 Qi has several methods that can be used to write data. For example,
-`InsertValue <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
+`InsertValue <http://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
 is used to write a single data event to a stream. If the data event
 includes an index at that is the same as a previous event, 
 this method will throw an exception. However
-`UpdateValue <http://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#updatevalueasync>`__
+`UpdateValue <http://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#updatevalueasync>`__
 can also be used to write a single event to a stream, and will overwrite
 the existing event with the new event.
 
