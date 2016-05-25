@@ -38,7 +38,7 @@ an existing QiType. The optional *BehaviorId* is set with the ID of an
 existing stream behavior. When BehaviorId is omitted, the stream
 will have a default behavior mode set to *continuous* and *extrapolation*
 set to *all*. See
-`QiStreamBehaviors <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
+`QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
 **Rules for QiStream *ID*:**
