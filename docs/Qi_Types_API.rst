@@ -5,7 +5,7 @@ The API calls in this section are all used to create and manipulate QiTypes.
 QiType management via the Qi Client Libraries is performed through the 
 ``IQiMetadataService`` interface, which is accessed using the 
 ``QiService.GetMetadataService( )`` helper.  
-See `QiTypes <http://qi-docs-rst.readthedocs.org/en/latest/Qi_Types.html>`__ 
+See `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__ 
 for general QiType information, working with compound indexes, and supported QiTypes.
 
 
