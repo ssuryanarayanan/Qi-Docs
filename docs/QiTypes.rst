@@ -36,6 +36,9 @@ The following table shows the required and optional QiType properties:
 3. Cannot begin with two underscores ("\_\_")
 4. Cannot contain forward slash or backslash characters ("/" or "\\")
 5. Can contain a maximum of 260 characters
+6. Cannot start or end with a period.
+7. Cannot contain consecutive periods.
+8. Cannot consist of only periods. 
 
 
 Compound Indexes
