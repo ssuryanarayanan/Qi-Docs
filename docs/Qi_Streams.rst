@@ -41,13 +41,16 @@ set to *all*. See
 `QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
-**Rules for QiStream *ID*:**
+**Rules for QiStream ID:**
 
 1. Is not case sensitive.
 2. Can contain spaces.
 3. Cannot start with two underscores ("\_\_").
-4. Cannot start or end with a period (".").
-5. Can contain a maximum of 260 characters.
-6. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
+4. Can contain a maximum of 260 characters.
+5. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
    , ; = %)
-7. Cannot contain more than 250 periods (".").
+6. Cannot contain more than 250 periods (".").
+7. Cannot start or end with a period.
+8. Cannot contain consecutive periods.
+9. Cannot consist of only periods. 
+
