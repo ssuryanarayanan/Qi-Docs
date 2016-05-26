@@ -47,6 +47,9 @@ behavior itself can be changed after it is created or configured.
 3. Cannot start with two underscores ("\_\_")
 4. Cannot contain forward slashes or backslashes ("/" or "\\")
 5. Can contain a maximum of 260 characters
+6. Cannot start or end with a period.
+7. Cannot contain consecutive periods.
+8. Cannot consist of only periods. 
 
 **Methods affected by QiStreamBehavior**
 
