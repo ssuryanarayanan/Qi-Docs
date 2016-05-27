@@ -1,4 +1,8 @@
 [{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-05-27T19:00:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 27 May 2016 UTC 19:00 OSIsoft will be redelpoying the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. Data loss will be experienced."
+  },{  
     "Title": "Upgrade Complete - Action Required",
     "Timestamp": "2016-05-20T19:30:00.000Z",
     "Content": "<h1>Qi Service Upgrade Complete - Action Required<\/h1>OSIsoft has completed today's upgrade to the Qi service. At this time the Qi service is functional however the health status displayed on https://qi.osisoft.com/home has not yet been fully restored. Remaining issues with the health status are expected to be resolved by end of business today. In the event that the health status issues are not resolved, an update will be posted to the service blog. Today's upgrade included changes to repair and improve the functionality of the service, a summary of which can be found at: https://qi-docs.readthedocs.io/en/latest/Whats_New.html Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
