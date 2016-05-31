@@ -49,8 +49,7 @@ for more information.
 4. Can contain a maximum of 260 characters.
 5. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
    , ; = %)
-6. Cannot contain more than 250 periods (".").
-7. Cannot start or end with a period.
-8. Cannot contain consecutive periods.
-9. Cannot consist of only periods. 
+6. Cannot start or end with a period.
+7. Cannot contain consecutive periods.
+8. Cannot consist of only periods. 
 
