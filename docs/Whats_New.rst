@@ -10,7 +10,7 @@ Summary of changes:
 **IQiServer Interface Sunset**
 
 If you write application software using the OSIsoft .NET Qi client classes 
-(which are found in the ``OSIsoft.Qi.Core``, ``OSIsoft.Qi.Http.Channel``, and ``OSIsoft.Qi.Http.Client`` NuGet packages), 
+(which are found in the ``OSIsoft.Qi.Core``, ``OSIsoft.Qi.Http.Channel``, ``OSIsoft.Qi.Http.Security``, and ``OSIsoft.Qi.Http.Client`` NuGet packages), 
 please be aware of a breaking change in the client interfaces. Clients that use the native REST 
 interfaces are unaffected.
 
