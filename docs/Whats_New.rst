@@ -68,7 +68,7 @@ The TCP/IP port for the Qi service has also changed. You should update any refer
 The new interfaces and their descriptions are as follows:
 
 +---------------------------+---------------------------------------------------+
-| Method name               | Description                                       |
+| Interface name            | Description                                       |
 +===========================+===================================================+
 | IQiAdministrationService  | Includes methods that you use to manage           |
 |                           | QiNamespace objects within a tenant.              |
@@ -101,7 +101,7 @@ The QiService object is used to create service objects that implement each of th
 Methods included with QiService object include:
 
 +---------------------------+---------------------------------------------------+
-| Interface name            | Description                                       |
+| Method name               | Description                                       |
 +===========================+===================================================+
 | GetAdministrationService  | Returns an IQiAdministrationService object        |
 +---------------------------+---------------------------------------------------+
