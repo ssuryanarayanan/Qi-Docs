@@ -46,7 +46,7 @@ overloads for using ClientCredentials (as illustrated by the Qi samples) or User
 **Additional reference information**
 
 For a description of the individual methods, see http://qi-docs.osisoft.com/en/latest/. 
-Code samples using the .NET Client Classes can be found at https://github.com/osisoft/Qi-Samples/tree/master/Basic/DotNet. 
+Code samples using the .NET client classes can be found at https://github.com/osisoft/Qi-Samples/tree/master/Basic/DotNet. 
 
 
 **20 May 2016**
