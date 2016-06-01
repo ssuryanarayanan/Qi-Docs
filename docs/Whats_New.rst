@@ -5,7 +5,7 @@ What's New in Qi?
 Summary of changes:
 -------------------
 
-**31 May 2016**
+**01 June 2016**
 
 **IQiServer Interface Sunset**
 
@@ -14,7 +14,7 @@ If you write application software using the OSIsoft .NET Qi client classes
 please be aware of a breaking change in the client interfaces. Clients that use the native REST 
 interfaces are unaffected.
 
-Starting with version x.x.x of the Qi Client Libraries, the IQiServer interface is no longer supported. 
+Starting with the 01 June 2016 version of the Qi Client Libraries, the IQiServer interface is no longer supported. 
 The existing client methods are retained and are distributed among new interfaces based on the type 
 of task you wish to accomplish. The IQiServer interface that was depricated previously is superseded 
 by the following three interfaces: 
