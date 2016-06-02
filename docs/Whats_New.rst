@@ -5,7 +5,7 @@ What's New in Qi?
 Summary of changes:
 -------------------
 
-**01 June 2016**
+**02 June 2016**
 
 **IQiServer Interface Sunset**
 
