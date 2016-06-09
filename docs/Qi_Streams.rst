@@ -41,7 +41,9 @@ set to *all*. See
 `QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
-**Rules for QiStream ID:**
+**Restrictions and Limitations**
+
+*QiStream ID*
 
 1. Is not case sensitive.
 2. Can contain spaces.
@@ -53,3 +55,6 @@ for more information.
 7. Cannot contain consecutive periods.
 8. Cannot consist of only periods. 
 
+*QiStream Metadata*
+
+Use of TimeSpan objects in the QiStream Metadata dictionary is not supported.  Any numeric types stored in QiStream Metadata may be returned as ``long``.
