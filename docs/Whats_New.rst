@@ -5,6 +5,50 @@ What's New in Qi?
 Summary of changes:
 -------------------
 
+**02 June 2016**
+
+**IQiServer Interface Sunset**
+
+If you write application software using the OSIsoft .NET Qi client classes 
+(which are found in the ``OSIsoft.Qi.Core``, ``OSIsoft.Qi.Http.Channel``, ``OSIsoft.Qi.Http.Security``, and ``OSIsoft.Qi.Http.Client`` NuGet packages), 
+please be aware of a breaking change in the client interfaces. Clients that use the native REST 
+interfaces are unaffected.
+
+Starting with the 01 June 2016 version of the Qi Client Libraries, the IQiServer interface is no longer supported. 
+The existing client methods are retained and are distributed among new interfaces based on the type 
+of task you wish to accomplish. The IQiServer interface that was depricated previously is superseded 
+by the following three interfaces: 
+
+•	IQiAdministrationService – namespace operations
+•	IQiMetadataService – type, behavior, and stream definition operations
+•	IQiDataService – data operations
+
+**Creating Interface Instances**
+
+The new interfaces are an improvement to IQiServer because they handle all necessary security 
+functions for the client developer, and simplify the creation of an interface instance. An instance 
+of each interface is created by calling a method of the static QiService class. Examples of the calls 
+are shown below:
+
+::
+
+  IQiAdministrationService admin = QiService.GetAdministrationService(baseUri, tenantId, securityHandler);
+  IQiMetadataService meta = QiService.GetMetadataService(baseUri, tenantId, namespaceId, securityHandler);
+  IQiDataService data = QiService.GetDataService(baseUri, tenantId, namespaceId, securityHandler);
+
+
+The ``baseUri`` parameter is a Uri object that pointe to the base address of the historian service 
+that you want to access. The ``tenantId`` and ``namespaceId`` parameters are strings, and 
+``securityHandler`` is an instance of ``OSIsoft.Qi.Http.Security.SecurityHandler``. This class has 
+overloads for using ClientCredentials (as illustrated by the Qi samples) or UserCredentials 
+(user ID and password).
+
+**Additional reference information**
+
+For a description of the individual methods, see http://qi-docs.osisoft.com/en/latest/. 
+Code samples using the .NET client classes can be found at https://github.com/osisoft/Qi-Samples/tree/master/Basic/DotNet. 
+
+
 **20 May 2016**
 
 
@@ -24,7 +68,7 @@ The TCP/IP port for the Qi service has also changed. You should update any refer
 The new interfaces and their descriptions are as follows:
 
 +---------------------------+---------------------------------------------------+
-| Method name               | Description                                       |
+| Interface name            | Description                                       |
 +===========================+===================================================+
 | IQiAdministrationService  | Includes methods that you use to manage           |
 |                           | QiNamespace objects within a tenant.              |
@@ -57,7 +101,7 @@ The QiService object is used to create service objects that implement each of th
 Methods included with QiService object include:
 
 +---------------------------+---------------------------------------------------+
-| Interface name            | Description                                       |
+| Method name               | Description                                       |
 +===========================+===================================================+
 | GetAdministrationService  | Returns an IQiAdministrationService object        |
 +---------------------------+---------------------------------------------------+
